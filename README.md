@@ -14,6 +14,10 @@ The project uses [CocoaPods](http://cocoapods.org/) to fetch a couple of externa
 Simply download/clone the project and run
 ```pod install```
 
+## System Requirements
+The minimum system requirements are the ones needed by the 3rd party libraries used.
+CocoaAsyncSocket requires MacOS X 10.7 to run.
+
 ## TO-DO
 - add sorting/filtering
 - support more games :-)
