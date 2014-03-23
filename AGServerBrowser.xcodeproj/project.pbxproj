@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4486570BFDC94D428265C2CF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B66FB086D345D9A97AF346 /* libPods.a */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		DE34922718D61E9500226D8E /* AGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3491F818D61E9500226D8E /* AGAppDelegate.m */; };
+		DE34922D18D61E9500226D8E /* AGGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE34921818D61E9500226D8E /* AGGame.m */; };
+		DE34922E18D61E9500226D8E /* AGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE34921C18D61E9500226D8E /* AGViewController.m */; };
+		DE34922F18D61E9500226D8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE34921D18D61E9500226D8E /* InfoPlist.strings */; };
+		DE34923018D61E9500226D8E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE34921F18D61E9500226D8E /* MainMenu.xib */; };
+		DE34923118D61E9500226D8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE34922118D61E9500226D8E /* main.m */; };
+		DE34923218D61E9500226D8E /* icn_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = DE34922418D61E9500226D8E /* icn_refresh.png */; };
+		DE56C5D218DEC44F000470F6 /* AGQ3ServerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE56C5D118DEC44F000470F6 /* AGQ3ServerPlayer.m */; };
+		DE590AC718DCFCA4002B0446 /* AGServerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DE590AC618DCFCA4002B0446 /* AGServerOperation.m */; };
+		DE590AE318DDA741002B0446 /* AGQ3Coordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = DE590AD918DDA741002B0446 /* AGQ3Coordinator.m */; };
+		DE590AE418DDA741002B0446 /* AGQ3MasterServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE590ADC18DDA741002B0446 /* AGQ3MasterServerController.m */; };
+		DE590AE518DDA741002B0446 /* AGQ3Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = DE590ADF18DDA741002B0446 /* AGQ3Parser.m */; };
+		DE590AE618DDA741002B0446 /* AGQ3ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE590AE218DDA741002B0446 /* AGQ3ServerController.m */; };
+		DE590AEA18DDA77E002B0446 /* AGQ3ServerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE590AE918DDA77E002B0446 /* AGQ3ServerInfo.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* AGServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE3491F718D61E9500226D8E /* AGAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAppDelegate.h; sourceTree = "<group>"; };
+		DE3491F818D61E9500226D8E /* AGAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAppDelegate.m; sourceTree = "<group>"; };
+		DE3491F918D61E9500226D8E /* AGServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AGServerBrowser-Info.plist"; sourceTree = "<group>"; };
+		DE3491FA18D61E9500226D8E /* AGServerBrowser_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerBrowser_Prefix.pch; sourceTree = "<group>"; };
+		DE3491FC18D61E9500226D8E /* AGConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGConstants.h; sourceTree = "<group>"; };
+		DE34921718D61E9500226D8E /* AGGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGGame.h; sourceTree = "<group>"; };
+		DE34921818D61E9500226D8E /* AGGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGGame.m; sourceTree = "<group>"; };
+		DE34921B18D61E9500226D8E /* AGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGViewController.h; sourceTree = "<group>"; };
+		DE34921C18D61E9500226D8E /* AGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGViewController.m; sourceTree = "<group>"; };
+		DE34921E18D61E9500226D8E /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DE34922018D61E9500226D8E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		DE34922118D61E9500226D8E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DE34922418D61E9500226D8E /* icn_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icn_refresh.png; sourceTree = "<group>"; };
+		DE3DF6D918DA5EA3005192AC /* AGServerInfoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerInfoProtocol.h; sourceTree = "<group>"; };
+		DE56C5CF18DEC41B000470F6 /* AGServerPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerPlayerProtocol.h; sourceTree = "<group>"; };
+		DE56C5D018DEC44F000470F6 /* AGQ3ServerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGQ3ServerPlayer.h; sourceTree = "<group>"; };
+		DE56C5D118DEC44F000470F6 /* AGQ3ServerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGQ3ServerPlayer.m; sourceTree = "<group>"; };
+		DE590AC518DCFCA4002B0446 /* AGServerOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerOperation.h; sourceTree = "<group>"; };
+		DE590AC618DCFCA4002B0446 /* AGServerOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGServerOperation.m; sourceTree = "<group>"; };
+		DE590AD818DDA741002B0446 /* AGQ3Coordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGQ3Coordinator.h; sourceTree = "<group>"; };
+		DE590AD918DDA741002B0446 /* AGQ3Coordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGQ3Coordinator.m; sourceTree = "<group>"; };
+		DE590ADB18DDA741002B0446 /* AGQ3MasterServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGQ3MasterServerController.h; sourceTree = "<group>"; };
+		DE590ADC18DDA741002B0446 /* AGQ3MasterServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGQ3MasterServerController.m; sourceTree = "<group>"; };
+		DE590ADE18DDA741002B0446 /* AGQ3Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGQ3Parser.h; sourceTree = "<group>"; };
+		DE590ADF18DDA741002B0446 /* AGQ3Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGQ3Parser.m; sourceTree = "<group>"; };
+		DE590AE118DDA741002B0446 /* AGQ3ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGQ3ServerController.h; sourceTree = "<group>"; };
+		DE590AE218DDA741002B0446 /* AGQ3ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGQ3ServerController.m; sourceTree = "<group>"; };
+		DE590AE818DDA77E002B0446 /* AGQ3ServerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGQ3ServerInfo.h; sourceTree = "<group>"; };
+		DE590AE918DDA77E002B0446 /* AGQ3ServerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGQ3ServerInfo.m; sourceTree = "<group>"; };
+		DE590AED18DDA79D002B0446 /* AGCoordinatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGCoordinatorDelegate.h; sourceTree = "<group>"; };
+		DE590AEE18DDA79D002B0446 /* AGCoordinatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGCoordinatorProtocol.h; sourceTree = "<group>"; };
+		DE590AF018DDA79D002B0446 /* AGMasterServerControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGMasterServerControllerDelegate.h; sourceTree = "<group>"; };
+		DE590AF118DDA79D002B0446 /* AGMasterServerControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGMasterServerControllerProtocol.h; sourceTree = "<group>"; };
+		DE590AF318DDA79D002B0446 /* AGParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGParserDelegate.h; sourceTree = "<group>"; };
+		DE590AF418DDA79D002B0446 /* AGParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGParserProtocol.h; sourceTree = "<group>"; };
+		DE590AF618DDA79D002B0446 /* AGServerControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerControllerDelegate.h; sourceTree = "<group>"; };
+		DE590AF718DDA79D002B0446 /* AGServerControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerControllerProtocol.h; sourceTree = "<group>"; };
+		F7B66FB086D345D9A97AF346 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				4486570BFDC94D428265C2CF /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* AGServerBrowser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* GameServerBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				DE3491F618D61E9500226D8E /* AGServerBrowser */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */,
+			);
+			name = GameServerBrowser;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				F7B66FB086D345D9A97AF346 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE3491F618D61E9500226D8E /* AGServerBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				DE3491F718D61E9500226D8E /* AGAppDelegate.h */,
+				DE3491F818D61E9500226D8E /* AGAppDelegate.m */,
+				DE3491F918D61E9500226D8E /* AGServerBrowser-Info.plist */,
+				DE3491FA18D61E9500226D8E /* AGServerBrowser_Prefix.pch */,
+				DE590AD518DDA741002B0446 /* Games */,
+				DE590AEB18DDA79D002B0446 /* Protocols */,
+				DE3491FB18D61E9500226D8E /* Classes */,
+				DE34921D18D61E9500226D8E /* InfoPlist.strings */,
+				DE34922118D61E9500226D8E /* main.m */,
+				DE34922218D61E9500226D8E /* Resources */,
+			);
+			path = AGServerBrowser;
+			sourceTree = "<group>";
+		};
+		DE3491FB18D61E9500226D8E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DE3491FC18D61E9500226D8E /* AGConstants.h */,
+				DE590AC518DCFCA4002B0446 /* AGServerOperation.h */,
+				DE590AC618DCFCA4002B0446 /* AGServerOperation.m */,
+				DE34921618D61E9500226D8E /* Model */,
+				DE34921918D61E9500226D8E /* View */,
+				DE34921A18D61E9500226D8E /* ViewController */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DE34921618D61E9500226D8E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE34921718D61E9500226D8E /* AGGame.h */,
+				DE34921818D61E9500226D8E /* AGGame.m */,
+				DE3DF6D918DA5EA3005192AC /* AGServerInfoProtocol.h */,
+				DE56C5CF18DEC41B000470F6 /* AGServerPlayerProtocol.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DE34921918D61E9500226D8E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE34921F18D61E9500226D8E /* MainMenu.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE34921A18D61E9500226D8E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE34921B18D61E9500226D8E /* AGViewController.h */,
+				DE34921C18D61E9500226D8E /* AGViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE34922218D61E9500226D8E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE34922318D61E9500226D8E /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DE34922318D61E9500226D8E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DE34922418D61E9500226D8E /* icn_refresh.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		DE590AD518DDA741002B0446 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AD618DDA741002B0446 /* Quake 3 */,
+			);
+			name = Games;
+			path = Classes/Games;
+			sourceTree = "<group>";
+		};
+		DE590AD618DDA741002B0446 /* Quake 3 */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AD718DDA741002B0446 /* Coordinator */,
+				DE590ADA18DDA741002B0446 /* MasterServerController */,
+				DE590ADD18DDA741002B0446 /* Parser */,
+				DE590AE018DDA741002B0446 /* ServerController */,
+				DE590AE718DDA77E002B0446 /* Model */,
+			);
+			path = "Quake 3";
+			sourceTree = "<group>";
+		};
+		DE590AD718DDA741002B0446 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AD818DDA741002B0446 /* AGQ3Coordinator.h */,
+				DE590AD918DDA741002B0446 /* AGQ3Coordinator.m */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE590ADA18DDA741002B0446 /* MasterServerController */ = {
+			isa = PBXGroup;
+			children = (
+				DE590ADB18DDA741002B0446 /* AGQ3MasterServerController.h */,
+				DE590ADC18DDA741002B0446 /* AGQ3MasterServerController.m */,
+			);
+			path = MasterServerController;
+			sourceTree = "<group>";
+		};
+		DE590ADD18DDA741002B0446 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				DE590ADE18DDA741002B0446 /* AGQ3Parser.h */,
+				DE590ADF18DDA741002B0446 /* AGQ3Parser.m */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		DE590AE018DDA741002B0446 /* ServerController */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AE118DDA741002B0446 /* AGQ3ServerController.h */,
+				DE590AE218DDA741002B0446 /* AGQ3ServerController.m */,
+			);
+			path = ServerController;
+			sourceTree = "<group>";
+		};
+		DE590AE718DDA77E002B0446 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AE818DDA77E002B0446 /* AGQ3ServerInfo.h */,
+				DE590AE918DDA77E002B0446 /* AGQ3ServerInfo.m */,
+				DE56C5D018DEC44F000470F6 /* AGQ3ServerPlayer.h */,
+				DE56C5D118DEC44F000470F6 /* AGQ3ServerPlayer.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DE590AEB18DDA79D002B0446 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AEC18DDA79D002B0446 /* Coordinator */,
+				DE590AEF18DDA79D002B0446 /* MasterServerController */,
+				DE590AF218DDA79D002B0446 /* Parser */,
+				DE590AF518DDA79D002B0446 /* ServerController */,
+			);
+			name = Protocols;
+			path = Classes/Protocols;
+			sourceTree = "<group>";
+		};
+		DE590AEC18DDA79D002B0446 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AED18DDA79D002B0446 /* AGCoordinatorDelegate.h */,
+				DE590AEE18DDA79D002B0446 /* AGCoordinatorProtocol.h */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE590AEF18DDA79D002B0446 /* MasterServerController */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AF018DDA79D002B0446 /* AGMasterServerControllerDelegate.h */,
+				DE590AF118DDA79D002B0446 /* AGMasterServerControllerProtocol.h */,
+			);
+			path = MasterServerController;
+			sourceTree = "<group>";
+		};
+		DE590AF218DDA79D002B0446 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AF318DDA79D002B0446 /* AGParserDelegate.h */,
+				DE590AF418DDA79D002B0446 /* AGParserProtocol.h */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		DE590AF518DDA79D002B0446 /* ServerController */ = {
+			isa = PBXGroup;
+			children = (
+				DE590AF618DDA79D002B0446 /* AGServerControllerDelegate.h */,
+				DE590AF718DDA79D002B0446 /* AGServerControllerProtocol.h */,
+			);
+			path = ServerController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* AGServerBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "AGServerBrowser" */;
+			buildPhases = (
+				50F847FA49A14584A8EBF732 /* Check Pods Manifest.lock */,
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				870E0CC6003E4754A0BCEA7C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AGServerBrowser;
+			productInstallPath = "$(HOME)/Applications";
+			productName = GameServerBrowser;
+			productReference = 8D1107320486CEB800E47090 /* AGServerBrowser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AGServerBrowser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* GameServerBrowser */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* AGServerBrowser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE34922F18D61E9500226D8E /* InfoPlist.strings in Resources */,
+				DE34923218D61E9500226D8E /* icn_refresh.png in Resources */,
+				DE34923018D61E9500226D8E /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50F847FA49A14584A8EBF732 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		870E0CC6003E4754A0BCEA7C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE56C5D218DEC44F000470F6 /* AGQ3ServerPlayer.m in Sources */,
+				DE34922D18D61E9500226D8E /* AGGame.m in Sources */,
+				DE590AC718DCFCA4002B0446 /* AGServerOperation.m in Sources */,
+				DE590AE618DDA741002B0446 /* AGQ3ServerController.m in Sources */,
+				DE590AE418DDA741002B0446 /* AGQ3MasterServerController.m in Sources */,
+				DE590AE318DDA741002B0446 /* AGQ3Coordinator.m in Sources */,
+				DE34922718D61E9500226D8E /* AGAppDelegate.m in Sources */,
+				DE590AEA18DDA77E002B0446 /* AGQ3ServerInfo.m in Sources */,
+				DE590AE518DDA741002B0446 /* AGQ3Parser.m in Sources */,
+				DE34923118D61E9500226D8E /* main.m in Sources */,
+				DE34922E18D61E9500226D8E /* AGViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DE34921D18D61E9500226D8E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE34921E18D61E9500226D8E /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DE34921F18D61E9500226D8E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE34922018D61E9500226D8E /* English */,
+			);
+			name = MainMenu.xib;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = AGServerBrowser/AGServerBrowser_Prefix.pch;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "$(SRCROOT)/AGServerBrowser/AGServerBrowser-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-licucore",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = AGServerBrowser;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = AGServerBrowser/AGServerBrowser_Prefix.pch;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "$(SRCROOT)/AGServerBrowser/AGServerBrowser-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-licucore",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = AGServerBrowser;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-licucore";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "-licucore";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "AGServerBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AGServerBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
