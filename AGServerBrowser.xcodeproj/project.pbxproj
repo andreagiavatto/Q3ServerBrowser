@@ -30,8 +30,9 @@
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* AGServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2D9241838D191BC483EAAEF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		AC590AA299F37DA91D0D88C3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DE3491F718D61E9500226D8E /* AGAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAppDelegate.h; sourceTree = "<group>"; };
 		DE3491F818D61E9500226D8E /* AGAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAppDelegate.m; sourceTree = "<group>"; };
 		DE3491F918D61E9500226D8E /* AGServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AGServerBrowser-Info.plist"; sourceTree = "<group>"; };
@@ -117,7 +118,7 @@
 				DE3491F618D61E9500226D8E /* AGServerBrowser */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */,
+				762D3F42D6E405FBFE1812C9 /* Pods */,
 			);
 			name = GameServerBrowser;
 			sourceTree = "<group>";
@@ -130,6 +131,15 @@
 				F7B66FB086D345D9A97AF346 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		762D3F42D6E405FBFE1812C9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2D9241838D191BC483EAAEF /* Pods.debug.xcconfig */,
+				AC590AA299F37DA91D0D88C3 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		DE3491F618D61E9500226D8E /* AGServerBrowser */ = {
@@ -413,7 +423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -462,7 +472,7 @@
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */;
+			baseConfigurationReference = A2D9241838D191BC483EAAEF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -492,7 +502,7 @@
 		};
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AAFBA0B7AFC4E2CAA6A6F47 /* Pods.xcconfig */;
+			baseConfigurationReference = AC590AA299F37DA91D0D88C3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;

@@ -28,6 +28,8 @@
 
 @implementation AGServerOperation
 
+@synthesize executing = _executing, finished = _finished;
+
 NSTimeInterval const kAGDefaultTimeoutInterval = 5.;
 NSInteger const kAGDefaultPacketTag = 42;
 

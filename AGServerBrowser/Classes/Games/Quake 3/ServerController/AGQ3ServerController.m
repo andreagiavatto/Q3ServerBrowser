@@ -40,7 +40,8 @@ NSString *const kAGServerBrowserNotificationReachableKey = @"Reachable";
 
 - (void)dealloc
 {
-	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kAGServerBrowserReachableKey object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kAGServerBrowserUnreachableKey object:nil];
 }
 
 
