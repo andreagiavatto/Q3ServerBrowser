@@ -6,7 +6,7 @@ A simple skeleton app to be used to create a game server browser. The initial ve
 Games supported:
 - Quake 3 Arena ([protocol](http://src.gnu-darwin.org/ports/games/masterserver/work/masterserver-0.4.1/docs/PROTOCOLS))
 
-![1](https://s3-us-west-2.amazonaws.com/andreagiavatto.github.io/AGServerBrowser/Screenshot.png)
+![1](https://github.com/andreagiavatto/AGServerBrowser/blob/master/AGServerBrowser-Q3.png)
 
 ## Usage
 The project uses [CocoaPods](http://cocoapods.org/) to fetch a couple of external pods like [Reachability](https://github.com/tonymillion/Reachability) and [CocoaAsyncSocket](https://github.com/robbiehanson/CocoaAsyncSocket).
