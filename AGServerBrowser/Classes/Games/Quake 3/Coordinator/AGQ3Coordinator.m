@@ -50,7 +50,7 @@ AGParserDelegate
 	if (!_game) {
 		_game = [[AGGame alloc] initWithDictionary:@{
 													 kAGGameTitleKey : @"Quake 3 Arena",
-													 kAGGameMasterServerAddressKey : @"176.9.53.212",
+													 kAGGameMasterServerAddressKey : @"master.ioquake3.org",
 													 kAGGameMasterServerPort : @"27950"
 													 }];
 	}

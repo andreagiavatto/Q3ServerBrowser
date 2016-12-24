@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4486570BFDC94D428265C2CF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B66FB086D345D9A97AF346 /* libPods.a */; };
+		6AA09EE6E46F2BB076C1FCD9 /* libPods-AGServerBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B1120FBDB129D403B7B17F /* libPods-AGServerBrowser.a */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		DE34922718D61E9500226D8E /* AGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3491F818D61E9500226D8E /* AGAppDelegate.m */; };
 		DE34922D18D61E9500226D8E /* AGGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE34921818D61E9500226D8E /* AGGame.m */; };
@@ -27,12 +27,13 @@
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		10B1120FBDB129D403B7B17F /* libPods-AGServerBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AGServerBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B1E2A24DD4A2331FF99A17 /* Pods-AGServerBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGServerBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-AGServerBrowser/Pods-AGServerBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		35A490CAAE6786A6351298A3 /* Pods-AGServerBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGServerBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AGServerBrowser/Pods-AGServerBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* AGServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2D9241838D191BC483EAAEF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		AC590AA299F37DA91D0D88C3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DE3491F718D61E9500226D8E /* AGAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAppDelegate.h; sourceTree = "<group>"; };
 		DE3491F818D61E9500226D8E /* AGAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAppDelegate.m; sourceTree = "<group>"; };
 		DE3491F918D61E9500226D8E /* AGServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AGServerBrowser-Info.plist"; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		DE590AF418DDA79D002B0446 /* AGParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGParserProtocol.h; sourceTree = "<group>"; };
 		DE590AF618DDA79D002B0446 /* AGServerControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerControllerDelegate.h; sourceTree = "<group>"; };
 		DE590AF718DDA79D002B0446 /* AGServerControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGServerControllerProtocol.h; sourceTree = "<group>"; };
-		F7B66FB086D345D9A97AF346 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				4486570BFDC94D428265C2CF /* libPods.a in Frameworks */,
+				6AA09EE6E46F2BB076C1FCD9 /* libPods-AGServerBrowser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,13 +112,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		29349782D83ED8F414D80A47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				35A490CAAE6786A6351298A3 /* Pods-AGServerBrowser.debug.xcconfig */,
+				13B1E2A24DD4A2331FF99A17 /* Pods-AGServerBrowser.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* GameServerBrowser */ = {
 			isa = PBXGroup;
 			children = (
 				DE3491F618D61E9500226D8E /* AGServerBrowser */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				762D3F42D6E405FBFE1812C9 /* Pods */,
+				29349782D83ED8F414D80A47 /* Pods */,
 			);
 			name = GameServerBrowser;
 			sourceTree = "<group>";
@@ -128,18 +137,9 @@
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
-				F7B66FB086D345D9A97AF346 /* libPods.a */,
+				10B1120FBDB129D403B7B17F /* libPods-AGServerBrowser.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		762D3F42D6E405FBFE1812C9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A2D9241838D191BC483EAAEF /* Pods.debug.xcconfig */,
-				AC590AA299F37DA91D0D88C3 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		DE3491F618D61E9500226D8E /* AGServerBrowser */ = {
@@ -339,11 +339,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "AGServerBrowser" */;
 			buildPhases = (
-				50F847FA49A14584A8EBF732 /* Check Pods Manifest.lock */,
+				BFF4CCF51537FDF290BCB5D4 /* [CP] Check Pods Manifest.lock */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				870E0CC6003E4754A0BCEA7C /* Copy Pods Resources */,
+				1734435566A98EC15AFCD5C1 /* [CP] Embed Pods Frameworks */,
+				BDA55F370E956C36AF68D1E4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -362,6 +363,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					8D1107260486CEB800E47090 = {
+						DevelopmentTeam = WL8LT3PQLC;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AGServerBrowser" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -374,6 +381,7 @@
 				German,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* GameServerBrowser */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -396,34 +404,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		50F847FA49A14584A8EBF732 /* Check Pods Manifest.lock */ = {
+		1734435566A98EC15AFCD5C1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AGServerBrowser/Pods-AGServerBrowser-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		870E0CC6003E4754A0BCEA7C /* Copy Pods Resources */ = {
+		BDA55F370E956C36AF68D1E4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AGServerBrowser/Pods-AGServerBrowser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFF4CCF51537FDF290BCB5D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -472,13 +495,14 @@
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2D9241838D191BC483EAAEF /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 35A490CAAE6786A6351298A3 /* Pods-AGServerBrowser.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -502,13 +526,14 @@
 		};
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC590AA299F37DA91D0D88C3 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 13B1E2A24DD4A2331FF99A17 /* Pods-AGServerBrowser.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = AGServerBrowser/AGServerBrowser_Prefix.pch;
