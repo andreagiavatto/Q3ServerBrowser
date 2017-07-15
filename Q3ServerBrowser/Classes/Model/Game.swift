@@ -13,9 +13,9 @@ class Game: NSObject {
     
     let title: String
     let masterServerAddress: String
-    let serverPort: UInt16
+    let serverPort: String
 
-    init(title: String, masterServerAddress: String, serverPort: UInt16) {
+    init(title: String, masterServerAddress: String, serverPort: String) {
         self.title = title
         self.masterServerAddress = masterServerAddress
         self.serverPort = serverPort

@@ -13,6 +13,10 @@ protocol ServerControllerProtocol {
     
     weak var delegate: ServerControllerDelegate? { get set }
 
-    func requestServerInfo(ip: String, port: UInt16)
-    func statusForServer(ip: String, port: UInt16)
+    var ip: String { get set }
+    var port: String { get set }
+    var ping: String { get set }
+    
+    func requestServerInfo(ip: String, port: String)
+    func statusForServer(ip: String, port: String)
 }

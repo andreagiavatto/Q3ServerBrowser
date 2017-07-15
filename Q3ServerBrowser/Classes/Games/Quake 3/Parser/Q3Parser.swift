@@ -13,22 +13,19 @@ class Q3Parser: ParserProtocol {
     
     weak var delegate: ParserDelegate?
 
-    func parseServers(with serversData: Data) {
+    func parseServers(_ serversData: Data) {
 
         if serversData.count > 0 {
             delegate?.willStartParsingServersData(forParser: self)
                 // -- Remove getServersResponse and EOT from data
-            let start = serversData.index(serversData.startIndex, offsetBy: 23)
-            let end = serversData.index(serversData.endIndex, offsetBy: -29)
-            let usefulData = serversData.subdata(in: start..<end)
-            let len: Int = usefulData.count
+            let len: Int = serversData.count
             var servers = [String]()
             for i in 0..<len {
                 if i > 0 && i % 7 == 0 {
                     // -- 4 bytes for ip, 2 for port, 1 separator
-                    let s = usefulData.index(usefulData.startIndex, offsetBy: i-7)
-                    let e = usefulData.index(s, offsetBy: 7)
-                    let server = parseServerData(usefulData.subdata(in: s..<e))
+                    let s = serversData.index(serversData.startIndex, offsetBy: i-7)
+                    let e = serversData.index(s, offsetBy: 7)
+                    let server = parseServerData(serversData.subdata(in: s..<e))
                     servers.append(server)
                 }
             }
@@ -38,15 +35,11 @@ class Q3Parser: ParserProtocol {
         }
     }
 
-    func parseServerInfo(with serverInfoData: Data) {
+    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) {
         
         if serverInfoData.count > 0 {
             delegate?.willStartParsingServerInfoData(forParser: self)
-            // -- Remove infoResponse and EOT from data
-            let start = serverInfoData.index(serverInfoData.startIndex, offsetBy: 16)
-            let end = serverInfoData.index(serverInfoData.endIndex, offsetBy: -16)
-            let usefulData = serverInfoData.subdata(in: start..<end)
-            var infoResponse = String(data: usefulData, encoding: .ascii)
+            var infoResponse = String(data: serverInfoData, encoding: .ascii)
             infoResponse = infoResponse?.trimmingCharacters(in: .whitespacesAndNewlines)
             var info = infoResponse?.components(separatedBy: "\\")
             info = info?.filter { NSPredicate(format: "SELF != ''").evaluate(with: $0) }
@@ -56,12 +49,14 @@ class Q3Parser: ParserProtocol {
             if let info = info {
                 for (index, element) in info.enumerated() {
                     if index % 2 == 0 {
-                        values.append(element)
-                    } else {
                         keys.append(element)
+                    } else {
+                        values.append(element)
                     }
                 }
             }
+            print(keys)
+            print(values)
 
             if keys.count == values.count {
                 
@@ -69,17 +64,19 @@ class Q3Parser: ParserProtocol {
                 keys.enumerated().forEach { (i) -> () in
                     infoDict[i.element] = values[i.offset]
                 }
-                
+
                 if let serverInfo = Q3ServerInfo(dictionary: infoDict) {
-//                    serverInfo.ping = String(format: "%.0f", round(operation.executionTime * 1000))
-//                    serverInfo.ip = "\(operation.ip):\(UInt(operation.port))"
+                    var serverInfo = serverInfo
+                    serverInfo.ping = server.ping
+                    serverInfo.ip = server.ip
+                    serverInfo.port = server.port
                     delegate?.didFinishParsingServerInfoData(forParser: self, withServerInfo: serverInfo)
                 }
             }
         }
     }
 
-    func parseServerStatus(with serverStatusData: Data) {
+    func parseServerStatus(_ serverStatusData: Data) {
 //        if serverStatusData.count {
 //            if delegate?.responds(to: #selector(self.willStartParsingServerStatusDataForParser)) {
 //                delegate?.willStartParsingServerStatusData(for: self)
@@ -116,6 +113,7 @@ class Q3Parser: ParserProtocol {
     // MARK: - Private methods
     
     private func parseServerData(_ serverData: Data) -> String {
+
         let len: Int = serverData.count
         let bytes = [UInt8](serverData)
         var port: UInt32 = 0

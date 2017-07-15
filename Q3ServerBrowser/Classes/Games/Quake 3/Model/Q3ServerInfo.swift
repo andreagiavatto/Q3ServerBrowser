@@ -10,8 +10,9 @@ import Foundation
 
 struct Q3ServerInfo: ServerInfoProtocol {
     
-    let ping: String
-    let ip: String
+    var ping: String = ""
+    var ip: String = ""
+    var port: String = ""
     let hostname: String
     let map: String
     let maxPlayers: String
@@ -30,8 +31,6 @@ struct Q3ServerInfo: ServerInfoProtocol {
             let map = serverInfo["mapname"] as? String,
             let maxPlayers = serverInfo["sv_maxclients"] as? String,
             let currentPlayers = serverInfo["clients"] as? String,
-            let ping = serverInfo["ping"] as? String,
-            let ip = serverInfo["ip"] as? String,
             let mod = serverInfo["game"] as? String,
             let gametype = serverInfo["gametype"] as? String
         else {
@@ -42,8 +41,6 @@ struct Q3ServerInfo: ServerInfoProtocol {
         self.map = map
         self.maxPlayers = maxPlayers
         self.currentPlayers = currentPlayers
-        self.ping = ping
-        self.ip = ip
         self.mod = mod
         
         if !gametype.isEmpty, let gtype = Int(gametype) {

@@ -13,18 +13,15 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
     
     weak var delegate: CoordinatorDelegate?
 
-    let game = Game(title: "Quake 3 Arena", masterServerAddress: "master3.idsoftware.com", serverPort: 27950)
-    let masterServerController: Q3MasterServerController
+    let masterServerController = Q3MasterServerController(game: Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950"))
     let serverController = Q3ServerController()
     let q3parser = Q3Parser()
     
     override init() {
-        masterServerController = Q3MasterServerController(game: game)
         super.init()
         masterServerController.delegate = self
         serverController.delegate = self
         q3parser.delegate = self
-        
     }
     
     func refreshServersList() {
@@ -47,7 +44,7 @@ extension Q3Coordinator: MasterServerControllerDelegate {
     }
     
     func masterController(_ controller: MasterServerControllerProtocol, didFinishFetchingServersWith data: Data) {
-        q3parser.parseServers(with: data)
+        q3parser.parseServers(data)
     }
     
     func masterController(_ controller: MasterServerControllerProtocol, didFinishWithError error: Error?) {
@@ -62,7 +59,7 @@ extension Q3Coordinator: ServerControllerDelegate {
     }
     
     func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith data: Data) {
-        q3parser.parseServerInfo(with: data)
+        q3parser.parseServerInfo(data, for: controller)
     }
     
     func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerStatusWith data: Data) {
@@ -82,7 +79,7 @@ extension Q3Coordinator: ParserDelegate {
 
             if address.count == 2 {
                 print(address)
-                serverController.requestServerInfo(ip: address[0], port: UInt16(address[1])!)
+                serverController.requestServerInfo(ip: address[0], port: address[1])
             }
         }
     }

@@ -17,7 +17,7 @@
                 <menuItem title="Q3ServerBrowser" id="56">
                     <menu key="submenu" title="Q3ServerBrowser" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About AGServerBrowser" id="58">
+                            <menuItem title="About Q3ServerBrowser" id="58" userLabel="About Q3ServerBrowser">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
@@ -36,7 +36,7 @@
                             <menuItem isSeparatorItem="YES" id="144">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide AGServerBrowser" keyEquivalent="h" id="134">
+                            <menuItem title="Hide Q3ServerBrowser" keyEquivalent="h" id="134" userLabel="Hide Q3ServerBrowser">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
                                 </connections>
@@ -55,7 +55,7 @@
                             <menuItem isSeparatorItem="YES" id="149">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Quit AGServerBrowser" keyEquivalent="q" id="136">
+                            <menuItem title="Quit Q3ServerBrowser" keyEquivalent="q" id="136" userLabel="Quit Q3ServerBrowser">
                                 <connections>
                                     <action selector="terminate:" target="-3" id="449"/>
                                 </connections>
@@ -637,7 +637,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="491">
                         <items>
-                            <menuItem title="AGServerBrowser Help" keyEquivalent="?" id="492">
+                            <menuItem title="Q3ServerBrowser Help" keyEquivalent="?" id="492" userLabel="Q3ServerBrowser Help">
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="493"/>
                                 </connections>
@@ -647,7 +647,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="AGServerBrowser" autorecalculatesKeyViewLoop="NO" animationBehavior="default" id="371">
+        <window title="Q3ServerBrowser" autorecalculatesKeyViewLoop="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="178" width="844" height="600"/>

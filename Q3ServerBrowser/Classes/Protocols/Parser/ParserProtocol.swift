@@ -13,7 +13,7 @@ protocol ParserProtocol {
     
     weak var delegate: ParserDelegate? { get set }
 
-    func parseServers(with serversData: Data)
-    func parseServerInfo(with serverInfoData: Data)
-    func parseServerStatus(with serverStatusData: Data)
+    func parseServers(_ serversData: Data)
+    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol)
+    func parseServerStatus(_ serverStatusData: Data)
 }

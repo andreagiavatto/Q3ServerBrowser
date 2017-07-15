@@ -64,9 +64,9 @@ extension ViewController: CoordinatorDelegate {
     func didFinishFetchingInfo(forServer serverInfo: ServerInfoProtocol) {
         DispatchQueue.main.async {
             [unowned self] in
-            print(serverInfo)
+
             self.servers.append(serverInfo)
-            self.loadingIndicator.stopAnimation(self)
+//            self.loadingIndicator.stopAnimation(self)
             self.numOfServersFound.stringValue = "\(self.servers.count) servers found."
             self.serversTableView.reloadData()
         }
