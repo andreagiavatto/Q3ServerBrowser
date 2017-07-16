@@ -17,20 +17,14 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     let serverInfoQueue = DispatchQueue(label: "com.q3browser.server-info.queue")
     let statusInfoQueue = DispatchQueue(label: "com.q3browser.status-info.queue")
     private var socket: GCDAsyncUdpSocket?
-    var ip: String = ""
-    var port: String = ""
-    var ping: String = ""
     fileprivate var data = Data()
     private let infoRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x69, 0x6e, 0x66, 0x6f, 0x0a]
     fileprivate let infoResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x69, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x0a, 0x5c] // YYYYinfoResponse\n\
-    fileprivate var startTime: TimeInterval = 0.0
     
     func requestServerInfo(ip: String, port: String) {
         
         serverInfoQueue.async { [unowned self] in
             self.reset()
-            self.ip = ip
-            self.port = port
             guard let port = UInt16(port) else {
                 return
             }
@@ -38,7 +32,6 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
             do {
                 self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
                 self.delegate?.didStartFetchingInfo(forServerController: self)
-                self.startTime = CFAbsoluteTimeGetCurrent()
                 self.socket?.send(data, toHost: ip, port: port, withTimeout: 10, tag: 42)
                 try self.socket?.beginReceiving()
             } catch(let error) {
@@ -72,18 +65,12 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     private func reset() {
         data.removeAll()
         socket = nil
-        ip = ""
-        port = ""
-        ping = ""
-        startTime = 0.0
     }
 }
 
 extension Q3ServerController: GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        
-        self.ping = "\(CFAbsoluteTimeGetCurrent() - startTime)ms"
         
         self.data.append(data)
         
@@ -99,11 +86,11 @@ extension Q3ServerController: GCDAsyncUdpSocketDelegate {
             let start = self.data.index(self.data.startIndex, offsetBy: infoResponseMarker.count)
             let end = self.data.endIndex
             let usefulData = self.data.subdata(in: start..<end)
-            delegate?.serverController(self, didFinishFetchingServerInfoWith: usefulData)
+            delegate?.serverController(self, didFinishFetchingServerInfoWith: usefulData, for: address)
         }
     }
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
-        print("server closed socket \(error)")
+        delegate?.serverController(self, didFinishWithError: error)
     }
 }

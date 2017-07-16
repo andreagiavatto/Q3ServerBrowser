@@ -15,3 +15,8 @@ protocol MasterServerControllerDelegate: NSObjectProtocol {
     func masterController(_ controller: MasterServerControllerProtocol, didFinishWithError error: Error?)
     func masterController(_ controller: MasterServerControllerProtocol, didFinishFetchingServersWith data: Data)
 }
+
+extension MasterServerControllerDelegate {
+    
+    func didStartFetchingServers(forMasterController controller: MasterServerControllerProtocol) {}
+}

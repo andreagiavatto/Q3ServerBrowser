@@ -23,7 +23,6 @@
 		A2359FB41F10427A00498384 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F951F10427A00498384 /* CoordinatorProtocol.swift */; };
 		A2359FB51F10427A00498384 /* MasterServerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F971F10427A00498384 /* MasterServerControllerDelegate.swift */; };
 		A2359FB61F10427A00498384 /* MasterServerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F981F10427A00498384 /* MasterServerControllerProtocol.swift */; };
-		A2359FB71F10427A00498384 /* ParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9A1F10427A00498384 /* ParserDelegate.swift */; };
 		A2359FB81F10427A00498384 /* ParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9B1F10427A00498384 /* ParserProtocol.swift */; };
 		A2359FB91F10427A00498384 /* ServerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9D1F10427A00498384 /* ServerControllerDelegate.swift */; };
 		A2359FBA1F10427A00498384 /* ServerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9E1F10427A00498384 /* ServerControllerProtocol.swift */; };
@@ -34,6 +33,7 @@
 		A291E8321F1219F900BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		A291E8341F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		A291E8351F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,7 +70,6 @@
 		A2359F951F10427A00498384 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		A2359F971F10427A00498384 /* MasterServerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterServerControllerDelegate.swift; sourceTree = "<group>"; };
 		A2359F981F10427A00498384 /* MasterServerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterServerControllerProtocol.swift; sourceTree = "<group>"; };
-		A2359F9A1F10427A00498384 /* ParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserDelegate.swift; sourceTree = "<group>"; };
 		A2359F9B1F10427A00498384 /* ParserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserProtocol.swift; sourceTree = "<group>"; };
 		A2359F9D1F10427A00498384 /* ServerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerControllerDelegate.swift; sourceTree = "<group>"; };
 		A2359F9E1F10427A00498384 /* ServerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerControllerProtocol.swift; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		A2359FA51F10427A00498384 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A2359FA61F10427A00498384 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
 		A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		A2DD85181F1B5B7700C1AF9B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +146,7 @@
 				A2359F8E1F10427A00498384 /* Model */,
 				A2359F921F10427A00498384 /* Protocols */,
 				A2359F9F1F10427A00498384 /* ViewController */,
+				A2DD85181F1B5B7700C1AF9B /* Utilities.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -253,7 +254,6 @@
 		A2359F991F10427A00498384 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				A2359F9A1F10427A00498384 /* ParserDelegate.swift */,
 				A2359F9B1F10427A00498384 /* ParserProtocol.swift */,
 			);
 			path = Parser;
@@ -369,7 +369,6 @@
 				A2359FAD1F10427A00498384 /* Q3ServerPlayer.swift in Sources */,
 				A2359FB51F10427A00498384 /* MasterServerControllerDelegate.swift in Sources */,
 				A2359FB21F10427A00498384 /* ServerPlayerProtocol.swift in Sources */,
-				A2359FB71F10427A00498384 /* ParserDelegate.swift in Sources */,
 				A2359FBA1F10427A00498384 /* ServerControllerProtocol.swift in Sources */,
 				A2359FB31F10427A00498384 /* CoordinatorDelegate.swift in Sources */,
 				A2359FAE1F10427A00498384 /* Q3Parser.swift in Sources */,
@@ -377,6 +376,7 @@
 				A2359FB01F10427A00498384 /* Game.swift in Sources */,
 				A2359FBB1F10427A00498384 /* ViewController.swift in Sources */,
 				A2359FA81F10427A00498384 /* Constants.swift in Sources */,
+				A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */,
 				A2359FAF1F10427A00498384 /* Q3ServerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

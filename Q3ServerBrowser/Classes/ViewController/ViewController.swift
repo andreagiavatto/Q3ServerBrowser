@@ -38,6 +38,7 @@ class ViewController: NSObject {
 
     override func awakeFromNib() {
         // -- Init data sources
+        coordinator.delegate = self
         servers = [Any]()
         players = [Any]()
         status = [AnyHashable: Any]()
@@ -61,10 +62,14 @@ class ViewController: NSObject {
 
 extension ViewController: CoordinatorDelegate {
     
+    func didFinishWithError(error: Error?) {
+        self.loadingIndicator.stopAnimation(self)
+    }
+    
     func didFinishFetchingInfo(forServer serverInfo: ServerInfoProtocol) {
         DispatchQueue.main.async {
             [unowned self] in
-
+            print(serverInfo)
             self.servers.append(serverInfo)
 //            self.loadingIndicator.stopAnimation(self)
             self.numOfServersFound.stringValue = "\(self.servers.count) servers found."
@@ -96,28 +101,76 @@ extension ViewController: CoordinatorDelegate {
 extension ViewController: NSTableViewDataSource {
     
     func numberOfRows(in aTableView: NSTableView) -> Int {
-//        if aTableView == serversTableView {
-//            return servers.count
-//        }
-//        if aTableView == statusTableView {
-//            return status.keys.count
-//        }
-//        if aTableView == playersTableView {
-//            return players.count
-//        }
+        if aTableView == serversTableView {
+            return servers.count
+        }
+        if aTableView == statusTableView {
+            return status.keys.count
+        }
+        if aTableView == playersTableView {
+            return players.count
+        }
         return 0
     }
     
-    func tableView(_ aTableView: NSTableView, objectValueFor aTableColumn: NSTableColumn?, row rowIndex: Int) -> Any? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        if tableView == serversTableView {
+            return configureViewFor(serversTableView: serversTableView, viewFor: tableColumn, row: row)
+        }
+        
+        return nil
+    }
+    
+    // MARK: - Private methods
+    
+    private func configureViewFor(serversTableView tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        guard
+            let columnId = tableColumn?.identifier,
+            let serverInfo = servers[row] as? ServerInfoProtocol
+            else {
+                return nil
+        }
+        
+        var text = ""
+        switch columnId {
+        case "hostname":
+            text = serverInfo.hostname
+        case "map":
+            text = serverInfo.map
+        case "mod":
+            text = serverInfo.mod
+        case "gametype":
+            text = serverInfo.gametype
+        case "players":
+            text = "\(serverInfo.currentPlayers) / \(serverInfo.maxPlayers)"
+        case "ping":
+            text = serverInfo.ping
+        case "ip":
+            text = "\(serverInfo.ip):\(serverInfo.port)"
+        default:
+            return nil
+        }
+        
+        if let cell = tableView.make(withIdentifier: columnId, owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = text
+            return cell
+        }
+        
+        return nil
+    }
+    
+//    func tableView(_ aTableView: NSTableView, objectValueFor aTableColumn: NSTableColumn?, row rowIndex: Int) -> Any? {
 //        if aTableView == serversTableView {
-//            let server: ServerInfoProtocol? = (servers[rowIndex] as? ServerInfoProtocol)
-//            if (aTableColumn.identifier == "players") {
-//                return "\(server?.currentPlayers) / \(server?.maxPlayers)"!
+//            guard let server = (servers[rowIndex] as? ServerInfoProtocol) else { return "" }
+//            if (aTableColumn?.identifier == "players") {
+//                return "\(server.currentPlayers) / \(server.maxPlayers)"
 //            }
 //            else {
-//                let getter: Selector = NSSelectorFromString(aTableColumn.identifier)
-//                if server?.responds(to: getter) {
-//                    return server?.perform(getter)!
+//                let getter: Selector = NSSelectorFromString(aTableColumn!.identifier)
+//                if server.responds(to: getter) {
+//                    return server.perform(getter)!
 //                }
 //            }
 //        }
@@ -138,8 +191,8 @@ extension ViewController: NSTableViewDataSource {
 //                return player?.perform(getter)!
 //            }
 //        }
-        return ""
-    }
+//        return ""
+//    }
 }
 
 extension ViewController: NSTableViewDelegate {

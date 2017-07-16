@@ -11,9 +11,7 @@ import Foundation
 
 protocol ParserProtocol {
     
-    weak var delegate: ParserDelegate? { get set }
-
-    func parseServers(_ serversData: Data)
-    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol)
+    func parseServers(_ serversData: Data) -> [String]
+    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) -> ServerInfoProtocol?
     func parseServerStatus(_ serverStatusData: Data)
 }

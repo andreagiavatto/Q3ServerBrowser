@@ -11,13 +11,10 @@ import Foundation
 
 class Q3Parser: ParserProtocol {
     
-    weak var delegate: ParserDelegate?
-
-    func parseServers(_ serversData: Data) {
+    func parseServers(_ serversData: Data) -> [String] {
 
         if serversData.count > 0 {
-            delegate?.willStartParsingServersData(forParser: self)
-                // -- Remove getServersResponse and EOT from data
+
             let len: Int = serversData.count
             var servers = [String]()
             for i in 0..<len {
@@ -29,16 +26,17 @@ class Q3Parser: ParserProtocol {
                     servers.append(server)
                 }
             }
-            delegate?.didFinishParsingServersData(forParser: self, withServers: servers)
-        } else {
-            delegate?.didFinishParsingServersData(forParser: self, withServers: [])
+            
+            return servers
         }
+        
+        return []
     }
 
-    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) {
+    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) -> ServerInfoProtocol? {
         
         if serverInfoData.count > 0 {
-            delegate?.willStartParsingServerInfoData(forParser: self)
+
             var infoResponse = String(data: serverInfoData, encoding: .ascii)
             infoResponse = infoResponse?.trimmingCharacters(in: .whitespacesAndNewlines)
             var info = infoResponse?.components(separatedBy: "\\")
@@ -55,8 +53,6 @@ class Q3Parser: ParserProtocol {
                     }
                 }
             }
-            print(keys)
-            print(values)
 
             if keys.count == values.count {
                 
@@ -67,13 +63,12 @@ class Q3Parser: ParserProtocol {
 
                 if let serverInfo = Q3ServerInfo(dictionary: infoDict) {
                     var serverInfo = serverInfo
-                    serverInfo.ping = server.ping
-                    serverInfo.ip = server.ip
-                    serverInfo.port = server.port
-                    delegate?.didFinishParsingServerInfoData(forParser: self, withServerInfo: serverInfo)
+                    return serverInfo
                 }
             }
         }
+        
+        return nil
     }
 
     func parseServerStatus(_ serverStatusData: Data) {

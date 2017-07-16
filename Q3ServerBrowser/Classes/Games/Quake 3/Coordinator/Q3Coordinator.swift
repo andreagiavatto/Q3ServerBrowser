@@ -21,11 +21,9 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
         super.init()
         masterServerController.delegate = self
         serverController.delegate = self
-        q3parser.delegate = self
     }
     
     func refreshServersList() {
-        
         masterServerController.startFetchingServersList()
     }
 
@@ -39,64 +37,43 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
 
 extension Q3Coordinator: MasterServerControllerDelegate {
     
-    func didStartFetchingServers(forMasterController controller: MasterServerControllerProtocol) {
-        
-    }
-    
     func masterController(_ controller: MasterServerControllerProtocol, didFinishFetchingServersWith data: Data) {
-        q3parser.parseServers(data)
-    }
-    
-    func masterController(_ controller: MasterServerControllerProtocol, didFinishWithError error: Error?) {
-        
-    }
-}
-
-extension Q3Coordinator: ServerControllerDelegate {
-    
-    func didStartFetchingInfo(forServerController controller: ServerControllerProtocol) {
-        
-    }
-    
-    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith data: Data) {
-        q3parser.parseServerInfo(data, for: controller)
-    }
-    
-    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerStatusWith data: Data) {
-//        q3parser.parseServerStatus(with: data, andOperation: operation)
-    }
-    
-    func serverController(_ controller: ServerControllerProtocol, didFinishWithError error: Error?) {
-        
-    }
-}
-
-extension Q3Coordinator: ParserDelegate {
-    
-    func didFinishParsingServersData(forParser parser: ParserProtocol, withServers servers: [String]) {
+        let servers = q3parser.parseServers(data)
         for ip: String in servers {
             let address: [String] = ip.components(separatedBy: ":")
-
+            
             if address.count == 2 {
-                print(address)
                 serverController.requestServerInfo(ip: address[0], port: address[1])
             }
         }
     }
     
-    func didFinishParsingServerInfoData(forParser parser: ParserProtocol, withServerInfo serverInfo: ServerInfoProtocol) {
-        delegate?.didFinishFetchingInfo(forServer: serverInfo)
+    func masterController(_ controller: MasterServerControllerProtocol, didFinishWithError error: Error?) {
+        delegate?.didFinishWithError(error: error)
     }
+}
+
+extension Q3Coordinator: ServerControllerDelegate {
     
-    func didFinishParsingServerStatusData(forParser parser: ParserProtocol, withServerStatus serverStatus: [AnyHashable: Any]) {
-        if !serverStatus.isEmpty {
-            delegate?.didFinishFetchingStatus(forServer: serverStatus)
+    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith data: Data, for address: Data) {
+        
+        
+        let add = address as NSData
+        var storage = sockaddr_storage()
+        add.getBytes(&storage, length: MemoryLayout<sockaddr_storage>.size)
+        
+        if var serverInfo = q3parser.parseServerInfo(data, for: controller), let result = getEndpointFromSocketAddress(socketAddressPointer: &storage) {
+            serverInfo.ip = result.host
+            serverInfo.port = "\(result.port)"
+            delegate?.didFinishFetchingInfo(forServer: serverInfo)
         }
     }
     
-    func didFinishParsingServerPlayers(forParser parser: ParserProtocol, withPlayers players: [Any]) {
-        if !players.isEmpty {
-            delegate?.didFinishFetchingPlayers(forServer: players)
-        }
+    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerStatusWith data: Data, for address: Data) {
+//        q3parser.parseServerStatus(with: data, andOperation: operation)
+    }
+    
+    func serverController(_ controller: ServerControllerProtocol, didFinishWithError error: Error?) {
+        
     }
 }

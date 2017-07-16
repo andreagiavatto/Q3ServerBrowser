@@ -65,7 +65,7 @@ struct Q3ServerInfo: ServerInfoProtocol {
 extension Q3ServerInfo: CustomStringConvertible {
 
     var description: String {
-        return "<Q3ServerInfo : \(self)> \(["hostname": hostname, "ip": ip, "map": map, "current players": currentPlayers, "max players": maxPlayers, "mod": mod, "ping": ping])"
+        return "<Q3ServerInfo> \(hostname) -- (\(ip):\(port))\n\t\(map) (\(currentPlayers)/\(maxPlayers))\n\t\(mod)\n\t\(ping)"
     }
 }
 
