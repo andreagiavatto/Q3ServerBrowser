@@ -126,7 +126,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" autosaveName="ServersTable" rowSizeStyle="automatic" headerView="649" viewBased="YES" id="544">
-                                                    <rect key="frame" x="0.0" y="0.0" width="803" height="340"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="802" height="340"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -199,7 +199,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="mod" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="SRi-4u-xUd">
+                                                        <tableColumn identifier="mod" editable="NO" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="SRi-4u-xUd">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Mod">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -213,11 +213,11 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="lKJ-wp-aXu">
-                                                                    <rect key="frame" x="317" y="1" width="64" height="17"/>
+                                                                    <rect key="frame" x="317" y="1" width="90" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cho-mw-CfP">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="64" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="zag-ze-sHR">
                                                                                 <font key="font" metaFont="system"/>
@@ -232,7 +232,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="gametype" editable="NO" width="100" minWidth="10" maxWidth="3.4028234663852886e+38" id="Bd7-aG-hxv">
+                                                        <tableColumn identifier="gametype" editable="NO" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="Bd7-aG-hxv">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Gametype">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -246,11 +246,11 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="J0e-Wg-7rE">
-                                                                    <rect key="frame" x="384" y="1" width="100" height="17"/>
+                                                                    <rect key="frame" x="410" y="1" width="90" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srj-Rq-qVr">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="K9n-TU-Lnn">
                                                                                 <font key="font" metaFont="system"/>
@@ -279,7 +279,7 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="ucc-rb-9Pi">
-                                                                    <rect key="frame" x="487" y="1" width="64" height="17"/>
+                                                                    <rect key="frame" x="503" y="1" width="64" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szp-kH-S9c">
@@ -312,7 +312,7 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="dbw-PQ-elG">
-                                                                    <rect key="frame" x="554" y="1" width="64" height="17"/>
+                                                                    <rect key="frame" x="570" y="1" width="64" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycF-OX-rcV">
@@ -331,7 +331,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="ip" editable="NO" width="180" minWidth="10" maxWidth="3.4028234663852886e+38" id="3dt-LU-RvC">
+                                                        <tableColumn identifier="ip" editable="NO" width="163" minWidth="10" maxWidth="3.4028234663852886e+38" id="3dt-LU-RvC">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Ip Address">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -345,11 +345,11 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="B7K-x5-HJb">
-                                                                    <rect key="frame" x="621" y="1" width="180" height="17"/>
+                                                                    <rect key="frame" x="637" y="1" width="163" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jf-aa-w6e">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="180" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="163" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="zMf-Um-7Ws">
                                                                                 <font key="font" metaFont="system"/>
@@ -381,7 +381,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" id="649">
-                                            <rect key="frame" x="0.0" y="0.0" width="803" height="23"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="802" height="23"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>
@@ -607,16 +607,44 @@
                     <constraint firstAttribute="trailing" secondItem="624" secondAttribute="trailing" constant="20" id="n3O-YG-adW"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="FF6CD7CC-2602-43E0-A62B-F1A93C73F099" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="533">
+            <toolbar key="toolbar" implicitIdentifier="FF6CD7CC-2602-43E0-A62B-F1A93C73F099" displayMode="iconAndLabel" sizeMode="regular" id="533">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="5FD7D11A-0861-42BC-8012-1D052D1A17E1" label="Refresh" paletteLabel="Refresh" tag="1" image="icn_refresh" id="552">
                         <connections>
                             <action selector="refreshServersList:" target="550" id="Rxe-uc-hVu"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ijP-qv-B5a"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="eaf-bF-Tp9"/>
+                    <toolbarItem implicitItemIdentifier="60FEFBD8-1615-428B-82C0-5C27CC8154EA" label="Master Server" paletteLabel="Master Server" id="70g-C8-y0Q">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="102" height="26"/>
+                        <size key="maxSize" width="221" height="26"/>
+                        <comboBox key="view" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" preferredMaxLayoutWidth="200" textCompletion="NO" id="sra-l0-SBi">
+                            <rect key="frame" x="0.0" y="14" width="203" height="26"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="master.ioquake3.org:27950" placeholderString="master.ioquake3.org:27950" drawsBackground="YES" numberOfVisibleItems="5" id="Ald-Dk-ah2">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <objectValues>
+                                    <string>master.ioquake3.org:27950</string>
+                                    <string>master0.excessiveplus.net:27950</string>
+                                    <string>master.maverickservers.com:27950</string>
+                                    <string>master3.idsoftware.com:27950</string>
+                                    <string>dpmaster.deathmask.net:27950</string>
+                                </objectValues>
+                            </comboBoxCell>
+                            <connections>
+                                <action selector="didChangeMasterServer:" target="550" id="YLn-fZ-E92"/>
+                            </connections>
+                        </comboBox>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="552"/>
+                    <toolbarItem reference="ijP-qv-B5a"/>
+                    <toolbarItem reference="70g-C8-y0Q"/>
                 </defaultToolbarItems>
             </toolbar>
         </window>

@@ -11,8 +11,9 @@ import Foundation
 
 protocol CoordinatorDelegate: NSObjectProtocol {
     
-    func didFinishWithError(error: Error?)
-    func didFinishFetchingInfo(forServer serverInfo: ServerInfoProtocol)
-    func didFinishFetchingStatus(forServer serverStatus: [AnyHashable: Any])
-    func didFinishFetchingPlayers(forServer serverPlayers: [Any])
+    func didFinishRequestingServers(for coordinator: CoordinatorProtocol)
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishWithError error: Error?)
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingServerInfo serverInfo: ServerInfoProtocol)
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatusInfo statusInfo: [String: String])
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingPlayersInfo players: [String])
 }

@@ -19,17 +19,11 @@ class ViewController: NSObject {
     @IBOutlet weak var numOfServersFound: NSTextField!
 
     private let coordinator = Q3Coordinator()
+    private var game = Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950")
     fileprivate var servers = [Any]()
     fileprivate var players = [Any]()
     fileprivate var status = [AnyHashable: Any]()
     fileprivate var selectedServerIndex: Int = 0
-
-    @IBAction func refreshServersList(_ sender: Any) {
-        clearDataSource()
-        reloadDataSource()
-        coordinator.refreshServersList()
-        loadingIndicator.startAnimation(self)
-    }
 
     func windowShouldClose(_ sender: Any) -> Bool {
         NSApp.terminate(nil)
@@ -45,8 +39,36 @@ class ViewController: NSObject {
         // -- Init label
         numOfServersFound.stringValue = NSLocalizedString("EmptyServersList", comment: "")
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func refreshServersList(_ sender: Any) {
+        clearDataSource()
+        reloadDataSource()
+        coordinator.refreshServersList(host: game.masterServerAddress, port: game.serverPort)
+        loadingIndicator.startAnimation(self)
+    }
+    
+    @IBAction func didChangeMasterServer(_ sender: NSComboBox) {
+        if let selected = sender.objectValueOfSelectedItem as? String {
+            let newMaster = selected.components(separatedBy: ":")
+            let host = newMaster.first!
+            let port = newMaster.last!
+            game.masterServerAddress = host
+            game.serverPort = port
+            clearDataSource()
+            reloadDataSource()
+        }
+    }
 
     // MARK: - Private methods
+    private func clearUI() {
+        clearDataSource()
+        reloadDataSource()
+        self.loadingIndicator.stopAnimation(self)
+        numOfServersFound.stringValue = NSLocalizedString("EmptyServersList", comment: "")
+    }
+    
     private func clearDataSource() {
         servers.removeAll()
         players = [Any]()
@@ -62,39 +84,41 @@ class ViewController: NSObject {
 
 extension ViewController: CoordinatorDelegate {
     
-    func didFinishWithError(error: Error?) {
+    func didFinishRequestingServers(for coordinator: CoordinatorProtocol) {
         self.loadingIndicator.stopAnimation(self)
     }
     
-    func didFinishFetchingInfo(forServer serverInfo: ServerInfoProtocol) {
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishWithError error: Error?) {
+        self.loadingIndicator.stopAnimation(self)
+    }
+    
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingServerInfo serverInfo: ServerInfoProtocol) {
         DispatchQueue.main.async {
             [unowned self] in
-            print(serverInfo)
             self.servers.append(serverInfo)
-//            self.loadingIndicator.stopAnimation(self)
             self.numOfServersFound.stringValue = "\(self.servers.count) servers found."
             self.serversTableView.reloadData()
         }
     }
     
-    func didFinishFetchingStatus(forServer serverStatus: [AnyHashable: Any]) {
-        DispatchQueue.main.async {
-            [unowned self] in
-            if !serverStatus.isEmpty {
-                self.status = serverStatus
-                self.statusTableView.reloadData()
-            }
-        }
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatusInfo statusInfo: [String : String]) {
+//        DispatchQueue.main.async {
+//            [unowned self] in
+//            if !serverStatus.isEmpty {
+//                self.status = serverStatus
+//                self.statusTableView.reloadData()
+//            }
+//        }
     }
     
-    func didFinishFetchingPlayers(forServer serverPlayers: [Any]) {
-        DispatchQueue.main.async {
-            [unowned self] in
-            if !serverPlayers.isEmpty {
-                self.players = serverPlayers
-                self.playersTableView.reloadData()
-            }
-        }
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingPlayersInfo players: [String]) {
+//        DispatchQueue.main.async {
+//            [unowned self] in
+//            if !serverPlayers.isEmpty {
+//                self.players = serverPlayers
+//                self.playersTableView.reloadData()
+//            }
+//        }
     }
 }
 

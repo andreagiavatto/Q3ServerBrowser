@@ -14,26 +14,20 @@ class Q3MasterServerController: NSObject, MasterServerControllerProtocol {
     
     weak var delegate: MasterServerControllerDelegate?
 
-    let game: Game
     let masterServerQueue = DispatchQueue(label: "com.q3browser.master-server.queue")
     private var socket: GCDAsyncUdpSocket?
     fileprivate var data = Data()
     private let getServersRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x20, 0x36, 0x38, 0x20, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x20, 0x66, 0x75, 0x6c, 0x6c]
     fileprivate let getServersResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x5c] // YYYYgetserversResponse\
     fileprivate let eotMarker: [UInt8] = [0x5c, 0x45, 0x4f, 0x54, 0x0, 0x0, 0x0] // \EOT000
-
-    required init(game: Game) {
-        self.game = game
-    }
     
-    func startFetchingServersList() {
+    func startFetchingServersList(host: String, port: String) {
         
         masterServerQueue.async { [unowned self] in
             self.reset()
-            guard let port = UInt16(self.game.serverPort) else {
+            guard let port = UInt16(port) else {
                 return
             }
-            let host = self.game.masterServerAddress
             let data = Data(bytes: self.getServersRequestMarker)
             self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
             do {
@@ -80,7 +74,7 @@ extension Q3MasterServerController: GCDAsyncUdpSocketDelegate {
     }
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
-
+        delegate?.masterController(self, didFinishWithError: error)
     }
 }
 

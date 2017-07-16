@@ -13,6 +13,5 @@ protocol MasterServerControllerProtocol {
     
     weak var delegate: MasterServerControllerDelegate? { get set }
 
-    init(game: Game)
-    func startFetchingServersList()
+    func startFetchingServersList(host: String, port: String)
 }

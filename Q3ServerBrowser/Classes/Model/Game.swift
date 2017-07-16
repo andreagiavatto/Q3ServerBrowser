@@ -12,8 +12,8 @@ import Foundation
 class Game: NSObject {
     
     let title: String
-    let masterServerAddress: String
-    let serverPort: String
+    var masterServerAddress: String
+    var serverPort: String
 
     init(title: String, masterServerAddress: String, serverPort: String) {
         self.title = title

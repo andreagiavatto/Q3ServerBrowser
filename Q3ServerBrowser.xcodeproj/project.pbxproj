@@ -27,13 +27,14 @@
 		A2359FB91F10427A00498384 /* ServerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9D1F10427A00498384 /* ServerControllerDelegate.swift */; };
 		A2359FBA1F10427A00498384 /* ServerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9E1F10427A00498384 /* ServerControllerProtocol.swift */; };
 		A2359FBB1F10427A00498384 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359FA01F10427A00498384 /* ViewController.swift */; };
-		A2359FBC1F10427A00498384 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA11F10427A00498384 /* InfoPlist.strings */; };
 		A2359FBD1F10427A00498384 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA31F10427A00498384 /* MainMenu.xib */; };
 		A2359FBE1F10427A00498384 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA51F10427A00498384 /* Images.xcassets */; };
 		A291E8321F1219F900BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		A291E8341F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		A291E8351F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
+		A2DD851D1F1B815D00C1AF9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2DD851F1F1B815D00C1AF9B /* Localizable.strings */; };
+		A2DD85221F1BC86900C1AF9B /* Q3ServerInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85211F1BC86900C1AF9B /* Q3ServerInfoRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,12 +75,14 @@
 		A2359F9D1F10427A00498384 /* ServerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerControllerDelegate.swift; sourceTree = "<group>"; };
 		A2359F9E1F10427A00498384 /* ServerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerControllerProtocol.swift; sourceTree = "<group>"; };
 		A2359FA01F10427A00498384 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A2359FA21F10427A00498384 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A2359FA41F10427A00498384 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A2359FA51F10427A00498384 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A2359FA61F10427A00498384 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
 		A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		A2DD85181F1B5B7700C1AF9B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		A2DD851A1F1B80C700C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A2DD851E1F1B815D00C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A2DD85201F1B816200C1AF9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A2DD85211F1BC86900C1AF9B /* Q3ServerInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerInfoRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,10 +133,10 @@
 			children = (
 				A2359F7D1F10427A00498384 /* AppDelegate.swift */,
 				A2359F7E1F10427A00498384 /* Classes */,
-				A2359FA11F10427A00498384 /* InfoPlist.strings */,
 				A2359FA31F10427A00498384 /* MainMenu.xib */,
 				A2359FA51F10427A00498384 /* Images.xcassets */,
 				A2359FA61F10427A00498384 /* Q3ServerBrowser-Info.plist */,
+				A2DD851F1F1B815D00C1AF9B /* Localizable.strings */,
 			);
 			path = Q3ServerBrowser;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				A2359F8D1F10427A00498384 /* Q3ServerController.swift */,
+				A2DD85211F1BC86900C1AF9B /* Q3ServerInfoRequest.swift */,
 			);
 			path = ServerController;
 			sourceTree = "<group>";
@@ -329,6 +333,8 @@
 				Japanese,
 				French,
 				German,
+				Base,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* GameServerBrowser */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
@@ -346,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2359FBE1F10427A00498384 /* Images.xcassets in Resources */,
-				A2359FBC1F10427A00498384 /* InfoPlist.strings in Resources */,
+				A2DD851D1F1B815D00C1AF9B /* Localizable.strings in Resources */,
 				A2359FBD1F10427A00498384 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2359FB81F10427A00498384 /* ParserProtocol.swift in Sources */,
+				A2DD85221F1BC86900C1AF9B /* Q3ServerInfoRequest.swift in Sources */,
 				A2359FAB1F10427A00498384 /* Q3MasterServerController.swift in Sources */,
 				A2359FAA1F10427A00498384 /* Q3Coordinator.swift in Sources */,
 				A2359FB61F10427A00498384 /* MasterServerControllerProtocol.swift in Sources */,
@@ -384,20 +391,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A2359FA11F10427A00498384 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A2359FA21F10427A00498384 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		A2359FA31F10427A00498384 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A2359FA41F10427A00498384 /* English */,
+				A2DD851A1F1B80C700C1AF9B /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		A2DD851F1F1B815D00C1AF9B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2DD851E1F1B815D00C1AF9B /* Base */,
+				A2DD85201F1B816200C1AF9B /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

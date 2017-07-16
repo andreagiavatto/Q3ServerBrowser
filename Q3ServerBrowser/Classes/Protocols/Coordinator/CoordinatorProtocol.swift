@@ -13,6 +13,6 @@ protocol CoordinatorProtocol {
     
     weak var delegate: CoordinatorDelegate? { get set }
 
-    func refreshServersList()
+    func refreshServersList(host: String, port: String)
     func status(forServer server: ServerInfoProtocol)
 }
