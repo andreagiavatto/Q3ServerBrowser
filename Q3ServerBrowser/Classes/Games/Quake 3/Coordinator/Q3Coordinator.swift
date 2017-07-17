@@ -58,7 +58,7 @@ extension Q3Coordinator: MasterServerControllerDelegate {
 extension Q3Coordinator: ServerControllerDelegate {
     
     func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith data: Data, for address: Data) {
-        print(responseTimes)
+
         let add = address as NSData
         var storage = sockaddr_storage()
         add.getBytes(&storage, length: MemoryLayout<sockaddr_storage>.size)
@@ -76,7 +76,18 @@ extension Q3Coordinator: ServerControllerDelegate {
     }
     
     func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerStatusWith data: Data, for address: Data) {
-//        q3parser.parseServerStatus(with: data, andOperation: operation)
+
+        let add = address as NSData
+        var storage = sockaddr_storage()
+        add.getBytes(&storage, length: MemoryLayout<sockaddr_storage>.size)
+        
+        if
+            var serverStatus = q3parser.parseServerStatus(data),
+            let result = getEndpointFromSocketAddress(socketAddressPointer: &storage),
+            let startTime = responseTimes["\(result.host):\(result.port)"]
+        {
+            delegate?.coordinator(self, didFinishFetchingStatusInfo: serverStatus, for: "\(result.host):\(result.port)")
+        }
     }
     
     func serverController(_ controller: ServerControllerProtocol, didFinishWithError error: Error?) {

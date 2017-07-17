@@ -18,11 +18,11 @@ class ViewController: NSObject {
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     @IBOutlet weak var numOfServersFound: NSTextField!
 
-    private let coordinator = Q3Coordinator()
     private var game = Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950")
-    fileprivate var servers = [Any]()
-    fileprivate var players = [Any]()
-    fileprivate var status = [AnyHashable: Any]()
+    fileprivate let coordinator = Q3Coordinator()
+    fileprivate var servers = [ServerInfoProtocol]()
+    fileprivate var players = [Q3ServerPlayer]()
+    fileprivate var status = [String: String]()
     fileprivate var selectedServerIndex: Int = 0
 
     func windowShouldClose(_ sender: Any) -> Bool {
@@ -33,18 +33,13 @@ class ViewController: NSObject {
     override func awakeFromNib() {
         // -- Init data sources
         coordinator.delegate = self
-        servers = [Any]()
-        players = [Any]()
-        status = [AnyHashable: Any]()
-        // -- Init label
-        numOfServersFound.stringValue = NSLocalizedString("EmptyServersList", comment: "")
+        clearUI()
     }
     
     // MARK: - Actions
     
     @IBAction func refreshServersList(_ sender: Any) {
-        clearDataSource()
-        reloadDataSource()
+        clearUI()
         coordinator.refreshServersList(host: game.masterServerAddress, port: game.serverPort)
         loadingIndicator.startAnimation(self)
     }
@@ -56,8 +51,7 @@ class ViewController: NSObject {
             let port = newMaster.last!
             game.masterServerAddress = host
             game.serverPort = port
-            clearDataSource()
-            reloadDataSource()
+            clearUI()
         }
     }
 
@@ -71,8 +65,8 @@ class ViewController: NSObject {
     
     private func clearDataSource() {
         servers.removeAll()
-        players = [Any]()
-        status = [AnyHashable: Any]()
+        players.removeAll()
+        status.removeAll()
     }
 
     private func reloadDataSource() {
@@ -101,24 +95,17 @@ extension ViewController: CoordinatorDelegate {
         }
     }
     
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatusInfo statusInfo: [String : String]) {
-//        DispatchQueue.main.async {
-//            [unowned self] in
-//            if !serverStatus.isEmpty {
-//                self.status = serverStatus
-//                self.statusTableView.reloadData()
-//            }
-//        }
-    }
-    
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingPlayersInfo players: [String]) {
-//        DispatchQueue.main.async {
-//            [unowned self] in
-//            if !serverPlayers.isEmpty {
-//                self.players = serverPlayers
-//                self.playersTableView.reloadData()
-//            }
-//        }
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatusInfo statusInfo: ([String : String], [Q3ServerPlayer])?, for ip: String) {
+        
+        DispatchQueue.main.async {
+            [unowned self] in
+            if let statusInfo = statusInfo {
+                self.status = statusInfo.0
+                self.statusTableView.reloadData()
+                self.players = statusInfo.1
+                self.playersTableView.reloadData()
+            }
+        }
     }
 }
 
@@ -141,6 +128,14 @@ extension ViewController: NSTableViewDataSource {
         
         if tableView == serversTableView {
             return configureViewFor(serversTableView: serversTableView, viewFor: tableColumn, row: row)
+        }
+        
+        if tableView == statusTableView {
+            
+        }
+        
+        if tableView == playersTableView {
+            
         }
         
         return nil
@@ -221,7 +216,27 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTableViewDelegate {
     
-    func tableView(_ aTableView: NSTableView, willDisplayCell aCell: Any, for aTableColumn: NSTableColumn?, row rowIndex: Int) {
+    func tableView(_ tableView: NSTableView, willDisplayCell cell: NSTableCellView, for tableColumn: NSTableColumn?, row: Int) {
+        
+        if tableView == serversTableView {
+            if
+                let server = servers[row] as? ServerInfoProtocol,
+                let ping = Int(server.ping)
+            {
+                if (tableView.identifier == "ping") {
+                    if ping <= 60 {
+                        cell.textField?.textColor = kMGTGoodPingColor
+                    } else if ping <= 100 {
+                        cell.textField?.textColor = kMGTAveragePingColor
+                    } else {
+                        cell.textField?.textColor = kMGTBadPingColor
+                    }
+                }
+            }
+        }
+    }
+    
+//    func tableView(_ aTableView: NSTableView, willDisplayCell aCell: Any, for aTableColumn: NSTableColumn?, row rowIndex: Int) {
 //        if aTableView == serversTableView {
 //            let server: ServerInfoProtocol? = (servers[rowIndex] as? ServerInfoProtocol)
 //            let ping = Int(CInt(server?.ping))
@@ -239,20 +254,22 @@ extension ViewController: NSTableViewDelegate {
 //                }
 //            }
 //        }
-    }
+//    }
     
     func tableViewSelectionDidChange(_ aNotification: Notification) {
-//        let tableView: NSTableView? = (aNotification.object as? NSTableView)
-//        if tableView == serversTableView {
-//            let selectedRow: Int = serversTableView.selectedRow()
-//            if selectedRow < servers.count {
-//                status = [AnyHashable: Any]()
-//                players = [Any]()
-//                statusTableView.reloadData()
-//                playersTableView.reloadData()
-//                let server: ServerInfoProtocol? = (servers[selectedRow] as? ServerInfoProtocol)
-//                coordinator?.status(forServer: server)
-//            }
-//        }
+        
+        guard let tableView = aNotification.object as? NSTableView else { return }
+        if tableView == serversTableView {
+            let selectedRow = serversTableView.selectedRow
+            if selectedRow < servers.count {
+                status.removeAll()
+                players.removeAll()
+                statusTableView.reloadData()
+                playersTableView.reloadData()
+                if let server = servers[selectedRow] as? ServerInfoProtocol {
+                    coordinator.status(forServer: server)
+                }
+            }
+        }
     }
 }

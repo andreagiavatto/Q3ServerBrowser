@@ -13,5 +13,5 @@ protocol ParserProtocol {
     
     func parseServers(_ serversData: Data) -> [String]
     func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) -> ServerInfoProtocol?
-    func parseServerStatus(_ serverStatusData: Data)
+    func parseServerStatus(_ serverStatusData: Data) -> (status: [String: String], players: [Q3ServerPlayer])?
 }

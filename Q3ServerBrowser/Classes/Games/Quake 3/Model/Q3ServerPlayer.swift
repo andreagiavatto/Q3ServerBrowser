@@ -34,6 +34,6 @@ struct Q3ServerPlayer: ServerPlayerProtocol {
 
 extension Q3ServerPlayer: CustomStringConvertible {
     var description: String {
-        return "<Q3ServerPlayer : \(self)> \(name) (\(ping)) - \(score)"
+        return "<Q3ServerPlayer> \(name) (\(ping)) - \(score)"
     }
 }

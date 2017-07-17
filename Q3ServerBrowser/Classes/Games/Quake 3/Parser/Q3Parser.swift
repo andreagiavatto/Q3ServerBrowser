@@ -71,22 +71,21 @@ class Q3Parser: ParserProtocol {
         return nil
     }
 
-    func parseServerStatus(_ serverStatusData: Data) {
-//        if serverStatusData.count {
-//            if delegate?.responds(to: #selector(self.willStartParsingServerStatusDataForParser)) {
-//                delegate?.willStartParsingServerStatusData(for: self)
-//            }
-//            let usefulData = serverStatusData.subdata(with: NSRange(location: 20, length: serverStatusData.count - 20))
-//            var statusResponse = String(usefulData, encoding: String.Encoding.ascii)
-//            statusResponse = statusResponse.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//            let statusComponents: [Any] = statusResponse.components(separatedBy: "\n")
-//            let serverStatus: String = statusComponents[0]
+    func parseServerStatus(_ serverStatusData: Data) -> (status: [String: String], players: [Q3ServerPlayer])? {
+        
+        return nil
+//        if serverStatusData.count > 0 {
+//
+//            var statusResponse = String(data: serverStatusData, encoding: .ascii)
+//            statusResponse = statusResponse?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//            let statusComponents = statusResponse?.components(separatedBy: "\n")
+//            let serverStatus = statusComponents[0]
 //            if statusComponents.count > 1 {
-//                    // -- We got players
-//                let playersStatus: [Any] = statusComponents[NSRange(location: 1, length: statusComponents.count - 1).location..<NSRange(location: 1, length: statusComponents.count - 1).location + NSRange(location: 1, length: statusComponents.count - 1).length]
+//                // -- We got players
+//                let playersStatus = statusComponents[NSRange(location: 1, length: statusComponents.count - 1).location..<NSRange(location: 1, length: statusComponents.count - 1).location + NSRange(location: 1, length: statusComponents.count - 1).length]
 //                parsePlayersStatus(playersStatus)
 //            }
-//            var status: [Any] = serverStatus.components(separatedBy: "\\")
+//            var status = serverStatus.components(separatedBy: "\\")
 //            status = status.filter { NSPredicate(format: "SELF != ''").evaluate(with: $0) }
 //            var keys = [Any]()
 //            var values = [Any]()
@@ -102,6 +101,8 @@ class Q3Parser: ParserProtocol {
 //                let infoD = [AnyHashable: Any](objects: values, forKeys: keys)
 //                delegate?.didFinishParsingServerStatusData(for: self, withServerStatus: infoD)
 //            }
+//        } else {
+//            return nil
 //        }
     }
 

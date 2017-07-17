@@ -16,7 +16,8 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
 
     private let serverInfoQueue = DispatchQueue(label: "com.q3browser.server-info.queue")
     private let statusInfoQueue = DispatchQueue(label: "com.q3browser.status-info.queue")
-    private var activeRequests = [Q3ServerInfoRequest]()
+    private var activeInfoRequests = [Q3ServerInfoRequest]()
+    private var activeStatusRequests = [Q3ServerStatusRequest]()
     
     func requestServerInfo(ip: String, port: String) {
         
@@ -35,11 +36,11 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
                 } else {
                     self.delegate?.serverController(self, didFinishWithError: error)
                 }
-                if let index = self.activeRequests.index(of: request) {
-                    self.activeRequests.remove(at: index)
+                if let index = self.activeInfoRequests.index(of: request) {
+                    self.activeInfoRequests.remove(at: index)
                 }
             })
-            self.activeRequests.append(request)
+            self.activeInfoRequests.append(request)
         }
     }
 
@@ -50,23 +51,21 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
             guard let port = UInt16(port) else {
                 return
             }
+            
+            let request = Q3ServerStatusRequest(ip: ip, port: port)
+            self.delegate?.didStartFetchingInfo(forServerController: self)
+            request.execute(completion: { [unowned self] (data, address, error) in
+                
+                if let data = data, let address = address {
+                    self.delegate?.serverController(self, didFinishFetchingServerStatusWith: data, for: address)
+                } else {
+                    self.delegate?.serverController(self, didFinishWithError: error)
+                }
+                if let index = self.activeStatusRequests.index(of: request) {
+                    self.activeStatusRequests.remove(at: index)
+                }
+            })
+            self.activeStatusRequests.append(request)
         }
-        
-//        if (ip.characters.count ?? 0) && port > 0 {
-//            let command = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x0a]
-//            let getStatusData = Data(bytes: command, length: MemoryLayout<command>.size)
-//            let infoOperation = AGServerOperation(serverIp: ip, andPort: port, andCommand: getStatusData)
-//            (infoOperation)
-//            infoOperation.completionBlock() =   
-//            do {
-//                (weakOperation)
-//                if strongOperation {
-//                    if delegate?.responds(to: Selector("serverController:didFinishFetchingServerStatusWithOperation:")) {
-//                        delegate?.serverController(self, didFinishFetchingServerStatusWith: strongOperation)
-//                    }
-//                }
-//            }
-//            statusQueue?.addOperation(infoOperation)
-//        }
     }
 }

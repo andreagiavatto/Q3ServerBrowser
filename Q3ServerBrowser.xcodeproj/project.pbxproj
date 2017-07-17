@@ -29,6 +29,7 @@
 		A2359FBB1F10427A00498384 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359FA01F10427A00498384 /* ViewController.swift */; };
 		A2359FBD1F10427A00498384 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA31F10427A00498384 /* MainMenu.xib */; };
 		A2359FBE1F10427A00498384 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA51F10427A00498384 /* Images.xcassets */; };
+		A26E0FC21F1D631E0099E65D /* Q3ServerStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26E0FC11F1D631E0099E65D /* Q3ServerStatusRequest.swift */; };
 		A291E8321F1219F900BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		A291E8341F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		A291E8351F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -77,6 +78,7 @@
 		A2359FA01F10427A00498384 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A2359FA51F10427A00498384 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A2359FA61F10427A00498384 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
+		A26E0FC11F1D631E0099E65D /* Q3ServerStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerStatusRequest.swift; sourceTree = "<group>"; };
 		A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		A2DD85181F1B5B7700C1AF9B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A2DD851A1F1B80C700C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				A2359F8D1F10427A00498384 /* Q3ServerController.swift */,
 				A2DD85211F1BC86900C1AF9B /* Q3ServerInfoRequest.swift */,
+				A26E0FC11F1D631E0099E65D /* Q3ServerStatusRequest.swift */,
 			);
 			path = ServerController;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				A2359FB11F10427A00498384 /* ServerInfoProtocol.swift in Sources */,
 				A2359FAC1F10427A00498384 /* Q3ServerInfo.swift in Sources */,
 				A2359FAD1F10427A00498384 /* Q3ServerPlayer.swift in Sources */,
+				A26E0FC21F1D631E0099E65D /* Q3ServerStatusRequest.swift in Sources */,
 				A2359FB51F10427A00498384 /* MasterServerControllerDelegate.swift in Sources */,
 				A2359FB21F10427A00498384 /* ServerPlayerProtocol.swift in Sources */,
 				A2359FBA1F10427A00498384 /* ServerControllerProtocol.swift in Sources */,
