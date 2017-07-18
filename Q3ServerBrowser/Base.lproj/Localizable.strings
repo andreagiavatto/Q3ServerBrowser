@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Q3ServerBrowser
+
+  Created by Andrea Giavatto on 16/07/2017.
+
+*/
+
+"EmptyServersList" = "No servers yet, hit 'Refresh' to query the master server";
