@@ -29,10 +29,10 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
             
             let request = Q3ServerInfoRequest(ip: ip, port: port)
             self.delegate?.didStartFetchingInfo(forServerController: self)
-            request.execute(completion: { [unowned self] (data, address, error) in
+            request.execute(completion: { [unowned self] (data, address, ping, error) in
                 
                 if let data = data, let address = address {
-                    self.delegate?.serverController(self, didFinishFetchingServerInfoWith: data, for: address)
+                    self.delegate?.serverController(self, didFinishFetchingServerInfoWith: data, for: address, ping: ping)
                 } else {
                     self.delegate?.serverController(self, didFinishWithError: error)
                 }

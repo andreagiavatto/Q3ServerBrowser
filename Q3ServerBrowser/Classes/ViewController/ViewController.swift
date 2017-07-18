@@ -131,11 +131,11 @@ extension ViewController: NSTableViewDataSource {
         }
         
         if tableView == rulesTableView {
-            return configureViewForRules(serversTableView, viewFor: tableColumn, row: row)
+            return configureViewForRules(rulesTableView, viewFor: tableColumn, row: row)
         }
         
         if tableView == playersTableView {
-            return configureViewForPlayers(serversTableView, viewFor: tableColumn, row: row)
+            return configureViewForPlayers(playersTableView, viewFor: tableColumn, row: row)
         }
         
         return nil

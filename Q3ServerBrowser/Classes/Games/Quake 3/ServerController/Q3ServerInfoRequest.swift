@@ -11,7 +11,7 @@ import CocoaAsyncSocket
 
 class Q3ServerInfoRequest: NSObject {
     
-    typealias ServerInfoCompletionHandler = (_ data: Data?, _ address: Data?, _ error: Error?) -> Void
+    typealias ServerInfoCompletionHandler = (_ data: Data?, _ address: Data?, _ ping: TimeInterval, _ error: Error?) -> Void
     
     private var socket: GCDAsyncUdpSocket?
     private let ip: String
@@ -20,6 +20,7 @@ class Q3ServerInfoRequest: NSObject {
     fileprivate let infoResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x69, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x0a, 0x5c] // YYYYinfoResponse\n\
     fileprivate var completionHandler: ServerInfoCompletionHandler?
     fileprivate var data = Data()
+    fileprivate var startTime: Date?
     
     required init(ip: String, port: UInt16) {
         self.ip = ip
@@ -33,10 +34,11 @@ class Q3ServerInfoRequest: NSObject {
         let data = Data(bytes: self.infoRequestMarker)
         do {
             self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
+            startTime = Date()
             self.socket?.send(data, toHost: ip, port: port, withTimeout: 10, tag: 42)
             try self.socket?.beginReceiving()
         } catch(let error) {
-            completionHandler?(nil, nil, error)
+            completionHandler?(nil, nil, 0.0, error)
         }
     }
 }
@@ -44,6 +46,8 @@ class Q3ServerInfoRequest: NSObject {
 extension Q3ServerInfoRequest: GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+        
+        let endTime = Date()
         
         self.data.append(data)
         
@@ -53,17 +57,18 @@ extension Q3ServerInfoRequest: GCDAsyncUdpSocketDelegate {
         if
             let asciiRep = asciiRep,
             let prefix = prefix,
-            asciiRep.hasPrefix(prefix)
+            asciiRep.hasPrefix(prefix),
+            let startTime = startTime
         {
             
             let start = self.data.index(self.data.startIndex, offsetBy: infoResponseMarker.count)
             let end = self.data.endIndex
             let usefulData = self.data.subdata(in: start..<end)
-            completionHandler?(usefulData, address, nil)
+            completionHandler?(usefulData, address, endTime.timeIntervalSince(startTime), nil)
         }
     }
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
-        completionHandler?(nil, nil, error)
+        completionHandler?(nil, nil, 0.0, error)
     }
 }

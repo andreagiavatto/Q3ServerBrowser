@@ -57,7 +57,7 @@ extension Q3Coordinator: MasterServerControllerDelegate {
 
 extension Q3Coordinator: ServerControllerDelegate {
     
-    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith data: Data, for address: Data) {
+    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith data: Data, for address: Data, ping: CFAbsoluteTime) {
 
         let add = address as NSData
         var storage = sockaddr_storage()
@@ -70,7 +70,7 @@ extension Q3Coordinator: ServerControllerDelegate {
         {
             serverInfo.ip = result.host
             serverInfo.port = "\(result.port)"
-            serverInfo.ping = String(format: "%.0f", round((CFAbsoluteTimeGetCurrent()-startTime)*1000))
+            serverInfo.ping = String(format: "%.0f", round(ping*1000))
             delegate?.coordinator(self, didFinishFetchingServerInfo: serverInfo)
         }
     }
