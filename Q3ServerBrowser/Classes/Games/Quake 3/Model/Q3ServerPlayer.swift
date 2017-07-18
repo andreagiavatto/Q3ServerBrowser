@@ -28,7 +28,6 @@ struct Q3ServerPlayer: ServerPlayerProtocol {
         self.score = playerComponents[0]
         self.ping = playerComponents[1]
         self.name = playerComponents[2]
-        
     }
 }
 

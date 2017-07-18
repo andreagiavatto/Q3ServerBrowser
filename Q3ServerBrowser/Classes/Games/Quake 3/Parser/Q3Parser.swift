@@ -35,79 +35,88 @@ class Q3Parser: ParserProtocol {
 
     func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) -> ServerInfoProtocol? {
         
-        if serverInfoData.count > 0 {
-
-            var infoResponse = String(data: serverInfoData, encoding: .ascii)
-            infoResponse = infoResponse?.trimmingCharacters(in: .whitespacesAndNewlines)
-            var info = infoResponse?.components(separatedBy: "\\")
-            info = info?.filter { NSPredicate(format: "SELF != ''").evaluate(with: $0) }
-            var keys = [String]()
-            var values = [String]()
-            
-            if let info = info {
-                for (index, element) in info.enumerated() {
-                    if index % 2 == 0 {
-                        keys.append(element)
-                    } else {
-                        values.append(element)
-                    }
+        guard serverInfoData.count > 0 else {
+            return nil
+        }
+        
+        var infoResponse = String(data: serverInfoData, encoding: .ascii)
+        infoResponse = infoResponse?.trimmingCharacters(in: .whitespacesAndNewlines)
+        var info = infoResponse?.components(separatedBy: "\\")
+        info = info?.filter { NSPredicate(format: "SELF != ''").evaluate(with: $0) }
+        var keys = [String]()
+        var values = [String]()
+        
+        if let info = info {
+            for (index, element) in info.enumerated() {
+                if index % 2 == 0 {
+                    keys.append(element)
+                } else {
+                    values.append(element)
                 }
             }
-
-            if keys.count == values.count {
-                
-                var infoDict = [String: String]()
-                keys.enumerated().forEach { (i) -> () in
-                    infoDict[i.element] = values[i.offset]
-                }
-
-                if let serverInfo = Q3ServerInfo(dictionary: infoDict) {
-                    var serverInfo = serverInfo
-                    return serverInfo
-                }
+        }
+        
+        if keys.count == values.count {
+            
+            var infoDict = [String: String]()
+            keys.enumerated().forEach { (i) -> () in
+                infoDict[i.element] = values[i.offset]
+            }
+            
+            if let serverInfo = Q3ServerInfo(dictionary: infoDict) {
+                var serverInfo = serverInfo
+                return serverInfo
             }
         }
         
         return nil
     }
 
-    func parseServerStatus(_ serverStatusData: Data) -> (status: [String: String], players: [Q3ServerPlayer])? {
+    func parseServerStatus(_ serverStatusData: Data) -> (rules: [String: String], players: [Q3ServerPlayer])? {
         
-        return nil
-//        if serverStatusData.count > 0 {
-//
-//            var statusResponse = String(data: serverStatusData, encoding: .ascii)
-//            statusResponse = statusResponse?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//            let statusComponents = statusResponse?.components(separatedBy: "\n")
-//            let serverStatus = statusComponents[0]
-//            if statusComponents.count > 1 {
-//                // -- We got players
-//                let playersStatus = statusComponents[NSRange(location: 1, length: statusComponents.count - 1).location..<NSRange(location: 1, length: statusComponents.count - 1).location + NSRange(location: 1, length: statusComponents.count - 1).length]
-//                parsePlayersStatus(playersStatus)
-//            }
-//            var status = serverStatus.components(separatedBy: "\\")
-//            status = status.filter { NSPredicate(format: "SELF != ''").evaluate(with: $0) }
-//            var keys = [Any]()
-//            var values = [Any]()
-//            (status as NSArray).enumerateObjects(usingBlock: {(_ obj: Any, _ idx: Int, _ stop: Bool) -> Void in
-//                if idx % 2 {
-//                    values.append(obj)
-//                }
-//                else {
-//                    keys.append(obj)
-//                }
-//            })
-//            if keys.count == values.count {
-//                let infoD = [AnyHashable: Any](objects: values, forKeys: keys)
-//                delegate?.didFinishParsingServerStatusData(for: self, withServerStatus: infoD)
-//            }
-//        } else {
-//            return nil
-//        }
+        guard serverStatusData.count > 0 else {
+            return nil
+        }
+        
+        var rules = [String: String]()
+        var players = [Q3ServerPlayer]()
+        
+        var statusResponse = String(data: serverStatusData, encoding: .ascii)
+        statusResponse = statusResponse?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if let statusComponents = statusResponse?.components(separatedBy: "\n") {
+            let serverStatus = statusComponents[0]
+            if statusComponents.count > 1 {
+                // -- We got players
+                let playerStrings = statusComponents[1..<statusComponents.count]
+                let playersStatus = Array(playerStrings)
+                players = parsePlayersStatus(playersStatus)
+            }
+            var status = serverStatus.components(separatedBy: "\\")
+            status = status.filter { NSPredicate(format: "SELF != ''").evaluate(with: $0) }
+            var keys = [String]()
+            var values = [String]()
+            
+            for (index, element) in status.enumerated() {
+                if index % 2 == 0 {
+                    keys.append(element)
+                } else {
+                    values.append(element)
+                }
+            }
+            
+            if keys.count == values.count {
+                
+                keys.enumerated().forEach { (i) -> () in
+                    rules[i.element] = values[i.offset]
+                }
+            }
+        }
+        
+        return (rules, players)
     }
 
     // MARK: - Private methods
-    
+
     private func parseServerData(_ serverData: Data) -> String {
 
         let len: Int = serverData.count
@@ -136,20 +145,20 @@ class Q3Parser: ParserProtocol {
         return "\(server):\(port)"
     }
 
-    private func parsePlayersStatus(_ playersStatus: [Any]) {
-//        if playersStatus.count {
-//            var players = [Any]()
-//            delegate?.willStartParsingServerPlayers(for: self)
-//            for p: String in playersStatus {
-//                let playerComponents: [Any] = p.components(separatedBy: CharacterSet.whitespaces)
-//                if playerComponents.count == 3 {
-//                    let player = AGQ3ServerPlayer(name: playerComponents[2], withPing: playerComponents[1], withScore: playerComponents[0])
-//                    if player {
-//                        players.append(player)
-//                    }
-//                }
-//            }
-//            delegate?.didFinishParsingServerPlayers(for: self, withPlayers: players)
-//        }
+    private func parsePlayersStatus(_ players: [String]) -> [Q3ServerPlayer] {
+        
+        guard players.count > 0 else {
+            return []
+        }
+        
+        var q3Players = [Q3ServerPlayer]()
+        
+        for playerString in players {
+            if let player = Q3ServerPlayer(line: playerString) {
+                q3Players.append(player)
+            }
+        }
+
+        return q3Players
     }
 }

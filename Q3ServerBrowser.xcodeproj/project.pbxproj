@@ -449,6 +449,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Q3ServerBrowser;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SUPPRESS_WARNINGS = YES;
 				SWIFT_VERSION = 3.0;
 			};
