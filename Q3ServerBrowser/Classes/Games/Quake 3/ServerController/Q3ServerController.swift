@@ -1,4 +1,3 @@
-//  Converted with Swiftify v1.0.6395 - https://objectivec2swift.com/
 //
 //  Q3ServerController.swift
 //  Q3ServerBrowser
@@ -14,34 +13,29 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     
     weak var delegate: ServerControllerDelegate?
 
-    private let serverInfoQueue = DispatchQueue(label: "com.q3browser.server-info.queue")
+    private let serverInfoQueue = OperationQueue()
     private let statusInfoQueue = DispatchQueue(label: "com.q3browser.status-info.queue")
-    private var activeInfoRequests = [Q3ServerInfoRequest]()
     private var activeStatusRequests = [Q3ServerStatusRequest]()
     
     func requestServerInfo(ip: String, port: String) {
         
-        serverInfoQueue.async { [unowned self] in
-
-            guard let port = UInt16(port) else {
-                return
-            }
-            
-            let request = Q3ServerInfoRequest(ip: ip, port: port)
-            self.delegate?.didStartFetchingInfo(forServerController: self)
-            request.execute(completion: { [unowned self] (data, address, ping, error) in
-                
-                if let data = data, let address = address {
-                    self.delegate?.serverController(self, didFinishFetchingServerInfoWith: data, for: address, ping: ping)
-                } else {
-                    self.delegate?.serverController(self, didFinishWithError: error)
-                }
-                if let index = self.activeInfoRequests.index(of: request) {
-                    self.activeInfoRequests.remove(at: index)
-                }
-            })
-            self.activeInfoRequests.append(request)
+        guard let port = UInt16(port) else {
+            return
         }
+        
+        let infoOperation = Q3ServerInfoOperation(ip: ip, port: port)
+
+        infoOperation.completionBlock = { [unowned self, infoOperation] in
+            if let error = infoOperation.error {
+                self.delegate?.serverController(self, didFinishWithError: error)
+            } else if let ping = infoOperation.executionTime {
+                let data = infoOperation.data
+                self.delegate?.serverController(self, didFinishFetchingServerInfoWith: data, for: infoOperation.ip, port: infoOperation.port, ping: ping)
+            }
+        }
+        
+        self.delegate?.didStartFetchingInfo(forServerController: self)
+        serverInfoQueue.addOperation(infoOperation)
     }
 
     func statusForServer(ip: String, port: String) {
@@ -67,5 +61,9 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
             })
             self.activeStatusRequests.append(request)
         }
+    }
+    
+    func clearPendingRequests() {
+        serverInfoQueue.cancelAllOperations()
     }
 }

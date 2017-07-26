@@ -1,4 +1,3 @@
-//  Converted with Swiftify v1.0.6395 - https://objectivec2swift.com/
 //
 //  Constants.swift
 //  Q3ServerBrowser

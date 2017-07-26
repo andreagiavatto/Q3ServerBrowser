@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A216180B1F24B53B0070A658 /* Q3ServerInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216180A1F24B53B0070A658 /* Q3ServerInfoRequest.swift */; };
+		A216180D1F24B6750070A658 /* Q3ServerInfoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216180C1F24B6750070A658 /* Q3ServerInfoOperation.swift */; };
 		A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7D1F10427A00498384 /* AppDelegate.swift */; };
 		A2359FA81F10427A00498384 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7F1F10427A00498384 /* Constants.swift */; };
 		A2359FAA1F10427A00498384 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F841F10427A00498384 /* Q3Coordinator.swift */; };
@@ -35,7 +37,6 @@
 		A291E8351F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
 		A2DD851D1F1B815D00C1AF9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2DD851F1F1B815D00C1AF9B /* Localizable.strings */; };
-		A2DD85221F1BC86900C1AF9B /* Q3ServerInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85211F1BC86900C1AF9B /* Q3ServerInfoRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A216180A1F24B53B0070A658 /* Q3ServerInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerInfoRequest.swift; sourceTree = "<group>"; };
+		A216180C1F24B6750070A658 /* Q3ServerInfoOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerInfoOperation.swift; sourceTree = "<group>"; };
 		A2359F7D1F10427A00498384 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2359F7F1F10427A00498384 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A2359F841F10427A00498384 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
@@ -84,7 +87,6 @@
 		A2DD851A1F1B80C700C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A2DD851E1F1B815D00C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A2DD85201F1B816200C1AF9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A2DD85211F1BC86900C1AF9B /* Q3ServerInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerInfoRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,7 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				A2359F8D1F10427A00498384 /* Q3ServerController.swift */,
-				A2DD85211F1BC86900C1AF9B /* Q3ServerInfoRequest.swift */,
+				A216180C1F24B6750070A658 /* Q3ServerInfoOperation.swift */,
+				A216180A1F24B53B0070A658 /* Q3ServerInfoRequest.swift */,
 				A26E0FC11F1D631E0099E65D /* Q3ServerStatusRequest.swift */,
 			);
 			path = ServerController;
@@ -368,13 +371,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2359FB81F10427A00498384 /* ParserProtocol.swift in Sources */,
-				A2DD85221F1BC86900C1AF9B /* Q3ServerInfoRequest.swift in Sources */,
 				A2359FAB1F10427A00498384 /* Q3MasterServerController.swift in Sources */,
 				A2359FAA1F10427A00498384 /* Q3Coordinator.swift in Sources */,
 				A2359FB61F10427A00498384 /* MasterServerControllerProtocol.swift in Sources */,
 				A2359FB91F10427A00498384 /* ServerControllerDelegate.swift in Sources */,
 				A2359FB41F10427A00498384 /* CoordinatorProtocol.swift in Sources */,
 				A2359FB11F10427A00498384 /* ServerInfoProtocol.swift in Sources */,
+				A216180B1F24B53B0070A658 /* Q3ServerInfoRequest.swift in Sources */,
 				A2359FAC1F10427A00498384 /* Q3ServerInfo.swift in Sources */,
 				A2359FAD1F10427A00498384 /* Q3ServerPlayer.swift in Sources */,
 				A26E0FC21F1D631E0099E65D /* Q3ServerStatusRequest.swift in Sources */,
@@ -387,6 +390,7 @@
 				A2359FB01F10427A00498384 /* Game.swift in Sources */,
 				A2359FBB1F10427A00498384 /* ViewController.swift in Sources */,
 				A2359FA81F10427A00498384 /* Constants.swift in Sources */,
+				A216180D1F24B6750070A658 /* Q3ServerInfoOperation.swift in Sources */,
 				A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */,
 				A2359FAF1F10427A00498384 /* Q3ServerController.swift in Sources */,
 			);

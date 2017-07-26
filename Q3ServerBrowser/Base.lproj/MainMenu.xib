@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -107,7 +107,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="178" width="844" height="600"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1129"/>
             <view key="contentView" canDrawConcurrently="YES" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="844" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -367,7 +367,7 @@
                                                     </tableColumns>
                                                     <connections>
                                                         <outlet property="dataSource" destination="550" id="588"/>
-                                                        <outlet property="delegate" destination="550" id="587"/>
+                                                        <outlet property="delegate" destination="550" id="wOk-t6-jcY"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
@@ -411,7 +411,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" autosaveName="InfoTable" rowSizeStyle="automatic" headerView="570" viewBased="YES" id="569">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="396" height="153"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="395" height="153"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -451,7 +451,7 @@
                                                                                 </tableCellView>
                                                                             </prototypeCellViews>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="value" editable="NO" width="240" minWidth="10" maxWidth="3.4028234663852886e+38" id="qaG-yX-obg" userLabel="Value">
+                                                                        <tableColumn identifier="value" editable="NO" width="239" minWidth="10" maxWidth="3.4028234663852886e+38" id="qaG-yX-obg" userLabel="Value">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Value">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -465,11 +465,11 @@
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                             <prototypeCellViews>
                                                                                 <tableCellView id="mDK-Ia-jfn">
-                                                                                    <rect key="frame" x="154" y="1" width="240" height="17"/>
+                                                                                    <rect key="frame" x="154" y="1" width="239" height="17"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                     <subviews>
                                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIp-Xp-yVX">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="17"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="239" height="17"/>
                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="gi9-mj-jPs">
                                                                                                 <font key="font" metaFont="system"/>
@@ -501,7 +501,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <tableHeaderView key="headerView" id="570">
-                                                            <rect key="frame" x="0.0" y="0.0" width="396" height="23"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="395" height="23"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </tableHeaderView>
                                                     </scrollView>
@@ -704,14 +704,32 @@
                     <constraint firstAttribute="trailing" secondItem="624" secondAttribute="trailing" constant="20" id="n3O-YG-adW"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="FF6CD7CC-2602-43E0-A62B-F1A93C73F099" displayMode="iconAndLabel" sizeMode="regular" id="533">
+            <toolbar key="toolbar" implicitIdentifier="FF6CD7CC-2602-43E0-A62B-F1A93C73F099" displayMode="iconAndLabel" sizeMode="small" id="533">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="5FD7D11A-0861-42BC-8012-1D052D1A17E1" label="Refresh" paletteLabel="Refresh" tag="1" image="icn_refresh" id="552">
+                    <toolbarItem implicitItemIdentifier="5FD7D11A-0861-42BC-8012-1D052D1A17E1" label="Refresh" paletteLabel="Refresh" tag="1" image="reload" id="552">
                         <connections>
                             <action selector="refreshServersList:" target="550" id="Rxe-uc-hVu"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="B6760D5C-8422-446C-8542-58DFE264C659" label="Connect" paletteLabel="Connect" tag="-1" image="right_arrow" id="vlo-1e-uYC" userLabel="Connect Item">
+                        <connections>
+                            <action selector="connectToServer:" target="550" id="16s-Tv-Sac"/>
+                        </connections>
+                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ijP-qv-B5a"/>
+                    <toolbarItem implicitItemIdentifier="8DB861AD-0EEE-4A2B-8487-0863FABB56FA" label="Quake 3 folder" paletteLabel="Quake 3 folder" id="e5U-f9-pga">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="200" height="20"/>
+                        <size key="maxSize" width="206" height="27"/>
+                        <pathControl key="view" verticalHuggingPriority="750" allowsExpansionToolTips="YES" id="lt2-Fe-CCy">
+                            <rect key="frame" x="0.0" y="14" width="206" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" pathStyle="popUp" id="nNY-wE-6bT">
+                                <font key="font" metaFont="smallSystem"/>
+                                <url key="url" string="file:///Applications/ioquake3/"/>
+                            </pathCell>
+                        </pathControl>
+                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="eaf-bF-Tp9"/>
                     <toolbarItem implicitItemIdentifier="60FEFBD8-1615-428B-82C0-5C27CC8154EA" label="Master Server" paletteLabel="Master Server" id="70g-C8-y0Q">
                         <nil key="toolTip"/>
@@ -737,11 +755,31 @@
                             </connections>
                         </comboBox>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="B1715260-F59F-4577-9DF7-22CE578EDB69" label="Filter" paletteLabel="Filter" id="ktn-BG-EQT">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="96" height="22"/>
+                        <size key="maxSize" width="96" height="22"/>
+                        <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="xgd-7c-o81">
+                            <rect key="frame" x="0.0" y="14" width="96" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" maximumRecents="5" recentsAutosaveName="FilterSearch" id="nSa-RN-szV">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </searchFieldCell>
+                            <connections>
+                                <action selector="filterServers:" target="550" id="lJ7-Mj-y9s"/>
+                            </connections>
+                        </searchField>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="552"/>
+                    <toolbarItem reference="vlo-1e-uYC"/>
                     <toolbarItem reference="ijP-qv-B5a"/>
-                    <toolbarItem reference="70g-C8-y0Q"/>
+                    <toolbarItem reference="e5U-f9-pga"/>
+                    <toolbarItem reference="ijP-qv-B5a"/>
+                    <toolbarItem reference="ktn-BG-EQT"/>
                 </defaultToolbarItems>
             </toolbar>
         </window>
@@ -753,9 +791,12 @@
         <customObject id="420" customClass="NSFontManager"/>
         <customObject id="550" customClass="ViewController" customModule="Q3ServerBrowser" customModuleProvider="target">
             <connections>
+                <outlet property="connectItem" destination="vlo-1e-uYC" id="Gji-43-rl3"/>
+                <outlet property="filterSearchField" destination="xgd-7c-o81" id="xsz-0I-f0e"/>
                 <outlet property="loadingIndicator" destination="623" id="ekw-a8-yre"/>
                 <outlet property="numOfServersFound" destination="624" id="us4-aW-cWw"/>
                 <outlet property="playersTableView" destination="578" id="ROP-Om-82e"/>
+                <outlet property="quake3FolderPath" destination="lt2-Fe-CCy" id="4ga-uz-N8u"/>
                 <outlet property="refreshServersItem" destination="552" id="rH9-Pf-C1e"/>
                 <outlet property="rulesTableView" destination="569" id="s10-uo-SxR"/>
                 <outlet property="serversTableView" destination="544" id="Xx5-gJ-zKc"/>
@@ -764,6 +805,7 @@
         <userDefaultsController representsSharedInstance="YES" id="603"/>
     </objects>
     <resources>
-        <image name="icn_refresh" width="24" height="24"/>
+        <image name="reload" width="25.600000381469727" height="25.600000381469727"/>
+        <image name="right_arrow" width="25.600000381469727" height="25.600000381469727"/>
     </resources>
 </document>

@@ -1,4 +1,3 @@
-//  Converted with Swiftify v1.0.6395 - https://objectivec2swift.com/
 //
 //  Q3ServerInfo.h
 //  Q3ServerBrowser
@@ -13,7 +12,8 @@ struct Q3ServerInfo: ServerInfoProtocol {
     var ping: String = ""
     var ip: String = ""
     var port: String = ""
-    let hostname: String
+    let originalHostname: String
+    private(set) var hostname: String
     let map: String
     let maxPlayers: String
     let currentPlayers: String
@@ -27,21 +27,21 @@ struct Q3ServerInfo: ServerInfoProtocol {
         }
         
         guard
-            let hostname = serverInfo["hostname"] as? String,
+            let originalHostname = serverInfo["hostname"] as? String,
             let map = serverInfo["mapname"] as? String,
             let maxPlayers = serverInfo["sv_maxclients"] as? String,
             let currentPlayers = serverInfo["clients"] as? String,
-            let mod = serverInfo["game"] as? String,
             let gametype = serverInfo["gametype"] as? String
         else {
             return nil
         }
 
-        self.hostname = hostname
+        self.hostname = ""
+        self.originalHostname = originalHostname
         self.map = map
         self.maxPlayers = maxPlayers
         self.currentPlayers = currentPlayers
-        self.mod = mod
+        self.mod = serverInfo["game"] as? String ?? "baseq3"
         
         if !gametype.isEmpty, let gtype = Int(gametype) {
             switch gtype {
@@ -59,6 +59,26 @@ struct Q3ServerInfo: ServerInfoProtocol {
         } else {
             self.gametype = "unknown"
         }
+        
+        self.hostname = decodeQ3Hostname(hostname: self.originalHostname)
+    }
+    
+    // MARK: - Private methods
+    
+    private func decodeQ3Hostname(hostname: String) -> String {
+        guard hostname.characters.count > 0 else {
+            return ""
+        }
+        
+        var decodedHostname = ""
+        
+        do {
+            let regex = try NSRegularExpression(pattern: "\\^[a-z0-9]", options: .caseInsensitive)
+            decodedHostname = regex.stringByReplacingMatches(in: hostname, options: [], range: NSMakeRange(0, hostname.characters.count), withTemplate: "")
+        } catch (let error) {
+            print(error)
+        }
+        return decodedHostname
     }
 }
 

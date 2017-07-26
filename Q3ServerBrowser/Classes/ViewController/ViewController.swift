@@ -1,4 +1,3 @@
-//  Converted with Swiftify v1.0.6395 - https://objectivec2swift.com/
 //
 //  ViewController.swift
 //  Q3ServerBrowser
@@ -15,12 +14,17 @@ class ViewController: NSObject {
     @IBOutlet weak var rulesTableView: NSTableView!
     @IBOutlet weak var playersTableView: NSTableView!
     @IBOutlet weak var refreshServersItem: NSToolbarItem!
+    @IBOutlet weak var connectItem: NSToolbarItem!
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     @IBOutlet weak var numOfServersFound: NSTextField!
+    @IBOutlet weak var quake3FolderPath: NSPathControl!
+    @IBOutlet weak var filterSearchField: NSSearchField!
 
     private var game = Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950")
     fileprivate let coordinator = Q3Coordinator()
     fileprivate var servers = [ServerInfoProtocol]()
+    fileprivate var filteredServers = [ServerInfoProtocol]()
+    fileprivate var filterString = ""
     fileprivate var players = [Q3ServerPlayer]()
     fileprivate var rules = [String: String]()
     fileprivate var selectedServerIndex: Int = 0
@@ -54,17 +58,63 @@ class ViewController: NSObject {
             clearUI()
         }
     }
+    
+    @IBAction func connectToServer(_ sender: Any) {
+        let row = serversTableView.selectedRow
+        let serverInfo = servers[row]
+        let pathToFolder = quake3FolderPath.url
+        
+        if let folderURLString = pathToFolder?.path {
+            let executableURLString = folderURLString.appending("/ioquake3-1.36.app/Contents/MacOS/ioquake3.ub")
+            let process = Process()
+            let pipe = Pipe()
+            print(executableURLString)
+            process.launchPath = executableURLString
+            process.arguments = ["+connect", "\(serverInfo.ip):\(serverInfo.port)"]
+            do {
+                try process.launch()
+                process.standardOutput = pipe
+                process.launch()
+                
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                let output = String(data: data, encoding: .utf8)
+            } catch(let error) {
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func filterServers(_ sender: NSSearchField) {
+        filterString = sender.stringValue.lowercased()
+
+        if filterString.characters.count == 0 {
+            filteredServers = Array(servers)
+        } else {
+            filteredServers = servers.filter({ (serverInfo) -> Bool in
+                return serverInfo.hostname.lowercased().range(of: filterString) != nil ||
+                        serverInfo.map.lowercased().range(of: filterString) != nil ||
+                        serverInfo.mod.lowercased().range(of: filterString) != nil ||
+                        serverInfo.gametype.lowercased().range(of: filterString) != nil ||
+                        serverInfo.ip.lowercased().range(of: filterString) != nil
+            })
+        }
+        self.numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
+        reloadDataSource()
+    }
 
     // MARK: - Private methods
     private func clearUI() {
         clearDataSource()
         reloadDataSource()
-        self.loadingIndicator.stopAnimation(self)
+        filterSearchField.stringValue = ""
+        loadingIndicator.stopAnimation(self)
         numOfServersFound.stringValue = NSLocalizedString("EmptyServersList", comment: "")
     }
     
     private func clearDataSource() {
+        filterString = ""
         servers.removeAll()
+        filteredServers.removeAll()
         players.removeAll()
         rules.removeAll()
     }
@@ -90,13 +140,13 @@ extension ViewController: CoordinatorDelegate {
         DispatchQueue.main.async {
             [unowned self] in
             self.servers.append(serverInfo)
-            self.numOfServersFound.stringValue = "\(self.servers.count) servers found."
+            self.filteredServers.append(serverInfo)
+            self.numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
             self.serversTableView.reloadData()
         }
     }
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatusInfo statusInfo: (rules: [String : String], players: [Q3ServerPlayer])?, for ip: String) {
-        
         DispatchQueue.main.async {
             [unowned self] in
             if let statusInfo = statusInfo {
@@ -113,7 +163,7 @@ extension ViewController: NSTableViewDataSource {
     
     func numberOfRows(in aTableView: NSTableView) -> Int {
         if aTableView == serversTableView {
-            return servers.count
+            return filteredServers.count
         }
         if aTableView == rulesTableView {
             return rules.keys.count
@@ -147,12 +197,14 @@ extension ViewController: NSTableViewDataSource {
         
         guard
             let columnId = tableColumn?.identifier,
-            let serverInfo = servers[row] as? ServerInfoProtocol
+            let serverInfo = filteredServers[row] as? ServerInfoProtocol
             else {
                 return nil
         }
         
         var text = ""
+        var textColor = NSColor.black
+        
         switch columnId {
         case "hostname":
             text = serverInfo.hostname
@@ -166,6 +218,15 @@ extension ViewController: NSTableViewDataSource {
             text = "\(serverInfo.currentPlayers) / \(serverInfo.maxPlayers)"
         case "ping":
             text = serverInfo.ping
+            if let ping = Int(serverInfo.ping) {
+                if ping <= 60 {
+                    textColor = kMGTGoodPingColor
+                } else if ping <= 100 {
+                    textColor = kMGTAveragePingColor
+                } else {
+                    textColor = kMGTBadPingColor
+                }
+            }
         case "ip":
             text = "\(serverInfo.ip):\(serverInfo.port)"
         default:
@@ -174,6 +235,7 @@ extension ViewController: NSTableViewDataSource {
         
         if let cell = tableView.make(withIdentifier: columnId, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
+            cell.textField?.textColor = textColor
             return cell
         }
         
@@ -239,26 +301,6 @@ extension ViewController: NSTableViewDataSource {
 }
 
 extension ViewController: NSTableViewDelegate {
-    
-//    func tableView(_ tableView: NSTableView, willDisplayCell cell: NSTableCellView, for tableColumn: NSTableColumn?, row: Int) {
-//        
-//        if tableView == serversTableView {
-//            if
-//                let server = servers[row] as? ServerInfoProtocol,
-//                let ping = Int(server.ping)
-//            {
-//                if (tableView.identifier == "ping") {
-//                    if ping <= 60 {
-//                        cell.textField?.textColor = kMGTGoodPingColor
-//                    } else if ping <= 100 {
-//                        cell.textField?.textColor = kMGTAveragePingColor
-//                    } else {
-//                        cell.textField?.textColor = kMGTBadPingColor
-//                    }
-//                }
-//            }
-//        }
-//    }
     
     func tableViewSelectionDidChange(_ aNotification: Notification) {
         

@@ -1,4 +1,3 @@
-//  Converted with Swiftify v1.0.6395 - https://objectivec2swift.com/
 //
 //  ServerInfoProtocol.swift
 //  Q3ServerBrowser
@@ -14,6 +13,7 @@ protocol ServerInfoProtocol {
     var ping: String { get set }
     var ip: String { get set }
     var port: String { get set }
+    var originalHostname: String { get }
     var hostname: String { get }
     var map: String { get }
     var maxPlayers: String { get }

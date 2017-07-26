@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icn_refresh.png",
+      "filename" : "reload.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "reload@2x.png",
       "scale" : "2x"
     },
     {
