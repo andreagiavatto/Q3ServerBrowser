@@ -61,14 +61,24 @@ class ViewController: NSObject {
     
     @IBAction func connectToServer(_ sender: Any) {
         let row = serversTableView.selectedRow
-        let serverInfo = servers[row]
+        
+        guard row >= 0 && row < filteredServers.count else {
+            let alert = NSAlert()
+            alert.addButton(withTitle: "OK")
+            alert.messageText = NSLocalizedString("AlertNoServersMessage", comment: "")
+            alert.informativeText = NSLocalizedString("AlertNoServersMessageInformative", comment: "")
+            alert.alertStyle = .warning
+            alert.runModal()
+            return
+        }
+        let serverInfo = filteredServers[row]
         let pathToFolder = quake3FolderPath.url
         
         if let folderURLString = pathToFolder?.path {
             let executableURLString = folderURLString.appending("/ioquake3-1.36.app/Contents/MacOS/ioquake3.ub")
             let process = Process()
             let pipe = Pipe()
-            print(executableURLString)
+
             process.launchPath = executableURLString
             process.arguments = ["+connect", "\(serverInfo.ip):\(serverInfo.port)"]
             do {
@@ -80,6 +90,12 @@ class ViewController: NSObject {
                 let output = String(data: data, encoding: .utf8)
             } catch(let error) {
                 print(error)
+                let alert = NSAlert()
+                alert.addButton(withTitle: "OK")
+                alert.messageText = NSLocalizedString("AlertAppNotFoundMessage", comment: "")
+                alert.informativeText = NSLocalizedString("AlertAppNotFoundMessageInformative", comment: "")
+                alert.alertStyle = .warning
+                alert.runModal()
             }
         }
     }

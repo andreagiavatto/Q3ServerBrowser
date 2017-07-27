@@ -107,7 +107,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="178" width="844" height="600"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1129"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" canDrawConcurrently="YES" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="844" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -776,8 +776,6 @@
                 <defaultToolbarItems>
                     <toolbarItem reference="552"/>
                     <toolbarItem reference="vlo-1e-uYC"/>
-                    <toolbarItem reference="ijP-qv-B5a"/>
-                    <toolbarItem reference="e5U-f9-pga"/>
                     <toolbarItem reference="ijP-qv-B5a"/>
                     <toolbarItem reference="ktn-BG-EQT"/>
                 </defaultToolbarItems>

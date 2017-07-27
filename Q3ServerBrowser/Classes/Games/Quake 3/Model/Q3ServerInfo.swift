@@ -60,25 +60,7 @@ struct Q3ServerInfo: ServerInfoProtocol {
             self.gametype = "unknown"
         }
         
-        self.hostname = decodeQ3Hostname(hostname: self.originalHostname)
-    }
-    
-    // MARK: - Private methods
-    
-    private func decodeQ3Hostname(hostname: String) -> String {
-        guard hostname.characters.count > 0 else {
-            return ""
-        }
-        
-        var decodedHostname = ""
-        
-        do {
-            let regex = try NSRegularExpression(pattern: "\\^[a-z0-9]", options: .caseInsensitive)
-            decodedHostname = regex.stringByReplacingMatches(in: hostname, options: [], range: NSMakeRange(0, hostname.characters.count), withTemplate: "")
-        } catch (let error) {
-            print(error)
-        }
-        return decodedHostname
+        self.hostname = self.originalHostname.stripQ3Colors()
     }
 }
 
