@@ -17,6 +17,11 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     private let statusInfoQueue = DispatchQueue(label: "com.q3browser.status-info.queue")
     private var activeStatusRequests = [Q3ServerStatusRequest]()
     
+    override init() {
+        super.init()
+        serverInfoQueue.maxConcurrentOperationCount = 5
+    }
+    
     func requestServerInfo(ip: String, port: String) {
         
         guard let port = UInt16(port) else {
@@ -28,13 +33,11 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
         infoOperation.completionBlock = { [unowned self, infoOperation] in
             if let error = infoOperation.error {
                 self.delegate?.serverController(self, didFinishWithError: error)
-            } else if let ping = infoOperation.executionTime {
-                let data = infoOperation.data
-                self.delegate?.serverController(self, didFinishFetchingServerInfoWith: data, for: infoOperation.ip, port: infoOperation.port, ping: ping)
+            } else {
+                self.delegate?.serverController(self, didFinishFetchingServerInfoWith: infoOperation)
             }
         }
         
-        self.delegate?.didStartFetchingInfo(forServerController: self)
         serverInfoQueue.addOperation(infoOperation)
     }
 
@@ -47,7 +50,6 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
             }
             
             let request = Q3ServerStatusRequest(ip: ip, port: port)
-            self.delegate?.didStartFetchingInfo(forServerController: self)
             request.execute(completion: { [unowned self] (data, address, error) in
                 
                 if let data = data, let address = address {

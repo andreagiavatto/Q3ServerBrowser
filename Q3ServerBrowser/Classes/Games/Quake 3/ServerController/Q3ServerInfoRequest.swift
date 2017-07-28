@@ -33,7 +33,7 @@ class Q3ServerInfoRequest: NSObject {
         self.completionHandler = completion
         let data = Data(bytes: self.infoRequestMarker)
         do {
-            self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
+            self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: socketDelegateQueue)
             self.socket?.send(data, toHost: ip, port: port, withTimeout: 10, tag: 42)
             try self.socket?.beginReceiving()
         } catch(let error) {
@@ -46,10 +46,11 @@ extension Q3ServerInfoRequest: GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
         startTime = CFAbsoluteTimeGetCurrent()
+        print("S")
     }
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        
+        print("F")
         let endTime = CFAbsoluteTimeGetCurrent()
         self.data.append(data)
         

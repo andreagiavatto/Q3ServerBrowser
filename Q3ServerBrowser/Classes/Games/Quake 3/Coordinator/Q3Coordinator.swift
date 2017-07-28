@@ -36,7 +36,7 @@ extension Q3Coordinator: MasterServerControllerDelegate {
     
     func masterController(_ controller: MasterServerControllerProtocol, didFinishFetchingServersWith data: Data) {
         let servers = q3parser.parseServers(data)
-
+        print(servers.count)
         for ip in servers {
             let address: [String] = ip.components(separatedBy: ":")
             
@@ -55,12 +55,12 @@ extension Q3Coordinator: MasterServerControllerDelegate {
 
 extension Q3Coordinator: ServerControllerDelegate {
     
-    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith data: Data, for ip: String, port: UInt16, ping: TimeInterval) {
+    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith operation: Q3ServerInfoOperation) {
 
-        if var serverInfo = q3parser.parseServerInfo(data, for: controller) {
-            serverInfo.ip = ip
-            serverInfo.port = "\(port)"
-            serverInfo.ping = String(format: "%.0f", round(ping*1000))
+        if var serverInfo = q3parser.parseServerInfo(operation.data, for: controller) {
+            serverInfo.ip = operation.ip
+            serverInfo.port = "\(operation.port)"
+            serverInfo.ping = String(format: "%.0f", round(operation.executionTime * 1000))
             delegate?.coordinator(self, didFinishFetchingServerInfo: serverInfo)
         }
     }

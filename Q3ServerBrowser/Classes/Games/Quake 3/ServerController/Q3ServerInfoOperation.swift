@@ -9,13 +9,15 @@
 import Foundation
 import CocoaAsyncSocket
 
+let socketDelegateQueue = DispatchQueue(label: "com.socket.delegate.queue", attributes: [.concurrent])
+
 class Q3ServerInfoOperation: Operation {
     
     let ip: String
     let port: UInt16
     fileprivate let infoResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x69, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x0a, 0x5c] // YYYYinfoResponse\n\
     fileprivate(set) var data = Data()
-    fileprivate(set) var executionTime: TimeInterval?
+    fileprivate(set) var executionTime: TimeInterval = 0.0
     fileprivate(set) var error: Error?
     fileprivate var startTime: TimeInterval?
     private var socket: GCDAsyncUdpSocket?
@@ -25,11 +27,12 @@ class Q3ServerInfoOperation: Operation {
         self.ip = ip
         self.port = port
         super.init()
+        self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: socketDelegateQueue)
     }
     
-//    override var isAsynchronous: Bool {
-//        return true
-//    }
+    override var isAsynchronous: Bool {
+        return true
+    }
     
     private var _executing = false
     private var _finished = false
@@ -69,7 +72,6 @@ class Q3ServerInfoOperation: Operation {
 
         let data = Data(bytes: self.infoRequestMarker)
         do {
-            self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
             self.socket?.send(data, toHost: ip, port: port, withTimeout: 30, tag: 42)
             try self.socket?.beginReceiving()
         } catch(let error) {
@@ -115,6 +117,7 @@ extension Q3ServerInfoOperation: GCDAsyncUdpSocketDelegate {
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
         self.error = error
+        print(error)
         finish()
     }
 }
