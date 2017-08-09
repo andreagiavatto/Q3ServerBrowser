@@ -36,7 +36,6 @@ extension Q3Coordinator: MasterServerControllerDelegate {
     
     func masterController(_ controller: MasterServerControllerProtocol, didFinishFetchingServersWith data: Data) {
         let servers = q3parser.parseServers(data)
-        print(servers.count)
         for ip in servers {
             let address: [String] = ip.components(separatedBy: ":")
             

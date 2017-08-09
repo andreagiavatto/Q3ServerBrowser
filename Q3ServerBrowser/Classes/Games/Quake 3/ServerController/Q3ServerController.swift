@@ -13,14 +13,9 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     
     weak var delegate: ServerControllerDelegate?
 
-    private let serverInfoQueue = OperationQueue()
+    private var serverInfoQueue = OperationQueue()
     private let statusInfoQueue = DispatchQueue(label: "com.q3browser.status-info.queue")
     private var activeStatusRequests = [Q3ServerStatusRequest]()
-    
-    override init() {
-        super.init()
-        serverInfoQueue.maxConcurrentOperationCount = 5
-    }
     
     func requestServerInfo(ip: String, port: String) {
         
@@ -30,7 +25,12 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
         
         let infoOperation = Q3ServerInfoOperation(ip: ip, port: port)
 
-        infoOperation.completionBlock = { [unowned self, infoOperation] in
+        infoOperation.completionBlock = { [unowned self, unowned infoOperation] in
+            
+            if infoOperation.isCancelled {
+                return
+            }
+            
             if let error = infoOperation.error {
                 self.delegate?.serverController(self, didFinishWithError: error)
             } else {
@@ -66,6 +66,6 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     }
     
     func clearPendingRequests() {
-        serverInfoQueue.cancelAllOperations()
+        serverInfoQueue = OperationQueue()
     }
 }

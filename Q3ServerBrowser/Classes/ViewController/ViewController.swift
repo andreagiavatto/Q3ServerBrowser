@@ -323,12 +323,12 @@ extension ViewController: NSTableViewDelegate {
         guard let tableView = aNotification.object as? NSTableView else { return }
         if tableView == serversTableView {
             let selectedRow = serversTableView.selectedRow
-            if selectedRow < servers.count {
+            if selectedRow < filteredServers.count {
                 rules.removeAll()
                 players.removeAll()
                 rulesTableView.reloadData()
                 playersTableView.reloadData()
-                if let server = servers[selectedRow] as? ServerInfoProtocol {
+                if let server = filteredServers[selectedRow] as? ServerInfoProtocol {
                     coordinator.status(forServer: server)
                 }
             }

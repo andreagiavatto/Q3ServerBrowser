@@ -34,55 +34,57 @@ class Q3ServerInfoOperation: Operation {
         return true
     }
     
-    private var _executing = false
-    private var _finished = false
-    
-    override internal(set) var isExecuting: Bool {
-        get {
-            return _executing
+    private var _executing = false {
+        willSet {
+            willChangeValue(forKey: "isExecuting")
         }
-        set {
-            if _executing != newValue {
-                willChangeValue(forKey: "isExecuting")
-                _executing = newValue
-                didChangeValue(forKey: "isExecuting")
-            }
+        didSet {
+            didChangeValue(forKey: "isExecuting")
         }
     }
     
-    override internal(set) var isFinished: Bool {
-        get {
-            return _finished
+    override var isExecuting: Bool {
+        return _executing
+    }
+    
+    private var _finished = false {
+        willSet {
+            willChangeValue(forKey: "isFinished")
         }
-        set {
-            if _finished != newValue {
-                willChangeValue(forKey: "isFinished")
-                _finished = newValue
-                didChangeValue(forKey: "isFinished")
-            }
+        didSet {
+            didChangeValue(forKey: "isFinished")
         }
     }
     
-    override func main() {
-        if isCancelled {
-            isFinished = true
+    override var isFinished: Bool {
+        return _finished
+    }
+    
+    override func start() {
+
+        guard isCancelled == false else {
+            finish()
             return
         }
-        isExecuting = true
-
-        let data = Data(bytes: self.infoRequestMarker)
-        do {
-            self.socket?.send(data, toHost: ip, port: port, withTimeout: 30, tag: 42)
-            try self.socket?.beginReceiving()
-        } catch(let error) {
-            finish()
+        
+        DispatchQueue.global().async {
+            self._executing = true
+            
+            let data = Data(bytes: self.infoRequestMarker)
+            do {
+                self.socket?.send(data, toHost: self.ip, port: self.port, withTimeout: 10, tag: 42)
+                try self.socket?.receiveOnce()
+            } catch(let error) {
+                print(error)
+                self.finish()
+            }
         }
         
     }
     
     func finish() {
-        isExecuting = false
-        isFinished = true
+        _executing = false
+        _finished = true
     }
 }
 
