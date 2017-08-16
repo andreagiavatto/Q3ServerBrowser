@@ -27,7 +27,7 @@ class ViewController: NSObject {
     fileprivate var filterString = ""
     fileprivate var players = [Q3ServerPlayer]()
     fileprivate var rules = [String: String]()
-    fileprivate var selectedServerIndex: Int = 0
+    fileprivate var selectedServerIndex: Int?
 
     func windowShouldClose(_ sender: Any) -> Bool {
         NSApp.terminate(nil)
@@ -320,10 +320,16 @@ extension ViewController: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ aNotification: Notification) {
         
-        guard let tableView = aNotification.object as? NSTableView else { return }
+        guard
+            let tableView = aNotification.object as? NSTableView
+        else {
+            return
+        }
+        
         if tableView == serversTableView {
             let selectedRow = serversTableView.selectedRow
-            if selectedRow < filteredServers.count {
+            if selectedServerIndex == nil || (selectedServerIndex != nil && selectedServerIndex! != selectedRow && selectedRow < filteredServers.count) {
+                selectedServerIndex = selectedRow
                 rules.removeAll()
                 players.removeAll()
                 rulesTableView.reloadData()

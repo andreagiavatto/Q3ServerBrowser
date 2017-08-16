@@ -23,10 +23,6 @@
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="236">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Preferences…" keyEquivalent="," id="129"/>
                             <menuItem isSeparatorItem="YES" id="143">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -107,7 +103,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="178" width="844" height="600"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1129"/>
             <view key="contentView" canDrawConcurrently="YES" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="844" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -805,7 +801,7 @@
         <userDefaultsController representsSharedInstance="YES" id="603"/>
     </objects>
     <resources>
-        <image name="reload" width="25.600000381469727" height="25.600000381469727"/>
-        <image name="right_arrow" width="25.600000381469727" height="25.600000381469727"/>
+        <image name="reload" width="42" height="42"/>
+        <image name="right_arrow" width="42" height="42"/>
     </resources>
 </document>
