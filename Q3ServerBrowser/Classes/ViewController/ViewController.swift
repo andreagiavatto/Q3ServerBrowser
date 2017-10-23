@@ -221,7 +221,7 @@ extension ViewController: NSTableViewDataSource {
         var text = ""
         var textColor = NSColor.black
         
-        switch columnId {
+        switch columnId.rawValue {
         case "hostname":
             text = serverInfo.hostname
         case "map":
@@ -249,7 +249,7 @@ extension ViewController: NSTableViewDataSource {
             return nil
         }
         
-        if let cell = tableView.make(withIdentifier: columnId, owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: columnId, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             cell.textField?.textColor = textColor
             return cell
@@ -269,7 +269,7 @@ extension ViewController: NSTableViewDataSource {
         }
         
         var text = ""
-        switch columnId {
+        switch columnId.rawValue {
         case "setting":
             text = key
         case "value":
@@ -278,7 +278,7 @@ extension ViewController: NSTableViewDataSource {
             return nil
         }
         
-        if let cell = tableView.make(withIdentifier: columnId, owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: columnId, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
         }
@@ -296,7 +296,8 @@ extension ViewController: NSTableViewDataSource {
         }
         
         var text = ""
-        switch columnId {
+        
+        switch columnId.rawValue {
         case "name":
             text = player.name
         case "ping":
@@ -307,7 +308,7 @@ extension ViewController: NSTableViewDataSource {
             return nil
         }
         
-        if let cell = tableView.make(withIdentifier: columnId, owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: columnId, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
         }

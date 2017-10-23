@@ -33,7 +33,6 @@
 		A23730921F2A17E40045A076 /* String+Q3Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23730911F2A17E40045A076 /* String+Q3Name.swift */; };
 		A26E0FC21F1D631E0099E65D /* Q3ServerStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26E0FC11F1D631E0099E65D /* Q3ServerStatusRequest.swift */; };
 		A291E8321F1219F900BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
-		A291E8341F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		A291E8351F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
 		A2DD851D1F1B815D00C1AF9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2DD851F1F1B815D00C1AF9B /* Localizable.strings */; };
@@ -95,7 +94,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A291E8321F1219F900BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */,
-				A291E8341F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,10 +320,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = WL8LT3PQLC;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -454,7 +453,8 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SUPPRESS_WARNINGS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -490,7 +490,8 @@
 				PRODUCT_NAME = Q3ServerBrowser;
 				SDKROOT = macosx;
 				SWIFT_SUPPRESS_WARNINGS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -498,12 +499,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -529,12 +536,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

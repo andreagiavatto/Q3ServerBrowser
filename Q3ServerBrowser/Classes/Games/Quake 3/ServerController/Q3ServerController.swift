@@ -66,6 +66,6 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     }
     
     func clearPendingRequests() {
-        serverInfoQueue = OperationQueue()
+        serverInfoQueue.cancelAllOperations()
     }
 }

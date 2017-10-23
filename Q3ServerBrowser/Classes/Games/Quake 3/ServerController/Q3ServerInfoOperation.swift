@@ -111,7 +111,7 @@ extension Q3ServerInfoOperation: GCDAsyncUdpSocketDelegate {
             let start = self.data.index(self.data.startIndex, offsetBy: infoResponseMarker.count)
             let end = self.data.endIndex
             self.data = self.data.subdata(in: start..<end)
-            self.executionTime = endTime - startTime
+            executionTime = endTime - startTime
         }
         
         finish()

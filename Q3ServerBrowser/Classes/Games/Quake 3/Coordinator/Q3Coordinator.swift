@@ -61,6 +61,8 @@ extension Q3Coordinator: ServerControllerDelegate {
             serverInfo.port = "\(operation.port)"
             serverInfo.ping = String(format: "%.0f", round(operation.executionTime * 1000))
             delegate?.coordinator(self, didFinishFetchingServerInfo: serverInfo)
+        } else {
+            print("\(operation.ip):\(operation.port) parse data failed")
         }
     }
     

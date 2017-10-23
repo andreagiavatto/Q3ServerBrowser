@@ -43,6 +43,7 @@ class Q3MasterServerController: NSObject, MasterServerControllerProtocol {
     
     private func reset() {
         data.removeAll()
+        socket?.close()
         socket = nil
     }
 }
