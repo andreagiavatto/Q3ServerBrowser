@@ -89,7 +89,7 @@ class ViewController: NSObject {
                 let data = pipe.fileHandleForReading.readDataToEndOfFile()
                 let output = String(data: data, encoding: .utf8)
             } catch(let error) {
-                print(error)
+
                 let alert = NSAlert()
                 alert.addButton(withTitle: "OK")
                 alert.messageText = NSLocalizedString("AlertAppNotFoundMessage", comment: "")
@@ -145,11 +145,15 @@ class ViewController: NSObject {
 extension ViewController: CoordinatorDelegate {
     
     func didFinishRequestingServers(for coordinator: CoordinatorProtocol) {
-        self.loadingIndicator.stopAnimation(self)
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimation(self)
+        }
     }
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishWithError error: Error?) {
-        self.loadingIndicator.stopAnimation(self)
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimation(self)
+        }
     }
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingServerInfo serverInfo: ServerInfoProtocol) {

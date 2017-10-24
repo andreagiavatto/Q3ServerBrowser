@@ -1,33 +1,44 @@
 //
-//  Q3ServerInfoOperation.swift
+//  Q3Operation.swift
 //  Q3ServerBrowser
 //
-//  Created by Andrea Giavatto on 22/07/2017.
-//
+//  Created by Andrea on 24/10/2017.
 //
 
 import Foundation
 import CocoaAsyncSocket
 
-let socketDelegateQueue = DispatchQueue(label: "com.socket.delegate.queue", attributes: [.concurrent])
+let socketDelegateQueue = DispatchQueue.main//DispatchQueue(label: "com.socket.delegate.queue", attributes: [.concurrent])
 
-class Q3ServerInfoOperation: Operation {
+class Q3Operation: Operation {
     
     let ip: String
     let port: UInt16
-    fileprivate let infoResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x69, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x0a, 0x5c] // YYYYinfoResponse\n\
+    let requestMarker: [UInt8]
+    let responseMarker: [UInt8]
+    let eotMarker: [UInt8]?
+    
     fileprivate(set) var data = Data()
     fileprivate(set) var executionTime: TimeInterval = 0.0
     fileprivate(set) var error: Error?
     fileprivate var startTime: TimeInterval?
     private var socket: GCDAsyncUdpSocket?
-    private let infoRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x69, 0x6e, 0x66, 0x6f, 0x0a]
+    fileprivate var canTerminate: Bool = false
     
-    required init(ip: String, port: UInt16) {
+    required init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8], eotMarker: [UInt8]? = nil) {
         self.ip = ip
         self.port = port
+        self.requestMarker = requestMarker
+        self.responseMarker = responseMarker
+        self.eotMarker = eotMarker
+        
         super.init()
-        self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: socketDelegateQueue)
+        
+        socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: socketDelegateQueue)
+        
+        if eotMarker == nil {
+            canTerminate = true
+        }
     }
     
     override var isAsynchronous: Bool {
@@ -61,7 +72,7 @@ class Q3ServerInfoOperation: Operation {
     }
     
     override func start() {
-
+        
         guard isCancelled == false else {
             finish()
             return
@@ -70,12 +81,11 @@ class Q3ServerInfoOperation: Operation {
         DispatchQueue.global().async {
             self._executing = true
             
-            let data = Data(bytes: self.infoRequestMarker)
+            let data = Data(bytes: self.requestMarker)
             do {
                 self.socket?.send(data, toHost: self.ip, port: self.port, withTimeout: 10, tag: 42)
-                try self.socket?.receiveOnce()
+                try self.socket?.beginReceiving()
             } catch(let error) {
-                print(error)
                 self.finish()
             }
         }
@@ -85,10 +95,12 @@ class Q3ServerInfoOperation: Operation {
     func finish() {
         _executing = false
         _finished = true
+        socket?.close()
+        socket = nil
     }
 }
 
-extension Q3ServerInfoOperation: GCDAsyncUdpSocketDelegate {
+extension Q3Operation: GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
         startTime = CFAbsoluteTimeGetCurrent()
@@ -99,7 +111,7 @@ extension Q3ServerInfoOperation: GCDAsyncUdpSocketDelegate {
         let endTime = CFAbsoluteTimeGetCurrent()
         self.data.append(data)
         
-        let prefix = String(bytes: infoResponseMarker, encoding: .ascii)
+        let prefix = String(bytes: responseMarker, encoding: .ascii)
         let asciiRep = String(data: self.data, encoding: .ascii)
         
         if
@@ -108,18 +120,23 @@ extension Q3ServerInfoOperation: GCDAsyncUdpSocketDelegate {
             asciiRep.hasPrefix(prefix),
             let startTime = startTime
         {
-            let start = self.data.index(self.data.startIndex, offsetBy: infoResponseMarker.count)
-            let end = self.data.endIndex
+            let start = self.data.index(self.data.startIndex, offsetBy: responseMarker.count)
+            var end = self.data.endIndex
+            if let eotMarker = self.eotMarker, let suffix = String(bytes: eotMarker, encoding: .ascii), asciiRep.hasSuffix(suffix) {
+                end = self.data.index(self.data.endIndex, offsetBy: -(eotMarker.count))
+                canTerminate = true
+            }
             self.data = self.data.subdata(in: start..<end)
             executionTime = endTime - startTime
         }
         
-        finish()
+//        if canTerminate {
+            finish()
+//        }
     }
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
         self.error = error
-        print(error)
         finish()
     }
 }
