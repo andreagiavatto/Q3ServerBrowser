@@ -8,7 +8,7 @@
 import Foundation
 import CocoaAsyncSocket
 
-let socketDelegateQueue = DispatchQueue.main//DispatchQueue(label: "com.socket.delegate.queue", attributes: [.concurrent])
+let socketDelegateQueue = DispatchQueue(label: "com.socket.delegate.queue", attributes: [.concurrent])
 
 class Q3Operation: Operation {
     
@@ -16,29 +16,22 @@ class Q3Operation: Operation {
     let port: UInt16
     let requestMarker: [UInt8]
     let responseMarker: [UInt8]
-    let eotMarker: [UInt8]?
     
     fileprivate(set) var data = Data()
     fileprivate(set) var executionTime: TimeInterval = 0.0
     fileprivate(set) var error: Error?
     fileprivate var startTime: TimeInterval?
     private var socket: GCDAsyncUdpSocket?
-    fileprivate var canTerminate: Bool = false
     
-    required init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8], eotMarker: [UInt8]? = nil) {
+    required init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8]) {
         self.ip = ip
         self.port = port
         self.requestMarker = requestMarker
         self.responseMarker = responseMarker
-        self.eotMarker = eotMarker
         
         super.init()
         
         socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: socketDelegateQueue)
-        
-        if eotMarker == nil {
-            canTerminate = true
-        }
     }
     
     override var isAsynchronous: Bool {
@@ -78,18 +71,15 @@ class Q3Operation: Operation {
             return
         }
         
-        DispatchQueue.global().async {
-            self._executing = true
-            
-            let data = Data(bytes: self.requestMarker)
-            do {
-                self.socket?.send(data, toHost: self.ip, port: self.port, withTimeout: 10, tag: 42)
-                try self.socket?.beginReceiving()
-            } catch(let error) {
-                self.finish()
-            }
-        }
+        self._executing = true
         
+        let data = Data(bytes: self.requestMarker)
+        do {
+            self.socket?.send(data, toHost: self.ip, port: self.port, withTimeout: 10, tag: 42)
+            try self.socket?.receiveOnce()
+        } catch(let error) {
+            self.finish()
+        }
     }
     
     func finish() {
@@ -122,21 +112,17 @@ extension Q3Operation: GCDAsyncUdpSocketDelegate {
         {
             let start = self.data.index(self.data.startIndex, offsetBy: responseMarker.count)
             var end = self.data.endIndex
-            if let eotMarker = self.eotMarker, let suffix = String(bytes: eotMarker, encoding: .ascii), asciiRep.hasSuffix(suffix) {
-                end = self.data.index(self.data.endIndex, offsetBy: -(eotMarker.count))
-                canTerminate = true
-            }
             self.data = self.data.subdata(in: start..<end)
             executionTime = endTime - startTime
         }
         
-//        if canTerminate {
-            finish()
-//        }
+        finish()
     }
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
         self.error = error
-        finish()
+        if !_finished {
+            finish()
+        }
     }
 }
