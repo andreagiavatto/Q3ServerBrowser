@@ -11,6 +11,7 @@ import Foundation
 protocol CoordinatorProtocol {
     
     weak var delegate: CoordinatorDelegate? { get set }
+    var serversList: [ServerInfoProtocol] { get }
 
     func refreshServersList(host: String, port: String)
     func status(forServer server: ServerInfoProtocol)

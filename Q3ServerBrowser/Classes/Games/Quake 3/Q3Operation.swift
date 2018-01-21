@@ -8,7 +8,7 @@
 import Foundation
 import CocoaAsyncSocket
 
-let socketDelegateQueue = DispatchQueue(label: "com.socket.delegate.queue", attributes: [.concurrent])
+let socketDelegateQueue = DispatchQueue.main
 
 class Q3Operation: Operation {
     
@@ -22,6 +22,8 @@ class Q3Operation: Operation {
     fileprivate(set) var error: Error?
     fileprivate var startTime: TimeInterval?
     private var socket: GCDAsyncUdpSocket?
+    private var timer: Timer?
+    private let timeout: TimeInterval = 2.0
     
     required init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8]) {
         self.ip = ip
@@ -75,7 +77,7 @@ class Q3Operation: Operation {
         
         let data = Data(bytes: self.requestMarker)
         do {
-            self.socket?.send(data, toHost: self.ip, port: self.port, withTimeout: 10, tag: 42)
+            self.socket?.send(data, toHost: self.ip, port: self.port, withTimeout: timeout, tag: 42)
             try self.socket?.receiveOnce()
         } catch(let error) {
             self.finish()
@@ -88,16 +90,27 @@ class Q3Operation: Operation {
         socket?.close()
         socket = nil
     }
+    
+    @objc func didNotReceiveResponseInTime(_ sender: Timer) {
+        timer?.invalidate()
+        timer = nil
+        print("TIMEOUT")
+        finish()
+    }
 }
 
 extension Q3Operation: GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
         startTime = CFAbsoluteTimeGetCurrent()
+        timer = Timer.scheduledTimer(timeInterval: timeout, target: self, selector: #selector(didNotReceiveResponseInTime), userInfo: nil, repeats: false)
+        print("Sent request for \(ip):\(port)")
     }
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
         
+        timer?.invalidate()
+        timer = nil
         let endTime = CFAbsoluteTimeGetCurrent()
         self.data.append(data)
         
@@ -115,11 +128,14 @@ extension Q3Operation: GCDAsyncUdpSocketDelegate {
             self.data = self.data.subdata(in: start..<end)
             executionTime = endTime - startTime
         }
-        
+        print("Finished request for \(ip):\(port)")
         finish()
     }
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
+        print("Error \(error) on \(ip):\(port)")
+        timer?.invalidate()
+        timer = nil
         self.error = error
         if !_finished {
             finish()

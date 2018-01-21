@@ -12,6 +12,6 @@ protocol CoordinatorDelegate: NSObjectProtocol {
     
     func didFinishRequestingServers(for coordinator: CoordinatorProtocol)
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishWithError error: Error?)
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingServerInfo serverInfo: ServerInfoProtocol)
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatusInfo statusInfo: (rules: [String: String], players: [Q3ServerPlayer])?, for ip: String)
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: ServerInfoProtocol)
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatus forServerInfo: ServerInfoProtocol)
 }

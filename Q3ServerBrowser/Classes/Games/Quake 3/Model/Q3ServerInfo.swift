@@ -7,23 +7,30 @@
 
 import Foundation
 
-struct Q3ServerInfo: ServerInfoProtocol {
+class Q3ServerInfo: ServerInfoProtocol {
     
     var ping: String = ""
-    var ip: String = ""
-    var port: String = ""
-    let originalHostname: String
-    private(set) var hostname: String
-    let map: String
-    let maxPlayers: String
-    let currentPlayers: String
-    let mod: String
-    let gametype: String
+    let ip: String
+    let port: String
+    var originalHostname: String = ""
+    var hostname: String = ""
+    var map: String = ""
+    var maxPlayers: String = ""
+    var currentPlayers: String = ""
+    var mod: String = ""
+    var gametype: String = ""
+    var rules: [String: String] = [:]
+    var players: [Q3ServerPlayer]? = nil
 
-    init?(dictionary serverInfo: [String: String]) {
+    required init(ip: String, port: String) {
+        self.ip = ip
+        self.port = port
+    }
+    
+    func update(dictionary serverInfo: [String: String]) {
         
         guard !serverInfo.isEmpty else {
-            return nil
+            return
         }
         
         guard
@@ -33,7 +40,7 @@ struct Q3ServerInfo: ServerInfoProtocol {
             let currentPlayers = serverInfo["clients"] as? String,
             let gametype = serverInfo["gametype"] as? String
         else {
-            return nil
+            return
         }
 
         self.hostname = ""
@@ -69,5 +76,16 @@ extension Q3ServerInfo: CustomStringConvertible {
     var description: String {
         return "<Q3ServerInfo> \(hostname) -- (\(ip):\(port))\n\t\(map) (\(currentPlayers)/\(maxPlayers))\n\t\(mod)\n\t\(ping)"
     }
+}
+
+extension Q3ServerInfo: Equatable { }
+
+func ==(lhs: Q3ServerInfo, rhs: Q3ServerInfo) -> Bool {
+    
+    if lhs.ip == rhs.ip && lhs.port == rhs.port {
+        return true
+    }
+    
+    return false
 }
 

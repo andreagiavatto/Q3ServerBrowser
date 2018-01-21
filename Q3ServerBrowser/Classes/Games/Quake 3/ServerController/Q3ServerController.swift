@@ -16,6 +16,11 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
     private let serverInfoQueue = OperationQueue()
     private let statusInfoQueue = OperationQueue()
     
+    override init() {
+        super.init()
+        serverInfoQueue.maxConcurrentOperationCount = 1
+    }
+    
     func requestServerInfo(ip: String, port: String) {
         
         guard let port = UInt16(port) else {
@@ -42,7 +47,6 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
                 self.delegate?.serverController(self, didFinishFetchingServerInfoWith: infoOperation)
             }
         }
-        
         serverInfoQueue.addOperation(infoOperation)
     }
 

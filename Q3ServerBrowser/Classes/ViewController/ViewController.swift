@@ -25,8 +25,6 @@ class ViewController: NSObject {
     fileprivate var servers = [ServerInfoProtocol]()
     fileprivate var filteredServers = [ServerInfoProtocol]()
     fileprivate var filterString = ""
-    fileprivate var players = [Q3ServerPlayer]()
-    fileprivate var rules = [String: String]()
     fileprivate var selectedServerIndex: Int?
 
     func windowShouldClose(_ sender: Any) -> Bool {
@@ -131,12 +129,19 @@ class ViewController: NSObject {
         filterString = ""
         servers.removeAll()
         filteredServers.removeAll()
-        players.removeAll()
-        rules.removeAll()
+    }
+    
+    private func reloadList() {
+        clearDataSource()
+        servers = coordinator.serversList
+        filteredServers = coordinator.serversList
+        loadingIndicator.stopAnimation(self)
+        reloadDataSource()
+        coordinator.requestServersInfo()
     }
 
     private func reloadDataSource() {
-        serversTableView.reloadData()
+        serversTableView.reloadDataKeepingSelection()
         rulesTableView.reloadData()
         playersTableView.reloadData()
     }
@@ -146,36 +151,25 @@ extension ViewController: CoordinatorDelegate {
     
     func didFinishRequestingServers(for coordinator: CoordinatorProtocol) {
         DispatchQueue.main.async {
-            self.loadingIndicator.stopAnimation(self)
+            self.reloadList()
+        }
+    }
+    
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: ServerInfoProtocol) {
+        DispatchQueue.main.async {
+            self.serversTableView.reloadDataKeepingSelection()
+        }
+    }
+    
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatus forServerInfo: ServerInfoProtocol) {
+        DispatchQueue.main.async {
+            self.rulesTableView.reloadData()
+            self.playersTableView.reloadData()
         }
     }
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishWithError error: Error?) {
-        DispatchQueue.main.async {
-            self.loadingIndicator.stopAnimation(self)
-        }
-    }
-    
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingServerInfo serverInfo: ServerInfoProtocol) {
-        DispatchQueue.main.async {
-            [unowned self] in
-            self.servers.append(serverInfo)
-            self.filteredServers.append(serverInfo)
-            self.numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
-            self.serversTableView.reloadData()
-        }
-    }
-    
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatusInfo statusInfo: (rules: [String : String], players: [Q3ServerPlayer])?, for ip: String) {
-        DispatchQueue.main.async {
-            [unowned self] in
-            if let statusInfo = statusInfo {
-                self.rules = statusInfo.rules
-                self.rulesTableView.reloadData()
-                self.players = statusInfo.players
-                self.playersTableView.reloadData()
-            }
-        }
+        
     }
 }
 
@@ -185,10 +179,16 @@ extension ViewController: NSTableViewDataSource {
         if aTableView == serversTableView {
             return filteredServers.count
         }
-        if aTableView == rulesTableView {
-            return rules.keys.count
+        
+        guard serversTableView.selectedRow >= 0, serversTableView.selectedRow < filteredServers.count else {
+            return 0
         }
-        if aTableView == playersTableView {
+        
+        let server = filteredServers[serversTableView.selectedRow]
+        if aTableView == rulesTableView {
+            return server.rules.keys.count
+        }
+        if aTableView == playersTableView, let players = server.players {
             return players.count
         }
         return 0
@@ -264,10 +264,12 @@ extension ViewController: NSTableViewDataSource {
     
     private func configureViewForRules(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
+        let server = filteredServers[serversTableView.selectedRow]
+        
         guard
             let columnId = tableColumn?.identifier,
-            let key = Array(rules.keys)[row] as? String,
-            let value = rules[key] as? String
+            let key = Array(server.rules.keys)[row] as? String,
+            let value = server.rules[key] as? String
         else {
             return nil
         }
@@ -292,8 +294,11 @@ extension ViewController: NSTableViewDataSource {
     
     private func configureViewForPlayers(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
+        let server = filteredServers[serversTableView.selectedRow]
+        
         guard
             let columnId = tableColumn?.identifier,
+            let players = server.players,
             let player = players[row] as? Q3ServerPlayer
             else {
                 return nil
@@ -335,14 +340,22 @@ extension ViewController: NSTableViewDelegate {
             let selectedRow = serversTableView.selectedRow
             if selectedServerIndex == nil || (selectedServerIndex != nil && selectedServerIndex! != selectedRow && selectedRow < filteredServers.count) {
                 selectedServerIndex = selectedRow
-                rules.removeAll()
-                players.removeAll()
                 rulesTableView.reloadData()
                 playersTableView.reloadData()
                 if let server = filteredServers[selectedRow] as? ServerInfoProtocol {
+                    coordinator.info(forServer: server)
                     coordinator.status(forServer: server)
                 }
             }
         }
+    }
+}
+
+extension NSTableView {
+    
+    func reloadDataKeepingSelection() {
+        let selectedRowIndexes = self.selectedRowIndexes
+        self.reloadData()
+        self.selectRowIndexes(selectedRowIndexes, byExtendingSelection: true)
     }
 }

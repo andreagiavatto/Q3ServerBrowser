@@ -32,7 +32,7 @@ class Q3Parser: ParserProtocol {
         return []
     }
 
-    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) -> ServerInfoProtocol? {
+    func parseServerInfo(_ serverInfoData: Data, for server: ServerControllerProtocol) -> [String: String]? {
         
         guard serverInfoData.count > 0 else {
             return nil
@@ -62,10 +62,7 @@ class Q3Parser: ParserProtocol {
                 infoDict[i.element] = values[i.offset]
             }
             
-            if let serverInfo = Q3ServerInfo(dictionary: infoDict) {
-                var serverInfo = serverInfo
-                return serverInfo
-            }
+            return infoDict
         }
         
         return nil
