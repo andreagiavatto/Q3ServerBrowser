@@ -41,8 +41,8 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
                 return
             }
             
-            if let error = infoOperation.error {
-                self.delegate?.serverController(self, didFinishWithError: error)
+            if infoOperation.error != nil || infoOperation.timeoutOccurred {
+                self.delegate?.serverController(self, didFinishWithError: infoOperation.error)
             } else {
                 self.delegate?.serverController(self, didFinishFetchingServerInfoWith: infoOperation)
             }

@@ -23,6 +23,7 @@ class Q3Operation: Operation {
     fileprivate var startTime: TimeInterval?
     private var socket: GCDAsyncUdpSocket?
     private var timer: Timer?
+    fileprivate(set) var timeoutOccurred = false
     private let timeout: TimeInterval = 2.0
     
     required init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8]) {
@@ -94,7 +95,7 @@ class Q3Operation: Operation {
     @objc func didNotReceiveResponseInTime(_ sender: Timer) {
         timer?.invalidate()
         timer = nil
-        print("TIMEOUT")
+        timeoutOccurred = true
         finish()
     }
 }
@@ -104,7 +105,6 @@ extension Q3Operation: GCDAsyncUdpSocketDelegate {
     func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
         startTime = CFAbsoluteTimeGetCurrent()
         timer = Timer.scheduledTimer(timeInterval: timeout, target: self, selector: #selector(didNotReceiveResponseInTime), userInfo: nil, repeats: false)
-        print("Sent request for \(ip):\(port)")
     }
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
@@ -128,12 +128,10 @@ extension Q3Operation: GCDAsyncUdpSocketDelegate {
             self.data = self.data.subdata(in: start..<end)
             executionTime = endTime - startTime
         }
-        print("Finished request for \(ip):\(port)")
         finish()
     }
     
     func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
-        print("Error \(error) on \(ip):\(port)")
         timer?.invalidate()
         timer = nil
         self.error = error

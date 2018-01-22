@@ -35,6 +35,7 @@ class ViewController: NSObject {
     override func awakeFromNib() {
         // -- Init data sources
         coordinator.delegate = self
+        serversTableView.allowsMultipleSelection = false
         clearUI()
     }
     
@@ -99,7 +100,7 @@ class ViewController: NSObject {
     }
     
     @IBAction func filterServers(_ sender: NSSearchField) {
-        filterString = sender.stringValue.lowercased()
+        filterString = sender.stringValue.lowercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if filterString.characters.count == 0 {
             filteredServers = Array(servers)
@@ -112,7 +113,7 @@ class ViewController: NSObject {
                         serverInfo.ip.lowercased().range(of: filterString) != nil
             })
         }
-        self.numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
+        numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
         reloadDataSource()
     }
 
@@ -132,18 +133,25 @@ class ViewController: NSObject {
     }
     
     private func reloadList() {
-        clearDataSource()
         servers = coordinator.serversList
         filteredServers = coordinator.serversList
         loadingIndicator.stopAnimation(self)
         reloadDataSource()
         coordinator.requestServersInfo()
+        numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
     }
 
     private func reloadDataSource() {
-        serversTableView.reloadDataKeepingSelection()
+        reloadServersDataKeepingSelection()
         rulesTableView.reloadData()
         playersTableView.reloadData()
+    }
+    
+    fileprivate func reloadServersDataKeepingSelection() {
+        serversTableView.reloadData()
+        if let selectedIndex = selectedServerIndex {
+            serversTableView.selectRowIndexes([selectedIndex], byExtendingSelection: false)
+        }
     }
 }
 
@@ -157,7 +165,7 @@ extension ViewController: CoordinatorDelegate {
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: ServerInfoProtocol) {
         DispatchQueue.main.async {
-            self.serversTableView.reloadDataKeepingSelection()
+            self.reloadServersDataKeepingSelection()
         }
     }
     
@@ -340,22 +348,10 @@ extension ViewController: NSTableViewDelegate {
             let selectedRow = serversTableView.selectedRow
             if selectedServerIndex == nil || (selectedServerIndex != nil && selectedServerIndex! != selectedRow && selectedRow < filteredServers.count) {
                 selectedServerIndex = selectedRow
-                rulesTableView.reloadData()
-                playersTableView.reloadData()
                 if let server = filteredServers[selectedRow] as? ServerInfoProtocol {
-                    coordinator.info(forServer: server)
                     coordinator.status(forServer: server)
                 }
             }
         }
-    }
-}
-
-extension NSTableView {
-    
-    func reloadDataKeepingSelection() {
-        let selectedRowIndexes = self.selectedRowIndexes
-        self.reloadData()
-        self.selectRowIndexes(selectedRowIndexes, byExtendingSelection: true)
     }
 }
