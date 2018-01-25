@@ -19,6 +19,8 @@ class ViewController: NSObject {
     @IBOutlet weak var numOfServersFound: NSTextField!
     @IBOutlet weak var quake3FolderPath: NSPathControl!
     @IBOutlet weak var filterSearchField: NSSearchField!
+    @IBOutlet weak var showEmptyButton: NSButton!
+    @IBOutlet weak var showFullButton: NSButton!
 
     private var game = Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950")
     fileprivate let coordinator = Q3Coordinator()
@@ -101,27 +103,15 @@ class ViewController: NSObject {
     
     @IBAction func filterServers(_ sender: NSSearchField) {
         filterString = sender.stringValue.lowercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-
-        if filterString.characters.count == 0 {
-            filteredServers = Array(servers)
-        } else {
-            filteredServers = servers.filter({ (serverInfo) -> Bool in
-                let standardMatcher = serverInfo.hostname.lowercased().range(of: filterString) != nil ||
-                        serverInfo.map.lowercased().range(of: filterString) != nil ||
-                        serverInfo.mod.lowercased().range(of: filterString) != nil ||
-                        serverInfo.gametype.lowercased().range(of: filterString) != nil ||
-                        serverInfo.ip.lowercased().range(of: filterString) != nil
-                var playerMatcher = false
-                if let players = serverInfo.players {
-                    playerMatcher = players.contains(where: { (player) -> Bool in
-                        return player.name.lowercased().range(of: filterString) != nil
-                    })
-                }
-                return standardMatcher || playerMatcher
-            })
-        }
-        numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
-        reloadDataSource()
+        applyFilters(filterString: filterString, showEmpty: showEmptyButton.state == .on, showFull: showFullButton.state == .on)
+    }
+    
+    @IBAction func showEmptyButtonValueChanged(_ sender: NSButton) {
+        applyFilters(filterString: filterString, showEmpty: showEmptyButton.state == .on, showFull: showFullButton.state == .on)
+    }
+    
+    @IBAction func showFullButtonValueChanged(_ sender: NSButton) {
+        applyFilters(filterString: filterString, showEmpty: showEmptyButton.state == .on, showFull: showFullButton.state == .on)
     }
 
     // MARK: - Private methods
@@ -150,6 +140,46 @@ class ViewController: NSObject {
         reloadServersDataKeepingSelection()
         rulesTableView.reloadData()
         playersTableView.reloadData()
+    }
+    
+    private func applyFilters(filterString: String, showEmpty: Bool, showFull: Bool) {
+        if filterString.characters.count == 0 {
+            filteredServers = Array(servers)
+        } else {
+            filteredServers = servers.filter({ (serverInfo) -> Bool in
+                let standardMatcher = serverInfo.hostname.lowercased().range(of: filterString) != nil ||
+                    serverInfo.map.lowercased().range(of: filterString) != nil ||
+                    serverInfo.mod.lowercased().range(of: filterString) != nil ||
+                    serverInfo.gametype.lowercased().range(of: filterString) != nil ||
+                    serverInfo.ip.lowercased().range(of: filterString) != nil
+                var playerMatcher = false
+                if let players = serverInfo.players {
+                    playerMatcher = players.contains(where: { (player) -> Bool in
+                        return player.name.lowercased().range(of: filterString) != nil
+                    })
+                }
+                return standardMatcher || playerMatcher
+            })
+        }
+        
+        if !showEmpty {
+            filteredServers = filteredServers.filter({ (serverInfo) -> Bool in
+                if let current = Int(serverInfo.currentPlayers) {
+                    return current > 0
+                }
+                
+                return false
+            })
+        }
+        
+        if !showFull {
+            filteredServers = filteredServers.filter({ (serverInfo) -> Bool in
+                return serverInfo.currentPlayers != serverInfo.maxPlayers
+            })
+        }
+        
+        numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
+        reloadDataSource()
     }
     
     fileprivate func reloadServersDataKeepingSelection() {
