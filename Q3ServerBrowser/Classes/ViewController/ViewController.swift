@@ -106,11 +106,18 @@ class ViewController: NSObject {
             filteredServers = Array(servers)
         } else {
             filteredServers = servers.filter({ (serverInfo) -> Bool in
-                return serverInfo.hostname.lowercased().range(of: filterString) != nil ||
+                let standardMatcher = serverInfo.hostname.lowercased().range(of: filterString) != nil ||
                         serverInfo.map.lowercased().range(of: filterString) != nil ||
                         serverInfo.mod.lowercased().range(of: filterString) != nil ||
                         serverInfo.gametype.lowercased().range(of: filterString) != nil ||
                         serverInfo.ip.lowercased().range(of: filterString) != nil
+                var playerMatcher = false
+                if let players = serverInfo.players {
+                    playerMatcher = players.contains(where: { (player) -> Bool in
+                        return player.name.lowercased().range(of: filterString) != nil
+                    })
+                }
+                return standardMatcher || playerMatcher
             })
         }
         numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
@@ -135,9 +142,7 @@ class ViewController: NSObject {
     private func reloadList() {
         servers = coordinator.serversList
         filteredServers = coordinator.serversList
-        loadingIndicator.stopAnimation(self)
         reloadDataSource()
-        coordinator.requestServersInfo()
         numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
     }
 
@@ -153,6 +158,15 @@ class ViewController: NSObject {
             serversTableView.selectRowIndexes([selectedIndex], byExtendingSelection: false)
         }
     }
+    
+    fileprivate func index(of server: ServerInfoProtocol) -> Int? {
+        for (index, s) in filteredServers.enumerated() {
+            if s.ip == server.ip && s.port == server.port {
+                return index
+            }
+        }
+        return nil
+    }
 }
 
 extension ViewController: CoordinatorDelegate {
@@ -160,19 +174,37 @@ extension ViewController: CoordinatorDelegate {
     func didFinishRequestingServers(for coordinator: CoordinatorProtocol) {
         DispatchQueue.main.async {
             self.reloadList()
+            self.coordinator.requestServersInfo()
         }
     }
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: ServerInfoProtocol) {
         DispatchQueue.main.async {
-            self.reloadServersDataKeepingSelection()
+            if let index = self.index(of: forServerInfo) {
+                let columnIndexes = self.serversTableView.columnIndexes(in: self.serversTableView.bounds)
+                self.serversTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: columnIndexes)
+            }
+            if let last = self.filteredServers.last, forServerInfo.ip == last.ip, forServerInfo.port == last.port {
+                self.loadingIndicator.stopAnimation(self)
+            }
         }
     }
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatus forServerInfo: ServerInfoProtocol) {
         DispatchQueue.main.async {
+            if let index = self.index(of: forServerInfo) {
+                let columnIndexes = self.serversTableView.columnIndexes(in: self.serversTableView.bounds)
+                self.serversTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: columnIndexes)
+            }
             self.rulesTableView.reloadData()
             self.playersTableView.reloadData()
+        }
+    }
+    
+    func coordinator(_ coordinator: CoordinatorProtocol, didTimeoutFetchingInfo forServerInfo: ServerInfoProtocol) {
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimation(self)
+            self.reloadList()
         }
     }
     

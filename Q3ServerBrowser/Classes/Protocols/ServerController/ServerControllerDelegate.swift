@@ -13,4 +13,5 @@ protocol ServerControllerDelegate: NSObjectProtocol {
     func serverController(_ controller: ServerControllerProtocol, didFinishWithError error: Error?)
     func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith operation: Q3Operation)
     func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerStatusWith operation: Q3Operation)
+    func serverController(_ controller: ServerControllerProtocol, didTimeoutFetchingServerInfoWith operation: Q3Operation)
 }

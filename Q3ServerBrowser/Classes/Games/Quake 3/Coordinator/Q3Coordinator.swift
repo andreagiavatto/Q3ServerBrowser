@@ -43,6 +43,16 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
         return serversList.first(where: {$0.ip == ip && $0.port == port})
     }
     
+    func removeTimeoutServer(ip: String, port: String) -> ServerInfoProtocol? {
+        for (index, server) in serversList.enumerated() {
+            if server.ip == ip && server.port == port {
+                return serversList.remove(at: index)
+            }
+        }
+        
+        return nil
+    }
+    
     func requestServersInfo() {
         for server in toRequestInfo {
             serverController.requestServerInfo(ip: server.ip, port: server.port)
@@ -93,9 +103,17 @@ extension Q3Coordinator: ServerControllerDelegate {
         {
             server.rules = serverStatus.rules
             server.players = serverStatus.players
+            server.ping = String(format: "%.0f", round(operation.executionTime * 1000))
             delegate?.coordinator(self, didFinishFetchingStatus: server)
         } else {
             print("\(operation.ip):\(operation.port) parse status failed")
+        }
+    }
+    
+    func serverController(_ controller: ServerControllerProtocol, didTimeoutFetchingServerInfoWith operation: Q3Operation) {
+        
+        if let server = removeTimeoutServer(ip: operation.ip, port: String(operation.port)) {
+            delegate?.coordinator(self, didTimeoutFetchingInfo: server)
         }
     }
     

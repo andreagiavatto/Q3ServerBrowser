@@ -24,7 +24,7 @@ class Q3Operation: Operation {
     private var socket: GCDAsyncUdpSocket?
     private var timer: Timer?
     fileprivate(set) var timeoutOccurred = false
-    private let timeout: TimeInterval = 2.0
+    private let timeout: TimeInterval = 1.0
     
     required init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8]) {
         self.ip = ip
