@@ -43,10 +43,11 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
         return serversList.first(where: {$0.ip == ip && $0.port == port})
     }
     
-    func removeTimeoutServer(ip: String, port: String) -> ServerInfoProtocol? {
-        for (index, server) in serversList.enumerated() {
+    func updateTimeoutServer(ip: String, port: String) -> ServerInfoProtocol? {
+        for (index, var server) in serversList.enumerated() {
             if server.ip == ip && server.port == port {
-                return serversList.remove(at: index)
+                server.ping = "TIMEOUT"
+                return serversList[index]
             }
         }
         
@@ -112,7 +113,7 @@ extension Q3Coordinator: ServerControllerDelegate {
     
     func serverController(_ controller: ServerControllerProtocol, didTimeoutFetchingServerInfoWith operation: Q3Operation) {
         
-        if let server = removeTimeoutServer(ip: operation.ip, port: String(operation.port)) {
+        if let server = updateTimeoutServer(ip: operation.ip, port: String(operation.port)) {
             delegate?.coordinator(self, didTimeoutFetchingInfo: server)
         }
     }

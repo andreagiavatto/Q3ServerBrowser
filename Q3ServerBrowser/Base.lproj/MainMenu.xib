@@ -130,8 +130,8 @@
                                                     <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="hostname" editable="NO" width="210" minWidth="10" maxWidth="3.4028234663852886e+38" id="1R1-qp-wva">
-                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Hostname">
+                                                        <tableColumn identifier="name" editable="NO" width="210" minWidth="10" maxWidth="3.4028234663852886e+38" id="1R1-qp-wva">
+                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -776,7 +776,7 @@
                         <button key="view" verticalHuggingPriority="750" id="9bv-bc-yj7">
                             <rect key="frame" x="4" y="14" width="65" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="check" title="Empty" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="U5D-wo-nwG">
+                            <buttonCell key="cell" type="bevel" title="Empty" bezelStyle="regularSquare" image="toolbarItem:2Rm-eB-6Od:image" imagePosition="left" state="on" inset="2" id="U5D-wo-nwG">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -792,7 +792,7 @@
                         <button key="view" verticalHuggingPriority="750" id="Xla-gX-WSS">
                             <rect key="frame" x="5" y="14" width="48" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="check" title="Full" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nVl-am-Lvv">
+                            <buttonCell key="cell" type="bevel" title="Full" bezelStyle="regularSquare" image="toolbarItem:2Rm-eB-6Od:image" imagePosition="left" state="on" inset="2" id="nVl-am-Lvv">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -806,9 +806,10 @@
                     <toolbarItem reference="552"/>
                     <toolbarItem reference="vlo-1e-uYC"/>
                     <toolbarItem reference="ijP-qv-B5a"/>
+                    <toolbarItem reference="70g-C8-y0Q"/>
+                    <toolbarItem reference="eaf-bF-Tp9"/>
                     <toolbarItem reference="2Rm-eB-6Od"/>
                     <toolbarItem reference="Yqt-Cp-Nug"/>
-                    <toolbarItem reference="eaf-bF-Tp9"/>
                     <toolbarItem reference="ktn-BG-EQT"/>
                 </defaultToolbarItems>
             </toolbar>

@@ -13,8 +13,8 @@ protocol ServerInfoProtocol {
     var ping: String { get set }
     var ip: String { get }
     var port: String { get }
-    var originalHostname: String { get set }
-    var hostname: String { get set }
+    var originalName: String { get set }
+    var name: String { get set }
     var map: String { get set }
     var maxPlayers: String { get set }
     var currentPlayers: String { get set }

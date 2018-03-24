@@ -7,24 +7,25 @@
 
 import Foundation
 
-class Q3ServerInfo: ServerInfoProtocol {
+class Q3ServerInfo: NSObject, ServerInfoProtocol {
     
-    var ping: String = ""
-    let ip: String
+    @objc var ping: String = ""
+    @objc let ip: String
     let port: String
-    var originalHostname: String = ""
-    var hostname: String = ""
-    var map: String = ""
+    var originalName: String = ""
+    @objc var name: String = ""
+    @objc var map: String = ""
     var maxPlayers: String = ""
-    var currentPlayers: String = ""
-    var mod: String = ""
-    var gametype: String = ""
+    @objc var currentPlayers: String = ""
+    @objc var mod: String = ""
+    @objc var gametype: String = ""
     var rules: [String: String] = [:]
     var players: [Q3ServerPlayer]? = nil
 
     required init(ip: String, port: String) {
         self.ip = ip
         self.port = port
+        super.init()
     }
     
     func update(dictionary serverInfo: [String: String]) {
@@ -34,7 +35,7 @@ class Q3ServerInfo: ServerInfoProtocol {
         }
         
         guard
-            let originalHostname = serverInfo["hostname"] as? String,
+            let originalName = serverInfo["hostname"] as? String,
             let map = serverInfo["mapname"] as? String,
             let maxPlayers = serverInfo["sv_maxclients"] as? String,
             let currentPlayers = serverInfo["clients"] as? String,
@@ -43,8 +44,8 @@ class Q3ServerInfo: ServerInfoProtocol {
             return
         }
 
-        self.hostname = ""
-        self.originalHostname = originalHostname
+        self.name = ""
+        self.originalName = originalName
         self.map = map
         self.maxPlayers = maxPlayers
         self.currentPlayers = currentPlayers
@@ -67,25 +68,6 @@ class Q3ServerInfo: ServerInfoProtocol {
             self.gametype = "unknown"
         }
         
-        self.hostname = self.originalHostname.stripQ3Colors()
+        self.name = self.originalName.stripQ3Colors()
     }
 }
-
-extension Q3ServerInfo: CustomStringConvertible {
-
-    var description: String {
-        return "<Q3ServerInfo> \(hostname) -- (\(ip):\(port))\n\t\(map) (\(currentPlayers)/\(maxPlayers))\n\t\(mod)\n\t\(ping)"
-    }
-}
-
-extension Q3ServerInfo: Equatable { }
-
-func ==(lhs: Q3ServerInfo, rhs: Q3ServerInfo) -> Bool {
-    
-    if lhs.ip == rhs.ip && lhs.port == rhs.port {
-        return true
-    }
-    
-    return false
-}
-

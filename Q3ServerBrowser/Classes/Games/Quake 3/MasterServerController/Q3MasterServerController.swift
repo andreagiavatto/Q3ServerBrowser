@@ -68,8 +68,12 @@ extension Q3MasterServerController: GCDAsyncUdpSocketDelegate {
             
             let start = self.data.index(self.data.startIndex, offsetBy: getServersResponseMarker.count)
             let end = self.data.index(self.data.endIndex, offsetBy: -(eotMarker.count))
-            let usefulData = self.data.subdata(in: start..<end)
-            delegate?.masterController(self, didFinishFetchingServersWith: usefulData)
+            if start < end {
+                let usefulData = self.data.subdata(in: start..<end)
+                delegate?.masterController(self, didFinishFetchingServersWith: usefulData)
+            } else {
+                delegate?.masterController(self, didFinishFetchingServersWith: Data())
+            }
         }
     }
     
