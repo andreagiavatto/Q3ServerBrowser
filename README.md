@@ -8,5 +8,4 @@ A simple game server browser for Quake 3 Arena (protocol 68).
 The minimum system requirements are Mac OS X 10.10
 
 ## TO-DO
-- add column sorting
 - support more games :-)
