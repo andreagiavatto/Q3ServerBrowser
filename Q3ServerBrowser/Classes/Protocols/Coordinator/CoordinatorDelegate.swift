@@ -13,6 +13,5 @@ protocol CoordinatorDelegate: NSObjectProtocol {
     func didFinishRequestingServers(for coordinator: CoordinatorProtocol)
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishWithError error: Error?)
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: ServerInfoProtocol)
-    func coordinator(_ coordinator: CoordinatorProtocol, didTimeoutFetchingInfo forServerInfo: ServerInfoProtocol)
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatus forServerInfo: ServerInfoProtocol)
 }

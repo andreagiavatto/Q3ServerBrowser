@@ -17,6 +17,7 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
     private(set) var serversList = [ServerInfoProtocol]()
     private var toRequestInfo = [ServerInfoProtocol]()
     private let masterServerController = Q3MasterServerController()
+    private let serverOperationsQueue = DispatchQueue(label: "com.q3browser.server-operations.queue")
     
     override init() {
         super.init()
@@ -43,14 +44,13 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
         return serversList.first(where: {$0.ip == ip && $0.port == port})
     }
     
-    func updateTimeoutServer(ip: String, port: String) -> ServerInfoProtocol? {
-        for (index, var server) in serversList.enumerated() {
-            if server.ip == ip && server.port == port {
-                server.ping = "TIMEOUT"
-                return serversList[index]
-            }
+    @discardableResult
+    func removeTimeoutServer(ip: String, port: String) -> ServerInfoProtocol? {
+        if let index = serversList.index(where: {$0.ip == ip && $0.port == port}) {
+            let server = serversList[index]
+            serversList.remove(at: index)
+            return server
         }
-        
         return nil
     }
     
@@ -58,6 +58,7 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
         for server in toRequestInfo {
             serverController.requestServerInfo(ip: server.ip, port: server.port)
         }
+        toRequestInfo.removeAll()
     }
 }
 
@@ -113,12 +114,12 @@ extension Q3Coordinator: ServerControllerDelegate {
     
     func serverController(_ controller: ServerControllerProtocol, didTimeoutFetchingServerInfoWith operation: Q3Operation) {
         
-        if let server = updateTimeoutServer(ip: operation.ip, port: String(operation.port)) {
-            delegate?.coordinator(self, didTimeoutFetchingInfo: server)
+        serverOperationsQueue.sync {
+            removeTimeoutServer(ip: operation.ip, port: String(operation.port))
         }
     }
     
     func serverController(_ controller: ServerControllerProtocol, didFinishWithError error: Error?) {
-
+        print(error)
     }
 }

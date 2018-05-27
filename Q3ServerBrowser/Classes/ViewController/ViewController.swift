@@ -24,7 +24,6 @@ class ViewController: NSObject {
 
     private var game = Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950")
     fileprivate let coordinator = Q3Coordinator()
-    fileprivate var servers = [ServerInfoProtocol]()
     fileprivate var filteredServers = [ServerInfoProtocol]()
     fileprivate var filterString = ""
     fileprivate var selectedServer: ServerInfoProtocol?
@@ -151,13 +150,10 @@ class ViewController: NSObject {
     private func clearDataSource() {
         filterString = ""
         selectedServer = nil
-        servers.removeAll()
         filteredServers.removeAll()
     }
     
     private func reloadList() {
-        servers = coordinator.serversList
-        filteredServers = coordinator.serversList
         reloadDataSource()
         numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
     }
@@ -170,9 +166,9 @@ class ViewController: NSObject {
     
     private func applyFilters(filterString: String, showEmpty: Bool, showFull: Bool) {
         if filterString.characters.count == 0 {
-            filteredServers = Array(servers)
+            filteredServers = Array(coordinator.serversList)
         } else {
-            filteredServers = servers.filter({ (serverInfo) -> Bool in
+            filteredServers = coordinator.serversList.filter({ (serverInfo) -> Bool in
                 let standardMatcher = serverInfo.name.lowercased().range(of: filterString) != nil ||
                     serverInfo.map.lowercased().range(of: filterString) != nil ||
                     serverInfo.mod.lowercased().range(of: filterString) != nil ||
@@ -221,21 +217,14 @@ class ViewController: NSObject {
 extension ViewController: CoordinatorDelegate {
     
     func didFinishRequestingServers(for coordinator: CoordinatorProtocol) {
-        DispatchQueue.main.async {
-            self.reloadList()
-            self.coordinator.requestServersInfo()
-        }
+        self.coordinator.requestServersInfo()
     }
     
     func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: ServerInfoProtocol) {
         DispatchQueue.main.async {
-            if let index = self.index(of: forServerInfo) {
-                let columnIndexes = self.serversTableView.columnIndexes(in: self.serversTableView.bounds)
-                self.serversTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: columnIndexes)
-            }
-            if let last = self.filteredServers.last, forServerInfo.ip == last.ip, forServerInfo.port == last.port {
-                self.loadingIndicator.stopAnimation(self)
-            }
+            self.filteredServers.append(forServerInfo)
+            self.reloadList()
+            self.loadingIndicator.stopAnimation(self)
         }
     }
     
@@ -243,18 +232,6 @@ extension ViewController: CoordinatorDelegate {
         DispatchQueue.main.async {
             self.rulesTableView.reloadData()
             self.playersTableView.reloadData()
-        }
-    }
-    
-    func coordinator(_ coordinator: CoordinatorProtocol, didTimeoutFetchingInfo forServerInfo: ServerInfoProtocol) {
-        DispatchQueue.main.async {
-            if let index = self.index(of: forServerInfo) {
-                let columnIndexes = self.serversTableView.columnIndexes(in: self.serversTableView.bounds)
-                self.serversTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: columnIndexes)
-            }
-            if let last = self.filteredServers.last, forServerInfo.ip == last.ip, forServerInfo.port == last.port {
-                self.loadingIndicator.stopAnimation(self)
-            }
         }
     }
     

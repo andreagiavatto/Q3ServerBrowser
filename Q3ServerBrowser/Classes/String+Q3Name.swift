@@ -18,7 +18,7 @@ extension String {
         var decodedString = ""
         
         do {
-            let regex = try NSRegularExpression(pattern: "\\^[a-z0-9]", options: .caseInsensitive)
+            let regex = try NSRegularExpression(pattern: "\\^+[a-z0-9]", options: .caseInsensitive)
             decodedString = regex.stringByReplacingMatches(in: self, options: [], range: NSMakeRange(0, self.characters.count), withTemplate: "")
         } catch (let error) {
             print(error)

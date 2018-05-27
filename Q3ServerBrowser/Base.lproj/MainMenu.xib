@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -716,7 +716,7 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ijP-qv-B5a"/>
                     <toolbarItem implicitItemIdentifier="8DB861AD-0EEE-4A2B-8487-0863FABB56FA" label="Quake 3 folder" paletteLabel="Quake 3 folder" id="e5U-f9-pga">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="200" height="20"/>
+                        <size key="minSize" width="120" height="20"/>
                         <size key="maxSize" width="206" height="27"/>
                         <pathControl key="view" verticalHuggingPriority="750" allowsExpansionToolTips="YES" id="lt2-Fe-CCy">
                             <rect key="frame" x="0.0" y="14" width="206" height="27"/>
@@ -806,6 +806,7 @@
                     <toolbarItem reference="552"/>
                     <toolbarItem reference="vlo-1e-uYC"/>
                     <toolbarItem reference="ijP-qv-B5a"/>
+                    <toolbarItem reference="e5U-f9-pga"/>
                     <toolbarItem reference="70g-C8-y0Q"/>
                     <toolbarItem reference="eaf-bF-Tp9"/>
                     <toolbarItem reference="2Rm-eB-6Od"/>
