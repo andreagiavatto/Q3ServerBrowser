@@ -7,15 +7,15 @@
 //
 
 import Foundation
+import SQL
 
 class Q3Coordinator: NSObject, CoordinatorProtocol {
     
     weak var delegate: CoordinatorDelegate?
 
-    fileprivate let q3parser = Q3Parser()
     fileprivate let serverController = Q3ServerController()
-    private(set) var serversList = [ServerInfoProtocol]()
-    private var toRequestInfo = [ServerInfoProtocol]()
+    private(set) var serversList = [Server]()
+    private var toRequestInfo = [Server]()
     private let masterServerController = Q3MasterServerController()
     private let serverOperationsQueue = DispatchQueue(label: "com.q3browser.server-operations.queue")
     
@@ -32,20 +32,20 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
         masterServerController.startFetchingServersList(host: host, port: port)
     }
 
-    func info(forServer server: ServerInfoProtocol) {
+    func info(forServer server: Server) {
         serverController.requestServerInfo(ip: server.ip, port: server.port)
     }
     
-    func status(forServer server: ServerInfoProtocol) {
+    func status(forServer server: Server) {
         serverController.statusForServer(ip: server.ip, port: server.port)
     }
     
-    func server(ip: String, port: String) -> ServerInfoProtocol? {
+    func server(ip: String, port: String) -> Server? {
         return serversList.first(where: {$0.ip == ip && $0.port == port})
     }
     
     @discardableResult
-    func removeTimeoutServer(ip: String, port: String) -> ServerInfoProtocol? {
+    func removeTimeoutServer(ip: String, port: String) -> Server? {
         if let index = serversList.index(where: {$0.ip == ip && $0.port == port}) {
             let server = serversList[index]
             serversList.remove(at: index)
@@ -62,13 +62,13 @@ class Q3Coordinator: NSObject, CoordinatorProtocol {
     }
 }
 
-extension Q3Coordinator: MasterServerControllerDelegate {
+extension Q3Coordinator: Q3MasterServerControllerDelegate {
     
-    func masterController(_ controller: MasterServerControllerProtocol, didFinishFetchingServersWith data: Data) {
-        let servers = q3parser.parseServers(data)
+    func masterController(_ controller: Q3MasterServerController, didFinishFetchingServersWith data: Data) {
+        let servers = Q3Parser.parseServers(data)
         for ip in servers {
             let address: [String] = ip.components(separatedBy: ":")
-            serversList.append(Q3ServerInfo(ip: address[0], port: address[1]))
+            serversList.append(Q3Server(ip: address[0], port: address[1]))
         }
         
         toRequestInfo.append(contentsOf: serversList)
@@ -76,50 +76,48 @@ extension Q3Coordinator: MasterServerControllerDelegate {
         delegate?.didFinishRequestingServers(for: self)
     }
     
-    func masterController(_ controller: MasterServerControllerProtocol, didFinishWithError error: Error?) {
+    func masterController(_ controller: Q3MasterServerController, didFinishWithError error: Error?) {
         delegate?.coordinator(self, didFinishWithError: error)
     }
 }
 
-extension Q3Coordinator: ServerControllerDelegate {
+extension Q3Coordinator: Q3ServerControllerDelegate {
     
-    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerInfoWith operation: Q3Operation) {
+    func serverController(_ controller: Q3ServerController, didFinishFetchingServerInfoWith operation: Q3Operation) {
 
         if
-            let serverInfo = q3parser.parseServerInfo(operation.data, for: controller),
+            let serverInfo = Q3Parser.parseServer(operation.data),
             var server = server(ip: operation.ip, port: "\(operation.port)")
         {
-            server.update(dictionary: serverInfo)
-            server.ping = String(format: "%.0f", round(operation.executionTime * 1000))
+            server.update(with: serverInfo, ping: String(format: "%.0f", round(operation.executionTime * 1000)))
             delegate?.coordinator(self, didFinishFetchingInfo: server)
         } else {
-            print("\(operation.ip):\(operation.port) parse info failed")
+            print("\(operation) parse info failed")
         }
     }
     
-    func serverController(_ controller: ServerControllerProtocol, didFinishFetchingServerStatusWith operation: Q3Operation) {
+    func serverController(_ controller: Q3ServerController, didFinishFetchingServerStatusWith operation: Q3Operation) {
   
         if
-            let serverStatus = q3parser.parseServerStatus(operation.data),
+            let serverStatus = Q3Parser.parseServerStatus(operation.data),
             var server = server(ip: operation.ip, port: "\(operation.port)")
         {
             server.rules = serverStatus.rules
             server.players = serverStatus.players
-            server.ping = String(format: "%.0f", round(operation.executionTime * 1000))
             delegate?.coordinator(self, didFinishFetchingStatus: server)
         } else {
-            print("\(operation.ip):\(operation.port) parse status failed")
+            print("\(operation) parse status failed")
         }
     }
     
-    func serverController(_ controller: ServerControllerProtocol, didTimeoutFetchingServerInfoWith operation: Q3Operation) {
+    func serverController(_ controller: Q3ServerController, didTimeoutFetchingServerInfoWith operation: Q3Operation) {
         
         serverOperationsQueue.sync {
             removeTimeoutServer(ip: operation.ip, port: String(operation.port))
         }
     }
     
-    func serverController(_ controller: ServerControllerProtocol, didFinishWithError error: Error?) {
+    func serverController(_ controller: Q3ServerController, didFinishWithError error: Error?) {
         print(error)
     }
 }

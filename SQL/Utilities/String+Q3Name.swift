@@ -8,10 +8,10 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
     func stripQ3Colors() -> String {
-        guard self.characters.count > 0 else {
+        guard self.count > 0 else {
             return ""
         }
         
@@ -19,7 +19,7 @@ extension String {
         
         do {
             let regex = try NSRegularExpression(pattern: "\\^+[a-z0-9]", options: .caseInsensitive)
-            decodedString = regex.stringByReplacingMatches(in: self, options: [], range: NSMakeRange(0, self.characters.count), withTemplate: "")
+            decodedString = regex.stringByReplacingMatches(in: self, options: [], range: NSMakeRange(0, self.count), withTemplate: "")
         } catch (let error) {
             print(error)
         }

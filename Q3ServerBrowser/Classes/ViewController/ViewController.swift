@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SQL
 
 class ViewController: NSObject {
     
@@ -24,9 +25,9 @@ class ViewController: NSObject {
 
     private var game = Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950")
     fileprivate let coordinator = Q3Coordinator()
-    fileprivate var filteredServers = [ServerInfoProtocol]()
+    fileprivate var filteredServers = [Server]()
     fileprivate var filterString = ""
-    fileprivate var selectedServer: ServerInfoProtocol?
+    fileprivate var selectedServer: Server?
 
     func windowShouldClose(_ sender: Any) -> Bool {
         NSApp.terminate(nil)
@@ -204,7 +205,7 @@ class ViewController: NSObject {
         reloadDataSource()
     }
     
-    fileprivate func index(of server: ServerInfoProtocol) -> Int? {
+    fileprivate func index(of server: Server) -> Int? {
         for (index, s) in filteredServers.enumerated() {
             if s.ip == server.ip && s.port == server.port {
                 return index
@@ -220,7 +221,7 @@ extension ViewController: CoordinatorDelegate {
         self.coordinator.requestServersInfo()
     }
     
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: ServerInfoProtocol) {
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: Server) {
         DispatchQueue.main.async {
             self.filteredServers.append(forServerInfo)
             self.reloadList()
@@ -228,7 +229,7 @@ extension ViewController: CoordinatorDelegate {
         }
     }
     
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatus forServerInfo: ServerInfoProtocol) {
+    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatus forServerInfo: Server) {
         DispatchQueue.main.async {
             self.rulesTableView.reloadData()
             self.playersTableView.reloadData()
@@ -284,7 +285,7 @@ extension ViewController: NSTableViewDataSource {
         
         guard
             let columnId = tableColumn?.identifier,
-            let serverInfo = filteredServers[row] as? ServerInfoProtocol
+            let server = filteredServers[row] as? Server
             else {
                 return nil
         }
@@ -294,18 +295,18 @@ extension ViewController: NSTableViewDataSource {
         
         switch columnId.rawValue {
         case "name":
-            text = serverInfo.name
+            text = server.name
         case "map":
-            text = serverInfo.map
+            text = server.map
         case "mod":
-            text = serverInfo.mod
+            text = server.mod
         case "gametype":
-            text = serverInfo.gametype
+            text = server.gametype
         case "players":
-            text = "\(serverInfo.currentPlayers) / \(serverInfo.maxPlayers)"
+            text = "\(server.currentPlayers) / \(server.maxPlayers)"
         case "ping":
-            text = serverInfo.ping
-            if let ping = Int(serverInfo.ping) {
+            text = server.ping
+            if let ping = Int(server.ping) {
                 if ping <= 60 {
                     textColor = kMGTGoodPingColor
                 } else if ping <= 100 {
@@ -315,7 +316,7 @@ extension ViewController: NSTableViewDataSource {
                 }
             }
         case "ip":
-            text = "\(serverInfo.ip):\(serverInfo.port)"
+            text = "\(server.ip):\(server.port)"
         default:
             return nil
         }
@@ -364,7 +365,7 @@ extension ViewController: NSTableViewDataSource {
             let server = selectedServer,
             let columnId = tableColumn?.identifier,
             let players = server.players,
-            let player = players[row] as? Q3ServerPlayer
+            let player = players[row] as? Player
             else {
                 return nil
         }
@@ -412,7 +413,7 @@ extension ViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
         
-        if let sortedServers = (self.filteredServers as NSArray).sortedArray(using: tableView.sortDescriptors) as? [ServerInfoProtocol] {
+        if let sortedServers = (self.filteredServers as NSArray).sortedArray(using: tableView.sortDescriptors) as? [Server] {
             filteredServers = sortedServers
             reloadDataSource()
         }

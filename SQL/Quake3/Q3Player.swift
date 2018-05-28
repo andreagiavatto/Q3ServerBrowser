@@ -1,19 +1,19 @@
 //
 //  Q3ServerPlayer.swift
-//  ServerBrowser
+//  ServerQueryLibrary
 //
 //  Created by Andrea Giavatto on 3/23/14.
 //
 
 import Foundation
 
-struct Q3ServerPlayer: ServerPlayerProtocol {
+public struct Q3Player: Player {
     
-    let name: String
-    let ping: String
-    let score: String
+    public let name: String
+    public let ping: String
+    public let score: String
     
-    init?(line: String) {
+    public init?(line: String) {
         
         guard !line.isEmpty else {
             return nil
@@ -30,8 +30,9 @@ struct Q3ServerPlayer: ServerPlayerProtocol {
     }
 }
 
-extension Q3ServerPlayer: CustomStringConvertible {
-    var description: String {
-        return "<Q3ServerPlayer> \(name) (\(ping)) - \(score)"
+extension Q3Player: CustomStringConvertible {
+    
+    public var description: String {
+        return "<Q3Player> \(name) (\(ping)) - \(score)"
     }
 }

@@ -7,35 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22E7B5451F9F339F00C3CBE8 /* Q3Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7B5441F9F339F00C3CBE8 /* Q3Operation.swift */; };
+		2278E81620BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
+		2278E81D20BC28FB005E72A3 /* SQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E81C20BC28FB005E72A3 /* SQLTests.swift */; };
+		2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
+		2278E83120BC291A005E72A3 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82B20BC291A005E72A3 /* Q3ServerController.swift */; };
+		2278E83220BC291A005E72A3 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82C20BC291A005E72A3 /* Q3Server.swift */; };
+		2278E83320BC291A005E72A3 /* Q3Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82D20BC291A005E72A3 /* Q3Parser.swift */; };
+		2278E83420BC291A005E72A3 /* Q3Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82E20BC291A005E72A3 /* Q3Player.swift */; };
+		2278E83520BC291A005E72A3 /* Q3Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82F20BC291A005E72A3 /* Q3Operation.swift */; };
+		2278E83620BC291A005E72A3 /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83020BC291A005E72A3 /* Q3MasterServerController.swift */; };
+		2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83720BC2A54005E72A3 /* Parsable.swift */; };
+		2278E83B20BC2AF8005E72A3 /* ServerPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83920BC2AF7005E72A3 /* ServerPlayerProtocol.swift */; };
+		2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83A20BC2AF7005E72A3 /* Server.swift */; };
+		2278E83D20BC2C65005E72A3 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
+		2278E84020BC2EF0005E72A3 /* String+Q3Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83F20BC2EF0005E72A3 /* String+Q3Name.swift */; };
+		2278E84120BC3406005E72A3 /* SQL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2278E84220BC343C005E72A3 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7D1F10427A00498384 /* AppDelegate.swift */; };
 		A2359FA81F10427A00498384 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7F1F10427A00498384 /* Constants.swift */; };
 		A2359FAA1F10427A00498384 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F841F10427A00498384 /* Q3Coordinator.swift */; };
-		A2359FAB1F10427A00498384 /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F861F10427A00498384 /* Q3MasterServerController.swift */; };
-		A2359FAC1F10427A00498384 /* Q3ServerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F881F10427A00498384 /* Q3ServerInfo.swift */; };
-		A2359FAD1F10427A00498384 /* Q3ServerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F891F10427A00498384 /* Q3ServerPlayer.swift */; };
-		A2359FAE1F10427A00498384 /* Q3Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F8B1F10427A00498384 /* Q3Parser.swift */; };
-		A2359FAF1F10427A00498384 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F8D1F10427A00498384 /* Q3ServerController.swift */; };
 		A2359FB01F10427A00498384 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F8F1F10427A00498384 /* Game.swift */; };
-		A2359FB11F10427A00498384 /* ServerInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F901F10427A00498384 /* ServerInfoProtocol.swift */; };
-		A2359FB21F10427A00498384 /* ServerPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F911F10427A00498384 /* ServerPlayerProtocol.swift */; };
 		A2359FB31F10427A00498384 /* CoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F941F10427A00498384 /* CoordinatorDelegate.swift */; };
 		A2359FB41F10427A00498384 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F951F10427A00498384 /* CoordinatorProtocol.swift */; };
-		A2359FB51F10427A00498384 /* MasterServerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F971F10427A00498384 /* MasterServerControllerDelegate.swift */; };
-		A2359FB61F10427A00498384 /* MasterServerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F981F10427A00498384 /* MasterServerControllerProtocol.swift */; };
-		A2359FB81F10427A00498384 /* ParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9B1F10427A00498384 /* ParserProtocol.swift */; };
-		A2359FB91F10427A00498384 /* ServerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9D1F10427A00498384 /* ServerControllerDelegate.swift */; };
-		A2359FBA1F10427A00498384 /* ServerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F9E1F10427A00498384 /* ServerControllerProtocol.swift */; };
 		A2359FBB1F10427A00498384 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359FA01F10427A00498384 /* ViewController.swift */; };
 		A2359FBD1F10427A00498384 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA31F10427A00498384 /* MainMenu.xib */; };
 		A2359FBE1F10427A00498384 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA51F10427A00498384 /* Images.xcassets */; };
-		A23730921F2A17E40045A076 /* String+Q3Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23730911F2A17E40045A076 /* String+Q3Name.swift */; };
-		A291E8321F1219F900BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
-		A291E8351F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
 		A2DD851D1F1B815D00C1AF9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2DD851F1F1B815D00C1AF9B /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2278E81720BC28FB005E72A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2278E80C20BC28FA005E72A3;
+			remoteInfo = SQL;
+		};
+		2278E81920BC28FB005E72A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = Q3ServerBrowser;
+		};
+		2278E82020BC28FB005E72A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2278E80C20BC28FA005E72A3;
+			remoteInfo = SQL;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A291E82F1F1219DF00BF5EB1 /* Embed Frameworks */ = {
@@ -44,7 +68,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A291E8351F121A0400BF5EB1 /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				2278E84120BC3406005E72A3 /* SQL.framework in Embed Frameworks */,
+				2278E84220BC343C005E72A3 /* CocoaAsyncSocket.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,32 +78,34 @@
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		22E7B5441F9F339F00C3CBE8 /* Q3Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q3Operation.swift; sourceTree = "<group>"; };
+		2278E80D20BC28FA005E72A3 /* SQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2278E80F20BC28FA005E72A3 /* SQL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQL.h; sourceTree = "<group>"; };
+		2278E81020BC28FA005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2278E81520BC28FB005E72A3 /* SQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2278E81C20BC28FB005E72A3 /* SQLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTests.swift; sourceTree = "<group>"; };
+		2278E81E20BC28FB005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2278E82B20BC291A005E72A3 /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
+		2278E82C20BC291A005E72A3 /* Q3Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Server.swift; sourceTree = "<group>"; };
+		2278E82D20BC291A005E72A3 /* Q3Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Parser.swift; sourceTree = "<group>"; };
+		2278E82E20BC291A005E72A3 /* Q3Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Player.swift; sourceTree = "<group>"; };
+		2278E82F20BC291A005E72A3 /* Q3Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Operation.swift; sourceTree = "<group>"; };
+		2278E83020BC291A005E72A3 /* Q3MasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3MasterServerController.swift; sourceTree = "<group>"; };
+		2278E83720BC2A54005E72A3 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
+		2278E83920BC2AF7005E72A3 /* ServerPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerPlayerProtocol.swift; sourceTree = "<group>"; };
+		2278E83A20BC2AF7005E72A3 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		2278E83F20BC2EF0005E72A3 /* String+Q3Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Q3Name.swift"; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2359F7D1F10427A00498384 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2359F7F1F10427A00498384 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A2359F841F10427A00498384 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
-		A2359F861F10427A00498384 /* Q3MasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3MasterServerController.swift; sourceTree = "<group>"; };
-		A2359F881F10427A00498384 /* Q3ServerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerInfo.swift; sourceTree = "<group>"; };
-		A2359F891F10427A00498384 /* Q3ServerPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerPlayer.swift; sourceTree = "<group>"; };
-		A2359F8B1F10427A00498384 /* Q3Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Parser.swift; sourceTree = "<group>"; };
-		A2359F8D1F10427A00498384 /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
 		A2359F8F1F10427A00498384 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		A2359F901F10427A00498384 /* ServerInfoProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerInfoProtocol.swift; sourceTree = "<group>"; };
-		A2359F911F10427A00498384 /* ServerPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerPlayerProtocol.swift; sourceTree = "<group>"; };
 		A2359F941F10427A00498384 /* CoordinatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorDelegate.swift; sourceTree = "<group>"; };
 		A2359F951F10427A00498384 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
-		A2359F971F10427A00498384 /* MasterServerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterServerControllerDelegate.swift; sourceTree = "<group>"; };
-		A2359F981F10427A00498384 /* MasterServerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterServerControllerProtocol.swift; sourceTree = "<group>"; };
-		A2359F9B1F10427A00498384 /* ParserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserProtocol.swift; sourceTree = "<group>"; };
-		A2359F9D1F10427A00498384 /* ServerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerControllerDelegate.swift; sourceTree = "<group>"; };
-		A2359F9E1F10427A00498384 /* ServerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerControllerProtocol.swift; sourceTree = "<group>"; };
 		A2359FA01F10427A00498384 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A2359FA51F10427A00498384 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A2359FA61F10427A00498384 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
-		A23730911F2A17E40045A076 /* String+Q3Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Q3Name.swift"; sourceTree = "<group>"; };
 		A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		A2DD85181F1B5B7700C1AF9B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A2DD851A1F1B80C700C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -87,11 +114,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2278E80920BC28FA005E72A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2278E83D20BC2C65005E72A3 /* CocoaAsyncSocket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2278E81220BC28FB005E72A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2278E81620BC28FB005E72A3 /* SQL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A291E8321F1219F900BF5EB1 /* CocoaAsyncSocket.framework in Frameworks */,
+				2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,14 +146,62 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Q3ServerBrowser.app */,
+				2278E80D20BC28FA005E72A3 /* SQL.framework */,
+				2278E81520BC28FB005E72A3 /* SQLTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2278E80E20BC28FA005E72A3 /* SQL */ = {
+			isa = PBXGroup;
+			children = (
+				2278E80F20BC28FA005E72A3 /* SQL.h */,
+				2278E81020BC28FA005E72A3 /* Info.plist */,
+				2278E83A20BC2AF7005E72A3 /* Server.swift */,
+				2278E83920BC2AF7005E72A3 /* ServerPlayerProtocol.swift */,
+				2278E83E20BC2EF0005E72A3 /* Utilities */,
+				2278E82A20BC291A005E72A3 /* Quake3 */,
+				2278E83720BC2A54005E72A3 /* Parsable.swift */,
+			);
+			path = SQL;
+			sourceTree = "<group>";
+		};
+		2278E81B20BC28FB005E72A3 /* SQLTests */ = {
+			isa = PBXGroup;
+			children = (
+				2278E81C20BC28FB005E72A3 /* SQLTests.swift */,
+				2278E81E20BC28FB005E72A3 /* Info.plist */,
+			);
+			path = SQLTests;
+			sourceTree = "<group>";
+		};
+		2278E82A20BC291A005E72A3 /* Quake3 */ = {
+			isa = PBXGroup;
+			children = (
+				2278E82B20BC291A005E72A3 /* Q3ServerController.swift */,
+				2278E82C20BC291A005E72A3 /* Q3Server.swift */,
+				2278E82D20BC291A005E72A3 /* Q3Parser.swift */,
+				2278E82E20BC291A005E72A3 /* Q3Player.swift */,
+				2278E82F20BC291A005E72A3 /* Q3Operation.swift */,
+				2278E83020BC291A005E72A3 /* Q3MasterServerController.swift */,
+			);
+			path = Quake3;
+			sourceTree = "<group>";
+		};
+		2278E83E20BC2EF0005E72A3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2278E83F20BC2EF0005E72A3 /* String+Q3Name.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* GameServerBrowser */ = {
 			isa = PBXGroup;
 			children = (
 				A2359F7C1F10427A00498384 /* Q3ServerBrowser */,
+				2278E80E20BC28FA005E72A3 /* SQL */,
+				2278E81B20BC28FB005E72A3 /* SQLTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -150,7 +241,6 @@
 				A2359F921F10427A00498384 /* Protocols */,
 				A2359F9F1F10427A00498384 /* ViewController */,
 				A2DD85181F1B5B7700C1AF9B /* Utilities.swift */,
-				A23730911F2A17E40045A076 /* String+Q3Name.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -167,11 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				A2359F831F10427A00498384 /* Coordinator */,
-				A2359F851F10427A00498384 /* MasterServerController */,
-				A2359F871F10427A00498384 /* Model */,
-				A2359F8A1F10427A00498384 /* Parser */,
-				A2359F8C1F10427A00498384 /* ServerController */,
-				22E7B5441F9F339F00C3CBE8 /* Q3Operation.swift */,
 			);
 			path = "Quake 3";
 			sourceTree = "<group>";
@@ -184,45 +269,10 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		A2359F851F10427A00498384 /* MasterServerController */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F861F10427A00498384 /* Q3MasterServerController.swift */,
-			);
-			path = MasterServerController;
-			sourceTree = "<group>";
-		};
-		A2359F871F10427A00498384 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F881F10427A00498384 /* Q3ServerInfo.swift */,
-				A2359F891F10427A00498384 /* Q3ServerPlayer.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		A2359F8A1F10427A00498384 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F8B1F10427A00498384 /* Q3Parser.swift */,
-			);
-			path = Parser;
-			sourceTree = "<group>";
-		};
-		A2359F8C1F10427A00498384 /* ServerController */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F8D1F10427A00498384 /* Q3ServerController.swift */,
-			);
-			path = ServerController;
-			sourceTree = "<group>";
-		};
 		A2359F8E1F10427A00498384 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				A2359F8F1F10427A00498384 /* Game.swift */,
-				A2359F901F10427A00498384 /* ServerInfoProtocol.swift */,
-				A2359F911F10427A00498384 /* ServerPlayerProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,9 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				A2359F931F10427A00498384 /* Coordinator */,
-				A2359F961F10427A00498384 /* MasterServerController */,
-				A2359F991F10427A00498384 /* Parser */,
-				A2359F9C1F10427A00498384 /* ServerController */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -245,32 +292,6 @@
 				A2359F951F10427A00498384 /* CoordinatorProtocol.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		A2359F961F10427A00498384 /* MasterServerController */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F971F10427A00498384 /* MasterServerControllerDelegate.swift */,
-				A2359F981F10427A00498384 /* MasterServerControllerProtocol.swift */,
-			);
-			path = MasterServerController;
-			sourceTree = "<group>";
-		};
-		A2359F991F10427A00498384 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F9B1F10427A00498384 /* ParserProtocol.swift */,
-			);
-			path = Parser;
-			sourceTree = "<group>";
-		};
-		A2359F9C1F10427A00498384 /* ServerController */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F9D1F10427A00498384 /* ServerControllerDelegate.swift */,
-				A2359F9E1F10427A00498384 /* ServerControllerProtocol.swift */,
-			);
-			path = ServerController;
 			sourceTree = "<group>";
 		};
 		A2359F9F1F10427A00498384 /* ViewController */ = {
@@ -291,7 +312,54 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		2278E80A20BC28FA005E72A3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		2278E80C20BC28FA005E72A3 /* SQL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2278E82420BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQL" */;
+			buildPhases = (
+				2278E80820BC28FA005E72A3 /* Sources */,
+				2278E80920BC28FA005E72A3 /* Frameworks */,
+				2278E80A20BC28FA005E72A3 /* Headers */,
+				2278E80B20BC28FA005E72A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SQL;
+			productName = SQL;
+			productReference = 2278E80D20BC28FA005E72A3 /* SQL.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2278E81420BC28FB005E72A3 /* SQLTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2278E82720BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQLTests" */;
+			buildPhases = (
+				2278E81120BC28FB005E72A3 /* Sources */,
+				2278E81220BC28FB005E72A3 /* Frameworks */,
+				2278E81320BC28FB005E72A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2278E81820BC28FB005E72A3 /* PBXTargetDependency */,
+				2278E81A20BC28FB005E72A3 /* PBXTargetDependency */,
+			);
+			name = SQLTests;
+			productName = SQLTests;
+			productReference = 2278E81520BC28FB005E72A3 /* SQLTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8D1107260486CEB800E47090 /* Q3ServerBrowser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Q3ServerBrowser" */;
@@ -304,6 +372,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2278E82120BC28FB005E72A3 /* PBXTargetDependency */,
 			);
 			name = Q3ServerBrowser;
 			productInstallPath = "$(HOME)/Applications";
@@ -317,8 +386,19 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				TargetAttributes = {
+					2278E80C20BC28FA005E72A3 = {
+						CreatedOnToolsVersion = 9.3.1;
+						DevelopmentTeam = WL8LT3PQLC;
+						ProvisioningStyle = Automatic;
+					};
+					2278E81420BC28FB005E72A3 = {
+						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8D1107260486CEB800E47090;
+					};
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = WL8LT3PQLC;
 						LastSwiftMigration = 0900;
@@ -344,11 +424,27 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Q3ServerBrowser */,
+				2278E80C20BC28FA005E72A3 /* SQL */,
+				2278E81420BC28FB005E72A3 /* SQLTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2278E80B20BC28FA005E72A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2278E81320BC28FB005E72A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,36 +458,65 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2278E80820BC28FA005E72A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */,
+				2278E84020BC2EF0005E72A3 /* String+Q3Name.swift in Sources */,
+				2278E83220BC291A005E72A3 /* Q3Server.swift in Sources */,
+				2278E83520BC291A005E72A3 /* Q3Operation.swift in Sources */,
+				2278E83120BC291A005E72A3 /* Q3ServerController.swift in Sources */,
+				2278E83B20BC2AF8005E72A3 /* ServerPlayerProtocol.swift in Sources */,
+				2278E83320BC291A005E72A3 /* Q3Parser.swift in Sources */,
+				2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */,
+				2278E83620BC291A005E72A3 /* Q3MasterServerController.swift in Sources */,
+				2278E83420BC291A005E72A3 /* Q3Player.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2278E81120BC28FB005E72A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2278E81D20BC28FB005E72A3 /* SQLTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2359FB81F10427A00498384 /* ParserProtocol.swift in Sources */,
-				A2359FAB1F10427A00498384 /* Q3MasterServerController.swift in Sources */,
 				A2359FAA1F10427A00498384 /* Q3Coordinator.swift in Sources */,
-				A2359FB61F10427A00498384 /* MasterServerControllerProtocol.swift in Sources */,
-				A2359FB91F10427A00498384 /* ServerControllerDelegate.swift in Sources */,
 				A2359FB41F10427A00498384 /* CoordinatorProtocol.swift in Sources */,
-				A2359FB11F10427A00498384 /* ServerInfoProtocol.swift in Sources */,
-				A2359FAC1F10427A00498384 /* Q3ServerInfo.swift in Sources */,
-				A2359FAD1F10427A00498384 /* Q3ServerPlayer.swift in Sources */,
-				22E7B5451F9F339F00C3CBE8 /* Q3Operation.swift in Sources */,
-				A2359FB51F10427A00498384 /* MasterServerControllerDelegate.swift in Sources */,
-				A2359FB21F10427A00498384 /* ServerPlayerProtocol.swift in Sources */,
-				A23730921F2A17E40045A076 /* String+Q3Name.swift in Sources */,
-				A2359FBA1F10427A00498384 /* ServerControllerProtocol.swift in Sources */,
 				A2359FB31F10427A00498384 /* CoordinatorDelegate.swift in Sources */,
-				A2359FAE1F10427A00498384 /* Q3Parser.swift in Sources */,
 				A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */,
 				A2359FB01F10427A00498384 /* Game.swift in Sources */,
 				A2359FBB1F10427A00498384 /* ViewController.swift in Sources */,
 				A2359FA81F10427A00498384 /* Constants.swift in Sources */,
 				A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */,
-				A2359FAF1F10427A00498384 /* Q3ServerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2278E81820BC28FB005E72A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2278E80C20BC28FA005E72A3 /* SQL */;
+			targetProxy = 2278E81720BC28FB005E72A3 /* PBXContainerItemProxy */;
+		};
+		2278E81A20BC28FB005E72A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Q3ServerBrowser */;
+			targetProxy = 2278E81920BC28FB005E72A3 /* PBXContainerItemProxy */;
+		};
+		2278E82120BC28FB005E72A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2278E80C20BC28FA005E72A3 /* SQL */;
+			targetProxy = 2278E82020BC28FB005E72A3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A2359FA31F10427A00498384 /* MainMenu.xib */ = {
@@ -414,9 +539,192 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2278E82520BC28FB005E72A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdParty",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SQL/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQL;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2278E82620BC28FB005E72A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdParty",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SQL/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQL;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2278E82820BC28FB005E72A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SQLTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQLTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Q3ServerBrowser.app/Contents/MacOS/Q3ServerBrowser";
+			};
+			name = Debug;
+		};
+		2278E82920BC28FB005E72A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SQLTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQLTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Q3ServerBrowser.app/Contents/MacOS/Q3ServerBrowser";
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -457,6 +765,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -570,6 +879,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2278E82420BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2278E82520BC28FB005E72A3 /* Debug */,
+				2278E82620BC28FB005E72A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2278E82720BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQLTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2278E82820BC28FB005E72A3 /* Debug */,
+				2278E82920BC28FB005E72A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Q3ServerBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

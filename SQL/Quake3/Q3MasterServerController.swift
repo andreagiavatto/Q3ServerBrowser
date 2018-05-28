@@ -1,26 +1,39 @@
 //
 //  Q3MasterController.h
-//  Q3ServerBrowser
+//  ServerQueryLibrary
 //
 //  Created by Andrea Giavatto on 3/7/14.
 //
 
-
 import Foundation
 import CocoaAsyncSocket
 
-class Q3MasterServerController: NSObject, MasterServerControllerProtocol {
+public protocol Q3MasterServerControllerDelegate: NSObjectProtocol {
     
-    weak var delegate: MasterServerControllerDelegate?
+    func didStartFetchingServers(forMasterController controller: Q3MasterServerController)
+    func masterController(_ controller: Q3MasterServerController, didFinishWithError error: Error?)
+    func masterController(_ controller: Q3MasterServerController, didFinishFetchingServersWith data: Data)
+}
 
-    let masterServerQueue = DispatchQueue(label: "com.q3browser.master-server.queue")
+public extension Q3MasterServerControllerDelegate {
+    
+    func didStartFetchingServers(forMasterController controller: Q3MasterServerController) {}
+}
+
+public class Q3MasterServerController: NSObject {
+    
+    public weak var delegate: Q3MasterServerControllerDelegate?
+
+    let masterServerQueue = DispatchQueue(label: "com.sql.master-server.queue")
     private var socket: GCDAsyncUdpSocket?
     fileprivate var data = Data()
     private let getServersRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x20, 0x36, 0x38, 0x20, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x20, 0x66, 0x75, 0x6c, 0x6c]
     fileprivate let getServersResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x5c] // YYYYgetserversResponse\
     fileprivate let eotMarker: [UInt8] = [0x5c, 0x45, 0x4f, 0x54, 0x0, 0x0, 0x0] // \EOT000
     
-    func startFetchingServersList(host: String, port: String) {
+    public override init() {}
+    
+    public func startFetchingServersList(host: String, port: String) {
         
         masterServerQueue.async { [unowned self] in
             self.reset()
@@ -50,7 +63,7 @@ class Q3MasterServerController: NSObject, MasterServerControllerProtocol {
 
 extension Q3MasterServerController: GCDAsyncUdpSocketDelegate {
     
-    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+    public func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
 
         self.data.append(data)
         
@@ -77,7 +90,7 @@ extension Q3MasterServerController: GCDAsyncUdpSocketDelegate {
         }
     }
     
-    func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
+    public func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
         delegate?.masterController(self, didFinishWithError: error)
     }
 }

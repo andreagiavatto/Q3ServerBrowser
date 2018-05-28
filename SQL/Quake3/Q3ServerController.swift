@@ -1,6 +1,6 @@
 //
 //  Q3ServerController.swift
-//  Q3ServerBrowser
+//  ServerQueryLibrary
 //
 //  Created by Andrea Giavatto on 3/16/14.
 //
@@ -9,19 +9,27 @@
 import Foundation
 import CocoaAsyncSocket
 
-class Q3ServerController: NSObject, ServerControllerProtocol {
+public protocol Q3ServerControllerDelegate: NSObjectProtocol {
     
-    weak var delegate: ServerControllerDelegate?
+    func serverController(_ controller: Q3ServerController, didFinishWithError error: Error?)
+    func serverController(_ controller: Q3ServerController, didFinishFetchingServerInfoWith operation: Q3Operation)
+    func serverController(_ controller: Q3ServerController, didFinishFetchingServerStatusWith operation: Q3Operation)
+    func serverController(_ controller: Q3ServerController, didTimeoutFetchingServerInfoWith operation: Q3Operation)
+}
+
+public class Q3ServerController: NSObject {
+    
+    public weak var delegate: Q3ServerControllerDelegate?
 
     private let serverInfoQueue = OperationQueue()
     private let statusInfoQueue = OperationQueue()
     
-    override init() {
+    public override init() {
         super.init()
         serverInfoQueue.maxConcurrentOperationCount = 1
     }
     
-    func requestServerInfo(ip: String, port: String) {
+    public func requestServerInfo(ip: String, port: String) {
         
         guard let port = UInt16(port) else {
             return
@@ -52,7 +60,7 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
         serverInfoQueue.addOperation(infoOperation)
     }
 
-    func statusForServer(ip: String, port: String) {
+    public func statusForServer(ip: String, port: String) {
         
         guard let port = UInt16(port) else {
             return
@@ -82,7 +90,7 @@ class Q3ServerController: NSObject, ServerControllerProtocol {
         statusInfoQueue.addOperation(statusOperation)
     }
     
-    func clearPendingRequests() {
+    public func clearPendingRequests() {
         serverInfoQueue.cancelAllOperations()
         statusInfoQueue.cancelAllOperations()
     }
