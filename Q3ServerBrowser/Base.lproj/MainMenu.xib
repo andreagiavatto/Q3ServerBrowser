@@ -835,6 +835,7 @@
                 <outlet property="serversTableView" destination="544" id="Xx5-gJ-zKc"/>
                 <outlet property="showEmptyButton" destination="9bv-bc-yj7" id="iYV-Pe-YP1"/>
                 <outlet property="showFullButton" destination="Xla-gX-WSS" id="IYp-fs-dk3"/>
+                <outlet property="toolbar" destination="533" id="eQu-dH-6KY"/>
             </connections>
         </customObject>
         <userDefaultsController representsSharedInstance="YES" id="603"/>

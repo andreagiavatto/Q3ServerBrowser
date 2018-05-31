@@ -15,6 +15,13 @@ public protocol Q3ServerControllerDelegate: NSObjectProtocol {
     func serverController(_ controller: Q3ServerController, didFinishFetchingServerInfoWith operation: Q3Operation)
     func serverController(_ controller: Q3ServerController, didFinishFetchingServerStatusWith operation: Q3Operation)
     func serverController(_ controller: Q3ServerController, didTimeoutFetchingServerInfoWith operation: Q3Operation)
+    func serverController(_ controller: Q3ServerController, didStartFetchingServersInfo: [Server])
+    func serverController(_ controller: Q3ServerController, didFinishFetchingServersInfo: [Server])
+}
+
+public extension Q3ServerControllerDelegate {
+    func serverController(_ controller: Q3ServerController, didStartFetchingServersInfo: [Server]) {}
+    func serverController(_ controller: Q3ServerController, didFinishFetchingServersInfo: [Server]) {}
 }
 
 public class Q3ServerController: NSObject {
@@ -28,8 +35,18 @@ public class Q3ServerController: NSObject {
         super.init()
         serverInfoQueue.maxConcurrentOperationCount = 1
     }
+  
+    public func requestServersInfo(_ servers: [Server]) {
+        for server in servers {
+            infoForServer(ip: server.ip, port: server.port)
+        }
+        delegate?.serverController(self, didStartFetchingServersInfo: servers)
+        serverInfoQueue.addOperation { [unowned self] in
+            self.delegate?.serverController(self, didFinishFetchingServersInfo: servers)
+        }
+    }
     
-    public func requestServerInfo(ip: String, port: String) {
+    public func infoForServer(ip: String, port: String) {
         
         guard let port = UInt16(port) else {
             return

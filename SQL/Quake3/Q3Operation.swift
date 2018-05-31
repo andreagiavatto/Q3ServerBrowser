@@ -35,6 +35,8 @@ public class Q3Operation: Operation {
         super.init()
         
         socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: socketDelegateQueue)
+        socket?.setMaxReceiveIPv4BufferSize(8192)
+        socket?.setMaxReceiveIPv6BufferSize(8192)
     }
     
     override public var isAsynchronous: Bool {

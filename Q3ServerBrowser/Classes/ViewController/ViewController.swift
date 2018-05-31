@@ -11,6 +11,7 @@ import SQL
 
 class ViewController: NSObject {
     
+    @IBOutlet weak var toolbar: NSToolbar!
     @IBOutlet weak var serversTableView: NSTableView!
     @IBOutlet weak var rulesTableView: NSTableView!
     @IBOutlet weak var playersTableView: NSTableView!
@@ -25,6 +26,7 @@ class ViewController: NSObject {
 
     private var game = Game(title: "Quake 3 Arena", masterServerAddress: "master.ioquake3.org", serverPort: "27950")
     fileprivate let coordinator = Q3Coordinator()
+    fileprivate var servers = [Server]()
     fileprivate var filteredServers = [Server]()
     fileprivate var filterString = ""
     fileprivate var selectedServer: Server?
@@ -70,7 +72,8 @@ class ViewController: NSObject {
     
     @IBAction func refreshServersList(_ sender: Any) {
         reset()
-        coordinator.refreshServersList(host: game.masterServerAddress, port: game.serverPort)
+        coordinator.getServersList(host: game.masterServerAddress, port: game.serverPort)
+        toolbar.items.map({ $0.isEnabled = false })
         loadingIndicator.startAnimation(self)
     }
     
@@ -141,25 +144,22 @@ class ViewController: NSObject {
 
     // MARK: - Private methods
     private func reset() {
-        clearDataSource()
-        reloadDataSource()
+        filterString = ""
+        selectedServer = nil
+        servers.removeAll()
+        filteredServers.removeAll()
+        reloadTables()
         filterSearchField.stringValue = ""
         loadingIndicator.stopAnimation(self)
         numOfServersFound.stringValue = NSLocalizedString("EmptyServersList", comment: "")
     }
     
-    private func clearDataSource() {
-        filterString = ""
-        selectedServer = nil
-        filteredServers.removeAll()
-    }
-    
     private func reloadList() {
-        reloadDataSource()
+        reloadTables()
         numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
     }
 
-    private func reloadDataSource() {
+    private func reloadTables() {
         serversTableView.reloadData()
         rulesTableView.reloadData()
         playersTableView.reloadData()
@@ -167,9 +167,9 @@ class ViewController: NSObject {
     
     private func applyFilters(filterString: String, showEmpty: Bool, showFull: Bool) {
         if filterString.characters.count == 0 {
-            filteredServers = Array(coordinator.serversList)
+            filteredServers = Array(servers)
         } else {
-            filteredServers = coordinator.serversList.filter({ (serverInfo) -> Bool in
+            filteredServers = servers.filter({ (serverInfo) -> Bool in
                 let standardMatcher = serverInfo.name.lowercased().range(of: filterString) != nil ||
                     serverInfo.map.lowercased().range(of: filterString) != nil ||
                     serverInfo.mod.lowercased().range(of: filterString) != nil ||
@@ -202,7 +202,7 @@ class ViewController: NSObject {
         }
         
         numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
-        reloadDataSource()
+        reloadTables()
     }
     
     fileprivate func index(of server: Server) -> Int? {
@@ -215,29 +215,33 @@ class ViewController: NSObject {
     }
 }
 
-extension ViewController: CoordinatorDelegate {
+extension ViewController: Q3CoordinatorDelegate {
     
-    func didFinishRequestingServers(for coordinator: CoordinatorProtocol) {
-        self.coordinator.requestServersInfo()
+    func didFinishFetchingServersList(for coordinator: Q3Coordinator) {
+        self.coordinator.fetchServersInfo()
     }
     
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingInfo forServerInfo: Server) {
+    func didFinishFetchingServersInfo(for coordinator: Q3Coordinator) {
         DispatchQueue.main.async {
-            self.filteredServers.append(forServerInfo)
-            self.reloadList()
             self.loadingIndicator.stopAnimation(self)
+            self.toolbar.items.map({ $0.isEnabled = true })
         }
     }
     
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishFetchingStatus forServerInfo: Server) {
+    func coordinator(_ coordinator: Q3Coordinator, didFinishFetchingInfoFor server: Server) {
+        DispatchQueue.main.async {
+            self.servers.append(server)
+            self.filteredServers.append(server)
+            self.serversTableView.insertRows(at: IndexSet(integer: self.filteredServers.count - 1), withAnimation: .effectFade)
+            self.numOfServersFound.stringValue = "\(self.filteredServers.count) servers found."
+        }
+    }
+    
+    func coordinator(_ coordinator: Q3Coordinator, didFinishFetchingStatusFor server: Server) {
         DispatchQueue.main.async {
             self.rulesTableView.reloadData()
             self.playersTableView.reloadData()
         }
-    }
-    
-    func coordinator(_ coordinator: CoordinatorProtocol, didFinishWithError error: Error?) {
-        
     }
 }
 
@@ -255,6 +259,7 @@ extension ViewController: NSTableViewDataSource {
         if aTableView == rulesTableView {
             return server.rules.keys.count
         }
+        
         if aTableView == playersTableView, let players = server.players {
             return players.count
         }
@@ -396,9 +401,7 @@ extension ViewController: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ aNotification: Notification) {
         
-        guard
-            let tableView = aNotification.object as? NSTableView
-        else {
+        guard let tableView = aNotification.object as? NSTableView else {
             return
         }
         
@@ -406,6 +409,8 @@ extension ViewController: NSTableViewDelegate {
             let selectedRow = serversTableView.selectedRow
             selectedServer = filteredServers[selectedRow]
             if let server = selectedServer {
+                rulesTableView.reloadData()
+                playersTableView.reloadData()
                 coordinator.status(forServer: server)
             }
         }
@@ -415,7 +420,7 @@ extension ViewController: NSTableViewDelegate {
         
         if let sortedServers = (self.filteredServers as NSArray).sortedArray(using: tableView.sortDescriptors) as? [Server] {
             filteredServers = sortedServers
-            reloadDataSource()
+            reloadTables()
         }
     }
 }
