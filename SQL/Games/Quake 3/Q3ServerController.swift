@@ -9,7 +9,7 @@
 import Foundation
 import CocoaAsyncSocket
 
-public protocol Q3ServerControllerDelegate: NSObjectProtocol {
+protocol Q3ServerControllerDelegate: NSObjectProtocol {
     
     func serverController(_ controller: Q3ServerController, didFinishWithError error: Error?)
     func serverController(_ controller: Q3ServerController, didFinishFetchingServerInfoWith operation: Q3Operation)
@@ -19,24 +19,24 @@ public protocol Q3ServerControllerDelegate: NSObjectProtocol {
     func serverController(_ controller: Q3ServerController, didFinishFetchingServersInfo: [Server])
 }
 
-public extension Q3ServerControllerDelegate {
+extension Q3ServerControllerDelegate {
     func serverController(_ controller: Q3ServerController, didStartFetchingServersInfo: [Server]) {}
     func serverController(_ controller: Q3ServerController, didFinishFetchingServersInfo: [Server]) {}
 }
 
-public class Q3ServerController: NSObject {
+class Q3ServerController: NSObject {
     
-    public weak var delegate: Q3ServerControllerDelegate?
+    weak var delegate: Q3ServerControllerDelegate?
 
     private let serverInfoQueue = OperationQueue()
     private let statusInfoQueue = OperationQueue()
     
-    public override init() {
+    override init() {
         super.init()
         serverInfoQueue.maxConcurrentOperationCount = 1
     }
   
-    public func requestServersInfo(_ servers: [Server]) {
+    func requestServersInfo(_ servers: [Server]) {
         for server in servers {
             infoForServer(ip: server.ip, port: server.port)
         }
@@ -46,7 +46,7 @@ public class Q3ServerController: NSObject {
         }
     }
     
-    public func infoForServer(ip: String, port: String) {
+    func infoForServer(ip: String, port: String) {
         
         guard let port = UInt16(port) else {
             return
@@ -77,7 +77,7 @@ public class Q3ServerController: NSObject {
         serverInfoQueue.addOperation(infoOperation)
     }
 
-    public func statusForServer(ip: String, port: String) {
+    func statusForServer(ip: String, port: String) {
         
         guard let port = UInt16(port) else {
             return
@@ -107,7 +107,7 @@ public class Q3ServerController: NSObject {
         statusInfoQueue.addOperation(statusOperation)
     }
     
-    public func clearPendingRequests() {
+    func clearPendingRequests() {
         serverInfoQueue.cancelAllOperations()
         statusInfoQueue.cancelAllOperations()
     }

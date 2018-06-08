@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class Q3Parser: Parsable {
+class Q3Parser: Parsable {
     
-    public static func parseServers(_ data: Data) -> [String] {
+    static func parseServers(_ data: Data) -> [String] {
 
         if data.count > 0 {
 
@@ -32,7 +32,7 @@ public class Q3Parser: Parsable {
         return []
     }
 
-    public static func parseServer(_ data: Data) -> [String: String]? {
+    static func parseServer(_ data: Data) -> [String: String]? {
         
         guard data.count > 0 else {
             return nil
@@ -68,7 +68,7 @@ public class Q3Parser: Parsable {
         return nil
     }
 
-    public static func parseServerStatus(_ data: Data) -> (rules: [String: String], players: [Player])? {
+    static func parseServerStatus(_ data: Data) -> (rules: [String: String], players: [Player])? {
         
         guard data.count > 0 else {
             return nil

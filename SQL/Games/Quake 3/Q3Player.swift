@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct Q3Player: Player {
+struct Q3Player: Player {
     
-    public let name: String
-    public let ping: String
-    public let score: String
+    let name: String
+    let ping: String
+    let score: String
     
-    public init?(line: String) {
+    init?(line: String) {
         
         guard !line.isEmpty else {
             return nil

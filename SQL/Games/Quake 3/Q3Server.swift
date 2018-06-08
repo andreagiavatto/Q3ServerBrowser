@@ -7,20 +7,20 @@
 
 import Foundation
 
-public class Q3Server: NSObject, Server {
+class Q3Server: NSObject, Server {
     
-    @objc public internal(set) var ping: String = ""
-    @objc public let ip: String
-    public let port: String
-    public internal(set) var originalName: String = ""
-    @objc public internal(set) var name: String = ""
-    @objc public internal(set) var map: String = ""
-    public internal(set) var maxPlayers: String = ""
-    @objc public internal(set) var currentPlayers: String = ""
-    @objc public internal(set) var mod: String = ""
-    @objc public internal(set) var gametype: String = ""
-    public var rules: [String: String] = [:]
-    public var players: [Player]? = nil
+    @objc internal(set) var ping: String = ""
+    @objc let ip: String
+    let port: String
+    internal(set) var originalName: String = ""
+    @objc internal(set) var name: String = ""
+    @objc internal(set) var map: String = ""
+    internal(set) var maxPlayers: String = ""
+    @objc internal(set) var currentPlayers: String = ""
+    @objc internal(set) var mod: String = ""
+    @objc internal(set) var gametype: String = ""
+    var rules: [String: String] = [:]
+    var players: [Player]? = nil
 
     required public init(ip: String, port: String) {
         self.ip = ip
@@ -28,7 +28,7 @@ public class Q3Server: NSObject, Server {
         super.init()
     }
     
-    public func update(with serverInfo: [String: String]?, ping: String) {
+    func update(with serverInfo: [String: String]?, ping: String) {
         
         guard let serverInfo = serverInfo, !serverInfo.isEmpty else {
             return

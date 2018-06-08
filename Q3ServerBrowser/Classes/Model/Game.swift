@@ -7,20 +7,21 @@
 //
 
 import Foundation
+import SQL
 
 class Game: NSObject {
     
-    let title: String
+    let type: SupportedGame
     var masterServerAddress: String
     var serverPort: String
 
-    init(title: String, masterServerAddress: String, serverPort: String) {
-        self.title = title
+    init(type: SupportedGame, masterServerAddress: String, serverPort: String) {
+        self.type = type
         self.masterServerAddress = masterServerAddress
         self.serverPort = serverPort
     }
     
     override var description: String {
-        return "<Game : \(self)> title: \(title), masterServerAddress: \(masterServerAddress), masterServerPort: \(serverPort)"
+        return "<Game: \(self)> master server: \(masterServerAddress):\(serverPort)"
     }
 }

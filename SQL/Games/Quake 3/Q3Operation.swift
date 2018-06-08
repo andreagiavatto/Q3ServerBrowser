@@ -10,15 +10,15 @@ import CocoaAsyncSocket
 
 let socketDelegateQueue = DispatchQueue.main
 
-public class Q3Operation: Operation {
+class Q3Operation: Operation {
     
-    public let ip: String
-    public let port: UInt16
+    let ip: String
+    let port: UInt16
     let requestMarker: [UInt8]
     let responseMarker: [UInt8]
     
-    public fileprivate(set) var data = Data()
-    public fileprivate(set) var executionTime: TimeInterval = 0.0
+    fileprivate(set) var data = Data()
+    fileprivate(set) var executionTime: TimeInterval = 0.0
     fileprivate(set) var error: Error?
     fileprivate var startTime: TimeInterval?
     private var socket: GCDAsyncUdpSocket?
@@ -26,7 +26,7 @@ public class Q3Operation: Operation {
     fileprivate(set) var timeoutOccurred = false
     private let timeout: TimeInterval = 1.0
     
-    required public init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8]) {
+    required init(ip: String, port: UInt16, requestMarker: [UInt8], responseMarker: [UInt8]) {
         self.ip = ip
         self.port = port
         self.requestMarker = requestMarker
@@ -39,7 +39,7 @@ public class Q3Operation: Operation {
         socket?.setMaxReceiveIPv6BufferSize(8192)
     }
     
-    override public var isAsynchronous: Bool {
+    override var isAsynchronous: Bool {
         return true
     }
     
@@ -52,7 +52,7 @@ public class Q3Operation: Operation {
         }
     }
     
-    override public var isExecuting: Bool {
+    override var isExecuting: Bool {
         return _executing
     }
     
@@ -65,11 +65,11 @@ public class Q3Operation: Operation {
         }
     }
     
-    override public var isFinished: Bool {
+    override var isFinished: Bool {
         return _finished
     }
     
-    override public func start() {
+    override func start() {
         
         guard isCancelled == false else {
             finish()
@@ -112,12 +112,12 @@ extension Q3Operation {
 
 extension Q3Operation: GCDAsyncUdpSocketDelegate {
     
-    public func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
+    func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
         startTime = CFAbsoluteTimeGetCurrent()
         timer = Timer.scheduledTimer(timeInterval: timeout, target: self, selector: #selector(didNotReceiveResponseInTime), userInfo: nil, repeats: false)
     }
     
-    public func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
         
         timer?.invalidate()
         timer = nil
@@ -141,7 +141,7 @@ extension Q3Operation: GCDAsyncUdpSocketDelegate {
         finish()
     }
     
-    public func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
+    func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error?) {
         timer?.invalidate()
         timer = nil
         self.error = error

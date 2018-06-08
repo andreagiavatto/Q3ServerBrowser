@@ -8,8 +8,10 @@
 
 "EmptyServersList" = "No servers yet, hit 'Refresh' to query the master server";
 
-"AlertNoServersMessage" = "No Server Selected";
-"AlertNoServersMessageInformative" = "Please refresh the list of servers and select one to connect to.";
+"AlertNoServersMessage" = "No Server Selected!";
+"AlertNoServersMessageInformative" = "Refresh the list of servers before connecting.";
 
 "AlertAppNotFoundMessage" = "Game not found";
 "AlertAppNotFoundMessageInformative" = "Please select the folder containing the ioquake 3 executable.";
+
+"AlertAppNotLaunchedMessage" = "Error Launching The Game";

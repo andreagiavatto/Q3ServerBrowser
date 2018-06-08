@@ -7,15 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220FEABA20CA8D0600A63F14 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAB920CA8D0600A63F14 /* WindowController.swift */; };
+		220FEABC20CA8FAF00A63F14 /* TopSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEABB20CA8FAF00A63F14 /* TopSplitViewController.swift */; };
+		220FEABE20CA8FD000A63F14 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEABD20CA8FD000A63F14 /* ServersViewController.swift */; };
+		220FEAC020CA8FDF00A63F14 /* ServerStatusSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEABF20CA8FDF00A63F14 /* ServerStatusSplitViewController.swift */; };
+		220FEAC220CA8FEC00A63F14 /* ServerRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAC120CA8FEC00A63F14 /* ServerRulesViewController.swift */; };
+		220FEAC420CA8FFA00A63F14 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAC320CA8FFA00A63F14 /* PlayersViewController.swift */; };
+		220FEACF20CAB76700A63F14 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAC820CAB76700A63F14 /* Q3Coordinator.swift */; };
+		220FEAD020CAB76700A63F14 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAC920CAB76700A63F14 /* Q3Server.swift */; };
+		220FEAD120CAB76700A63F14 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEACA20CAB76700A63F14 /* Q3ServerController.swift */; };
+		220FEAD220CAB76700A63F14 /* Q3Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEACB20CAB76700A63F14 /* Q3Player.swift */; };
+		220FEAD320CAB76700A63F14 /* Q3Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEACC20CAB76700A63F14 /* Q3Parser.swift */; };
+		220FEAD420CAB76800A63F14 /* Q3Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEACD20CAB76700A63F14 /* Q3Operation.swift */; };
+		220FEAD520CAB76800A63F14 /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEACE20CAB76700A63F14 /* Q3MasterServerController.swift */; };
+		220FEAD720CAB90200A63F14 /* SQLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAD620CAB90200A63F14 /* SQLError.swift */; };
+		220FEAD920CAB9C300A63F14 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAD820CAB9C300A63F14 /* Games.swift */; };
+		220FEADB20CABA3300A63F14 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEADA20CABA3300A63F14 /* Coordinator.swift */; };
+		2229F6AF20C6C94200E87840 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A720C6C94200E87840 /* Colors.xcassets */; };
+		2229F6B020C6C94200E87840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A820C6C94200E87840 /* Localizable.strings */; };
+		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
+		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
 		2278E81620BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
 		2278E81D20BC28FB005E72A3 /* SQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E81C20BC28FB005E72A3 /* SQLTests.swift */; };
 		2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
-		2278E83120BC291A005E72A3 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82B20BC291A005E72A3 /* Q3ServerController.swift */; };
-		2278E83220BC291A005E72A3 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82C20BC291A005E72A3 /* Q3Server.swift */; };
-		2278E83320BC291A005E72A3 /* Q3Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82D20BC291A005E72A3 /* Q3Parser.swift */; };
-		2278E83420BC291A005E72A3 /* Q3Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82E20BC291A005E72A3 /* Q3Player.swift */; };
-		2278E83520BC291A005E72A3 /* Q3Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E82F20BC291A005E72A3 /* Q3Operation.swift */; };
-		2278E83620BC291A005E72A3 /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83020BC291A005E72A3 /* Q3MasterServerController.swift */; };
 		2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83720BC2A54005E72A3 /* Parsable.swift */; };
 		2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83920BC2AF7005E72A3 /* Player.swift */; };
 		2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83A20BC2AF7005E72A3 /* Server.swift */; };
@@ -25,14 +39,8 @@
 		2278E84220BC343C005E72A3 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7D1F10427A00498384 /* AppDelegate.swift */; };
-		A2359FA81F10427A00498384 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7F1F10427A00498384 /* Constants.swift */; };
-		A2359FAA1F10427A00498384 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F841F10427A00498384 /* Q3Coordinator.swift */; };
 		A2359FB01F10427A00498384 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F8F1F10427A00498384 /* Game.swift */; };
-		A2359FBB1F10427A00498384 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359FA01F10427A00498384 /* ViewController.swift */; };
-		A2359FBD1F10427A00498384 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA31F10427A00498384 /* MainMenu.xib */; };
-		A2359FBE1F10427A00498384 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2359FA51F10427A00498384 /* Images.xcassets */; };
 		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
-		A2DD851D1F1B815D00C1AF9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2DD851F1F1B815D00C1AF9B /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,18 +84,33 @@
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		220FEAB920CA8D0600A63F14 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		220FEABB20CA8FAF00A63F14 /* TopSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSplitViewController.swift; sourceTree = "<group>"; };
+		220FEABD20CA8FD000A63F14 /* ServersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
+		220FEABF20CA8FDF00A63F14 /* ServerStatusSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatusSplitViewController.swift; sourceTree = "<group>"; };
+		220FEAC120CA8FEC00A63F14 /* ServerRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRulesViewController.swift; sourceTree = "<group>"; };
+		220FEAC320CA8FFA00A63F14 /* PlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewController.swift; sourceTree = "<group>"; };
+		220FEAC820CAB76700A63F14 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
+		220FEAC920CAB76700A63F14 /* Q3Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Server.swift; sourceTree = "<group>"; };
+		220FEACA20CAB76700A63F14 /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
+		220FEACB20CAB76700A63F14 /* Q3Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Player.swift; sourceTree = "<group>"; };
+		220FEACC20CAB76700A63F14 /* Q3Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Parser.swift; sourceTree = "<group>"; };
+		220FEACD20CAB76700A63F14 /* Q3Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Operation.swift; sourceTree = "<group>"; };
+		220FEACE20CAB76700A63F14 /* Q3MasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3MasterServerController.swift; sourceTree = "<group>"; };
+		220FEAD620CAB90200A63F14 /* SQLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLError.swift; sourceTree = "<group>"; };
+		220FEAD820CAB9C300A63F14 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
+		220FEADA20CABA3300A63F14 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		2229F6A720C6C94200E87840 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		2229F6A920C6C94200E87840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2229F6AA20C6C94200E87840 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2229F6AD20C6C94200E87840 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
+		2229F6AE20C6C94200E87840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2229F6E320C6D6CA00E87840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2278E80D20BC28FA005E72A3 /* SQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2278E80F20BC28FA005E72A3 /* SQL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQL.h; sourceTree = "<group>"; };
 		2278E81020BC28FA005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2278E81520BC28FB005E72A3 /* SQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2278E81C20BC28FB005E72A3 /* SQLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTests.swift; sourceTree = "<group>"; };
 		2278E81E20BC28FB005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2278E82B20BC291A005E72A3 /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
-		2278E82C20BC291A005E72A3 /* Q3Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Server.swift; sourceTree = "<group>"; };
-		2278E82D20BC291A005E72A3 /* Q3Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Parser.swift; sourceTree = "<group>"; };
-		2278E82E20BC291A005E72A3 /* Q3Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Player.swift; sourceTree = "<group>"; };
-		2278E82F20BC291A005E72A3 /* Q3Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Operation.swift; sourceTree = "<group>"; };
-		2278E83020BC291A005E72A3 /* Q3MasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3MasterServerController.swift; sourceTree = "<group>"; };
 		2278E83720BC2A54005E72A3 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
 		2278E83920BC2AF7005E72A3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2278E83A20BC2AF7005E72A3 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -96,17 +119,9 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2359F7D1F10427A00498384 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A2359F7F1F10427A00498384 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		A2359F841F10427A00498384 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
 		A2359F8F1F10427A00498384 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		A2359FA01F10427A00498384 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A2359FA51F10427A00498384 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A2359FA61F10427A00498384 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
 		A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		A2DD85181F1B5B7700C1AF9B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		A2DD851A1F1B80C700C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		A2DD851E1F1B815D00C1AF9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A2DD85201F1B816200C1AF9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,16 +163,60 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		220FEAC520CAB76700A63F14 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				220FEAC620CAB76700A63F14 /* Quake 3 */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		220FEAC620CAB76700A63F14 /* Quake 3 */ = {
+			isa = PBXGroup;
+			children = (
+				220FEAC720CAB76700A63F14 /* Coordinator */,
+				220FEAC920CAB76700A63F14 /* Q3Server.swift */,
+				220FEACA20CAB76700A63F14 /* Q3ServerController.swift */,
+				220FEACB20CAB76700A63F14 /* Q3Player.swift */,
+				220FEACC20CAB76700A63F14 /* Q3Parser.swift */,
+				220FEACD20CAB76700A63F14 /* Q3Operation.swift */,
+				220FEACE20CAB76700A63F14 /* Q3MasterServerController.swift */,
+			);
+			path = "Quake 3";
+			sourceTree = "<group>";
+		};
+		220FEAC720CAB76700A63F14 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				220FEAC820CAB76700A63F14 /* Q3Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		2229F6A620C6C94200E87840 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2229F6A720C6C94200E87840 /* Colors.xcassets */,
+				2229F6A820C6C94200E87840 /* Localizable.strings */,
+				2229F6AD20C6C94200E87840 /* Q3ServerBrowser-Info.plist */,
+				2229F6AE20C6C94200E87840 /* Images.xcassets */,
+				2229F6E320C6D6CA00E87840 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		2278E80E20BC28FA005E72A3 /* SQL */ = {
 			isa = PBXGroup;
 			children = (
-				2278E80F20BC28FA005E72A3 /* SQL.h */,
 				2278E81020BC28FA005E72A3 /* Info.plist */,
 				2278E83A20BC2AF7005E72A3 /* Server.swift */,
 				2278E83920BC2AF7005E72A3 /* Player.swift */,
+				220FEAC520CAB76700A63F14 /* Games */,
 				2278E83E20BC2EF0005E72A3 /* Utilities */,
-				2278E82A20BC291A005E72A3 /* Quake3 */,
 				2278E83720BC2A54005E72A3 /* Parsable.swift */,
+				220FEAD620CAB90200A63F14 /* SQLError.swift */,
+				220FEAD820CAB9C300A63F14 /* Games.swift */,
+				220FEADA20CABA3300A63F14 /* Coordinator.swift */,
 			);
 			path = SQL;
 			sourceTree = "<group>";
@@ -169,19 +228,6 @@
 				2278E81E20BC28FB005E72A3 /* Info.plist */,
 			);
 			path = SQLTests;
-			sourceTree = "<group>";
-		};
-		2278E82A20BC291A005E72A3 /* Quake3 */ = {
-			isa = PBXGroup;
-			children = (
-				2278E82B20BC291A005E72A3 /* Q3ServerController.swift */,
-				2278E82C20BC291A005E72A3 /* Q3Server.swift */,
-				2278E82D20BC291A005E72A3 /* Q3Parser.swift */,
-				2278E82E20BC291A005E72A3 /* Q3Player.swift */,
-				2278E82F20BC291A005E72A3 /* Q3Operation.swift */,
-				2278E83020BC291A005E72A3 /* Q3MasterServerController.swift */,
-			);
-			path = Quake3;
 			sourceTree = "<group>";
 		};
 		2278E83E20BC2EF0005E72A3 /* Utilities */ = {
@@ -220,10 +266,7 @@
 			children = (
 				A2359F7D1F10427A00498384 /* AppDelegate.swift */,
 				A2359F7E1F10427A00498384 /* Classes */,
-				A2359FA31F10427A00498384 /* MainMenu.xib */,
-				A2359FA51F10427A00498384 /* Images.xcassets */,
-				A2359FA61F10427A00498384 /* Q3ServerBrowser-Info.plist */,
-				A2DD851F1F1B815D00C1AF9B /* Localizable.strings */,
+				2229F6A620C6C94200E87840 /* Resources */,
 			);
 			path = Q3ServerBrowser;
 			sourceTree = "<group>";
@@ -231,37 +274,12 @@
 		A2359F7E1F10427A00498384 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A2359F7F1F10427A00498384 /* Constants.swift */,
-				A2359F811F10427A00498384 /* Games */,
 				A2359F8E1F10427A00498384 /* Model */,
 				A2359F9F1F10427A00498384 /* ViewController */,
 				A2DD85181F1B5B7700C1AF9B /* Utilities.swift */,
+				220FEAB920CA8D0600A63F14 /* WindowController.swift */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		A2359F811F10427A00498384 /* Games */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F821F10427A00498384 /* Quake 3 */,
-			);
-			path = Games;
-			sourceTree = "<group>";
-		};
-		A2359F821F10427A00498384 /* Quake 3 */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F831F10427A00498384 /* Coordinator */,
-			);
-			path = "Quake 3";
-			sourceTree = "<group>";
-		};
-		A2359F831F10427A00498384 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F841F10427A00498384 /* Q3Coordinator.swift */,
-			);
-			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		A2359F8E1F10427A00498384 /* Model */ = {
@@ -275,7 +293,11 @@
 		A2359F9F1F10427A00498384 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A2359FA01F10427A00498384 /* ViewController.swift */,
+				220FEABB20CA8FAF00A63F14 /* TopSplitViewController.swift */,
+				220FEABD20CA8FD000A63F14 /* ServersViewController.swift */,
+				220FEABF20CA8FDF00A63F14 /* ServerStatusSplitViewController.swift */,
+				220FEAC120CA8FEC00A63F14 /* ServerRulesViewController.swift */,
+				220FEAC320CA8FFA00A63F14 /* PlayersViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -365,7 +387,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				TargetAttributes = {
 					2278E80C20BC28FA005E72A3 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -427,9 +449,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2359FBE1F10427A00498384 /* Images.xcassets in Resources */,
-				A2DD851D1F1B815D00C1AF9B /* Localizable.strings in Resources */,
-				A2359FBD1F10427A00498384 /* MainMenu.xib in Resources */,
+				2229F6B320C6C94200E87840 /* Images.xcassets in Resources */,
+				2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */,
+				2229F6AF20C6C94200E87840 /* Colors.xcassets in Resources */,
+				2229F6B020C6C94200E87840 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,16 +463,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220FEAD120CAB76700A63F14 /* Q3ServerController.swift in Sources */,
+				220FEAD420CAB76800A63F14 /* Q3Operation.swift in Sources */,
+				220FEAD920CAB9C300A63F14 /* Games.swift in Sources */,
 				2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */,
+				220FEAD320CAB76700A63F14 /* Q3Parser.swift in Sources */,
+				220FEAD220CAB76700A63F14 /* Q3Player.swift in Sources */,
+				220FEADB20CABA3300A63F14 /* Coordinator.swift in Sources */,
+				220FEACF20CAB76700A63F14 /* Q3Coordinator.swift in Sources */,
 				2278E84020BC2EF0005E72A3 /* String+Q3Name.swift in Sources */,
-				2278E83220BC291A005E72A3 /* Q3Server.swift in Sources */,
-				2278E83520BC291A005E72A3 /* Q3Operation.swift in Sources */,
-				2278E83120BC291A005E72A3 /* Q3ServerController.swift in Sources */,
+				220FEAD520CAB76800A63F14 /* Q3MasterServerController.swift in Sources */,
 				2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */,
-				2278E83320BC291A005E72A3 /* Q3Parser.swift in Sources */,
+				220FEAD020CAB76700A63F14 /* Q3Server.swift in Sources */,
 				2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */,
-				2278E83620BC291A005E72A3 /* Q3MasterServerController.swift in Sources */,
-				2278E83420BC291A005E72A3 /* Q3Player.swift in Sources */,
+				220FEAD720CAB90200A63F14 /* SQLError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,12 +492,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2359FAA1F10427A00498384 /* Q3Coordinator.swift in Sources */,
+				220FEABA20CA8D0600A63F14 /* WindowController.swift in Sources */,
 				A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */,
+				220FEAC420CA8FFA00A63F14 /* PlayersViewController.swift in Sources */,
+				220FEAC020CA8FDF00A63F14 /* ServerStatusSplitViewController.swift in Sources */,
 				A2359FB01F10427A00498384 /* Game.swift in Sources */,
-				A2359FBB1F10427A00498384 /* ViewController.swift in Sources */,
-				A2359FA81F10427A00498384 /* Constants.swift in Sources */,
+				220FEAC220CA8FEC00A63F14 /* ServerRulesViewController.swift in Sources */,
 				A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */,
+				220FEABC20CA8FAF00A63F14 /* TopSplitViewController.swift in Sources */,
+				220FEABE20CA8FD000A63F14 /* ServersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,19 +525,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A2359FA31F10427A00498384 /* MainMenu.xib */ = {
+		2229F6A820C6C94200E87840 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A2DD851A1F1B80C700C1AF9B /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		A2DD851F1F1B815D00C1AF9B /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A2DD851E1F1B815D00C1AF9B /* Base */,
-				A2DD85201F1B816200C1AF9B /* en */,
+				2229F6A920C6C94200E87840 /* en */,
+				2229F6AA20C6C94200E87840 /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -530,7 +552,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -585,7 +607,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -716,14 +738,14 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Q3ServerBrowser/Q3ServerBrowser-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Q3ServerBrowser/Resources/Q3ServerBrowser-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -755,14 +777,14 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Q3ServerBrowser/Q3ServerBrowser-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Q3ServerBrowser/Resources/Q3ServerBrowser-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
