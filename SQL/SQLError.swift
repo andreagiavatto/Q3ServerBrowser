@@ -7,6 +7,7 @@
 
 import Foundation
 
-enum SQLError: Error {
-    
+public enum SQLError: Error {
+    case parseError(Server)
+    case custom(String?)
 }

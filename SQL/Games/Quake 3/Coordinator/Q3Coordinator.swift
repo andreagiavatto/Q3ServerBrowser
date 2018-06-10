@@ -85,28 +85,30 @@ extension Q3Coordinator: Q3ServerControllerDelegate {
     
     func serverController(_ controller: Q3ServerController, didFinishFetchingServerInfoWith operation: Q3Operation) {
 
-        if
-            let serverInfo = Q3Parser.parseServer(operation.data),
-            let server = server(ip: operation.ip, port: "\(operation.port)")
-        {
-            server.update(with: serverInfo, ping: String(format: "%.0f", round(operation.executionTime * 1000)))
+        guard let server = server(ip: operation.ip, port: "\(operation.port)") else {
+            return
+        }
+        
+        if let serverInfo = Q3Parser.parseServer(operation.data) {
+            server.update(with: serverInfo, ping: String(format: "%.0f", (operation.executionTime * 1000).rounded()))
             delegate?.coordinator(self, didFinishFetchingInfoFor: server)
         } else {
-            print("\(operation) parse info failed")
+            delegate?.coordinator(self, didFailWith: .parseError(server))
         }
     }
     
     func serverController(_ controller: Q3ServerController, didFinishFetchingServerStatusWith operation: Q3Operation) {
   
-        if
-            let serverStatus = Q3Parser.parseServerStatus(operation.data),
-            var server = server(ip: operation.ip, port: "\(operation.port)")
-        {
+        guard var server = server(ip: operation.ip, port: "\(operation.port)") else {
+            return
+        }
+        
+        if let serverStatus = Q3Parser.parseServerStatus(operation.data) {
             server.rules = serverStatus.rules
             server.players = serverStatus.players
             delegate?.coordinator(self, didFinishFetchingStatusFor: server)
         } else {
-            print("\(operation) parse status failed")
+            delegate?.coordinator(self, didFailWith: .parseError(server))
         }
     }
     
@@ -118,7 +120,7 @@ extension Q3Coordinator: Q3ServerControllerDelegate {
     }
     
     func serverController(_ controller: Q3ServerController, didFinishWithError error: Error?) {
-
+        delegate?.coordinator(self, didFailWith: .custom(error?.localizedDescription))
     }
     
     func serverController(_ controller: Q3ServerController, didFinishFetchingServersInfo: [Server]) {

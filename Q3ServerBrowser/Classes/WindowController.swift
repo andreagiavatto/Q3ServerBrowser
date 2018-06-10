@@ -12,7 +12,6 @@ class WindowController: NSWindowController {
     
     @IBOutlet weak var toolbar: NSToolbar!
     @IBOutlet weak var refreshServersItem: NSToolbarItem!
-    @IBOutlet weak var connectItem: NSToolbarItem!
     @IBOutlet weak var quake3FolderPath: NSPathControl!
     @IBOutlet weak var filterSearchField: NSSearchField!
     @IBOutlet weak var showEmptyButton: NSButton!
@@ -34,6 +33,8 @@ class WindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        window?.title = "Q3ServerBrowser"
+        splitViewController?.serversLabel?.stringValue = NSLocalizedString("EmptyServersList", comment: "")
         splitViewController?.delegate = self
     }
     
@@ -44,9 +45,9 @@ class WindowController: NSWindowController {
         splitViewController?.fetchListOfServers(for: currentGame)
     }
     
-    @IBAction func changeMasterServer(_ sender: NSComboBox) {
+    @IBAction func changeMasterServer(_ sender: NSPopUpButton) {
         
-        guard let newMasterServerAddress = sender.objectValueOfSelectedItem as? String else {
+        guard let newMasterServerAddress = sender.selectedItem?.title else {
             return
         }
         
@@ -144,11 +145,16 @@ extension WindowController: TopSplitViewControllerDelegate {
     
     func didStartFetchingServers(for controller: TopSplitViewController) {
         
+        window?.title = "\(currentGame.masterServerAddress):\(currentGame.serverPort)"
+        splitViewController?.serversLabel?.stringValue = "Fetching servers..."
+        splitViewController?.spinner?.startAnimation(self)
         toolbar.items.map({ $0.isEnabled = false })
     }
     
     func didFinishFetchingServers(for controller: TopSplitViewController) {
         
         toolbar.items.map({ $0.isEnabled = true })
+        splitViewController?.serversLabel?.stringValue = "\(splitViewController?.serversViewController?.numOfServers ?? 0) servers found."
+        splitViewController?.spinner?.stopAnimation(self)
     }
 }

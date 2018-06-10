@@ -13,6 +13,7 @@ public protocol CoordinatorDelegate: NSObjectProtocol {
     func didFinishFetchingServersInfo(for coordinator: Coordinator)
     func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server)
     func coordinator(_ coordinator: Coordinator, didFinishFetchingStatusFor server: Server)
+    func coordinator(_ coordinator: Coordinator, didFailWith error: SQLError)
 }
 
 public protocol Coordinator {

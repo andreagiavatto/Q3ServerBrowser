@@ -19,6 +19,9 @@ class ServersViewController: NSViewController {
     
     weak var delegate: ServersViewControllerDelegate?
     fileprivate var servers = [Server]()
+    var numOfServers: Int {
+        return servers.count
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,13 +131,21 @@ extension ServersViewController: NSTableViewDataSource {
         return servers.count
     }
     
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
         
-        return configureViewForServers(serversTableView, viewFor: tableColumn, row: row)
+        if let sortedServers = (servers as NSArray).sortedArray(using: tableView.sortDescriptors) as? [Server] {
+            servers = sortedServers
+            serversTableView.reloadData()
+        }
     }
 }
 
 extension ServersViewController: NSTableViewDelegate {
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        return configureViewForServers(tableView, viewFor: tableColumn, row: row)
+    }
     
     func tableViewSelectionDidChange(_ aNotification: Notification) {
         
@@ -145,13 +156,5 @@ extension ServersViewController: NSTableViewDelegate {
         let selectedRow = serversTableView.selectedRow
         let server = servers[selectedRow]
         delegate?.serversViewController(self, didSelect: server)
-    }
-    
-    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
-        
-        if let sortedServers = (servers as NSArray).sortedArray(using: tableView.sortDescriptors) as? [Server] {
-            servers = sortedServers
-            serversTableView.reloadData()
-        }
     }
 }

@@ -11,6 +11,7 @@ import SQL
 class ServerRulesViewController: NSViewController {
     
     @IBOutlet weak var rulesTableView: NSTableView!
+    @IBOutlet weak var spinner: NSProgressIndicator!
     
     fileprivate var server: Server?
     
@@ -55,9 +56,12 @@ extension ServerRulesViewController: NSTableViewDataSource {
         
         return server?.rules.keys.count ?? 0
     }
+}
+    
+extension ServerRulesViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        return configureViewForRules(rulesTableView, viewFor: tableColumn, row: row)
+        return configureViewForRules(tableView, viewFor: tableColumn, row: row)
     }
 }

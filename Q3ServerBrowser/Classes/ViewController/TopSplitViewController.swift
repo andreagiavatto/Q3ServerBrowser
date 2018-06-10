@@ -28,6 +28,14 @@ class TopSplitViewController: NSSplitViewController {
         return splitViewItems.first?.viewController as? ServersViewController
     }
     
+    var spinner: NSProgressIndicator? {
+        return serverStatusSplitViewController?.serverRulesViewController?.spinner
+    }
+    
+    var serversLabel: NSTextField? {
+        return serverStatusSplitViewController?.playersViewController?.serversLabel
+    }
+    
     var serverStatusSplitViewController: ServerStatusSplitViewController? {
         return splitViewItems.last?.viewController as? ServerStatusSplitViewController
     }
@@ -121,11 +129,16 @@ extension TopSplitViewController: CoordinatorDelegate {
             self.serverStatusSplitViewController?.updateStatus(for: server)
         }
     }
+    
+    func coordinator(_ coordinator: Coordinator, didFailWith error: SQLError) {
+        
+    }
 }
 
 extension TopSplitViewController: ServersViewControllerDelegate {
     
     func serversViewController(_ controller: ServersViewController, didSelect server: Server) {
+        selectedServer = server
         coordinator?.status(forServer: server)
     }
 }

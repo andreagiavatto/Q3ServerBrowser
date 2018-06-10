@@ -11,6 +11,7 @@ import SQL
 class PlayersViewController: NSViewController {
     
     @IBOutlet weak var playersTableView: NSTableView!
+    @IBOutlet weak var serversLabel: NSTextField!
     
     fileprivate var server: Server?
     
@@ -58,9 +59,12 @@ extension PlayersViewController: NSTableViewDataSource {
 
         return server?.players?.count ?? 0
     }
+}
+    
+extension PlayersViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        return configureViewForPlayers(playersTableView, viewFor: tableColumn, row: row)
+        return configureViewForPlayers(tableView, viewFor: tableColumn, row: row)
     }
 }
