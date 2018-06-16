@@ -14,37 +14,45 @@
                             <menuItem title="Q3ServerBrowser" id="EP2-jP-vKN">
                                 <menu key="submenu" title="Q3ServerBrowser" systemMenu="apple" id="k2I-PC-5mo">
                                     <items>
-                                        <menuItem title="About Q3ServerBrowser" id="k9m-xr-ujb" userLabel="About Q3ServerBrowser">
+                                        <menuItem title="About Q3ServerBrowser" id="TBv-GV-Tdm" userLabel="About Q3ServerBrowser">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="hnw-xV-0zn" id="D5g-cJ-Hpl"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="5Gt-ZV-aHr">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        <menuItem isSeparatorItem="YES" id="Twr-6Q-Zqm"/>
+                                        <menuItem title="Refresh Servers List" keyEquivalent="r" id="Sn0-ln-2AE" userLabel="Refresh Servers List">
+                                            <connections>
+                                                <action selector="refreshServerList:" target="Voe-Tx-rLC" id="jhl-hl-74W"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Refresh Servers List" keyEquivalent="r" id="Sn0-ln-2AE" userLabel="Refresh Servers List"/>
                                         <menuItem isSeparatorItem="YES" id="ZKl-Gz-NKH">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Hide Q3ServerBrowser" keyEquivalent="h" id="PFU-uo-Soq" userLabel="Hide Q3ServerBrowser"/>
+                                        <menuItem title="Hide Q3ServerBrowser" keyEquivalent="h" id="PFU-uo-Soq" userLabel="Hide Q3ServerBrowser">
+                                            <connections>
+                                                <action selector="hide:" target="hnw-xV-0zn" id="z95-S0-FcX"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="zgg-60-qBO">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="hnw-xV-0zn" id="sJv-Ow-4FV"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Show All" id="ydq-88-X0r"/>
+                                        <menuItem title="Show All" id="ydq-88-X0r">
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="hnw-xV-0zn" id="6eO-A2-7Fw"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="UFd-2Y-3ZC">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Quit Q3ServerBrowser" keyEquivalent="q" id="AmV-VF-1WZ" userLabel="Quit Q3ServerBrowser"/>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Window" id="pJP-T3-eNq">
-                                <menu key="submenu" title="Window" systemMenu="window" id="2FZ-bC-Jby">
-                                    <items>
-                                        <menuItem title="Minimize" keyEquivalent="m" id="Hnf-aC-t58"/>
-                                        <menuItem title="Zoom" id="395-aW-YY9"/>
-                                        <menuItem isSeparatorItem="YES" id="FcM-m2-Z42">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        <menuItem title="Quit Q3ServerBrowser" keyEquivalent="q" id="AmV-VF-1WZ" userLabel="Quit Q3ServerBrowser">
+                                            <connections>
+                                                <action selector="terminate:" target="hnw-xV-0zn" id="fIH-pP-4NS"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Bring All to Front" id="pkN-3U-Fhb"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -52,7 +60,11 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="qFG-1t-jmP">
                                     <items>
-                                        <menuItem title="Q3ServerBrowser Help" keyEquivalent="?" id="qxc-S7-zk2" userLabel="Q3ServerBrowser Help"/>
+                                        <menuItem title="Q3ServerBrowser Help" keyEquivalent="?" id="qxc-S7-zk2" userLabel="Q3ServerBrowser Help">
+                                            <connections>
+                                                <action selector="showHelp:" target="hnw-xV-0zn" id="v8P-Dg-Cr5"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -76,7 +88,7 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="750" height="500"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <toolbar key="toolbar" implicitIdentifier="912A5D92-80BC-499A-87AC-AC79875597B1" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="U9X-zZ-KdK">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="AF5592AE-09DF-4F45-BD79-B2E978F52F32" label="Show Empty" paletteLabel="Show Empty" image="toolbarItem:uKl-JQ-z9b:image" id="uKl-JQ-z9b">
@@ -583,11 +595,11 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVr-ie-BRn">
                                 <rect key="frame" x="10" y="0.0" width="430" height="290"/>
                                 <clipView key="contentView" id="1Db-j3-bk5">
-                                    <rect key="frame" x="1" y="0.0" width="428" height="274"/>
+                                    <rect key="frame" x="1" y="0.0" width="428" height="289"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="c0g-Ts-UnP" viewBased="YES" id="iVt-AK-nqi">
-                                            <rect key="frame" x="0.0" y="0.0" width="857" height="251"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="857" height="266"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -833,7 +845,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="ktr-O6-gas">
-                                    <rect key="frame" x="1" y="274" width="428" height="15"/>
+                                    <rect key="frame" x="1" y="273" width="428" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Xot-jk-pcR">

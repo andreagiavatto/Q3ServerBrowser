@@ -14,4 +14,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
     }
+    
+    @IBAction func refreshServerList(_ sender: Any) {
+        if let windowController = NSApplication.shared.keyWindow?.windowController as? WindowController {
+            windowController.refreshServersList(sender)
+        }
+    }
 }
