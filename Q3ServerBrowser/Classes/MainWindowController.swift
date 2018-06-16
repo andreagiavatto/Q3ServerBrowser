@@ -8,7 +8,7 @@
 import AppKit
 import SQL
 
-class WindowController: NSWindowController {
+class MainWindowController: NSWindowController {
     
     @IBOutlet weak var toolbar: NSToolbar!
     @IBOutlet weak var refreshServersItem: NSToolbarItem!
@@ -141,7 +141,7 @@ class WindowController: NSWindowController {
     }
 }
 
-extension WindowController: TopSplitViewControllerDelegate {
+extension MainWindowController: TopSplitViewControllerDelegate {
     
     func didStartFetchingServers(for controller: TopSplitViewController) {
         

@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func refreshServerList(_ sender: Any) {
-        if let windowController = NSApplication.shared.keyWindow?.windowController as? WindowController {
+        if let windowController = NSApplication.shared.keyWindow?.windowController as? MainWindowController {
             windowController.refreshServersList(sender)
         }
     }
