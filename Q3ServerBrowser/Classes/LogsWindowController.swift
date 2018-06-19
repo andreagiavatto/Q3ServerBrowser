@@ -9,5 +9,12 @@ import AppKit
 
 class LogsWindowController: NSWindowController {
     
+    weak var logsViewController: LogsViewController? {
+        return contentViewController as? LogsViewController
+    }
     
+    func append(_ text: String?) {
+        logsViewController?.logsTextView.append(string: text)
+    }
 }
+

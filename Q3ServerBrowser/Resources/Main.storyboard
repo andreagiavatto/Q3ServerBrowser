@@ -56,6 +56,30 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Window" id="43r-xo-bz0">
+                                <menu key="submenu" title="Window" systemMenu="window" id="ROc-jo-GhK">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="Ros-c2-LWd">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="BcG-Vs-3A7"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="nzq-dw-s2q">
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="MVQ-8a-JQP"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="u1d-Uv-o6K">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Bring All to Front" id="toV-8N-60O">
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="FaV-fL-cmw"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Help" id="Q6m-P4-mTK">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="qFG-1t-jmP">
@@ -83,11 +107,11 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="Q3ServerBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="MainWindowControllerID" id="B8D-0N-5wS" customClass="MainWindowController" customModule="Q3ServerBrowser" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="750" height="500"/>
+                        <rect key="contentRect" x="196" y="240" width="750" height="420"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <toolbar key="toolbar" implicitIdentifier="912A5D92-80BC-499A-87AC-AC79875597B1" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="U9X-zZ-KdK">
                             <allowedToolbarItems>
@@ -118,16 +142,16 @@
                                         <action selector="refreshServersList:" target="B8D-0N-5wS" id="jYG-0Q-esK"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="2B5271CA-37B7-45EA-A3C0-80C98D67F2B4" label="Quake 3 folder" paletteLabel="Quake 3 folder" id="ePq-4S-2cb">
+                                <toolbarItem implicitItemIdentifier="2B5271CA-37B7-45EA-A3C0-80C98D67F2B4" label="Quake 3 executable" paletteLabel="Quake 3 executable" id="ePq-4S-2cb">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="120" height="20"/>
-                                    <size key="maxSize" width="206" height="27"/>
+                                    <size key="minSize" width="100" height="20"/>
+                                    <size key="maxSize" width="140" height="27"/>
                                     <pathControl key="view" verticalHuggingPriority="750" allowsExpansionToolTips="YES" id="jcw-6B-Dit">
-                                        <rect key="frame" x="0.0" y="14" width="206" height="27"/>
+                                        <rect key="frame" x="0.0" y="14" width="130" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" pathStyle="popUp" id="of5-H3-n4w">
                                             <font key="font" metaFont="smallSystem"/>
-                                            <url key="url" string="file:///Applications/ioquake3/"/>
+                                            <url key="url" string="file:///Applications/"/>
                                         </pathCell>
                                     </pathControl>
                                 </toolbarItem>
@@ -210,6 +234,7 @@
                                 <toolbarItem reference="U74-aG-CoA"/>
                                 <toolbarItem reference="lc3-j0-lP2"/>
                                 <toolbarItem reference="U74-aG-CoA"/>
+                                <toolbarItem reference="ePq-4S-2cb"/>
                                 <toolbarItem reference="uKl-JQ-z9b"/>
                                 <toolbarItem reference="Ic3-3x-K5V"/>
                                 <toolbarItem reference="Xaa-83-3HI"/>
@@ -221,7 +246,7 @@
                     </window>
                     <connections>
                         <outlet property="filterSearchField" destination="gfB-Vv-qz1" id="KbM-2V-gPa"/>
-                        <outlet property="quake3FolderPath" destination="jcw-6B-Dit" id="d1l-RA-M9O"/>
+                        <outlet property="gameFolderPath" destination="jcw-6B-Dit" id="d1l-RA-M9O"/>
                         <outlet property="refreshServersItem" destination="NGt-CY-iMj" id="iH9-5H-V1b"/>
                         <outlet property="showEmptyButton" destination="A4z-Qj-hFv" id="JGm-Sk-ZFS"/>
                         <outlet property="showFullButton" destination="8mW-NP-6RE" id="29h-vf-kmb"/>
@@ -232,6 +257,77 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="192" y="271"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="5q9-2X-uyD">
+            <objects>
+                <windowController storyboardIdentifier="LogsWindowControllerID" showSeguePresentationStyle="single" id="1w4-RE-Ibv" customClass="LogsWindowController" customModule="Q3ServerBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="rgG-sp-5Z7" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="750" height="200"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="1w4-RE-Ibv" id="niv-Ra-Scn"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="T7k-Bs-M5V" kind="relationship" relationship="window.shadowedContentViewController" id="pca-bg-pDp"/>
+                    </connections>
+                </windowController>
+                <customObject id="On8-Ed-fR4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="968" y="230"/>
+        </scene>
+        <!--Logs View Controller-->
+        <scene sceneID="G88-ht-ssg">
+            <objects>
+                <viewController storyboardIdentifier="LogsViewControllerID" id="T7k-Bs-M5V" customClass="LogsViewController" customModule="Q3ServerBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="bsK-VC-FEh">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="210"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWR-V3-VBh">
+                                <rect key="frame" x="5" y="5" width="470" height="200"/>
+                                <clipView key="contentView" id="H1v-mU-Mvn">
+                                    <rect key="frame" x="1" y="1" width="468" height="198"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Oph-zB-omw">
+                                            <rect key="frame" x="0.0" y="0.0" width="468" height="198"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="468" height="198"/>
+                                            <size key="maxSize" width="470" height="10000000"/>
+                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="S27-z0-cnU">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tMp-BS-00p">
+                                    <rect key="frame" x="453" y="1" width="16" height="198"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="HWR-V3-VBh" firstAttribute="top" secondItem="bsK-VC-FEh" secondAttribute="top" constant="5" id="Bf9-zr-mLG"/>
+                            <constraint firstItem="HWR-V3-VBh" firstAttribute="leading" secondItem="bsK-VC-FEh" secondAttribute="leading" constant="5" id="Dve-RV-gax"/>
+                            <constraint firstAttribute="bottom" secondItem="HWR-V3-VBh" secondAttribute="bottom" constant="5" id="mFK-ha-8gI"/>
+                            <constraint firstAttribute="trailing" secondItem="HWR-V3-VBh" secondAttribute="trailing" constant="5" id="ock-pL-TGU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logsTextView" destination="Oph-zB-omw" id="WFY-gj-56m"/>
+                    </connections>
+                </viewController>
+                <customObject id="vfU-Dk-YuN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="968" y="750"/>
         </scene>
         <!--Top Split View Controller-->
         <scene sceneID="nae-fc-zz6">

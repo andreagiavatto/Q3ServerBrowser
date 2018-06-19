@@ -12,13 +12,15 @@ class MainWindowController: NSWindowController {
     
     @IBOutlet weak var toolbar: NSToolbar!
     @IBOutlet weak var refreshServersItem: NSToolbarItem!
-    @IBOutlet weak var quake3FolderPath: NSPathControl!
+    @IBOutlet weak var gameFolderPath: NSPathControl!
     @IBOutlet weak var filterSearchField: NSSearchField!
     @IBOutlet weak var showEmptyButton: NSButton!
     @IBOutlet weak var showFullButton: NSButton!
     
+    weak var logsWindowController: LogsWindowController?
+    
     private var filterString = ""
-    private var currentGame = Game(type: .quake3, masterServerAddress: "master.ioquake3.org", serverPort: "27950")
+    private var currentGame = Game(type: .quake3, masterServerAddress: "master.ioquake3.org", serverPort: "27950", launchArguments: "+connect")
     
     private var shouldShowEmptyServers: Bool {
         return showEmptyButton.state == .on
@@ -68,28 +70,18 @@ class MainWindowController: NSWindowController {
             return
         }
         
-        guard let pathToFolder = quake3FolderPath.url else {
+        guard let pathToFolder = gameFolderPath.url else {
             displayNoBinarySelectedForGameAlert()
             return
         }
         
-        let folderURLString = pathToFolder.path
-        let executableURLString = folderURLString.appending("/ioquake3-1.36.app/Contents/MacOS/ioquake3.ub")
-        
-        let process = Process()
-        let pipe = Pipe()
-        
-        process.launchPath = executableURLString
-        process.arguments = ["+connect", "\(server.ip):\(server.port)"]
-        process.standardOutput = pipe
-        
-        do {
-            try process.launch()
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            let output = String(data: data, encoding: .utf8)
-        } catch(let error) {
-            displayBinaryLaunchError(error)
+        if logsWindowController == nil {
+            logsWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: Bundle.main).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "LogsWindowControllerID")) as? LogsWindowController
+            logsWindowController?.showWindow(self)
         }
+        
+        let folderPathString = pathToFolder.path
+        connect(to: server, forGame: currentGame, atPath: folderPathString)
     }
     
     @IBAction func filterServers(_ sender: NSSearchField) {
@@ -138,6 +130,58 @@ class MainWindowController: NSWindowController {
         alert.alertStyle = .warning
         alert.addButton(withTitle: "OK")
         alert.runModal()
+    }
+    
+    private func connect(to server: Server, forGame game: Game, atPath path: String) {
+        
+        let appBundle = Bundle(path: path)
+        let executablePath = appBundle?.executablePath
+        
+        let process = Process()
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+        
+        process.launchPath = executablePath
+        process.arguments = [game.launchArguments, "\(server.ip):\(server.port)"]
+        process.standardInput = Pipe()
+        process.standardOutput = outputPipe
+        process.standardError = errorPipe
+        process.terminationHandler = { terminatedProcess in
+            DispatchQueue.main.async {
+                self.logsWindowController?.append("\n----")
+            }
+        }
+        outputPipe.fileHandleForReading.readabilityHandler = { handle in
+            let data = handle.availableData
+            if data.count > 0 {
+                self.processLogData(data)
+                handle.waitForDataInBackgroundAndNotify()
+            }
+        }
+        errorPipe.fileHandleForReading.readabilityHandler = { handle in
+            let data = handle.availableData
+            if data.count > 0 {
+                self.processLogData(data)
+                handle.waitForDataInBackgroundAndNotify()
+            }
+        }
+        
+        do {
+            try process.launch()
+        } catch(let error) {
+            displayBinaryLaunchError(error)
+        }
+    }
+    
+    private func processLogData(_ data: Data) {
+        
+        guard let outputString = String(data: data, encoding: .utf8) else {
+            return
+        }
+
+        DispatchQueue.main.async(execute: {
+            self.logsWindowController?.append("\n" + outputString)
+        })
     }
 }
 

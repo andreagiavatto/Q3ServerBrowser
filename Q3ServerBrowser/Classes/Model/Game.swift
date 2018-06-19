@@ -14,11 +14,13 @@ class Game: NSObject {
     let type: SupportedGame
     var masterServerAddress: String
     var serverPort: String
+    let launchArguments: String
 
-    init(type: SupportedGame, masterServerAddress: String, serverPort: String) {
+    init(type: SupportedGame, masterServerAddress: String, serverPort: String, launchArguments: String) {
         self.type = type
         self.masterServerAddress = masterServerAddress
         self.serverPort = serverPort
+        self.launchArguments = launchArguments
     }
     
     override var description: String {

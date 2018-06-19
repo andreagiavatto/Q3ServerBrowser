@@ -28,6 +28,7 @@
 		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
 		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
 		226E186920D5158700F8F9CA /* LogsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186820D5158700F8F9CA /* LogsWindowController.swift */; };
+		226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186A20D5214800F8F9CA /* LogsViewController.swift */; };
 		2278E81620BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
 		2278E81D20BC28FB005E72A3 /* SQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E81C20BC28FB005E72A3 /* SQLTests.swift */; };
 		2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
@@ -108,6 +109,7 @@
 		2229F6AE20C6C94200E87840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2229F6E320C6D6CA00E87840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		226E186820D5158700F8F9CA /* LogsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsWindowController.swift; sourceTree = "<group>"; };
+		226E186A20D5214800F8F9CA /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		2278E80D20BC28FA005E72A3 /* SQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2278E81020BC28FA005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2278E81520BC28FB005E72A3 /* SQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +303,7 @@
 				220FEABF20CA8FDF00A63F14 /* ServerStatusSplitViewController.swift */,
 				220FEAC120CA8FEC00A63F14 /* ServerRulesViewController.swift */,
 				220FEAC320CA8FFA00A63F14 /* PlayersViewController.swift */,
+				226E186A20D5214800F8F9CA /* LogsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				220FEAC420CA8FFA00A63F14 /* PlayersViewController.swift in Sources */,
 				220FEAC020CA8FDF00A63F14 /* ServerStatusSplitViewController.swift in Sources */,
 				A2359FB01F10427A00498384 /* Game.swift in Sources */,
+				226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */,
 				220FEAC220CA8FEC00A63F14 /* ServerRulesViewController.swift in Sources */,
 				A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */,
 				220FEABC20CA8FAF00A63F14 /* TopSplitViewController.swift in Sources */,
