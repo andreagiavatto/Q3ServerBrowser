@@ -17,7 +17,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var showEmptyButton: NSButton!
     @IBOutlet weak var showFullButton: NSButton!
     
-    weak var logsWindowController: LogsWindowController?
+    var logsWindowController: LogsWindowController?
     
     private var filterString = ""
     private var currentGame = Game(type: .quake3, masterServerAddress: "master.ioquake3.org", serverPort: "27950", launchArguments: "+connect")
@@ -77,11 +77,11 @@ class MainWindowController: NSWindowController {
         
         if logsWindowController == nil {
             logsWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: Bundle.main).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "LogsWindowControllerID")) as? LogsWindowController
-            logsWindowController?.showWindow(self)
         }
         
         let folderPathString = pathToFolder.path
-        connect(to: server, forGame: currentGame, atPath: folderPathString)
+        logsWindowController?.window?.makeKeyAndOrderFront(self)
+        logsWindowController?.connect(to: server, forGame: currentGame, atPath: folderPathString)
     }
     
     @IBAction func filterServers(_ sender: NSSearchField) {
@@ -120,68 +120,6 @@ class MainWindowController: NSWindowController {
         alert.alertStyle = .warning
         alert.addButton(withTitle: "OK")
         alert.runModal()
-    }
-    
-    private func displayBinaryLaunchError(_ error: Error) {
-        
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString("AlertAppNotLaunchedMessage", comment: "")
-        alert.informativeText = error.localizedDescription
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "OK")
-        alert.runModal()
-    }
-    
-    private func connect(to server: Server, forGame game: Game, atPath path: String) {
-        
-        let appBundle = Bundle(path: path)
-        let executablePath = appBundle?.executablePath
-        
-        let process = Process()
-        let outputPipe = Pipe()
-        let errorPipe = Pipe()
-        
-        process.launchPath = executablePath
-        process.arguments = [game.launchArguments, "\(server.ip):\(server.port)"]
-        process.standardInput = Pipe()
-        process.standardOutput = outputPipe
-        process.standardError = errorPipe
-        process.terminationHandler = { terminatedProcess in
-            DispatchQueue.main.async {
-                self.logsWindowController?.append("\n----")
-            }
-        }
-        outputPipe.fileHandleForReading.readabilityHandler = { handle in
-            let data = handle.availableData
-            if data.count > 0 {
-                self.processLogData(data)
-                handle.waitForDataInBackgroundAndNotify()
-            }
-        }
-        errorPipe.fileHandleForReading.readabilityHandler = { handle in
-            let data = handle.availableData
-            if data.count > 0 {
-                self.processLogData(data)
-                handle.waitForDataInBackgroundAndNotify()
-            }
-        }
-        
-        do {
-            try process.launch()
-        } catch(let error) {
-            displayBinaryLaunchError(error)
-        }
-    }
-    
-    private func processLogData(_ data: Data) {
-        
-        guard let outputString = String(data: data, encoding: .utf8) else {
-            return
-        }
-
-        DispatchQueue.main.async(execute: {
-            self.logsWindowController?.append("\n" + outputString)
-        })
     }
 }
 
