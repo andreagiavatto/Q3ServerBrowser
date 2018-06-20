@@ -45,12 +45,17 @@ class TopSplitViewController: NSSplitViewController {
         serversViewController?.delegate = self
     }
     
-    func fetchListOfServers(for game: Game) {
+    func fetchListOfServers(for game: Game, from masterServer: String) {
+        
+        let masterServerComponents = masterServer.components(separatedBy: ":")
+        guard let host = masterServerComponents.first, let port = masterServerComponents.last else {
+            return
+        }
         reset()
         currentGame = game
         coordinator = game.type.coordinator
         coordinator?.delegate = self
-        coordinator?.getServersList(host: game.masterServerAddress, port: game.serverPort)
+        coordinator?.getServersList(host: host, port: port)
         delegate?.didStartFetchingServers(for: self)
     }
     

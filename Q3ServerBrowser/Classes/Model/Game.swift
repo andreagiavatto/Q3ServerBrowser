@@ -11,19 +11,21 @@ import SQL
 
 class Game: NSObject {
     
-    let type: SupportedGame
-    var masterServerAddress: String
-    var serverPort: String
+    let type: SupportedGames
     let launchArguments: String
+    var name: String {
+        return type.name
+    }
+    var masterServersList: [String] {
+        return type.masterServersList
+    }
 
-    init(type: SupportedGame, masterServerAddress: String, serverPort: String, launchArguments: String) {
+    init(type: SupportedGames, launchArguments: String) {
         self.type = type
-        self.masterServerAddress = masterServerAddress
-        self.serverPort = serverPort
         self.launchArguments = launchArguments
     }
     
     override var description: String {
-        return "<Game: \(self)> master server: \(masterServerAddress):\(serverPort)"
+        return "<Game: \(self)> Name: \(type.name)"
     }
 }

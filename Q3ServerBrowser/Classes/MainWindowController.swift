@@ -16,11 +16,13 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var filterSearchField: NSSearchField!
     @IBOutlet weak var showEmptyButton: NSButton!
     @IBOutlet weak var showFullButton: NSButton!
+    @IBOutlet weak var masterServersPopUpButton: NSPopUpButton!
     
     var logsWindowController: LogsWindowController?
     
     private var filterString = ""
-    private var currentGame = Game(type: .quake3, masterServerAddress: "master.ioquake3.org", serverPort: "27950", launchArguments: "+connect")
+    private var currentGame = Game(type: .quake3, launchArguments: "+connect")
+    private var currentMasterServer: String?
     
     private var shouldShowEmptyServers: Bool {
         return showEmptyButton.state == .on
@@ -35,16 +37,25 @@ class MainWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        window?.title = "Q3ServerBrowser"
+        window?.title = currentGame.name
         splitViewController?.serversLabel?.stringValue = NSLocalizedString("EmptyServersList", comment: "")
         splitViewController?.delegate = self
+        let masterServers = currentGame.masterServersList
+        guard masterServers.count > 0 else {
+            return
+        }
+        masterServersPopUpButton.addItems(withTitles: masterServers)
+        masterServersPopUpButton.selectItem(at: 0)
     }
     
     // MARK: - IBActions
     
     @IBAction func refreshServersList(_ sender: Any) {
-        
-        splitViewController?.fetchListOfServers(for: currentGame)
+
+        guard let currentMasterServer = currentMasterServer else {
+            return
+        }
+        splitViewController?.fetchListOfServers(for: currentGame, from: currentMasterServer)
     }
     
     @IBAction func changeMasterServer(_ sender: NSPopUpButton) {
@@ -53,25 +64,18 @@ class MainWindowController: NSWindowController {
             return
         }
         
-        let newMasterServer = newMasterServerAddress.components(separatedBy: ":")
-        
-        guard let host = newMasterServer.first, let port = newMasterServer.last else {
-            return
-        }
-        
-        currentGame.masterServerAddress = host
-        currentGame.serverPort = port
+        currentMasterServer = newMasterServerAddress
     }
     
     @IBAction func connectToServer(_ sender: Any) {
         
         guard let server = splitViewController?.selectedServer else {
-            displayNoSelectedServerAlert()
+            displayAlert(message: NSLocalizedString("AlertNoServersMessage", comment: ""), informativeText: NSLocalizedString("AlertNoServersMessageInformative", comment: ""))
             return
         }
         
         guard let pathToFolder = gameFolderPath.url else {
-            displayNoBinarySelectedForGameAlert()
+            displayAlert(message: NSLocalizedString("AlertAppNotFoundMessage", comment: ""), informativeText: NSLocalizedString("AlertAppNotFoundMessageInformative", comment: ""))
             return
         }
         
@@ -80,7 +84,7 @@ class MainWindowController: NSWindowController {
         }
         
         let folderPathString = pathToFolder.path
-        logsWindowController?.window?.makeKeyAndOrderFront(self)
+        logsWindowController?.showWindow(self)
         logsWindowController?.connect(to: server, forGame: currentGame, atPath: folderPathString)
     }
     
@@ -99,35 +103,12 @@ class MainWindowController: NSWindowController {
         
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
     }
-    
-    // MARK: - Private methods
-    
-    private func displayNoSelectedServerAlert() {
-        
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString("AlertNoServersMessage", comment: "")
-        alert.informativeText = NSLocalizedString("AlertNoServersMessageInformative", comment: "")
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "OK")
-        alert.runModal()
-    }
-    
-    private func displayNoBinarySelectedForGameAlert() {
-        
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString("AlertAppNotFoundMessage", comment: "")
-        alert.informativeText = NSLocalizedString("AlertAppNotFoundMessageInformative", comment: "")
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "OK")
-        alert.runModal()
-    }
 }
 
 extension MainWindowController: TopSplitViewControllerDelegate {
     
     func didStartFetchingServers(for controller: TopSplitViewController) {
         
-        window?.title = "\(currentGame.masterServerAddress):\(currentGame.serverPort)"
         splitViewController?.serversLabel?.stringValue = "Fetching servers..."
         splitViewController?.spinner?.startAnimation(self)
         toolbar.items.map({ $0.isEnabled = false })

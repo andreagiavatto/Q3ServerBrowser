@@ -12,7 +12,6 @@ class LogsViewController: NSViewController {
     @IBOutlet weak var logsTextView: NSTextView!
     
     func append(_ output: String) {
-        logsTextView.append(string: "\n")
         logsTextView.append(string: output)
     }
 }

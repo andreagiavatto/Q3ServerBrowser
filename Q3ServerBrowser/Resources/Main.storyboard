@@ -196,28 +196,10 @@
                                     <popUpButton key="view" verticalHuggingPriority="750" id="va1-V1-bEl">
                                         <rect key="frame" x="0.0" y="14" width="225" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" title="master.ioquake3.org:27950" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="blh-Vp-Lnc" id="ZQa-la-GUd">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZQa-la-GUd" userLabel="list">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
-                                            <menu key="menu" id="NiE-Oq-aRp">
-                                                <items>
-                                                    <menuItem title="master.ioquake3.org:27950" state="on" keyEquivalent="1" id="blh-Vp-Lnc">
-                                                        <attributedString key="attributedTitle"/>
-                                                    </menuItem>
-                                                    <menuItem title="master3.idsoftware.com:27950" keyEquivalent="2" id="cfy-zT-WfE">
-                                                        <attributedString key="attributedTitle"/>
-                                                    </menuItem>
-                                                    <menuItem title="master0.excessiveplus.net:27950" keyEquivalent="3" id="zV1-JQ-ll8">
-                                                        <attributedString key="attributedTitle"/>
-                                                    </menuItem>
-                                                    <menuItem title="master.maverickservers.com:27950" keyEquivalent="4" id="3lh-K9-34t">
-                                                        <attributedString key="attributedTitle"/>
-                                                    </menuItem>
-                                                    <menuItem title="dpmaster.deathmask.net:27950" keyEquivalent="5" id="UEI-MM-lye">
-                                                        <attributedString key="attributedTitle"/>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
+                                            <menu key="menu" id="NiE-Oq-aRp"/>
                                         </popUpButtonCell>
                                         <connections>
                                             <action selector="changeMasterServer:" target="B8D-0N-5wS" id="RLm-qa-0cP"/>
@@ -244,6 +226,7 @@
                     <connections>
                         <outlet property="filterSearchField" destination="gfB-Vv-qz1" id="KbM-2V-gPa"/>
                         <outlet property="gameFolderPath" destination="jcw-6B-Dit" id="d1l-RA-M9O"/>
+                        <outlet property="masterServersPopUpButton" destination="va1-V1-bEl" id="7Sv-GH-0Ht"/>
                         <outlet property="refreshServersItem" destination="NGt-CY-iMj" id="iH9-5H-V1b"/>
                         <outlet property="showEmptyButton" destination="A4z-Qj-hFv" id="JGm-Sk-ZFS"/>
                         <outlet property="showFullButton" destination="8mW-NP-6RE" id="29h-vf-kmb"/>

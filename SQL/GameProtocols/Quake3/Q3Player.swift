@@ -26,7 +26,7 @@ struct Q3Player: Player {
 
         self.score = playerComponents[0]
         self.ping = playerComponents[1]
-        self.name = playerComponents[2].stripQ3Colors()
+        self.name = playerComponents[2].stripQ3Colors().replacingOccurrences(of: "\"", with: "")
     }
 }
 

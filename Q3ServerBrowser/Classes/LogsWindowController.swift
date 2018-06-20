@@ -37,9 +37,6 @@ class LogsWindowController: NSWindowController {
         process?.standardOutput = outputPipe
         process?.standardError = errorPipe
         process?.terminationHandler = { [weak self] terminatedProcess in
-            DispatchQueue.main.async {
-                self?.logsViewController?.append("\n----")
-            }
             self?.process = nil
             self?.outputPipe = nil
             self?.errorPipe = nil
@@ -56,7 +53,7 @@ class LogsWindowController: NSWindowController {
         do {
             try process?.launch()
         } catch(let error) {
-            displayBinaryLaunchError(error)
+            displayAlert(message: NSLocalizedString("AlertAppNotLaunchedMessage", comment: ""), informativeText: error.localizedDescription)
             close()
         }
     }
@@ -66,19 +63,17 @@ class LogsWindowController: NSWindowController {
         guard data.count > 0, let outputString = String(data: data, encoding: .utf8) else {
             return
         }
+        
         DispatchQueue.main.async(execute: {
             self.logsViewController?.append(outputString)
         })
     }
     
-    private func displayBinaryLaunchError(_ error: Error) {
-        
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString("AlertAppNotLaunchedMessage", comment: "")
-        alert.informativeText = error.localizedDescription
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "OK")
-        alert.runModal()
+    private func writeToDisk() {
+//        NSError *error;
+//        NSURL *appSupportDir = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+//        
+//        NSLog(@"%@", appSupportDir);
     }
 }
 
