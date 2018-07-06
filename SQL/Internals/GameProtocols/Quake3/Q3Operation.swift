@@ -10,7 +10,7 @@ import CocoaAsyncSocket
 
 let socketDelegateQueue = DispatchQueue.main
 
-class Q3Operation: Operation {
+class Q3Operation: Operation, QueryOperation {
     
     let ip: String
     let port: UInt16

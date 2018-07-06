@@ -11,6 +11,12 @@ class GSCoordinator: NSObject, Coordinator {
     
     var delegate: CoordinatorDelegate?
     
+    fileprivate let serverController = GSServerController()
+    private var serversList = [Server]()
+    private var toRequestInfo = [Server]()
+    private let masterServerController = GSMasterServerController()
+    private let serverOperationsQueue = DispatchQueue(label: "com.q3browser.gs-server-operations.queue")
+    
     func getServersList(host: String, port: String) {
         
     }

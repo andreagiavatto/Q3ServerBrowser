@@ -23,24 +23,27 @@
 		226E186920D5158700F8F9CA /* LogsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186820D5158700F8F9CA /* LogsWindowController.swift */; };
 		226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186A20D5214800F8F9CA /* LogsViewController.swift */; };
 		2278E81620BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
-		2278E81D20BC28FB005E72A3 /* SQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E81C20BC28FB005E72A3 /* SQLTests.swift */; };
 		2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
 		2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83720BC2A54005E72A3 /* Parsable.swift */; };
 		2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83920BC2AF7005E72A3 /* Player.swift */; };
 		2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83A20BC2AF7005E72A3 /* Server.swift */; };
 		2278E83D20BC2C65005E72A3 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
-		2278E84020BC2EF0005E72A3 /* String+Q3Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83F20BC2EF0005E72A3 /* String+Q3Name.swift */; };
 		2278E84120BC3406005E72A3 /* SQL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2278E84220BC343C005E72A3 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		22CCE7D920DA85160014902A /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7D220DA85160014902A /* Q3Coordinator.swift */; };
-		22CCE7DA20DA85160014902A /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7D320DA85160014902A /* Q3Server.swift */; };
-		22CCE7DB20DA85160014902A /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7D420DA85160014902A /* Q3ServerController.swift */; };
-		22CCE7DC20DA85160014902A /* Q3Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7D520DA85160014902A /* Q3Player.swift */; };
-		22CCE7DD20DA85160014902A /* Q3Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7D620DA85160014902A /* Q3Parser.swift */; };
-		22CCE7DE20DA85160014902A /* Q3Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7D720DA85160014902A /* Q3Operation.swift */; };
-		22CCE7DF20DA85160014902A /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7D820DA85160014902A /* Q3MasterServerController.swift */; };
-		22CCE7E220DA85480014902A /* GSMasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7E120DA85480014902A /* GSMasterServerController.swift */; };
-		22CCE7E520DA85750014902A /* GSCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7E420DA85750014902A /* GSCoordinator.swift */; };
+		22C9C10F20ECFD9200F7CEC1 /* GSCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10220ECFD9100F7CEC1 /* GSCoordinator.swift */; };
+		22C9C11020ECFD9200F7CEC1 /* GSMasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10320ECFD9100F7CEC1 /* GSMasterServerController.swift */; };
+		22C9C11120ECFD9200F7CEC1 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */; };
+		22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */; };
+		22C9C11320ECFD9200F7CEC1 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */; };
+		22C9C11420ECFD9200F7CEC1 /* Q3Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10920ECFD9200F7CEC1 /* Q3Player.swift */; };
+		22C9C11520ECFD9200F7CEC1 /* Q3Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10A20ECFD9200F7CEC1 /* Q3Parser.swift */; };
+		22C9C11620ECFD9200F7CEC1 /* Q3Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10B20ECFD9200F7CEC1 /* Q3Operation.swift */; };
+		22C9C11720ECFD9200F7CEC1 /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10C20ECFD9200F7CEC1 /* Q3MasterServerController.swift */; };
+		22C9C11820ECFD9200F7CEC1 /* String+Q3Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10E20ECFD9200F7CEC1 /* String+Q3Name.swift */; };
+		22C9C11A20ECFDC000F7CEC1 /* MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11920ECFDC000F7CEC1 /* MasterServerController.swift */; };
+		22C9C11C20ED004E00F7CEC1 /* GSServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11B20ED004E00F7CEC1 /* GSServerController.swift */; };
+		22C9C11E20ED006C00F7CEC1 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11D20ED006C00F7CEC1 /* ServerController.swift */; };
+		22C9C12020ED017900F7CEC1 /* QueryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11F20ED017900F7CEC1 /* QueryOperation.swift */; };
 		22CCE7E720DA906B0014902A /* NSWindowController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7D1F10427A00498384 /* AppDelegate.swift */; };
@@ -109,21 +112,24 @@
 		2278E80D20BC28FA005E72A3 /* SQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2278E81020BC28FA005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2278E81520BC28FB005E72A3 /* SQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2278E81C20BC28FB005E72A3 /* SQLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTests.swift; sourceTree = "<group>"; };
 		2278E81E20BC28FB005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2278E83720BC2A54005E72A3 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
 		2278E83920BC2AF7005E72A3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2278E83A20BC2AF7005E72A3 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
-		2278E83F20BC2EF0005E72A3 /* String+Q3Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Q3Name.swift"; sourceTree = "<group>"; };
-		22CCE7D220DA85160014902A /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
-		22CCE7D320DA85160014902A /* Q3Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Server.swift; sourceTree = "<group>"; };
-		22CCE7D420DA85160014902A /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
-		22CCE7D520DA85160014902A /* Q3Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Player.swift; sourceTree = "<group>"; };
-		22CCE7D620DA85160014902A /* Q3Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Parser.swift; sourceTree = "<group>"; };
-		22CCE7D720DA85160014902A /* Q3Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Operation.swift; sourceTree = "<group>"; };
-		22CCE7D820DA85160014902A /* Q3MasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3MasterServerController.swift; sourceTree = "<group>"; };
-		22CCE7E120DA85480014902A /* GSMasterServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSMasterServerController.swift; sourceTree = "<group>"; };
-		22CCE7E420DA85750014902A /* GSCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSCoordinator.swift; sourceTree = "<group>"; };
+		22C9C10220ECFD9100F7CEC1 /* GSCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSCoordinator.swift; sourceTree = "<group>"; };
+		22C9C10320ECFD9100F7CEC1 /* GSMasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMasterServerController.swift; sourceTree = "<group>"; };
+		22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
+		22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Server.swift; sourceTree = "<group>"; };
+		22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
+		22C9C10920ECFD9200F7CEC1 /* Q3Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Player.swift; sourceTree = "<group>"; };
+		22C9C10A20ECFD9200F7CEC1 /* Q3Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Parser.swift; sourceTree = "<group>"; };
+		22C9C10B20ECFD9200F7CEC1 /* Q3Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Operation.swift; sourceTree = "<group>"; };
+		22C9C10C20ECFD9200F7CEC1 /* Q3MasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3MasterServerController.swift; sourceTree = "<group>"; };
+		22C9C10E20ECFD9200F7CEC1 /* String+Q3Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Q3Name.swift"; sourceTree = "<group>"; };
+		22C9C11920ECFDC000F7CEC1 /* MasterServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterServerController.swift; sourceTree = "<group>"; };
+		22C9C11B20ED004E00F7CEC1 /* GSServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSServerController.swift; sourceTree = "<group>"; };
+		22C9C11D20ED006C00F7CEC1 /* ServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
+		22C9C11F20ED017900F7CEC1 /* QueryOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOperation.swift; sourceTree = "<group>"; };
 		22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindowController+Alert.swift"; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -189,10 +195,9 @@
 			isa = PBXGroup;
 			children = (
 				2278E81020BC28FA005E72A3 /* Info.plist */,
+				22C9C0FE20ECFD9100F7CEC1 /* Internals */,
 				2278E83A20BC2AF7005E72A3 /* Server.swift */,
 				2278E83920BC2AF7005E72A3 /* Player.swift */,
-				22CCE7CF20DA85160014902A /* GameProtocols */,
-				2278E83E20BC2EF0005E72A3 /* Utilities */,
 				2278E83720BC2A54005E72A3 /* Parsable.swift */,
 				220FEAD620CAB90200A63F14 /* SQLError.swift */,
 				220FEAD820CAB9C300A63F14 /* SupportedGames.swift */,
@@ -204,66 +209,78 @@
 		2278E81B20BC28FB005E72A3 /* SQLTests */ = {
 			isa = PBXGroup;
 			children = (
-				2278E81C20BC28FB005E72A3 /* SQLTests.swift */,
 				2278E81E20BC28FB005E72A3 /* Info.plist */,
 			);
 			path = SQLTests;
 			sourceTree = "<group>";
 		};
-		2278E83E20BC2EF0005E72A3 /* Utilities */ = {
+		22C9C0FE20ECFD9100F7CEC1 /* Internals */ = {
 			isa = PBXGroup;
 			children = (
-				2278E83F20BC2EF0005E72A3 /* String+Q3Name.swift */,
+				22C9C0FF20ECFD9100F7CEC1 /* GameProtocols */,
+				22C9C10D20ECFD9200F7CEC1 /* Utilities */,
+				22C9C11920ECFDC000F7CEC1 /* MasterServerController.swift */,
+				22C9C11D20ED006C00F7CEC1 /* ServerController.swift */,
+				22C9C11F20ED017900F7CEC1 /* QueryOperation.swift */,
 			);
-			path = Utilities;
+			path = Internals;
 			sourceTree = "<group>";
 		};
-		22CCE7CF20DA85160014902A /* GameProtocols */ = {
+		22C9C0FF20ECFD9100F7CEC1 /* GameProtocols */ = {
 			isa = PBXGroup;
 			children = (
-				22CCE7E020DA852C0014902A /* GameSpy */,
-				22CCE7D020DA85160014902A /* Quake3 */,
+				22C9C10020ECFD9100F7CEC1 /* GameSpy */,
+				22C9C10420ECFD9100F7CEC1 /* Quake3 */,
 			);
 			path = GameProtocols;
 			sourceTree = "<group>";
 		};
-		22CCE7D020DA85160014902A /* Quake3 */ = {
+		22C9C10020ECFD9100F7CEC1 /* GameSpy */ = {
 			isa = PBXGroup;
 			children = (
-				22CCE7D120DA85160014902A /* Coordinator */,
-				22CCE7D320DA85160014902A /* Q3Server.swift */,
-				22CCE7D420DA85160014902A /* Q3ServerController.swift */,
-				22CCE7D520DA85160014902A /* Q3Player.swift */,
-				22CCE7D620DA85160014902A /* Q3Parser.swift */,
-				22CCE7D720DA85160014902A /* Q3Operation.swift */,
-				22CCE7D820DA85160014902A /* Q3MasterServerController.swift */,
-			);
-			path = Quake3;
-			sourceTree = "<group>";
-		};
-		22CCE7D120DA85160014902A /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				22CCE7D220DA85160014902A /* Q3Coordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		22CCE7E020DA852C0014902A /* GameSpy */ = {
-			isa = PBXGroup;
-			children = (
-				22CCE7E320DA85690014902A /* Coordinator */,
-				22CCE7E120DA85480014902A /* GSMasterServerController.swift */,
+				22C9C10120ECFD9100F7CEC1 /* Coordinator */,
+				22C9C10320ECFD9100F7CEC1 /* GSMasterServerController.swift */,
+				22C9C11B20ED004E00F7CEC1 /* GSServerController.swift */,
 			);
 			path = GameSpy;
 			sourceTree = "<group>";
 		};
-		22CCE7E320DA85690014902A /* Coordinator */ = {
+		22C9C10120ECFD9100F7CEC1 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				22CCE7E420DA85750014902A /* GSCoordinator.swift */,
+				22C9C10220ECFD9100F7CEC1 /* GSCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		22C9C10420ECFD9100F7CEC1 /* Quake3 */ = {
+			isa = PBXGroup;
+			children = (
+				22C9C10520ECFD9100F7CEC1 /* Coordinator */,
+				22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */,
+				22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */,
+				22C9C10920ECFD9200F7CEC1 /* Q3Player.swift */,
+				22C9C10A20ECFD9200F7CEC1 /* Q3Parser.swift */,
+				22C9C10B20ECFD9200F7CEC1 /* Q3Operation.swift */,
+				22C9C10C20ECFD9200F7CEC1 /* Q3MasterServerController.swift */,
+			);
+			path = Quake3;
+			sourceTree = "<group>";
+		};
+		22C9C10520ECFD9100F7CEC1 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		22C9C10D20ECFD9200F7CEC1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				22C9C10E20ECFD9200F7CEC1 /* String+Q3Name.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* GameServerBrowser */ = {
@@ -494,22 +511,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22CCE7DB20DA85160014902A /* Q3ServerController.swift in Sources */,
+				22C9C10F20ECFD9200F7CEC1 /* GSCoordinator.swift in Sources */,
 				220FEAD920CAB9C300A63F14 /* SupportedGames.swift in Sources */,
-				22CCE7DD20DA85160014902A /* Q3Parser.swift in Sources */,
-				22CCE7DA20DA85160014902A /* Q3Server.swift in Sources */,
+				22C9C12020ED017900F7CEC1 /* QueryOperation.swift in Sources */,
+				22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */,
+				22C9C11620ECFD9200F7CEC1 /* Q3Operation.swift in Sources */,
+				22C9C11020ECFD9200F7CEC1 /* GSMasterServerController.swift in Sources */,
+				22C9C11820ECFD9200F7CEC1 /* String+Q3Name.swift in Sources */,
 				2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */,
-				22CCE7E220DA85480014902A /* GSMasterServerController.swift in Sources */,
+				22C9C11E20ED006C00F7CEC1 /* ServerController.swift in Sources */,
 				220FEADB20CABA3300A63F14 /* Coordinator.swift in Sources */,
-				2278E84020BC2EF0005E72A3 /* String+Q3Name.swift in Sources */,
+				22C9C11C20ED004E00F7CEC1 /* GSServerController.swift in Sources */,
+				22C9C11120ECFD9200F7CEC1 /* Q3Coordinator.swift in Sources */,
+				22C9C11A20ECFDC000F7CEC1 /* MasterServerController.swift in Sources */,
 				2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */,
-				22CCE7DE20DA85160014902A /* Q3Operation.swift in Sources */,
+				22C9C11520ECFD9200F7CEC1 /* Q3Parser.swift in Sources */,
 				2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */,
-				22CCE7DF20DA85160014902A /* Q3MasterServerController.swift in Sources */,
-				22CCE7E520DA85750014902A /* GSCoordinator.swift in Sources */,
-				22CCE7D920DA85160014902A /* Q3Coordinator.swift in Sources */,
 				220FEAD720CAB90200A63F14 /* SQLError.swift in Sources */,
-				22CCE7DC20DA85160014902A /* Q3Player.swift in Sources */,
+				22C9C11420ECFD9200F7CEC1 /* Q3Player.swift in Sources */,
+				22C9C11720ECFD9200F7CEC1 /* Q3MasterServerController.swift in Sources */,
+				22C9C11320ECFD9200F7CEC1 /* Q3ServerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +538,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2278E81D20BC28FB005E72A3 /* SQLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

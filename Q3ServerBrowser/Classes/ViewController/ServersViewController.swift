@@ -62,7 +62,19 @@ class ServersViewController: NSViewController {
             case 4:
                 sortDescriptor = NSSortDescriptor(key: "currentPlayers", ascending: true)
             case 5:
-                sortDescriptor = NSSortDescriptor(key: "ping", ascending: true)
+                sortDescriptor = NSSortDescriptor.init(key: "ping", ascending: true, comparator: { (first, second) -> ComparisonResult in
+                    if let first = first as? String, let second = second as? String, let f = Int(first), let s = Int(second) {
+                        if f > s {
+                            return .orderedDescending
+                        } else if f == s {
+                            return .orderedSame
+                        } else {
+                            return .orderedAscending
+                        }
+                    }
+                    
+                    return .orderedSame
+                })
             case 6:
                 sortDescriptor = NSSortDescriptor(key: "ip", ascending: true)
             default:
@@ -149,11 +161,12 @@ extension ServersViewController: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ aNotification: Notification) {
         
-        guard let tableView = aNotification.object as? NSTableView else {
+        let selectedRow = serversTableView.selectedRow
+
+        guard let tableView = aNotification.object as? NSTableView, selectedRow >= 0 else {
             return
         }
         
-        let selectedRow = serversTableView.selectedRow
         let server = servers[selectedRow]
         delegate?.serversViewController(self, didSelect: server)
     }

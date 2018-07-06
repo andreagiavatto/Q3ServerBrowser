@@ -56,7 +56,6 @@ class TopSplitViewController: NSSplitViewController {
         coordinator = game.type.coordinator
         coordinator?.delegate = self
         coordinator?.getServersList(host: host, port: port)
-        delegate?.didStartFetchingServers(for: self)
     }
     
     func applyFilters(filterString: String, showEmptyServers: Bool, showFullServers: Bool) {
@@ -110,6 +109,12 @@ class TopSplitViewController: NSSplitViewController {
 }
 
 extension TopSplitViewController: CoordinatorDelegate {
+    
+    func didStartFetchingServersList(for coordinator: Coordinator) {
+        DispatchQueue.main.async {
+            self.delegate?.didStartFetchingServers(for: self)
+        }
+    }
     
     func didFinishFetchingServersList(for coordinator: Coordinator) {
         coordinator.fetchServersInfo()

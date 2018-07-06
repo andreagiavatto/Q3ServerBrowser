@@ -9,24 +9,9 @@
 import Foundation
 import CocoaAsyncSocket
 
-protocol Q3ServerControllerDelegate: NSObjectProtocol {
+class Q3ServerController: NSObject, ServerController {
     
-    func serverController(_ controller: Q3ServerController, didFinishWithError error: Error?)
-    func serverController(_ controller: Q3ServerController, didFinishFetchingServerInfoWith operation: Q3Operation)
-    func serverController(_ controller: Q3ServerController, didFinishFetchingServerStatusWith operation: Q3Operation)
-    func serverController(_ controller: Q3ServerController, didTimeoutFetchingServerInfoWith operation: Q3Operation)
-    func serverController(_ controller: Q3ServerController, didStartFetchingServersInfo: [Server])
-    func serverController(_ controller: Q3ServerController, didFinishFetchingServersInfo: [Server])
-}
-
-extension Q3ServerControllerDelegate {
-    func serverController(_ controller: Q3ServerController, didStartFetchingServersInfo: [Server]) {}
-    func serverController(_ controller: Q3ServerController, didFinishFetchingServersInfo: [Server]) {}
-}
-
-class Q3ServerController: NSObject {
-    
-    weak var delegate: Q3ServerControllerDelegate?
+    weak var delegate: ServerControllerDelegate?
 
     private let serverInfoQueue = OperationQueue()
     private let statusInfoQueue = OperationQueue()

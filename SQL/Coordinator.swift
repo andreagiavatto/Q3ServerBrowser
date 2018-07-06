@@ -9,6 +9,7 @@ import Foundation
 
 public protocol CoordinatorDelegate: NSObjectProtocol {
     
+    func didStartFetchingServersList(for coordinator: Coordinator)
     func didFinishFetchingServersList(for coordinator: Coordinator)
     func didFinishFetchingServersInfo(for coordinator: Coordinator)
     func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server)

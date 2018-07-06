@@ -1,33 +1,21 @@
 //
-//  Q3MasterController.h
-//  ServerQueryLibrary
+//  GSMasterServerController.swift
+//  SQL
 //
-//  Created by Andrea Giavatto on 3/7/14.
+//  Created by Andrea on 20/06/2018.
 //
 
 import Foundation
 import CocoaAsyncSocket
 
-protocol Q3MasterServerControllerDelegate: NSObjectProtocol {
+class GSMasterServerController: NSObject, MasterServerController {
     
-    func didStartFetchingServers(forMasterController controller: Q3MasterServerController)
-    func masterController(_ controller: Q3MasterServerController, didFinishWithError error: Error?)
-    func masterController(_ controller: Q3MasterServerController, didFinishFetchingServersWith data: Data)
-}
-
-extension Q3MasterServerControllerDelegate {
+    weak var delegate: MasterServerControllerDelegate?
     
-    func didStartFetchingServers(forMasterController controller: Q3MasterServerController) {}
-}
-
-class Q3MasterServerController: NSObject {
-    
-    weak var delegate: Q3MasterServerControllerDelegate?
-
-    let masterServerQueue = DispatchQueue(label: "com.sql.master-server.queue")
+    let masterServerQueue = DispatchQueue(label: "com.sql.gs-master-server.queue")
     private var socket: GCDAsyncUdpSocket?
     fileprivate var data = Data()
-    private let getServersRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x20, 0x36, 0x38, 0x20, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x20, 0x66, 0x75, 0x6c, 0x6c]
+    private let getServersRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x20, 0x36, 0x38, 0x20, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x20, 0x66, 0x75, 0x6c, 0x6c] // YYYYgetservers 68 empty full
     fileprivate let getServersResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x5c] // YYYYgetserversResponse\
     fileprivate let eotMarker: [UInt8] = [0x5c, 0x45, 0x4f, 0x54] // \EOT
     
@@ -61,10 +49,10 @@ class Q3MasterServerController: NSObject {
     }
 }
 
-extension Q3MasterServerController: GCDAsyncUdpSocketDelegate {
+extension GSMasterServerController: GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-
+        
         self.data.append(data)
         
         let prefix = String(bytes: getServersResponseMarker, encoding: .ascii)
@@ -94,5 +82,3 @@ extension Q3MasterServerController: GCDAsyncUdpSocketDelegate {
         delegate?.masterController(self, didFinishWithError: error)
     }
 }
-
-
