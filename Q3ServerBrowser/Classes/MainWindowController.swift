@@ -55,7 +55,12 @@ class MainWindowController: NSWindowController {
         guard let currentMasterServer = currentMasterServer else {
             return
         }
-        splitViewController?.fetchListOfServers(for: currentGame, from: currentMasterServer)
+        
+        if let servers = Settings.shared.getServers(for: currentGame, from: currentMasterServer), servers.count > 0 {
+            splitViewController?.refreshServers(for: currentGame, with: servers, from: currentMasterServer)
+        } else {
+            splitViewController?.fetchListOfServers(for: currentGame, from: currentMasterServer)
+        }
     }
     
     @IBAction func changeMasterServer(_ sender: NSPopUpButton) {
@@ -80,7 +85,7 @@ class MainWindowController: NSWindowController {
         }
         
         if logsWindowController == nil {
-            logsWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: Bundle.main).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "LogsWindowControllerID")) as? LogsWindowController
+            logsWindowController = NSStoryboard(name: "Main", bundle: Bundle.main).instantiateController(withIdentifier: "LogsWindowControllerID") as? LogsWindowController
         }
         
         let folderPathString = pathToFolder.path

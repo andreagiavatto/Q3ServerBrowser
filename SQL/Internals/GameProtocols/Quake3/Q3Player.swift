@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Q3Player: Player {
+class Q3Player: NSObject, Player {
     
     let name: String
     let ping: String
     let score: String
     
-    init?(line: String) {
+    required init?(line: String) {
         
         guard !line.isEmpty else {
             return nil
@@ -28,11 +28,24 @@ struct Q3Player: Player {
         self.ping = playerComponents[1]
         self.name = playerComponents[2].stripQ3Colors().replacingOccurrences(of: "\"", with: "")
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
+        self.ping = aDecoder.decodeObject(forKey: "ping") as? String ?? ""
+        self.score = aDecoder.decodeObject(forKey: "score") as? String ?? ""
+        super.init()
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(ping, forKey: "ping")
+        aCoder.encode(score, forKey: "score")
+    }
 }
 
-extension Q3Player: CustomStringConvertible {
+extension Q3Player {
     
-    public var description: String {
+    public override var description: String {
         return "<Q3Player> \(name) (\(ping)) - \(score)"
     }
 }

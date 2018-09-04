@@ -20,8 +20,10 @@ public protocol CoordinatorDelegate: NSObjectProtocol {
 public protocol Coordinator {
     
     var delegate: CoordinatorDelegate? { get set }
+    var serversList: [Server] { get }
     
     func getServersList(host: String, port: String)
+    func refreshStatus(for: [Server])
     func fetchServersInfo()
     func info(forServer server: Server)
     func status(forServer server: Server)

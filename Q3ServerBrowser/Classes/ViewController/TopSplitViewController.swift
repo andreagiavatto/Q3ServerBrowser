@@ -23,6 +23,7 @@ class TopSplitViewController: NSSplitViewController {
     private var servers = [Server]()
     private var filteredServers = [Server]()
     private(set) var selectedServer: Server?
+    private var masterServer: String?
     
     var serversViewController: ServersViewController? {
         return splitViewItems.first?.viewController as? ServersViewController
@@ -45,17 +46,27 @@ class TopSplitViewController: NSSplitViewController {
         serversViewController?.delegate = self
     }
     
-    func fetchListOfServers(for game: Game, from masterServer: String) {
+    func fetchListOfServers(for game: Game, from master: String) {
         
-        let masterServerComponents = masterServer.components(separatedBy: ":")
+        let masterServerComponents = master.components(separatedBy: ":")
         guard let host = masterServerComponents.first, let port = masterServerComponents.last else {
             return
         }
         reset()
         currentGame = game
         coordinator = game.type.coordinator
+        masterServer = master
         coordinator?.delegate = self
         coordinator?.getServersList(host: host, port: port)
+    }
+    
+    func refreshServers(for game: Game, with servers: [Server], from master: String) {
+        reset()
+        currentGame = game
+        coordinator = game.type.coordinator
+        masterServer = master
+        coordinator?.delegate = self
+        coordinator?.refreshStatus(for: servers)
     }
     
     func applyFilters(filterString: String, showEmptyServers: Bool, showFullServers: Bool) {
@@ -122,6 +133,9 @@ extension TopSplitViewController: CoordinatorDelegate {
     
     func didFinishFetchingServersInfo(for coordinator: Coordinator) {
         DispatchQueue.main.async {
+            if let game = self.currentGame, let master = self.masterServer {
+                Settings.shared.saveServers(servers: coordinator.serversList, for: game, from: master)
+            }
             self.delegate?.didFinishFetchingServers(for: self)
         }
     }
@@ -136,6 +150,7 @@ extension TopSplitViewController: CoordinatorDelegate {
     
     func coordinator(_ coordinator: Coordinator, didFinishFetchingStatusFor server: Server) {
         DispatchQueue.main.async {
+            self.serversViewController?.update(server: server)
             self.serverStatusSplitViewController?.updateStatus(for: server)
         }
     }

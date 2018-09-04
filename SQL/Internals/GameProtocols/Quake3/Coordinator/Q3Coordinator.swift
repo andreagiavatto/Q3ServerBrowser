@@ -13,7 +13,7 @@ class Q3Coordinator: NSObject, Coordinator {
     public weak var delegate: CoordinatorDelegate?
 
     fileprivate let serverController = Q3ServerController()
-    private var serversList = [Server]()
+    private(set) var serversList = [Server]()
     private var toRequestInfo = [Server]()
     private let masterServerController = Q3MasterServerController()
     private let serverOperationsQueue = DispatchQueue(label: "com.q3browser.q3-server-operations.queue")
@@ -25,10 +25,17 @@ class Q3Coordinator: NSObject, Coordinator {
     }
     
     public func getServersList(host: String, port: String) {
-        serversList.removeAll()
-        toRequestInfo.removeAll()
-        serverController.clearPendingRequests()
+        clearServers()
         masterServerController.startFetchingServersList(host: host, port: port)
+    }
+    
+    func refreshStatus(for servers: [Server]) {
+        clearServers()
+        self.serversList = servers
+        for server in servers {
+            delegate?.coordinator(self, didFinishFetchingInfoFor: server)
+            status(forServer: server)
+        }
     }
     
     public func fetchServersInfo() {
@@ -59,6 +66,12 @@ class Q3Coordinator: NSObject, Coordinator {
             return server
         }
         return nil
+    }
+    
+    func clearServers() {
+        serversList.removeAll()
+        toRequestInfo.removeAll()
+        serverController.clearPendingRequests()
     }
 }
 
@@ -104,13 +117,14 @@ extension Q3Coordinator: ServerControllerDelegate {
     
     func serverController(_ controller: ServerController, didFinishFetchingServerStatusWith operation: QueryOperation) {
   
-        guard var server = server(ip: operation.ip, port: "\(operation.port)") else {
+        guard let server = server(ip: operation.ip, port: "\(operation.port)") else {
             return
         }
         
         if let serverStatus = Q3Parser.parseServerStatus(operation.data) {
             server.rules = serverStatus.rules
             server.players = serverStatus.players
+            server.update(ping: String(format: "%.0f", (operation.executionTime * 1000).rounded()))
             delegate?.coordinator(self, didFinishFetchingStatusFor: server)
         } else {
             delegate?.coordinator(self, didFailWith: .parseError(server))

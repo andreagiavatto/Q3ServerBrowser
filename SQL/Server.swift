@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Server {
+public protocol Server: NSCoding {
     
     var ping: String { get }
     var ip: String { get }
@@ -25,4 +25,5 @@ public protocol Server {
 
     init(ip: String, port: String)
     func update(with serverInfo: [String: String]?, ping: String)
+    func update(ping: String)
 }

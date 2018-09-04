@@ -28,6 +28,37 @@ class Q3Server: NSObject, Server {
         super.init()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        self.ping = aDecoder.decodeObject(forKey: "ping") as? String ?? ""
+        self.ip = aDecoder.decodeObject(forKey: "ip") as? String ?? ""
+        self.port = aDecoder.decodeObject(forKey: "port") as? String ?? ""
+        self.originalName = aDecoder.decodeObject(forKey: "originalName") as? String ?? ""
+        self.name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
+        self.map = aDecoder.decodeObject(forKey: "map") as? String ?? ""
+        self.maxPlayers = aDecoder.decodeObject(forKey: "maxPlayers") as? String ?? ""
+        self.currentPlayers = aDecoder.decodeObject(forKey: "currentPlayers") as? String ?? ""
+        self.mod = aDecoder.decodeObject(forKey: "mod") as? String ?? ""
+        self.gametype = aDecoder.decodeObject(forKey: "gametype") as? String ?? ""
+        self.rules = aDecoder.decodeObject(forKey: "rules") as? [String: String] ?? [:]
+        self.players = aDecoder.decodeObject(forKey: "players") as? [Player]? ?? nil
+        super.init()
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(ping, forKey: "ping")
+        aCoder.encode(ip, forKey: "ip")
+        aCoder.encode(port, forKey: "port")
+        aCoder.encode(originalName, forKey: "originalName")
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(map, forKey: "map")
+        aCoder.encode(maxPlayers, forKey: "maxPlayers")
+        aCoder.encode(currentPlayers, forKey: "currentPlayers")
+        aCoder.encode(mod, forKey: "mod")
+        aCoder.encode(gametype, forKey: "gametype")
+        aCoder.encode(rules, forKey: "rules")
+        aCoder.encode(players, forKey: "players")
+    }
+
     func update(with serverInfo: [String: String]?, ping: String) {
         
         guard let serverInfo = serverInfo, !serverInfo.isEmpty else {
@@ -70,6 +101,14 @@ class Q3Server: NSObject, Server {
         }
         
         self.name = self.originalName.stripQ3Colors()
+    }
+    
+    func update(ping: String) {
+        
+        guard ping.count > 0 else {
+            return
+        }
+        self.ping = ping
     }
 }
 

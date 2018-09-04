@@ -16,13 +16,13 @@
 		220FEAD720CAB90200A63F14 /* SQLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAD620CAB90200A63F14 /* SQLError.swift */; };
 		220FEAD920CAB9C300A63F14 /* SupportedGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAD820CAB9C300A63F14 /* SupportedGames.swift */; };
 		220FEADB20CABA3300A63F14 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEADA20CABA3300A63F14 /* Coordinator.swift */; };
+		222693FC213D8939002F1E13 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222693FB213D8939002F1E13 /* Settings.swift */; };
 		2229F6AF20C6C94200E87840 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A720C6C94200E87840 /* Colors.xcassets */; };
 		2229F6B020C6C94200E87840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A820C6C94200E87840 /* Localizable.strings */; };
 		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
 		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
 		226E186920D5158700F8F9CA /* LogsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186820D5158700F8F9CA /* LogsWindowController.swift */; };
 		226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186A20D5214800F8F9CA /* LogsViewController.swift */; };
-		2278E81620BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
 		2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
 		2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83720BC2A54005E72A3 /* Parsable.swift */; };
 		2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83920BC2AF7005E72A3 /* Player.swift */; };
@@ -30,8 +30,6 @@
 		2278E83D20BC2C65005E72A3 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
 		2278E84120BC3406005E72A3 /* SQL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2278E84220BC343C005E72A3 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		22C9C10F20ECFD9200F7CEC1 /* GSCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10220ECFD9100F7CEC1 /* GSCoordinator.swift */; };
-		22C9C11020ECFD9200F7CEC1 /* GSMasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10320ECFD9100F7CEC1 /* GSMasterServerController.swift */; };
 		22C9C11120ECFD9200F7CEC1 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */; };
 		22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */; };
 		22C9C11320ECFD9200F7CEC1 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */; };
@@ -41,7 +39,6 @@
 		22C9C11720ECFD9200F7CEC1 /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10C20ECFD9200F7CEC1 /* Q3MasterServerController.swift */; };
 		22C9C11820ECFD9200F7CEC1 /* String+Q3Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10E20ECFD9200F7CEC1 /* String+Q3Name.swift */; };
 		22C9C11A20ECFDC000F7CEC1 /* MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11920ECFDC000F7CEC1 /* MasterServerController.swift */; };
-		22C9C11C20ED004E00F7CEC1 /* GSServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11B20ED004E00F7CEC1 /* GSServerController.swift */; };
 		22C9C11E20ED006C00F7CEC1 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11D20ED006C00F7CEC1 /* ServerController.swift */; };
 		22C9C12020ED017900F7CEC1 /* QueryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11F20ED017900F7CEC1 /* QueryOperation.swift */; };
 		22CCE7E720DA906B0014902A /* NSWindowController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */; };
@@ -52,20 +49,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2278E81720BC28FB005E72A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2278E80C20BC28FA005E72A3;
-			remoteInfo = SQL;
-		};
-		2278E81920BC28FB005E72A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090;
-			remoteInfo = Q3ServerBrowser;
-		};
 		2278E82020BC28FB005E72A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -101,6 +84,7 @@
 		220FEAD620CAB90200A63F14 /* SQLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLError.swift; sourceTree = "<group>"; };
 		220FEAD820CAB9C300A63F14 /* SupportedGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedGames.swift; sourceTree = "<group>"; };
 		220FEADA20CABA3300A63F14 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		222693FB213D8939002F1E13 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2229F6A720C6C94200E87840 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2229F6A920C6C94200E87840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2229F6AA20C6C94200E87840 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -111,13 +95,10 @@
 		226E186A20D5214800F8F9CA /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		2278E80D20BC28FA005E72A3 /* SQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2278E81020BC28FA005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2278E81520BC28FB005E72A3 /* SQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2278E81E20BC28FB005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2278E83720BC2A54005E72A3 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
 		2278E83920BC2AF7005E72A3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2278E83A20BC2AF7005E72A3 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
-		22C9C10220ECFD9100F7CEC1 /* GSCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSCoordinator.swift; sourceTree = "<group>"; };
-		22C9C10320ECFD9100F7CEC1 /* GSMasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMasterServerController.swift; sourceTree = "<group>"; };
 		22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
 		22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Server.swift; sourceTree = "<group>"; };
 		22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
@@ -127,7 +108,6 @@
 		22C9C10C20ECFD9200F7CEC1 /* Q3MasterServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3MasterServerController.swift; sourceTree = "<group>"; };
 		22C9C10E20ECFD9200F7CEC1 /* String+Q3Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Q3Name.swift"; sourceTree = "<group>"; };
 		22C9C11920ECFDC000F7CEC1 /* MasterServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterServerController.swift; sourceTree = "<group>"; };
-		22C9C11B20ED004E00F7CEC1 /* GSServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSServerController.swift; sourceTree = "<group>"; };
 		22C9C11D20ED006C00F7CEC1 /* ServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
 		22C9C11F20ED017900F7CEC1 /* QueryOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOperation.swift; sourceTree = "<group>"; };
 		22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindowController+Alert.swift"; sourceTree = "<group>"; };
@@ -149,14 +129,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2278E81220BC28FB005E72A3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2278E81620BC28FB005E72A3 /* SQL.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,9 +146,16 @@
 			children = (
 				8D1107320486CEB800E47090 /* Q3ServerBrowser.app */,
 				2278E80D20BC28FA005E72A3 /* SQL.framework */,
-				2278E81520BC28FB005E72A3 /* SQLTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		222693FA213D892C002F1E13 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				222693FB213D8939002F1E13 /* Settings.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		2229F6A620C6C94200E87840 /* Resources */ = {
@@ -229,28 +208,9 @@
 		22C9C0FF20ECFD9100F7CEC1 /* GameProtocols */ = {
 			isa = PBXGroup;
 			children = (
-				22C9C10020ECFD9100F7CEC1 /* GameSpy */,
 				22C9C10420ECFD9100F7CEC1 /* Quake3 */,
 			);
 			path = GameProtocols;
-			sourceTree = "<group>";
-		};
-		22C9C10020ECFD9100F7CEC1 /* GameSpy */ = {
-			isa = PBXGroup;
-			children = (
-				22C9C10120ECFD9100F7CEC1 /* Coordinator */,
-				22C9C10320ECFD9100F7CEC1 /* GSMasterServerController.swift */,
-				22C9C11B20ED004E00F7CEC1 /* GSServerController.swift */,
-			);
-			path = GameSpy;
-			sourceTree = "<group>";
-		};
-		22C9C10120ECFD9100F7CEC1 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				22C9C10220ECFD9100F7CEC1 /* GSCoordinator.swift */,
-			);
-			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		22C9C10420ECFD9100F7CEC1 /* Quake3 */ = {
@@ -319,6 +279,7 @@
 		A2359F7E1F10427A00498384 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				222693FA213D892C002F1E13 /* Store */,
 				A2359F8E1F10427A00498384 /* Model */,
 				A2359F9F1F10427A00498384 /* ViewController */,
 				A2DD85181F1B5B7700C1AF9B /* Utilities.swift */,
@@ -389,25 +350,6 @@
 			productReference = 2278E80D20BC28FA005E72A3 /* SQL.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		2278E81420BC28FB005E72A3 /* SQLTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2278E82720BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQLTests" */;
-			buildPhases = (
-				2278E81120BC28FB005E72A3 /* Sources */,
-				2278E81220BC28FB005E72A3 /* Frameworks */,
-				2278E81320BC28FB005E72A3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2278E81820BC28FB005E72A3 /* PBXTargetDependency */,
-				2278E81A20BC28FB005E72A3 /* PBXTargetDependency */,
-			);
-			name = SQLTests;
-			productName = SQLTests;
-			productReference = 2278E81520BC28FB005E72A3 /* SQLTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		8D1107260486CEB800E47090 /* Q3ServerBrowser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Q3ServerBrowser" */;
@@ -440,16 +382,12 @@
 					2278E80C20BC28FA005E72A3 = {
 						CreatedOnToolsVersion = 9.3.1;
 						DevelopmentTeam = WL8LT3PQLC;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
-					};
-					2278E81420BC28FB005E72A3 = {
-						CreatedOnToolsVersion = 9.3.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 8D1107260486CEB800E47090;
 					};
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = WL8LT3PQLC;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -473,20 +411,12 @@
 			targets = (
 				8D1107260486CEB800E47090 /* Q3ServerBrowser */,
 				2278E80C20BC28FA005E72A3 /* SQL */,
-				2278E81420BC28FB005E72A3 /* SQLTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2278E80B20BC28FA005E72A3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2278E81320BC28FB005E72A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -511,17 +441,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C9C10F20ECFD9200F7CEC1 /* GSCoordinator.swift in Sources */,
 				220FEAD920CAB9C300A63F14 /* SupportedGames.swift in Sources */,
 				22C9C12020ED017900F7CEC1 /* QueryOperation.swift in Sources */,
 				22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */,
 				22C9C11620ECFD9200F7CEC1 /* Q3Operation.swift in Sources */,
-				22C9C11020ECFD9200F7CEC1 /* GSMasterServerController.swift in Sources */,
 				22C9C11820ECFD9200F7CEC1 /* String+Q3Name.swift in Sources */,
 				2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */,
 				22C9C11E20ED006C00F7CEC1 /* ServerController.swift in Sources */,
 				220FEADB20CABA3300A63F14 /* Coordinator.swift in Sources */,
-				22C9C11C20ED004E00F7CEC1 /* GSServerController.swift in Sources */,
 				22C9C11120ECFD9200F7CEC1 /* Q3Coordinator.swift in Sources */,
 				22C9C11A20ECFDC000F7CEC1 /* MasterServerController.swift in Sources */,
 				2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */,
@@ -534,19 +461,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2278E81120BC28FB005E72A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				226E186920D5158700F8F9CA /* LogsWindowController.swift in Sources */,
 				220FEABA20CA8D0600A63F14 /* MainWindowController.swift in Sources */,
+				222693FC213D8939002F1E13 /* Settings.swift in Sources */,
 				22CCE7E720DA906B0014902A /* NSWindowController+Alert.swift in Sources */,
 				A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */,
 				220FEAC420CA8FFA00A63F14 /* PlayersViewController.swift in Sources */,
@@ -563,16 +484,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2278E81820BC28FB005E72A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2278E80C20BC28FA005E72A3 /* SQL */;
-			targetProxy = 2278E81720BC28FB005E72A3 /* PBXContainerItemProxy */;
-		};
-		2278E81A20BC28FB005E72A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8D1107260486CEB800E47090 /* Q3ServerBrowser */;
-			targetProxy = 2278E81920BC28FB005E72A3 /* PBXContainerItemProxy */;
-		};
 		2278E82120BC28FB005E72A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2278E80C20BC28FA005E72A3 /* SQL */;
@@ -642,7 +553,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -691,87 +602,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQL;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		2278E82820BC28FB005E72A3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SQLTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQLTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Q3ServerBrowser.app/Contents/MacOS/Q3ServerBrowser";
-			};
-			name = Debug;
-		};
-		2278E82920BC28FB005E72A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SQLTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQLTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Q3ServerBrowser.app/Contents/MacOS/Q3ServerBrowser";
 			};
 			name = Release;
 		};
@@ -811,8 +644,7 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SUPPRESS_WARNINGS = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -849,8 +681,7 @@
 				PRODUCT_NAME = Q3ServerBrowser;
 				SDKROOT = macosx;
 				SWIFT_SUPPRESS_WARNINGS = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -938,15 +769,6 @@
 			buildConfigurations = (
 				2278E82520BC28FB005E72A3 /* Debug */,
 				2278E82620BC28FB005E72A3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2278E82720BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQLTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2278E82820BC28FB005E72A3 /* Debug */,
-				2278E82920BC28FB005E72A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

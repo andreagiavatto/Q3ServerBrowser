@@ -35,6 +35,15 @@ class ServersViewController: NSViewController {
         serversTableView.insertRows(at: IndexSet(integer: servers.count - 1), withAnimation: .effectFade)
     }
     
+    func update(server: Server) {
+        if let index = servers.firstIndex(where: { (s) -> Bool in
+            return server.ip == s.ip && server.port == s.port
+        }) {
+            servers[index] = server
+            serversTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 5))
+        }
+    }
+    
     func updateServers(_ servers: [Server]) {
         clearServers()
         self.servers = servers
@@ -113,11 +122,11 @@ class ServersViewController: NSViewController {
             text = server.ping
             if let ping = Int(server.ping) {
                 if ping <= 60 {
-                    textColor = NSColor(named: NSColor.Name(rawValue: "goodPing"))
+                    textColor = NSColor(named: "goodPing")
                 } else if ping <= 100 {
-                    textColor = NSColor(named: NSColor.Name(rawValue: "averagePing"))
+                    textColor = NSColor(named: "averagePing")
                 } else {
-                    textColor = NSColor(named: NSColor.Name(rawValue: "badPing"))
+                    textColor = NSColor(named: "badPing")
                 }
             }
         case "ip":
