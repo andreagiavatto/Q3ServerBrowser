@@ -40,7 +40,7 @@ class ServersViewController: NSViewController {
             return server.ip == s.ip && server.port == s.port
         }) {
             servers[index] = server
-            serversTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 5))
+            serversTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet.init(integersIn: serversTableView.tableColumns.indices))
         }
     }
     

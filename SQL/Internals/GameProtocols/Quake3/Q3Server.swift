@@ -103,12 +103,13 @@ class Q3Server: NSObject, Server {
         self.name = self.originalName.stripQ3Colors()
     }
     
-    func update(ping: String) {
+    func update(currentPlayers: String, ping: String) {
         
         guard ping.count > 0 else {
             return
         }
         self.ping = ping
+        self.currentPlayers = currentPlayers
     }
 }
 

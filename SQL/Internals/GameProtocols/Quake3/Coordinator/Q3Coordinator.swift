@@ -124,7 +124,7 @@ extension Q3Coordinator: ServerControllerDelegate {
         if let serverStatus = Q3Parser.parseServerStatus(operation.data) {
             server.rules = serverStatus.rules
             server.players = serverStatus.players
-            server.update(ping: String(format: "%.0f", (operation.executionTime * 1000).rounded()))
+            server.update(currentPlayers: String(serverStatus.players.count), ping: String(format: "%.0f", (operation.executionTime * 1000).rounded()))
             delegate?.coordinator(self, didFinishFetchingStatusFor: server)
         } else {
             delegate?.coordinator(self, didFailWith: .parseError(server))

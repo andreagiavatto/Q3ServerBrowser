@@ -46,6 +46,7 @@ class MainWindowController: NSWindowController {
         }
         masterServersPopUpButton.addItems(withTitles: masterServers)
         masterServersPopUpButton.selectItem(at: 0)
+        currentMasterServer = masterServersPopUpButton.selectedItem?.title
     }
     
     // MARK: - IBActions
@@ -124,5 +125,6 @@ extension MainWindowController: TopSplitViewControllerDelegate {
         toolbar.items.map({ $0.isEnabled = true })
         splitViewController?.serversLabel?.stringValue = "\(splitViewController?.serversViewController?.numOfServers ?? 0) servers found."
         splitViewController?.spinner?.stopAnimation(self)
+        (NSApplication.shared.delegate as? AppDelegate)?.updateMenuItemsStatuses()
     }
 }

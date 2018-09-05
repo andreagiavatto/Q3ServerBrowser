@@ -67,6 +67,7 @@ class TopSplitViewController: NSSplitViewController {
         masterServer = master
         coordinator?.delegate = self
         coordinator?.refreshStatus(for: servers)
+        serverStatusSplitViewController?.updateStatus(for: nil)
     }
     
     func applyFilters(filterString: String, showEmptyServers: Bool, showFullServers: Bool) {
@@ -156,7 +157,7 @@ extension TopSplitViewController: CoordinatorDelegate {
     }
     
     func coordinator(_ coordinator: Coordinator, didFailWith error: SQLError) {
-        
+        print(error)
     }
 }
 

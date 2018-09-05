@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.13.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,7 +13,7 @@
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
                             <menuItem title="Q3ServerBrowser" id="EP2-jP-vKN">
-                                <menu key="submenu" title="Q3ServerBrowser" systemMenu="apple" id="k2I-PC-5mo">
+                                <menu key="submenu" title="Q3ServerBrowser" systemMenu="apple" autoenablesItems="NO" id="k2I-PC-5mo">
                                     <items>
                                         <menuItem title="About Q3ServerBrowser" id="TBv-GV-Tdm" userLabel="About Q3ServerBrowser">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -24,6 +25,14 @@
                                         <menuItem title="Refresh Servers List" keyEquivalent="r" id="Sn0-ln-2AE" userLabel="Refresh Servers List">
                                             <connections>
                                                 <action selector="refreshServerList:" target="Voe-Tx-rLC" id="jhl-hl-74W"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Clear Cached Servers" id="1Ir-j2-N9e" userLabel="Clear Cached Servers">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            <connections>
+                                                <action selector="clearSavedServerLists:" target="Voe-Tx-rLC" id="cdM-Zl-Znb"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="ZKl-Gz-NKH">
@@ -98,7 +107,12 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Q3ServerBrowser" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Q3ServerBrowser" customModuleProvider="target">
+                    <connections>
+                        <outlet property="clearCachedServersMenuItem" destination="1Ir-j2-N9e" id="XD4-g5-cak"/>
+                        <outlet property="refreshServersMenuItem" destination="Sn0-ln-2AE" id="ECE-Ny-ddd"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,7 +122,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="MainWindowControllerID" id="B8D-0N-5wS" customClass="MainWindowController" customModule="Q3ServerBrowser" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="750" height="420"/>
@@ -242,7 +256,7 @@
         <scene sceneID="5q9-2X-uyD">
             <objects>
                 <windowController storyboardIdentifier="LogsWindowControllerID" showSeguePresentationStyle="single" id="1w4-RE-Ibv" customClass="LogsWindowController" customModule="Q3ServerBrowser" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Logs" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="rgG-sp-5Z7">
+                    <window key="window" title="Logs" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="rgG-sp-5Z7">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="750" height="200"/>
@@ -269,20 +283,20 @@
                         <subviews>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWR-V3-VBh">
                                 <rect key="frame" x="5" y="5" width="470" height="200"/>
-                                <clipView key="contentView" id="H1v-mU-Mvn">
+                                <clipView key="contentView" drawsBackground="NO" id="H1v-mU-Mvn">
                                     <rect key="frame" x="1" y="1" width="468" height="198"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" fieldEditor="YES" selectionGranularity="word" findStyle="panel" allowsCharacterPickerTouchBarItem="NO" allowsNonContiguousLayout="YES" textCompletion="NO" id="Oph-zB-omw">
                                             <rect key="frame" x="0.0" y="0.0" width="468" height="198"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="468" height="198"/>
                                             <size key="maxSize" width="470" height="10000000"/>
-                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="S27-z0-cnU">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>

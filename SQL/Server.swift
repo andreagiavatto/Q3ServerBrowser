@@ -25,5 +25,5 @@ public protocol Server: NSCoding {
 
     init(ip: String, port: String)
     func update(with serverInfo: [String: String]?, ping: String)
-    func update(ping: String)
+    func update(currentPlayers: String, ping: String)
 }
