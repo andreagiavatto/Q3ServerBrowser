@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Server: NSCoding {
+@objc public protocol Server: NSCoding {
     
     var ping: String { get }
     var ip: String { get }
@@ -22,8 +22,11 @@ public protocol Server: NSCoding {
     var gametype: String { get }
     var rules: [String: String] { get set }
     var players: [Player]? { get set }
+    var inGamePlayers: String { get }
+    var hostname: String { get }
 
     init(ip: String, port: String)
     func update(with serverInfo: [String: String]?, ping: String)
     func update(currentPlayers: String, ping: String)
+    
 }
