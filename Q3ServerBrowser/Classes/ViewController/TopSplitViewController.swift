@@ -117,6 +117,7 @@ class TopSplitViewController: NSSplitViewController {
         }
         
         serversViewController?.updateServers(with: filteredServers)
+        delegate?.didFinishFetchingServers(for: self)
     }
     
     // MARK: - Private methods

@@ -57,11 +57,11 @@ class MainWindowController: NSWindowController {
             return
         }
         
-        if let servers = Settings.shared.getServers(for: currentGame, from: currentMasterServer), servers.count > 0 {
-            splitViewController?.refreshServers(for: currentGame, with: servers, from: currentMasterServer)
-        } else {
+//        if let servers = Settings.shared.getServers(for: currentGame, from: currentMasterServer), servers.count > 0 {
+//            splitViewController?.refreshServers(for: currentGame, with: servers, from: currentMasterServer)
+//        } else {
             splitViewController?.fetchListOfServers(for: currentGame, from: currentMasterServer)
-        }
+//        }
     }
     
     @IBAction func changeMasterServer(_ sender: NSPopUpButton) {
@@ -109,21 +109,25 @@ class MainWindowController: NSWindowController {
         
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
     }
+    
+    fileprivate func updateServersCountLabel() {
+        splitViewController?.serversLabel?.stringValue = "\(splitViewController?.serversViewController?.numOfServers ?? 0) servers found."
+    }
 }
 
 extension MainWindowController: TopSplitViewControllerDelegate {
     
     func didStartFetchingServers(for controller: TopSplitViewController) {
         
+//        toolbar.items.map({ $0.isEnabled = false })
         splitViewController?.serversLabel?.stringValue = "Fetching servers..."
         splitViewController?.spinner?.startAnimation(self)
-        toolbar.items.map({ $0.isEnabled = false })
     }
     
     func didFinishFetchingServers(for controller: TopSplitViewController) {
         
-        toolbar.items.map({ $0.isEnabled = true })
-        splitViewController?.serversLabel?.stringValue = "\(splitViewController?.serversViewController?.numOfServers ?? 0) servers found."
+//        toolbar.items.map({ $0.isEnabled = true })
+        updateServersCountLabel()
         splitViewController?.spinner?.stopAnimation(self)
         (NSApplication.shared.delegate as? AppDelegate)?.updateMenuItemsStatuses()
     }
