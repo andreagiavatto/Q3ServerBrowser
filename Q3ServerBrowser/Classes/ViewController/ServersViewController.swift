@@ -11,6 +11,7 @@ import SQL
 protocol ServersViewControllerDelegate: class {
     
     func serversViewController(_ controller: ServersViewController, didSelect server: Server)
+    func serversViewController(_ controller: ServersViewController, didDoubleClickOn server: Server)
 }
 
 class ServersViewController: NSViewController {
@@ -25,13 +26,27 @@ class ServersViewController: NSViewController {
         return servers.count
     }
     
+    @IBAction func copyHostnameToPasteboard(_ sender: NSTableView) {
+        guard let servers = serversArrayController.content as? [Server] else {
+            return
+        }
+        
+        let server = servers[sender.clickedRow]
+        delegate?.serversViewController(self, didDoubleClickOn: server)
+    }
+    
     func update(server: Server) {
-        if let index = servers.firstIndex(where: { (s) -> Bool in
-            return server.ip == s.ip && server.port == s.port
-        }) {
-            DispatchQueue.main.async {
-                self.servers[index] = server
-            }
+        guard
+            var servers = serversArrayController.content as? [Server],
+            let index = servers.firstIndex(where: { (s) -> Bool in
+                return server.ip == s.ip && server.port == s.port
+            })
+        else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            servers[index] = server
         }
     }
     

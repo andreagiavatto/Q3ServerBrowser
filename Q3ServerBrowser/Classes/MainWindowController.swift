@@ -57,11 +57,11 @@ class MainWindowController: NSWindowController {
             return
         }
         
-//        if let servers = Settings.shared.getServers(for: currentGame, from: currentMasterServer), servers.count > 0 {
-//            splitViewController?.refreshServers(for: currentGame, with: servers, from: currentMasterServer)
-//        } else {
+        if let servers = Settings.shared.getServers(for: currentGame, from: currentMasterServer), servers.count > 0 {
+            splitViewController?.refreshServers(for: currentGame, with: servers, from: currentMasterServer)
+        } else {
             splitViewController?.fetchListOfServers(for: currentGame, from: currentMasterServer)
-//        }
+        }
     }
     
     @IBAction func changeMasterServer(_ sender: NSPopUpButton) {

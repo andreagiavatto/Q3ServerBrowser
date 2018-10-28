@@ -177,4 +177,9 @@ extension TopSplitViewController: ServersViewControllerDelegate {
         selectedServer = server
         coordinator?.status(forServer: server)
     }
+    
+    func serversViewController(_ controller: ServersViewController, didDoubleClickOn server: Server) {
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(server.hostname, forType: .string)
+    }
 }
