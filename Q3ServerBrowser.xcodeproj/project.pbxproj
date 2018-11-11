@@ -21,15 +21,46 @@
 		2229F6B020C6C94200E87840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A820C6C94200E87840 /* Localizable.strings */; };
 		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
 		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
+		224E9CA0219814FA00632F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E9C9F219814FA00632F43 /* AppDelegate.swift */; };
+		224E9CA2219814FA00632F43 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E9CA1219814FA00632F43 /* ServersViewController.swift */; };
+		224E9CA5219814FA00632F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224E9CA3219814FA00632F43 /* Main.storyboard */; };
+		224E9CA7219814FB00632F43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 224E9CA6219814FB00632F43 /* Assets.xcassets */; };
+		224E9CAA219814FB00632F43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224E9CA8219814FB00632F43 /* LaunchScreen.storyboard */; };
+		224E9CEA21981AB900632F43 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CC421981A5200632F43 /* CocoaAsyncSocket.framework */; };
+		224E9CEB21981ABF00632F43 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CC221981A5200632F43 /* CocoaAsyncSocket.framework */; };
+		224E9CEC21981BB200632F43 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83A20BC2AF7005E72A3 /* Server.swift */; };
+		224E9CED21981BB600632F43 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83920BC2AF7005E72A3 /* Player.swift */; };
+		224E9CEE21981BB900632F43 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83720BC2A54005E72A3 /* Parsable.swift */; };
+		224E9CEF21981BBC00632F43 /* SQLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAD620CAB90200A63F14 /* SQLError.swift */; };
+		224E9CF021981BBF00632F43 /* SupportedGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAD820CAB9C300A63F14 /* SupportedGames.swift */; };
+		224E9CF121981BC200632F43 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEADA20CABA3300A63F14 /* Coordinator.swift */; };
+		224E9CF221981BC400632F43 /* QueryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11F20ED017900F7CEC1 /* QueryOperation.swift */; };
+		224E9CF321981BC700632F43 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11D20ED006C00F7CEC1 /* ServerController.swift */; };
+		224E9CF421981BCA00632F43 /* MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C11920ECFDC000F7CEC1 /* MasterServerController.swift */; };
+		224E9CF521981BCE00632F43 /* String+Q3Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10E20ECFD9200F7CEC1 /* String+Q3Name.swift */; };
+		224E9CF621981BD500632F43 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */; };
+		224E9CF721981BD700632F43 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */; };
+		224E9CF821981BDA00632F43 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */; };
+		224E9CF921981BDD00632F43 /* Q3Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10920ECFD9200F7CEC1 /* Q3Player.swift */; };
+		224E9CFA21981BDF00632F43 /* Q3Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10A20ECFD9200F7CEC1 /* Q3Parser.swift */; };
+		224E9CFB21981BE200632F43 /* Q3Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10B20ECFD9200F7CEC1 /* Q3Operation.swift */; };
+		224E9CFC21981BE500632F43 /* Q3MasterServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10C20ECFD9200F7CEC1 /* Q3MasterServerController.swift */; };
+		224E9D2521981DD300632F43 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F8F1F10427A00498384 /* Game.swift */; };
+		224E9D2621981DD300632F43 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F8F1F10427A00498384 /* Game.swift */; };
+		224E9D28219821D000632F43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9D27219821D000632F43 /* Foundation.framework */; };
+		224E9D292198229500632F43 /* SQL_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL_Mac.framework */; };
+		224E9D2A2198229500632F43 /* SQL_Mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL_Mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		224E9D2E219822A300632F43 /* SQL_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CCC21981AA900632F43 /* SQL_iOS.framework */; };
+		224E9D2F219822A300632F43 /* SQL_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CCC21981AA900632F43 /* SQL_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		224E9D332198264200632F43 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CC421981A5200632F43 /* CocoaAsyncSocket.framework */; };
+		224E9D342198264200632F43 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CC421981A5200632F43 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		224E9D352198264C00632F43 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CC221981A5200632F43 /* CocoaAsyncSocket.framework */; };
+		224E9D362198264C00632F43 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 224E9CC221981A5200632F43 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		226E186920D5158700F8F9CA /* LogsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186820D5158700F8F9CA /* LogsWindowController.swift */; };
 		226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186A20D5214800F8F9CA /* LogsViewController.swift */; };
-		2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; };
 		2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83720BC2A54005E72A3 /* Parsable.swift */; };
 		2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83920BC2AF7005E72A3 /* Player.swift */; };
 		2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83A20BC2AF7005E72A3 /* Server.swift */; };
-		2278E83D20BC2C65005E72A3 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; };
-		2278E84120BC3406005E72A3 /* SQL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278E80D20BC28FA005E72A3 /* SQL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2278E84220BC343C005E72A3 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22C9C11120ECFD9200F7CEC1 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */; };
 		22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */; };
 		22C9C11320ECFD9200F7CEC1 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */; };
@@ -44,29 +75,47 @@
 		22CCE7E720DA906B0014902A /* NSWindowController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7D1F10427A00498384 /* AppDelegate.swift */; };
-		A2359FB01F10427A00498384 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F8F1F10427A00498384 /* Game.swift */; };
 		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2278E82020BC28FB005E72A3 /* PBXContainerItemProxy */ = {
+		224E9D2B2198229500632F43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2278E80C20BC28FA005E72A3;
-			remoteInfo = SQL;
+			remoteInfo = "SQL-Mac";
+		};
+		224E9D30219822A300632F43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 224E9CCB21981AA900632F43;
+			remoteInfo = "SQL-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A291E82F1F1219DF00BF5EB1 /* Embed Frameworks */ = {
+		224E9D2D2198229500632F43 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2278E84120BC3406005E72A3 /* SQL.framework in Embed Frameworks */,
-				2278E84220BC343C005E72A3 /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				224E9D342198264200632F43 /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				224E9D2A2198229500632F43 /* SQL_Mac.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		224E9D32219822A300632F43 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				224E9D362198264C00632F43 /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				224E9D2F219822A300632F43 /* SQL_iOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,11 +140,22 @@
 		2229F6AD20C6C94200E87840 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
 		2229F6AE20C6C94200E87840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2229F6E320C6D6CA00E87840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		224E9C9D219814FA00632F43 /* Q3ServerBrowser-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Q3ServerBrowser-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		224E9C9F219814FA00632F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		224E9CA1219814FA00632F43 /* ServersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
+		224E9CA4219814FA00632F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		224E9CA6219814FB00632F43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		224E9CA9219814FB00632F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		224E9CAB219814FB00632F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		224E9CC221981A5200632F43 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		224E9CC421981A5200632F43 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		224E9CCC21981AA900632F43 /* SQL_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		224E9CFD21981CD700632F43 /* Info-Mac.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Mac.plist"; sourceTree = "<group>"; };
+		224E9D2321981D4900632F43 /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
+		224E9D27219821D000632F43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		226E186820D5158700F8F9CA /* LogsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsWindowController.swift; sourceTree = "<group>"; };
 		226E186A20D5214800F8F9CA /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
-		2278E80D20BC28FA005E72A3 /* SQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2278E81020BC28FA005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2278E81E20BC28FB005E72A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2278E80D20BC28FA005E72A3 /* SQL_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQL_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2278E83720BC2A54005E72A3 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
 		2278E83920BC2AF7005E72A3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2278E83A20BC2AF7005E72A3 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -116,16 +176,33 @@
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2359F7D1F10427A00498384 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2359F8F1F10427A00498384 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		A2DD85181F1B5B7700C1AF9B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		224E9C9A219814FA00632F43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224E9D352198264C00632F43 /* CocoaAsyncSocket.framework in Frameworks */,
+				224E9D28219821D000632F43 /* Foundation.framework in Frameworks */,
+				224E9D2E219822A300632F43 /* SQL_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		224E9CC921981AA900632F43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224E9CEB21981ABF00632F43 /* CocoaAsyncSocket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2278E80920BC28FA005E72A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2278E83D20BC2C65005E72A3 /* CocoaAsyncSocket.framework in Frameworks */,
+				224E9CEA21981AB900632F43 /* CocoaAsyncSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,8 +210,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2278E82220BC28FB005E72A3 /* SQL.framework in Frameworks */,
+				224E9D332198264200632F43 /* CocoaAsyncSocket.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				224E9D292198229500632F43 /* SQL_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +223,9 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Q3ServerBrowser.app */,
-				2278E80D20BC28FA005E72A3 /* SQL.framework */,
+				2278E80D20BC28FA005E72A3 /* SQL_Mac.framework */,
+				224E9C9D219814FA00632F43 /* Q3ServerBrowser-iOS.app */,
+				224E9CCC21981AA900632F43 /* SQL_iOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,10 +250,49 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		224E9C9E219814FA00632F43 /* Q3ServerBrowser-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				224E9C9F219814FA00632F43 /* AppDelegate.swift */,
+				224E9CA1219814FA00632F43 /* ServersViewController.swift */,
+				224E9CA3219814FA00632F43 /* Main.storyboard */,
+				224E9CA6219814FB00632F43 /* Assets.xcassets */,
+				224E9CA8219814FB00632F43 /* LaunchScreen.storyboard */,
+				224E9CAB219814FB00632F43 /* Info.plist */,
+			);
+			path = "Q3ServerBrowser-iOS";
+			sourceTree = "<group>";
+		};
+		224E9CC021981A5200632F43 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				224E9CC121981A5200632F43 /* iOS */,
+				224E9CC321981A5200632F43 /* Mac */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		224E9CC121981A5200632F43 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				224E9CC221981A5200632F43 /* CocoaAsyncSocket.framework */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		224E9CC321981A5200632F43 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				224E9CC421981A5200632F43 /* CocoaAsyncSocket.framework */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
 		2278E80E20BC28FA005E72A3 /* SQL */ = {
 			isa = PBXGroup;
 			children = (
-				2278E81020BC28FA005E72A3 /* Info.plist */,
+				224E9CFD21981CD700632F43 /* Info-Mac.plist */,
+				224E9D2321981D4900632F43 /* Info-iOS.plist */,
 				22C9C0FE20ECFD9100F7CEC1 /* Internals */,
 				2278E83A20BC2AF7005E72A3 /* Server.swift */,
 				2278E83920BC2AF7005E72A3 /* Player.swift */,
@@ -181,16 +300,9 @@
 				220FEAD620CAB90200A63F14 /* SQLError.swift */,
 				220FEAD820CAB9C300A63F14 /* SupportedGames.swift */,
 				220FEADA20CABA3300A63F14 /* Coordinator.swift */,
+				A2359F8F1F10427A00498384 /* Game.swift */,
 			);
 			path = SQL;
-			sourceTree = "<group>";
-		};
-		2278E81B20BC28FB005E72A3 /* SQLTests */ = {
-			isa = PBXGroup;
-			children = (
-				2278E81E20BC28FB005E72A3 /* Info.plist */,
-			);
-			path = SQLTests;
 			sourceTree = "<group>";
 		};
 		22C9C0FE20ECFD9100F7CEC1 /* Internals */ = {
@@ -247,18 +359,21 @@
 			isa = PBXGroup;
 			children = (
 				A2359F7C1F10427A00498384 /* Q3ServerBrowser */,
+				224E9C9E219814FA00632F43 /* Q3ServerBrowser-iOS */,
 				2278E80E20BC28FA005E72A3 /* SQL */,
-				2278E81B20BC28FB005E72A3 /* SQLTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
+			indentWidth = 4;
 			name = GameServerBrowser;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A291E8281F10475100BF5EB1 /* ThirdParty */,
+				224E9D27219821D000632F43 /* Foundation.framework */,
+				224E9CC021981A5200632F43 /* ThirdParty */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -280,7 +395,6 @@
 			isa = PBXGroup;
 			children = (
 				222693FA213D892C002F1E13 /* Store */,
-				A2359F8E1F10427A00498384 /* Model */,
 				A2359F9F1F10427A00498384 /* ViewController */,
 				A2DD85181F1B5B7700C1AF9B /* Utilities.swift */,
 				220FEAB920CA8D0600A63F14 /* MainWindowController.swift */,
@@ -288,14 +402,6 @@
 				22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		A2359F8E1F10427A00498384 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A2359F8F1F10427A00498384 /* Game.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A2359F9F1F10427A00498384 /* ViewController */ = {
@@ -311,17 +417,16 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		A291E8281F10475100BF5EB1 /* ThirdParty */ = {
-			isa = PBXGroup;
-			children = (
-				A291E8291F10475E00BF5EB1 /* CocoaAsyncSocket.framework */,
-			);
-			path = ThirdParty;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		224E9CC721981AA900632F43 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2278E80A20BC28FA005E72A3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,9 +437,46 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2278E80C20BC28FA005E72A3 /* SQL */ = {
+		224E9C9C219814FA00632F43 /* Q3ServerBrowser-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2278E82420BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQL" */;
+			buildConfigurationList = 224E9CBB219814FB00632F43 /* Build configuration list for PBXNativeTarget "Q3ServerBrowser-iOS" */;
+			buildPhases = (
+				224E9C99219814FA00632F43 /* Sources */,
+				224E9C9A219814FA00632F43 /* Frameworks */,
+				224E9C9B219814FA00632F43 /* Resources */,
+				224E9D32219822A300632F43 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				224E9D31219822A300632F43 /* PBXTargetDependency */,
+			);
+			name = "Q3ServerBrowser-iOS";
+			productName = "Q3ServerBrowser-iOS";
+			productReference = 224E9C9D219814FA00632F43 /* Q3ServerBrowser-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		224E9CCB21981AA900632F43 /* SQL-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 224E9CE321981AA900632F43 /* Build configuration list for PBXNativeTarget "SQL-iOS" */;
+			buildPhases = (
+				224E9CC721981AA900632F43 /* Headers */,
+				224E9CC821981AA900632F43 /* Sources */,
+				224E9CC921981AA900632F43 /* Frameworks */,
+				224E9CCA21981AA900632F43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SQL-iOS";
+			productName = "SQL-iOS";
+			productReference = 224E9CCC21981AA900632F43 /* SQL_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2278E80C20BC28FA005E72A3 /* SQL-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2278E82420BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQL-Mac" */;
 			buildPhases = (
 				2278E80820BC28FA005E72A3 /* Sources */,
 				2278E80920BC28FA005E72A3 /* Frameworks */,
@@ -345,9 +487,9 @@
 			);
 			dependencies = (
 			);
-			name = SQL;
+			name = "SQL-Mac";
 			productName = SQL;
-			productReference = 2278E80D20BC28FA005E72A3 /* SQL.framework */;
+			productReference = 2278E80D20BC28FA005E72A3 /* SQL_Mac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8D1107260486CEB800E47090 /* Q3ServerBrowser */ = {
@@ -357,12 +499,12 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				A291E82F1F1219DF00BF5EB1 /* Embed Frameworks */,
+				224E9D2D2198229500632F43 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2278E82120BC28FB005E72A3 /* PBXTargetDependency */,
+				224E9D2C2198229500632F43 /* PBXTargetDependency */,
 			);
 			name = Q3ServerBrowser;
 			productInstallPath = "$(HOME)/Applications";
@@ -376,9 +518,19 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				TargetAttributes = {
+					224E9C9C219814FA00632F43 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = WL8LT3PQLC;
+						ProvisioningStyle = Automatic;
+					};
+					224E9CCB21981AA900632F43 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = WL8LT3PQLC;
+						ProvisioningStyle = Automatic;
+					};
 					2278E80C20BC28FA005E72A3 = {
 						CreatedOnToolsVersion = 9.3.1;
 						DevelopmentTeam = WL8LT3PQLC;
@@ -410,12 +562,31 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Q3ServerBrowser */,
-				2278E80C20BC28FA005E72A3 /* SQL */,
+				224E9C9C219814FA00632F43 /* Q3ServerBrowser-iOS */,
+				2278E80C20BC28FA005E72A3 /* SQL-Mac */,
+				224E9CCB21981AA900632F43 /* SQL-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		224E9C9B219814FA00632F43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224E9CAA219814FB00632F43 /* LaunchScreen.storyboard in Resources */,
+				224E9CA7219814FB00632F43 /* Assets.xcassets in Resources */,
+				224E9CA5219814FA00632F43 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		224E9CCA21981AA900632F43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2278E80B20BC28FA005E72A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,11 +608,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		224E9C99219814FA00632F43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224E9CA2219814FA00632F43 /* ServersViewController.swift in Sources */,
+				224E9CA0219814FA00632F43 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		224E9CC821981AA900632F43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224E9CF621981BD500632F43 /* Q3Coordinator.swift in Sources */,
+				224E9D2621981DD300632F43 /* Game.swift in Sources */,
+				224E9CFB21981BE200632F43 /* Q3Operation.swift in Sources */,
+				224E9CF021981BBF00632F43 /* SupportedGames.swift in Sources */,
+				224E9CFC21981BE500632F43 /* Q3MasterServerController.swift in Sources */,
+				224E9CF521981BCE00632F43 /* String+Q3Name.swift in Sources */,
+				224E9CF221981BC400632F43 /* QueryOperation.swift in Sources */,
+				224E9CF721981BD700632F43 /* Q3Server.swift in Sources */,
+				224E9CED21981BB600632F43 /* Player.swift in Sources */,
+				224E9CF121981BC200632F43 /* Coordinator.swift in Sources */,
+				224E9CF321981BC700632F43 /* ServerController.swift in Sources */,
+				224E9CF421981BCA00632F43 /* MasterServerController.swift in Sources */,
+				224E9CEC21981BB200632F43 /* Server.swift in Sources */,
+				224E9CF821981BDA00632F43 /* Q3ServerController.swift in Sources */,
+				224E9CEE21981BB900632F43 /* Parsable.swift in Sources */,
+				224E9CF921981BDD00632F43 /* Q3Player.swift in Sources */,
+				224E9CEF21981BBC00632F43 /* SQLError.swift in Sources */,
+				224E9CFA21981BDF00632F43 /* Q3Parser.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2278E80820BC28FA005E72A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				220FEAD920CAB9C300A63F14 /* SupportedGames.swift in Sources */,
+				224E9D2521981DD300632F43 /* Game.swift in Sources */,
 				22C9C12020ED017900F7CEC1 /* QueryOperation.swift in Sources */,
 				22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */,
 				22C9C11620ECFD9200F7CEC1 /* Q3Operation.swift in Sources */,
@@ -472,7 +678,6 @@
 				A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */,
 				220FEAC420CA8FFA00A63F14 /* PlayersViewController.swift in Sources */,
 				220FEAC020CA8FDF00A63F14 /* ServerStatusSplitViewController.swift in Sources */,
-				A2359FB01F10427A00498384 /* Game.swift in Sources */,
 				226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */,
 				220FEAC220CA8FEC00A63F14 /* ServerRulesViewController.swift in Sources */,
 				A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */,
@@ -484,10 +689,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2278E82120BC28FB005E72A3 /* PBXTargetDependency */ = {
+		224E9D2C2198229500632F43 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2278E80C20BC28FA005E72A3 /* SQL */;
-			targetProxy = 2278E82020BC28FB005E72A3 /* PBXContainerItemProxy */;
+			target = 2278E80C20BC28FA005E72A3 /* SQL-Mac */;
+			targetProxy = 224E9D2B2198229500632F43 /* PBXContainerItemProxy */;
+		};
+		224E9D31219822A300632F43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 224E9CCB21981AA900632F43 /* SQL-iOS */;
+			targetProxy = 224E9D30219822A300632F43 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -501,12 +711,116 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		224E9CA3219814FA00632F43 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				224E9CA4219814FA00632F43 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		224E9CA8219814FB00632F43 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				224E9CA9219814FB00632F43 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2278E82520BC28FB005E72A3 /* Debug */ = {
+		224E9CB7219814FB00632F43 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/iOS";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Q3ServerBrowser-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.Q3ServerBrowser-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		224E9CB8219814FB00632F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/iOS";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Q3ServerBrowser-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.Q3ServerBrowser-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		224E9CE421981AA900632F43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -519,7 +833,116 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdParty/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "SQL/Info-iOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.SQL-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		224E9CE521981AA900632F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdParty/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "SQL/Info-iOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.SQL-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2278E82520BC28FB005E72A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -533,6 +956,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThirdParty",
+					"$(PROJECT_DIR)/ThirdParty/iOS",
+					"$(PROJECT_DIR)/ThirdParty/Mac",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -543,12 +968,12 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SQL/Info.plist;
+				INFOPLIST_FILE = "SQL/Info-Mac.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQL;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.SQL-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -562,6 +987,7 @@
 		2278E82620BC28FB005E72A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -574,7 +1000,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -589,17 +1015,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThirdParty",
+					"$(PROJECT_DIR)/ThirdParty/iOS",
+					"$(PROJECT_DIR)/ThirdParty/Mac",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = SQL/Info.plist;
+				INFOPLIST_FILE = "SQL/Info-Mac.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andreagiavatto.SQL;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.SQL-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -623,7 +1051,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdParty",
+					"$(PROJECT_DIR)/ThirdParty/Mac",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -636,7 +1064,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -666,7 +1094,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdParty",
+					"$(PROJECT_DIR)/ThirdParty/Mac",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_VERSION = "";
@@ -677,7 +1105,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -723,6 +1151,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-licucore";
@@ -760,6 +1189,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = "-licucore";
 				SDKROOT = macosx;
@@ -770,7 +1200,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2278E82420BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQL" */ = {
+		224E9CBB219814FB00632F43 /* Build configuration list for PBXNativeTarget "Q3ServerBrowser-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				224E9CB7219814FB00632F43 /* Debug */,
+				224E9CB8219814FB00632F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		224E9CE321981AA900632F43 /* Build configuration list for PBXNativeTarget "SQL-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				224E9CE421981AA900632F43 /* Debug */,
+				224E9CE521981AA900632F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2278E82420BC28FB005E72A3 /* Build configuration list for PBXNativeTarget "SQL-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2278E82520BC28FB005E72A3 /* Debug */,

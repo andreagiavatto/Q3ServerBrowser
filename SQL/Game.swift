@@ -7,25 +7,24 @@
 //
 
 import Foundation
-import SQL
 
-class Game: NSObject {
+public class Game: NSObject {
     
-    let type: SupportedGames
-    let launchArguments: String
-    var name: String {
+    public let type: SupportedGames
+    public let launchArguments: String
+    public var name: String {
         return type.name
     }
-    var masterServersList: [String] {
+    public var masterServersList: [String] {
         return type.masterServersList
     }
 
-    init(type: SupportedGames, launchArguments: String) {
+    public init(type: SupportedGames, launchArguments: String) {
         self.type = type
         self.launchArguments = launchArguments
     }
     
-    override var description: String {
+    override public var description: String {
         return "<Game: \(self)> Name: \(type.name)"
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import SQL
+import SQL_Mac
 
 protocol ServersViewControllerDelegate: class {
     

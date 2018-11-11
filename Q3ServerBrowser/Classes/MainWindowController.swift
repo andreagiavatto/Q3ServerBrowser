@@ -6,7 +6,7 @@
 //
 
 import AppKit
-import SQL
+import SQL_Mac
 
 class MainWindowController: NSWindowController {
     
