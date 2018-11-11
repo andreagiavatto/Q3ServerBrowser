@@ -26,7 +26,10 @@ class Q3ServerController: NSObject, ServerController {
             infoForServer(ip: server.ip, port: server.port)
         }
         delegate?.serverController(self, didStartFetchingServersInfo: servers)
-        serverInfoQueue.addOperation { [unowned self] in
+        serverInfoQueue.addOperation { [weak self] in
+            guard let self = self else {
+                return
+            }
             self.delegate?.serverController(self, didFinishFetchingServersInfo: servers)
         }
     }
@@ -41,9 +44,9 @@ class Q3ServerController: NSObject, ServerController {
         let infoRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x69, 0x6e, 0x66, 0x6f, 0x0a]
         let infoOperation = Q3Operation(ip: ip, port: port, requestMarker: infoRequestMarker, responseMarker: infoResponseMarker)
 
-        infoOperation.completionBlock = { [unowned self, weak infoOperation] in
+        infoOperation.completionBlock = { [weak self, weak infoOperation] in
             
-            guard let infoOperation = infoOperation else {
+            guard let infoOperation = infoOperation, let self = self else {
                 return
             }
             
@@ -68,13 +71,15 @@ class Q3ServerController: NSObject, ServerController {
             return
         }
         
+        statusInfoQueue.cancelAllOperations()
+        
         let statusRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x0a]
         let statusResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x0a, 0x5c] // YYYYstatusResponse\n\
         let statusOperation = Q3Operation(ip: ip, port: port, requestMarker: statusRequestMarker, responseMarker: statusResponseMarker)
         
-        statusOperation.completionBlock = { [unowned self, weak statusOperation] in
+        statusOperation.completionBlock = { [weak self, weak statusOperation] in
             
-            guard let statusOperation = statusOperation else {
+            guard let statusOperation = statusOperation, let self = self else {
                 return
             }
             

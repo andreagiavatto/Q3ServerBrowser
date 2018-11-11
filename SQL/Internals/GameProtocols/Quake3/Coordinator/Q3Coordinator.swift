@@ -31,11 +31,9 @@ class Q3Coordinator: NSObject, Coordinator {
     
     func refreshStatus(for servers: [Server]) {
         clearServers()
-        self.serversList = servers
-        for server in servers {
-            delegate?.coordinator(self, didFinishFetchingInfoFor: server)
-            status(forServer: server)
-        }
+        serversList = servers
+        toRequestInfo.append(contentsOf: serversList)
+        delegate?.didFinishFetchingServersList(for: self)
     }
     
     public func fetchServersInfo() {
@@ -90,7 +88,6 @@ extension Q3Coordinator: MasterServerControllerDelegate {
         }
         
         toRequestInfo.append(contentsOf: serversList)
-        
         delegate?.didFinishFetchingServersList(for: self)
     }
     

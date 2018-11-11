@@ -23,11 +23,11 @@ class Q3MasterServerController: NSObject, MasterServerController {
     
     func startFetchingServersList(host: String, port: String) {
         
-        masterServerQueue.async { [unowned self] in
-            self.reset()
-            guard let port = UInt16(port) else {
+        masterServerQueue.async { [weak self] in
+            guard let port = UInt16(port), let self = self else {
                 return
             }
+            self.reset()
             let data = Data(bytes: self.getServersRequestMarker)
             self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
             do {

@@ -15,7 +15,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var clearCachedServersMenuItem: NSMenuItem!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
         refreshServersMenuItem.isEnabled = true
         clearCachedServersMenuItem.isEnabled = !Settings.shared.serverCacheIsEmpty()
     }

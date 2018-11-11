@@ -25,6 +25,10 @@ class TopSplitViewController: NSSplitViewController {
     private(set) var selectedServer: Server?
     private var masterServer: String?
     
+    private var filterString = ""
+    private var shouldShowEmptyServers: Bool = true
+    private var shouldShowFullServers: Bool = true
+    
     var serversViewController: ServersViewController? {
         return splitViewItems.first?.viewController as? ServersViewController
     }
@@ -61,16 +65,21 @@ class TopSplitViewController: NSSplitViewController {
     }
     
     func refreshServers(for game: Game, with servers: [Server], from master: String) {
+        
         reset()
         currentGame = game
         coordinator = game.type.coordinator
         masterServer = master
         coordinator?.delegate = self
         coordinator?.refreshStatus(for: servers)
-        serverStatusSplitViewController?.updateStatus(for: nil)
+        delegate?.didFinishFetchingServers(for: self)
     }
     
     func applyFilters(filterString: String, showEmptyServers: Bool, showFullServers: Bool) {
+        
+        self.filterString = filterString
+        self.shouldShowEmptyServers = showEmptyServers
+        self.shouldShowFullServers = showFullServers
         
         if filterString.characters.count == 0 {
             filteredServers = Array(servers)
@@ -107,7 +116,8 @@ class TopSplitViewController: NSSplitViewController {
             })
         }
         
-        serversViewController?.updateServers(filteredServers)
+        serversViewController?.updateServers(with: filteredServers)
+        delegate?.didFinishFetchingServers(for: self)
     }
     
     // MARK: - Private methods
@@ -145,7 +155,7 @@ extension TopSplitViewController: CoordinatorDelegate {
         DispatchQueue.main.async {
             self.servers.append(server)
             self.filteredServers.append(server)
-            self.serversViewController?.addServer(server)
+            self.applyFilters(filterString: self.filterString, showEmptyServers: self.shouldShowEmptyServers, showFullServers: self.shouldShowFullServers)
         }
     }
     
@@ -166,5 +176,10 @@ extension TopSplitViewController: ServersViewControllerDelegate {
     func serversViewController(_ controller: ServersViewController, didSelect server: Server) {
         selectedServer = server
         coordinator?.status(forServer: server)
+    }
+    
+    func serversViewController(_ controller: ServersViewController, didDoubleClickOn server: Server) {
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(server.hostname, forType: .string)
     }
 }

@@ -15,12 +15,18 @@ class Q3Server: NSObject, Server {
     internal(set) var originalName: String = ""
     @objc internal(set) var name: String = ""
     @objc internal(set) var map: String = ""
-    internal(set) var maxPlayers: String = ""
-    @objc internal(set) var currentPlayers: String = ""
+    internal(set) var maxPlayers: String = "0"
+    @objc internal(set) var currentPlayers: String = "0"
     @objc internal(set) var mod: String = ""
     @objc internal(set) var gametype: String = ""
     var rules: [String: String] = [:]
     var players: [Player]? = nil
+    @objc var inGamePlayers: String {
+        return "\(currentPlayers) / \(maxPlayers)"
+    }
+    @objc var hostname: String {
+        return "\(ip):\(port)"
+    }
 
     required public init(ip: String, port: String) {
         self.ip = ip
@@ -116,6 +122,6 @@ class Q3Server: NSObject, Server {
 extension Q3Server {
     
     public override var description: String {
-        return "<Q3Server>: \(ip): \(port)"
+        return "<Q3Server>: \(ip):\(port)"
     }
 }
