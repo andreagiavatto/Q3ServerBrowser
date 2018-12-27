@@ -129,15 +129,15 @@ CA
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <toolbar key="toolbar" implicitIdentifier="912A5D92-80BC-499A-87AC-AC79875597B1" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="U9X-zZ-KdK">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="AF5592AE-09DF-4F45-BD79-B2E978F52F32" label="Show Empty" paletteLabel="Show Empty" image="toolbarItem:uKl-JQ-z9b:image" id="uKl-JQ-z9b">
+                                <toolbarItem implicitItemIdentifier="AF5592AE-09DF-4F45-BD79-B2E978F52F32" label="Show Empty" paletteLabel="Show Empty" image="toolbarItem:uKl-JQ-z9b:image" selectable="YES" id="uKl-JQ-z9b">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="61" height="18"/>
-                                    <size key="maxSize" width="85" height="47"/>
+                                    <size key="maxSize" width="101" height="47"/>
                                     <button key="view" verticalHuggingPriority="750" id="A4z-Qj-hFv">
-                                        <rect key="frame" x="0.0" y="14" width="85" height="47"/>
+                                        <rect key="frame" x="0.0" y="14" width="101" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="bevel" title="Empty" bezelStyle="regularSquare" image="toolbarItem:uKl-JQ-z9b:image" imagePosition="left" state="on" inset="2" id="Fg0-Ds-If0">
-                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                        <buttonCell key="cell" type="check" title="Show Empty" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Fg0-Ds-If0">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
@@ -145,15 +145,15 @@ CA
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D8AF3F24-EC1E-4E59-A0DC-53209EA928AD" label="Show Empty" paletteLabel="Show Empty" image="toolbarItem:uKl-JQ-z9b:image" id="1gF-1b-vTZ" userLabel="Show Full">
+                                <toolbarItem implicitItemIdentifier="D8AF3F24-EC1E-4E59-A0DC-53209EA928AD" label="Show Empty" paletteLabel="Show Empty" image="toolbarItem:uKl-JQ-z9b:image" selectable="YES" id="1gF-1b-vTZ" userLabel="Show Full">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="61" height="18"/>
-                                    <size key="maxSize" width="85" height="47"/>
+                                    <size key="minSize" width="33" height="18"/>
+                                    <size key="maxSize" width="92" height="55"/>
                                     <button key="view" verticalHuggingPriority="750" id="f60-Si-GhU" userLabel="Show Full Button">
-                                        <rect key="frame" x="0.0" y="14" width="85" height="47"/>
+                                        <rect key="frame" x="0.0" y="14" width="89" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="bevel" title="Full" bezelStyle="regularSquare" image="toolbarItem:uKl-JQ-z9b:image" imagePosition="left" state="on" inset="2" id="vcs-W4-1vX" userLabel="Full">
-                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                        <buttonCell key="cell" type="check" title="Show Full" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vcs-W4-1vX" userLabel="Full">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
@@ -227,7 +227,6 @@ CA
                                 <toolbarItem reference="U74-aG-CoA"/>
                                 <toolbarItem reference="lc3-j0-lP2"/>
                                 <toolbarItem reference="U74-aG-CoA"/>
-                                <toolbarItem reference="ePq-4S-2cb"/>
                                 <toolbarItem reference="uKl-JQ-z9b"/>
                                 <toolbarItem reference="1gF-1b-vTZ"/>
                                 <toolbarItem reference="Xaa-83-3HI"/>
@@ -447,7 +446,7 @@ CA
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUt-vB-1hS">
                                                                     <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="krp-hC-dct">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Cell" id="krp-hC-dct">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -480,7 +479,7 @@ CA
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lun-lC-fgD">
                                                                     <rect key="frame" x="0.0" y="0.0" width="95" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="pbl-tP-wlg">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Cell" id="pbl-tP-wlg">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -790,7 +789,7 @@ CA
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOA-kh-GNV">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="h9o-q4-UfG">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Cell" id="h9o-q4-UfG">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -827,7 +826,7 @@ CA
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mhs-Uj-vfP">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="SUO-o6-7Oa">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Cell" id="SUO-o6-7Oa">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -864,7 +863,7 @@ CA
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gff-Ze-DXL">
                                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="A36-Md-ETK">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Cell" id="A36-Md-ETK">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -901,7 +900,7 @@ CA
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DtB-1H-IMy">
                                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="7ay-dk-oxG">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Cell" id="7ay-dk-oxG">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -968,7 +967,7 @@ CA
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ktr-O6-gas">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.47552447552447552" horizontal="YES" id="ktr-O6-gas">
                                     <rect key="frame" x="1" y="274" width="428" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
