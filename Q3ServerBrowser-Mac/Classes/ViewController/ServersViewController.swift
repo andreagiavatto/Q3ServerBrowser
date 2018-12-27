@@ -22,9 +22,6 @@ class ServersViewController: NSViewController {
     weak var delegate: ServersViewControllerDelegate?
     @objc dynamic fileprivate var servers = [Server]()
     var currentSelection: Server?
-    var numOfServers: Int {
-        return servers.count
-    }
     
     @IBAction func copyHostnameToPasteboard(_ sender: NSTableView) {
         guard let servers = serversArrayController.content as? [Server] else {
@@ -36,29 +33,28 @@ class ServersViewController: NSViewController {
     }
     
     func update(server: Server) {
-        guard
-            var servers = serversArrayController.content as? [Server],
-            let index = servers.firstIndex(where: { (s) -> Bool in
-                return server.ip == s.ip && server.port == s.port
-            })
-        else {
-            return
-        }
-        
         DispatchQueue.main.async {
+            guard
+                var servers = self.serversArrayController.content as? [Server],
+                let index = servers.firstIndex(where: { (s) -> Bool in
+                    return server.ip == s.ip && server.port == s.port
+                })
+                else {
+                    return
+            }
             servers[index] = server
         }
     }
     
     func updateServers(with newServers: [Server]) {
         DispatchQueue.main.async {
-            self.servers.removeAll(where: { (existing) -> Bool in
-                !newServers.contains(where: { (new) -> Bool in
+            self.servers.removeAll(where: { existing -> Bool in
+                !newServers.contains(where: { new -> Bool in
                     return new.hostname == existing.hostname
                 })
             })
             
-            let toAdd = self.elementDifference(between: newServers, and: self.servers)
+            let toAdd = self.arrayDifference(between: newServers, and: self.servers)
             if !toAdd.isEmpty {
                 self.servers.append(contentsOf: toAdd)
             }
@@ -71,7 +67,7 @@ class ServersViewController: NSViewController {
         }
     }
     
-    func elementDifference(between first: [Server], and second: [Server]) -> [Server] {
+    func arrayDifference(between first: [Server], and second: [Server]) -> [Server] {
         return first.filter { existing in
             !second.contains(where: { (new) -> Bool in
                 return new.hostname == existing.hostname
@@ -83,7 +79,6 @@ class ServersViewController: NSViewController {
 extension ServersViewController: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ aNotification: Notification) {
-        
         guard
             let server = serversArrayController.selectedObjects.first as? Server,
             server.hostname != currentSelection?.hostname

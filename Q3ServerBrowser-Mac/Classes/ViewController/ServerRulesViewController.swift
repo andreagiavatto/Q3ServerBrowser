@@ -21,7 +21,6 @@ class ServerRulesViewController: NSViewController {
     }
     
     fileprivate func configureViewForRules(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         guard
             let server = server,
             let columnId = tableColumn?.identifier,
@@ -53,7 +52,6 @@ class ServerRulesViewController: NSViewController {
 extension ServerRulesViewController: NSTableViewDataSource {
     
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        
         return server?.rules.keys.count ?? 0
     }
 }
@@ -61,7 +59,6 @@ extension ServerRulesViewController: NSTableViewDataSource {
 extension ServerRulesViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         return configureViewForRules(tableView, viewFor: tableColumn, row: row)
     }
 }

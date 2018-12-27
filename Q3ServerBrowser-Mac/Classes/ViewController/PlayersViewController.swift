@@ -21,7 +21,6 @@ class PlayersViewController: NSViewController {
     }
     
     fileprivate func configureViewForPlayers(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         guard
             let server = server,
             let columnId = tableColumn?.identifier,
@@ -56,7 +55,6 @@ class PlayersViewController: NSViewController {
 extension PlayersViewController: NSTableViewDataSource {
     
     func numberOfRows(in aTableView: NSTableView) -> Int {
-
         return server?.players?.count ?? 0
     }
 }
@@ -64,7 +62,6 @@ extension PlayersViewController: NSTableViewDataSource {
 extension PlayersViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         return configureViewForPlayers(tableView, viewFor: tableColumn, row: row)
     }
 }

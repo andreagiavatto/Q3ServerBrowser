@@ -15,8 +15,8 @@ public class Game: NSObject {
     public var name: String {
         return type.name
     }
-    public var masterServersList: [String] {
-        return type.masterServersList
+    public var masterServers: [MasterServer] {
+        return type.masterServers
     }
 
     public init(type: SupportedGames, launchArguments: String) {

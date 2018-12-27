@@ -51,7 +51,6 @@ class TopSplitViewController: NSSplitViewController {
     }
     
     func fetchListOfServers(for game: Game, from master: String) {
-        
         let masterServerComponents = master.components(separatedBy: ":")
         guard let host = masterServerComponents.first, let port = masterServerComponents.last else {
             return
@@ -65,7 +64,6 @@ class TopSplitViewController: NSSplitViewController {
     }
     
     func refreshServers(for game: Game, with servers: [Server], from master: String) {
-        
         reset()
         currentGame = game
         coordinator = game.type.coordinator
@@ -76,7 +74,6 @@ class TopSplitViewController: NSSplitViewController {
     }
     
     func applyFilters(filterString: String, showEmptyServers: Bool, showFullServers: Bool) {
-        
         self.filterString = filterString
         self.shouldShowEmptyServers = showEmptyServers
         self.shouldShowFullServers = showFullServers
@@ -117,6 +114,7 @@ class TopSplitViewController: NSSplitViewController {
         }
         
         serversViewController?.updateServers(with: filteredServers)
+        serversLabel?.stringValue = "\(filteredServers.count) servers found."
         delegate?.didFinishFetchingServers(for: self)
     }
     
@@ -175,6 +173,7 @@ extension TopSplitViewController: ServersViewControllerDelegate {
     
     func serversViewController(_ controller: ServersViewController, didSelect server: Server) {
         selectedServer = server
+        self.serverStatusSplitViewController?.updateStatus(for: nil)
         coordinator?.status(forServer: server)
     }
     

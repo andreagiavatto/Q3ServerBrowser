@@ -7,6 +7,11 @@
 
 import Foundation
 
+public struct MasterServer {
+    public let hostname: String
+    public let port: String
+}
+
 public enum SupportedGames {
     
     case quake3
@@ -18,10 +23,14 @@ public enum SupportedGames {
         }
     }
     
-    public var masterServersList: [String] {
+    public var masterServers: [MasterServer] {
         switch self {
         case .quake3:
-            return ["master.ioquake3.org:27950", "master3.idsoftware.com:27950", "master0.excessiveplus.net:27950", "master.maverickservers.com:27950", "dpmaster.deathmask.net:27950"]
+            return [MasterServer(hostname: "master.ioquake3.org", port:"27950"),
+                    MasterServer(hostname: "master3.idsoftware.com", port:"27950"),
+                    MasterServer(hostname: "master0.excessiveplus.net", port:"27950"),
+                    MasterServer(hostname: "master.maverickservers.com", port:"27950"),
+                    MasterServer(hostname: "dpmaster.deathmask.net", port:"27950")]
         }
     }
     

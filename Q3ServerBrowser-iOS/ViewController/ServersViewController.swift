@@ -9,12 +9,11 @@ import UIKit
 import SQL_iOS
 
 class ServersViewController: UIViewController {
-
     @IBOutlet weak var tableView: UITableView!
     private let serversRefreshControl = UIRefreshControl()
     private let activityIndicatorView = UIActivityIndicatorView(style: .gray)
     private var currentGame = Game(type: .quake3, launchArguments: "+connect")
-    private var currentMasterServer: String?
+    private var currentMasterServer: MasterServer?
     private var coordinator: Coordinator?
     fileprivate var servers = [Server]()
     fileprivate var cachedColors = [NSAttributedString]()
@@ -22,7 +21,7 @@ class ServersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        currentMasterServer = currentGame.masterServersList.first
+        currentMasterServer = currentGame.masterServers.first
         coordinator = currentGame.type.coordinator
         coordinator?.delegate = self
         setupUI()
@@ -30,7 +29,7 @@ class ServersViewController: UIViewController {
     }
 
     private func setupUI() {
-        title = currentMasterServer
+        title = currentMasterServer?.hostname
         activityIndicatorView.hidesWhenStopped = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
         tableView.register(UINib(nibName: "ServersTableViewCell", bundle: nil), forCellReuseIdentifier: ServersTableViewCell.reuseIdentifier)
@@ -48,8 +47,7 @@ class ServersViewController: UIViewController {
         guard !activityIndicatorView.isAnimating else {
             return
         }
-        let masterServerComponents = currentMasterServer?.components(separatedBy: ":")
-        guard let host = masterServerComponents?.first, let port = masterServerComponents?.last else {
+        guard let host = currentMasterServer?.hostname, let port = currentMasterServer?.port else {
             return
         }
         reset()

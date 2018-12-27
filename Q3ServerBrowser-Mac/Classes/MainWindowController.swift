@@ -36,15 +36,14 @@ class MainWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        
         window?.title = currentGame.name
         splitViewController?.serversLabel?.stringValue = NSLocalizedString("EmptyServersList", comment: "")
         splitViewController?.delegate = self
-        let masterServers = currentGame.masterServersList
-        guard masterServers.count > 0 else {
+        let masterServers = currentGame.masterServers
+        guard !masterServers.isEmpty else {
             return
         }
-        masterServersPopUpButton.addItems(withTitles: masterServers)
+        masterServersPopUpButton.addItems(withTitles: masterServers.map { "\($0.hostname):\($0.port)" })
         masterServersPopUpButton.selectItem(at: 0)
         currentMasterServer = masterServersPopUpButton.selectedItem?.title
     }
@@ -52,11 +51,9 @@ class MainWindowController: NSWindowController {
     // MARK: - IBActions
     
     @IBAction func refreshServersList(_ sender: Any) {
-
         guard let currentMasterServer = currentMasterServer else {
             return
         }
-        
         if let servers = Settings.shared.getServers(for: currentGame, from: currentMasterServer), servers.count > 0 {
             splitViewController?.refreshServers(for: currentGame, with: servers, from: currentMasterServer)
         } else {
@@ -65,21 +62,17 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func changeMasterServer(_ sender: NSPopUpButton) {
-        
         guard let newMasterServerAddress = sender.selectedItem?.title else {
             return
         }
-        
         currentMasterServer = newMasterServerAddress
     }
     
     @IBAction func connectToServer(_ sender: Any) {
-        
         guard let server = splitViewController?.selectedServer else {
             displayAlert(message: NSLocalizedString("AlertNoServersMessage", comment: ""), informativeText: NSLocalizedString("AlertNoServersMessageInformative", comment: ""))
             return
         }
-        
         guard let pathToFolder = gameFolderPath.url else {
             displayAlert(message: NSLocalizedString("AlertAppNotFoundMessage", comment: ""), informativeText: NSLocalizedString("AlertAppNotFoundMessageInformative", comment: ""))
             return
@@ -95,39 +88,29 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func filterServers(_ sender: NSSearchField) {
-        
         filterString = sender.stringValue.lowercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
     }
     
     @IBAction func showEmptyButtonValueChanged(_ sender: NSButton) {
-        
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
     }
     
     @IBAction func showFullButtonValueChanged(_ sender: NSButton) {
-        
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
-    }
-    
-    fileprivate func updateServersCountLabel() {
-        splitViewController?.serversLabel?.stringValue = "\(splitViewController?.serversViewController?.numOfServers ?? 0) servers found."
     }
 }
 
 extension MainWindowController: TopSplitViewControllerDelegate {
     
     func didStartFetchingServers(for controller: TopSplitViewController) {
-        
 //        toolbar.items.map({ $0.isEnabled = false })
         splitViewController?.serversLabel?.stringValue = "Fetching servers..."
         splitViewController?.spinner?.startAnimation(self)
     }
     
     func didFinishFetchingServers(for controller: TopSplitViewController) {
-        
 //        toolbar.items.map({ $0.isEnabled = true })
-        updateServersCountLabel()
         splitViewController?.spinner?.stopAnimation(self)
         (NSApplication.shared.delegate as? AppDelegate)?.updateMenuItemsStatuses()
     }
