@@ -7,9 +7,13 @@
 
 import Foundation
 
-public struct MasterServer {
+public struct MasterServer: CustomStringConvertible {
     public let hostname: String
     public let port: String
+    
+    public var description: String {
+        return "\(hostname):\(port)"
+    }
 }
 
 public enum SupportedGames {

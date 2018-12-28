@@ -39,8 +39,8 @@ class Settings {
         } catch {}
     }
     
-    func saveServers(servers: [Server], for game: Game, from masterServer: String) {
-        let filename = game.name.appending(masterServer).components(separatedBy: .whitespaces).joined()
+    func saveServers(servers: [Server], for game: Game, from masterServer: MasterServer) {
+        let filename = game.name.appending(masterServer.description).components(separatedBy: .whitespaces).joined()
         guard let filePath = getAppDirectory()?.appendingPathComponent(filename) else {
             return
         }
@@ -50,8 +50,8 @@ class Settings {
         } catch {}
     }
     
-    func getServers(for game: Game, from masterServer: String) -> [Server]? {
-        let filename = game.name.appending(masterServer).components(separatedBy: .whitespaces).joined()
+    func getServers(for game: Game, from masterServer: MasterServer) -> [Server]? {
+        let filename = game.name.appending(masterServer.description).components(separatedBy: .whitespaces).joined()
         guard
             let filePath = getAppDirectory()?.appendingPathComponent(filename),
             let value = try? Data(contentsOf: filePath)

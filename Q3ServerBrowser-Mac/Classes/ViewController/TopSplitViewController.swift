@@ -23,7 +23,7 @@ class TopSplitViewController: NSSplitViewController {
     private var servers = [Server]()
     private var filteredServers = [Server]()
     private(set) var selectedServer: Server?
-    private var masterServer: String?
+    private var masterServer: MasterServer?
     
     private var filterString = ""
     private var shouldShowEmptyServers: Bool = true
@@ -50,27 +50,23 @@ class TopSplitViewController: NSSplitViewController {
         serversViewController?.delegate = self
     }
     
-    func fetchListOfServers(for game: Game, from master: String) {
-        let masterServerComponents = master.components(separatedBy: ":")
-        guard let host = masterServerComponents.first, let port = masterServerComponents.last else {
-            return
-        }
+    func fetchListOfServers(for game: Game, from master: MasterServer) {
         reset()
         currentGame = game
         coordinator = game.type.coordinator
         masterServer = master
         coordinator?.delegate = self
-        coordinator?.getServersList(host: host, port: port)
+        coordinator?.getServersList(host: master.hostname, port: master.port)
     }
     
-    func refreshServers(for game: Game, with servers: [Server], from master: String) {
+    func refreshServers(for game: Game, with servers: [Server], from master: MasterServer) {
         reset()
         currentGame = game
         coordinator = game.type.coordinator
         masterServer = master
         coordinator?.delegate = self
-        coordinator?.refreshStatus(for: servers)
         delegate?.didFinishFetchingServers(for: self)
+        coordinator?.refreshStatus(for: servers)
     }
     
     func applyFilters(filterString: String, showEmptyServers: Bool, showFullServers: Bool) {
@@ -78,18 +74,18 @@ class TopSplitViewController: NSSplitViewController {
         self.shouldShowEmptyServers = showEmptyServers
         self.shouldShowFullServers = showFullServers
         
-        if filterString.characters.count == 0 {
+        if filterString.isEmpty {
             filteredServers = Array(servers)
         } else {
-            filteredServers = servers.filter({ (serverInfo) -> Bool in
-                let standardMatcher = serverInfo.name.lowercased().range(of: filterString) != nil ||
-                    serverInfo.map.lowercased().range(of: filterString) != nil ||
-                    serverInfo.mod.lowercased().range(of: filterString) != nil ||
-                    serverInfo.gametype.lowercased().range(of: filterString) != nil ||
-                    serverInfo.ip.lowercased().range(of: filterString) != nil
+            filteredServers = servers.filter({ server -> Bool in
+                let standardMatcher = server.name.lowercased().range(of: filterString) != nil ||
+                    server.map.lowercased().range(of: filterString) != nil ||
+                    server.mod.lowercased().range(of: filterString) != nil ||
+                    server.gametype.lowercased().range(of: filterString) != nil ||
+                    server.ip.lowercased().range(of: filterString) != nil
                 var playerMatcher = false
-                if let players = serverInfo.players {
-                    playerMatcher = players.contains(where: { (player) -> Bool in
+                if let players = server.players {
+                    playerMatcher = players.contains(where: { player -> Bool in
                         return player.name.lowercased().range(of: filterString) != nil
                     })
                 }
@@ -98,8 +94,8 @@ class TopSplitViewController: NSSplitViewController {
         }
         
         if !showEmptyServers {
-            filteredServers = filteredServers.filter({ (serverInfo) -> Bool in
-                if let current = Int(serverInfo.currentPlayers) {
+            filteredServers = filteredServers.filter({ server -> Bool in
+                if let current = Int(server.currentPlayers) {
                     return current > 0
                 }
                 
@@ -108,8 +104,8 @@ class TopSplitViewController: NSSplitViewController {
         }
         
         if !showFullServers {
-            filteredServers = filteredServers.filter({ (serverInfo) -> Bool in
-                return serverInfo.currentPlayers != serverInfo.maxPlayers
+            filteredServers = filteredServers.filter({ server -> Bool in
+                return server.currentPlayers != server.maxPlayers
             })
         }
         

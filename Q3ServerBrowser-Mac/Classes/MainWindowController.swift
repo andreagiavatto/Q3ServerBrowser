@@ -22,7 +22,7 @@ class MainWindowController: NSWindowController {
     
     private var filterString = ""
     private var currentGame = Game(type: .quake3, launchArguments: "+connect")
-    private var currentMasterServer: String?
+    private var currentMasterServer: MasterServer?
     
     private var shouldShowEmptyServers: Bool {
         return showEmptyButton.state == .on
@@ -43,9 +43,8 @@ class MainWindowController: NSWindowController {
         guard !masterServers.isEmpty else {
             return
         }
-        masterServersPopUpButton.addItems(withTitles: masterServers.map { "\($0.hostname):\($0.port)" })
+        masterServersPopUpButton.addItems(withTitles: masterServers.map { $0.description })
         masterServersPopUpButton.selectItem(at: 0)
-        currentMasterServer = masterServersPopUpButton.selectedItem?.title
     }
     
     // MARK: - IBActions
@@ -62,10 +61,10 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func changeMasterServer(_ sender: NSPopUpButton) {
-        guard let newMasterServerAddress = sender.selectedItem?.title else {
+        guard sender.indexOfSelectedItem >= 0 && sender.indexOfSelectedItem < currentGame.masterServers.count else {
             return
         }
-        currentMasterServer = newMasterServerAddress
+        currentMasterServer = currentGame.masterServers[sender.indexOfSelectedItem]
     }
     
     @IBAction func connectToServer(_ sender: Any) {
@@ -104,13 +103,11 @@ class MainWindowController: NSWindowController {
 extension MainWindowController: TopSplitViewControllerDelegate {
     
     func didStartFetchingServers(for controller: TopSplitViewController) {
-//        toolbar.items.map({ $0.isEnabled = false })
         splitViewController?.serversLabel?.stringValue = "Fetching servers..."
         splitViewController?.spinner?.startAnimation(self)
     }
     
     func didFinishFetchingServers(for controller: TopSplitViewController) {
-//        toolbar.items.map({ $0.isEnabled = true })
         splitViewController?.spinner?.stopAnimation(self)
         (NSApplication.shared.delegate as? AppDelegate)?.updateMenuItemsStatuses()
     }
