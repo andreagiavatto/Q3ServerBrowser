@@ -1,2 +1,1 @@
 github "robbiehanson/CocoaAsyncSocket" "master"
-github "ashleymills/Reachability.swift" ~> 3.0

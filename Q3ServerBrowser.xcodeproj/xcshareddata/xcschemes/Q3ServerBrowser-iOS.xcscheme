@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D1107260486CEB800E47090"
-               BuildableName = "Q3ServerBrowser.app"
-               BlueprintName = "Q3ServerBrowser"
+               BlueprintIdentifier = "224E9C9C219814FA00632F43"
+               BuildableName = "Q3ServerBrowser-iOS.app"
+               BlueprintName = "Q3ServerBrowser-iOS"
                ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2278E81420BC28FB005E72A3"
-               BuildableName = "SQLTests.xctest"
-               BlueprintName = "SQLTests"
+               BlueprintIdentifier = "224E9CAF219814FB00632F43"
+               BuildableName = "Q3ServerBrowser-iOSTests.xctest"
+               BlueprintName = "Q3ServerBrowser-iOSTests"
+               ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "224E9CD321981AA900632F43"
+               BuildableName = "SQL-iOSTests.xctest"
+               BlueprintName = "SQL-iOSTests"
                ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +52,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Q3ServerBrowser.app"
-            BlueprintName = "Q3ServerBrowser"
+            BlueprintIdentifier = "224E9C9C219814FA00632F43"
+            BuildableName = "Q3ServerBrowser-iOS.app"
+            BlueprintName = "Q3ServerBrowser-iOS"
             ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,14 +70,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "NO">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Q3ServerBrowser.app"
-            BlueprintName = "Q3ServerBrowser"
+            BlueprintIdentifier = "224E9C9C219814FA00632F43"
+            BuildableName = "Q3ServerBrowser-iOS.app"
+            BlueprintName = "Q3ServerBrowser-iOS"
             ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,9 +94,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Q3ServerBrowser.app"
-            BlueprintName = "Q3ServerBrowser"
+            BlueprintIdentifier = "224E9C9C219814FA00632F43"
+            BuildableName = "Q3ServerBrowser-iOS.app"
+            BlueprintName = "Q3ServerBrowser-iOS"
             ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

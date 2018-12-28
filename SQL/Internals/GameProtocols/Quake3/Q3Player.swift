@@ -20,13 +20,20 @@ class Q3Player: NSObject, Player {
         }
         
         let playerComponents = line.components(separatedBy: CharacterSet.whitespaces)
-        guard playerComponents.count == 3 else {
+        guard playerComponents.count >= 3 else {
             return nil
         }
 
         self.score = playerComponents[0]
         self.ping = playerComponents[1]
-        self.name = playerComponents[2].stripQ3Colors().replacingOccurrences(of: "\"", with: "")
+        let restOfName = Array(playerComponents[2...])
+        let name: String
+        if restOfName.count > 1 {
+            name = restOfName.joined(separator: " ")
+        } else {
+            name = restOfName.first ?? ""
+        }
+        self.name = name.stripQ3Colors().replacingOccurrences(of: "\"", with: "")
     }
     
     required init?(coder aDecoder: NSCoder) {

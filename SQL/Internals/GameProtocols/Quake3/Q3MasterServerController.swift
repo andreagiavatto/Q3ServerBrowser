@@ -12,28 +12,32 @@ class Q3MasterServerController: NSObject, MasterServerController {
     
     weak var delegate: MasterServerControllerDelegate?
 
-    let masterServerQueue = DispatchQueue(label: "com.sql.q3-master-server.queue")
-    private var socket: GCDAsyncUdpSocket?
+    private let masterServerQueue: DispatchQueue
+    private let socket: GCDAsyncUDPSocketWrapperProtocol
     fileprivate var data = Data()
     private let getServersRequestMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x20, 0x36, 0x38, 0x20, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x20, 0x66, 0x75, 0x6c, 0x6c] // YYYYgetservers 68 empty full
     fileprivate let getServersResponseMarker: [UInt8] = [0xff, 0xff, 0xff, 0xff, 0x67, 0x65, 0x74, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x5c] // YYYYgetserversResponse\
     fileprivate let eotMarker: [UInt8] = [0x5c, 0x45, 0x4f, 0x54] // \EOT
     
-    override init() {}
+    required init(queue: DispatchQueue, socket: GCDAsyncUDPSocketWrapperProtocol) {
+        self.masterServerQueue = queue
+        self.socket = socket
+        super.init()
+        self.socket.setDelegate(self)
+        self.socket.setDelegateQueue(.main)
+    }
     
     func startFetchingServersList(host: String, port: String) {
-        
         masterServerQueue.async { [weak self] in
             guard let port = UInt16(port), let self = self else {
                 return
             }
             self.reset()
             let data = Data(bytes: self.getServersRequestMarker)
-            self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
             do {
                 self.delegate?.didStartFetchingServers(forMasterController: self)
-                self.socket?.send(data, toHost: host, port: port, withTimeout: 10, tag: 42)
-                try self.socket?.beginReceiving()
+                self.socket.send(data, toHost: host, port: port, withTimeout: 10, tag: 42)
+                try self.socket.beginReceiving()
             } catch(let error) {
                 self.delegate?.masterController(self, didFinishWithError: error)
             }
@@ -44,8 +48,7 @@ class Q3MasterServerController: NSObject, MasterServerController {
     
     private func reset() {
         data.removeAll()
-        socket?.close()
-        socket = nil
+        socket.close()
     }
 }
 

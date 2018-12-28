@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D1107260486CEB800E47090"
-               BuildableName = "Q3ServerBrowser.app"
-               BlueprintName = "Q3ServerBrowser"
+               BlueprintIdentifier = "2278E80C20BC28FA005E72A3"
+               BuildableName = "SQL_Mac.framework"
+               BlueprintName = "SQL-Mac"
                ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2278E81420BC28FB005E72A3"
-               BuildableName = "SQLTests.xctest"
-               BlueprintName = "SQLTests"
+               BlueprintIdentifier = "A24F12D321D6234300FA2A6A"
+               BuildableName = "SQL_Mac_Tests.xctest"
+               BlueprintName = "SQL_Mac_Tests"
                ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Q3ServerBrowser.app"
-            BlueprintName = "Q3ServerBrowser"
+            BlueprintIdentifier = "2278E80C20BC28FA005E72A3"
+            BuildableName = "SQL_Mac.framework"
+            BlueprintName = "SQL-Mac"
             ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,17 +60,16 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "NO">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      allowLocationSimulation = "YES">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Q3ServerBrowser.app"
-            BlueprintName = "Q3ServerBrowser"
+            BlueprintIdentifier = "2278E80C20BC28FA005E72A3"
+            BuildableName = "SQL_Mac.framework"
+            BlueprintName = "SQL-Mac"
             ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Q3ServerBrowser.app"
-            BlueprintName = "Q3ServerBrowser"
+            BlueprintIdentifier = "2278E80C20BC28FA005E72A3"
+            BuildableName = "SQL_Mac.framework"
+            BlueprintName = "SQL-Mac"
             ReferencedContainer = "container:Q3ServerBrowser.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
