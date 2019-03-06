@@ -21,7 +21,7 @@ class MainWindowController: NSWindowController {
     var logsWindowController: LogsWindowController?
     
     private var filterString = ""
-    private var currentGame = Game(type: .quake3, launchArguments: "+connect")
+    private var currentGame: Game?
     private var currentMasterServer: MasterServer?
     
     private var shouldShowEmptyServers: Bool {
@@ -36,21 +36,31 @@ class MainWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        window?.title = currentGame.name
-        splitViewController?.serversLabel?.stringValue = NSLocalizedString("EmptyServersList", comment: "")
         splitViewController?.delegate = self
-        let masterServers = currentGame.masterServers
+    }
+
+    func selectGame(_ game: Game) {
+        guard game.type != currentGame?.type else {
+            return
+        }
+        currentGame = game
+        splitViewController?.reset()
+        window?.title = game.name
+        splitViewController?.serversLabel?.stringValue = NSLocalizedString("EmptyServersList", comment: "")
+        let masterServers = game.masterServers
         guard !masterServers.isEmpty else {
             return
         }
+        masterServersPopUpButton.removeAllItems()
         masterServersPopUpButton.addItems(withTitles: masterServers.map { $0.description })
         masterServersPopUpButton.selectItem(at: 0)
+        selectMasterServer(at: 0)
     }
     
     // MARK: - IBActions
     
     @IBAction func refreshServersList(_ sender: Any) {
-        guard let currentMasterServer = currentMasterServer else {
+        guard let currentMasterServer = currentMasterServer, let currentGame = currentGame else {
             return
         }
         if let servers = Settings.shared.getServers(for: currentGame, from: currentMasterServer), servers.count > 0 {
@@ -61,14 +71,11 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func changeMasterServer(_ sender: NSPopUpButton) {
-        guard sender.indexOfSelectedItem >= 0 && sender.indexOfSelectedItem < currentGame.masterServers.count else {
-            return
-        }
-        currentMasterServer = currentGame.masterServers[sender.indexOfSelectedItem]
+        selectMasterServer(at: sender.indexOfSelectedItem)
     }
-    
+
     @IBAction func connectToServer(_ sender: Any) {
-        guard let server = splitViewController?.selectedServer else {
+        guard let server = splitViewController?.selectedServer, let currentGame = currentGame else {
             displayAlert(message: NSLocalizedString("AlertNoServersMessage", comment: ""), informativeText: NSLocalizedString("AlertNoServersMessageInformative", comment: ""))
             return
         }
@@ -76,32 +83,39 @@ class MainWindowController: NSWindowController {
             displayAlert(message: NSLocalizedString("AlertAppNotFoundMessage", comment: ""), informativeText: NSLocalizedString("AlertAppNotFoundMessageInformative", comment: ""))
             return
         }
-        
+
         if logsWindowController == nil {
             logsWindowController = NSStoryboard(name: "Main", bundle: Bundle.main).instantiateController(withIdentifier: "LogsWindowControllerID") as? LogsWindowController
         }
-        
+
         let folderPathString = pathToFolder.path
         logsWindowController?.showWindow(self)
         logsWindowController?.connect(to: server, forGame: currentGame, atPath: folderPathString)
     }
-    
+
     @IBAction func filterServers(_ sender: NSSearchField) {
         filterString = sender.stringValue.lowercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
     }
-    
+
     @IBAction func showEmptyButtonValueChanged(_ sender: NSButton) {
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
     }
-    
+
     @IBAction func showFullButtonValueChanged(_ sender: NSButton) {
         splitViewController?.applyFilters(filterString: filterString, showEmptyServers: shouldShowEmptyServers, showFullServers: shouldShowFullServers)
+    }
+
+    func selectMasterServer(at index: Int) {
+        guard let currentGame = currentGame, index >= 0 && index < currentGame.masterServers.count else {
+            return
+        }
+        currentMasterServer = currentGame.masterServers[index]
     }
 }
 
 extension MainWindowController: TopSplitViewControllerDelegate {
-    
+
     func didStartFetchingServers(for controller: TopSplitViewController) {
         splitViewController?.serversLabel?.stringValue = "Fetching servers..."
         splitViewController?.spinner?.startAnimation(self)

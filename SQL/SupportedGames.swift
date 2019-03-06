@@ -16,14 +16,17 @@ public struct MasterServer: CustomStringConvertible {
     }
 }
 
-public enum SupportedGames {
+public enum SupportedGames: CaseIterable {
     
     case quake3
+    case urbanTerror
     
     public var name: String {
         switch self {
         case .quake3:
             return "Quake 3 Arena"
+        case .urbanTerror:
+            return "UrbanTerror"
         }
     }
     
@@ -35,6 +38,8 @@ public enum SupportedGames {
                     MasterServer(hostname: "master0.excessiveplus.net", port:"27950"),
                     MasterServer(hostname: "master.maverickservers.com", port:"27950"),
                     MasterServer(hostname: "dpmaster.deathmask.net", port:"27950")]
+        case .urbanTerror:
+            return [MasterServer(hostname: "master.urbanterror.info", port: "27900")]
         }
     }
     
@@ -42,6 +47,12 @@ public enum SupportedGames {
         switch self {
         case .quake3:
             return Q3Coordinator()
+        case .urbanTerror:
+            return Q3Coordinator()
         }
+    }
+
+    public var launchArguments: String {
+        return "+connect"
     }
 }

@@ -27,4 +27,5 @@ public protocol Coordinator {
     func fetchServersInfo()
     func info(forServer server: Server)
     func status(forServer server: Server)
+    func clearServers()
 }

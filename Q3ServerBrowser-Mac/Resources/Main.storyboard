@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -65,6 +65,10 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Games" id="Ezu-Fh-qMj" userLabel="Games">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Games" id="nm7-re-BjO"/>
+                            </menuItem>
                             <menuItem title="Window" id="43r-xo-bz0">
                                 <menu key="submenu" title="Window" systemMenu="window" id="ROc-jo-GhK">
                                     <items>
@@ -110,6 +114,7 @@ CA
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Q3ServerBrowser" customModuleProvider="target">
                     <connections>
                         <outlet property="clearCachedServersMenuItem" destination="1Ir-j2-N9e" id="XD4-g5-cak"/>
+                        <outlet property="gamesMenu" destination="nm7-re-BjO" id="O6N-h3-69w"/>
                         <outlet property="refreshServersMenuItem" destination="Sn0-ln-2AE" id="ECE-Ny-ddd"/>
                     </connections>
                 </customObject>
@@ -136,7 +141,7 @@ CA
                                     <button key="view" verticalHuggingPriority="750" id="A4z-Qj-hFv">
                                         <rect key="frame" x="0.0" y="14" width="101" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="check" title="Show Empty" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Fg0-Ds-If0">
+                                        <buttonCell key="cell" type="bevel" title="Show Empty" bezelStyle="regularSquare" image="toolbarItem:uKl-JQ-z9b:image" imagePosition="left" state="on" inset="2" id="Fg0-Ds-If0">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -152,7 +157,7 @@ CA
                                     <button key="view" verticalHuggingPriority="750" id="f60-Si-GhU" userLabel="Show Full Button">
                                         <rect key="frame" x="0.0" y="14" width="89" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="check" title="Show Full" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vcs-W4-1vX" userLabel="Full">
+                                        <buttonCell key="cell" type="bevel" title="Show Full" bezelStyle="regularSquare" image="toolbarItem:uKl-JQ-z9b:image" imagePosition="left" state="on" inset="2" id="vcs-W4-1vX" userLabel="Full">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -967,7 +972,7 @@ CA
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.47552447552447552" horizontal="YES" id="ktr-O6-gas">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ktr-O6-gas">
                                     <rect key="frame" x="1" y="274" width="428" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

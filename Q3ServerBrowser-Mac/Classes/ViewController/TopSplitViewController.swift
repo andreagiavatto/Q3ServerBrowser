@@ -113,10 +113,9 @@ class TopSplitViewController: NSSplitViewController {
         serversLabel?.stringValue = "\(filteredServers.count) servers found."
         delegate?.didFinishFetchingServers(for: self)
     }
-    
-    // MARK: - Private methods
-    
-    private func reset() {
+        
+    func reset() {
+        coordinator?.clearServers()
         servers.removeAll()
         filteredServers.removeAll()
         serversViewController?.clearServers()

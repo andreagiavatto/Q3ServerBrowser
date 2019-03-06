@@ -19,9 +19,9 @@ public class Game: NSObject {
         return type.masterServers
     }
 
-    public init(type: SupportedGames, launchArguments: String) {
+    public init(type: SupportedGames) {
         self.type = type
-        self.launchArguments = launchArguments
+        self.launchArguments = type.launchArguments
     }
     
     override public var description: String {
