@@ -19,7 +19,7 @@ class LogsViewController: NSViewController {
 extension NSTextView {
     
     func append(string: String) {
-        self.textStorage?.append(NSAttributedString(string: string))
+        self.textStorage?.append(NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor : NSColor.controlTextColor]))
         self.scrollToEndOfDocument(nil)
     }
 }
