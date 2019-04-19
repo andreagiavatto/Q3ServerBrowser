@@ -33,7 +33,7 @@ class RTCWMasterServerController: NSObject, MasterServerController {
                 return
             }
             self.reset()
-            let data = Data(bytes: self.getServersRequestMarker)
+            let data = Data(self.getServersRequestMarker)
             do {
                 self.delegate?.didStartFetchingServers(forMasterController: self)
                 self.socket.send(data, toHost: host, port: port, withTimeout: 10, tag: 42)
