@@ -9,14 +9,14 @@
 import Foundation
 import CocoaAsyncSocket
 
-class Q3Coordinator: NSObject, Coordinator {
+class RTCWCoordinator: NSObject, Coordinator {
     
     public weak var delegate: CoordinatorDelegate?
 
     fileprivate let serverController = Q3ServerController()
     private(set) var serversList = [Server]()
     private var toRequestInfo = [Server]()
-    private let masterServerController = Q3MasterServerController(queue: DispatchQueue(label: "com.sql.q3-master-server.queue"), socket: GCDAsyncUdpSocket())
+    private let masterServerController = RTCWMasterServerController(queue: DispatchQueue(label: "com.sql.q3-master-server.queue"), socket: GCDAsyncUdpSocket())
     private let serverOperationsQueue = DispatchQueue(label: "com.q3browser.q3-server-operations.queue")
     
     public override init() {
@@ -74,7 +74,7 @@ class Q3Coordinator: NSObject, Coordinator {
     }
 }
 
-extension Q3Coordinator: MasterServerControllerDelegate {
+extension RTCWCoordinator: MasterServerControllerDelegate {
     
     func didStartFetchingServers(forMasterController controller: MasterServerController) {
         
@@ -97,7 +97,7 @@ extension Q3Coordinator: MasterServerControllerDelegate {
     }
 }
 
-extension Q3Coordinator: ServerControllerDelegate {
+extension RTCWCoordinator: ServerControllerDelegate {
     
     func serverController(_ controller: ServerController, didFinishFetchingServerInfoWith operation: QueryOperation) {
 
