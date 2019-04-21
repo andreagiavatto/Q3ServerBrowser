@@ -1,6 +1,6 @@
 //
-//  Q3Coordinator.swift
-//  Q3ServerBrowser
+//  RTCWCoordinator.swift
+//  RTCWServerBrowser
 //
 //  Created by Andrea Giavatto on 3/7/14.
 //
@@ -17,7 +17,7 @@ class RTCWCoordinator: NSObject, Coordinator {
     private(set) var serversList = [Server]()
     private var toRequestInfo = [Server]()
     private let masterServerController = RTCWMasterServerController(queue: DispatchQueue(label: "com.sql.q3-master-server.queue"), socket: GCDAsyncUdpSocket())
-    private let serverOperationsQueue = DispatchQueue(label: "com.q3browser.q3-server-operations.queue")
+    private let serverOperationsQueue = DispatchQueue(label: "com.q3browser.rtcw-server-operations.queue")
     
     public override init() {
         super.init()
