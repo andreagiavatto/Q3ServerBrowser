@@ -17,7 +17,7 @@ class ServersTableViewCell: UITableViewCell {
 
     var gametype: String? {
         didSet {
-            gametypeLabel.text = gametype
+//            gametypeLabel.text = gametype
         }
     }
 

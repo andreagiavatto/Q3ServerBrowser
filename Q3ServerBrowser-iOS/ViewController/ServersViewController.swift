@@ -12,10 +12,12 @@ class ServersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private let serversRefreshControl = UIRefreshControl()
     private let activityIndicatorView = UIActivityIndicatorView(style: .gray)
-    private var currentGame = Game(type: .quake3, launchArguments: "+connect")
+    private var currentGame = Game(type: .quake3)
     private var currentMasterServer: MasterServer?
     private var coordinator: Coordinator?
+    private let searchController = UISearchController(searchResultsController: nil)
     fileprivate var servers = [Server]()
+    fileprivate var filteredServers = [Server]()
     fileprivate var cachedColors = [NSAttributedString]()
 
     override func viewDidLoad() {
@@ -25,22 +27,55 @@ class ServersViewController: UIViewController {
         coordinator = currentGame.type.coordinator
         coordinator?.delegate = self
         setupUI()
+        setupSearchController()
         refreshServersForCurrentMaster()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchController.isActive = false
     }
 
     private func setupUI() {
         title = currentMasterServer?.hostname
         activityIndicatorView.hidesWhenStopped = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
-        tableView.register(UINib(nibName: "ServersTableViewCell", bundle: nil), forCellReuseIdentifier: ServersTableViewCell.reuseIdentifier)
         serversRefreshControl.addTarget(self, action: #selector(refreshServersForCurrentMaster), for: .valueChanged)
         tableView.addSubview(serversRefreshControl)
     }
 
     private func reset() {
         servers.removeAll()
+        filteredServers.removeAll()
         cachedColors.removeAll()
         tableView.reloadData()
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Find a server"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    private func isMatch(server: Server, forFilter filter: String?) -> Bool {
+        guard let filter = filter, !filter.isEmpty else {
+            return true
+        }
+        return server.name.localizedCaseInsensitiveContains(filter)
+    }
+    
+    private func filterServersForSearchText(_ searchText: String?) {
+        filteredServers.removeAll()
+        cachedColors.removeAll()
+        guard let searchText = searchText, !searchText.isEmpty else {
+            filteredServers.append(contentsOf: servers)
+            cachedColors.append(contentsOf: servers.map { colorisedPing($0.ping) })
+            return
+        }
+        filteredServers.append(contentsOf: servers.filter { isMatch(server: $0, forFilter: searchText) })
+        cachedColors.append(contentsOf: filteredServers.map { colorisedPing($0.ping) })
     }
 
     @objc private func refreshServersForCurrentMaster() {
@@ -75,20 +110,26 @@ class ServersViewController: UIViewController {
 extension ServersViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return servers.count
+        return filteredServers.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ServersTableViewCell.reuseIdentifier, for: indexPath) as? ServersTableViewCell else {
             return UITableViewCell()
         }
-        let server = servers[indexPath.row]
+        let server = filteredServers[indexPath.row]
         cell.name = server.name
         cell.gametype = server.gametype
         cell.hostname = server.hostname
         cell.ping = cachedColors[indexPath.row]
-        cell.accessoryType = .disclosureIndicator
         return cell
+    }
+}
+
+extension ServersViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterServersForSearchText(searchController.searchBar.text)
+        tableView.reloadData()
     }
 }
 
@@ -111,9 +152,12 @@ extension ServersViewController: CoordinatorDelegate {
     }
 
     func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server) {
-        self.servers.append(server)
-        self.cachedColors.append(colorisedPing(server.ping))
         DispatchQueue.main.async {
+            self.servers.append(server)
+            if self.isMatch(server: server, forFilter: self.searchController.searchBar.text) {
+                self.filteredServers.append(server)
+                self.cachedColors.append(self.colorisedPing(server.ping))
+            }
             self.tableView.reloadData()
         }
     }

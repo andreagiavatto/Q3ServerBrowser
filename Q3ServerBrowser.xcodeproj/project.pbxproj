@@ -64,7 +64,6 @@
 		2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83A20BC2AF7005E72A3 /* Server.swift */; };
 		22A1AB0721A17F180007538D /* ServerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1AB0621A17F180007538D /* ServerInfoViewController.swift */; };
 		22A1AB0B21A1811C0007538D /* ServersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1AB0A21A1811C0007538D /* ServersTableViewCell.swift */; };
-		22A1AB0D21A181280007538D /* ServersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A1AB0C21A181280007538D /* ServersTableViewCell.xib */; };
 		22C9C11120ECFD9200F7CEC1 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */; };
 		22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */; };
 		22C9C11320ECFD9200F7CEC1 /* Q3ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */; };
@@ -189,7 +188,6 @@
 		2278E83A20BC2AF7005E72A3 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		22A1AB0621A17F180007538D /* ServerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerInfoViewController.swift; sourceTree = "<group>"; };
 		22A1AB0A21A1811C0007538D /* ServersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersTableViewCell.swift; sourceTree = "<group>"; };
-		22A1AB0C21A181280007538D /* ServersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServersTableViewCell.xib; sourceTree = "<group>"; };
 		22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
 		22C9C10720ECFD9200F7CEC1 /* Q3Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Server.swift; sourceTree = "<group>"; };
 		22C9C10820ECFD9200F7CEC1 /* Q3ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3ServerController.swift; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				22A1AB0A21A1811C0007538D /* ServersTableViewCell.swift */,
-				22A1AB0C21A181280007538D /* ServersTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -672,11 +669,13 @@
 					224E9C9C219814FA00632F43 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 9UY8SFDNQ8;
+						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
 					};
 					224E9CCB21981AA900632F43 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 9UY8SFDNQ8;
+						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
 					};
 					2278E80C20BC28FA005E72A3 = {
@@ -730,7 +729,6 @@
 			files = (
 				224E9CAA219814FB00632F43 /* LaunchScreen.storyboard in Resources */,
 				224E9CA7219814FB00632F43 /* Assets.xcassets in Resources */,
-				22A1AB0D21A181280007538D /* ServersTableViewCell.xib in Resources */,
 				224E9CA5219814FA00632F43 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -961,7 +959,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1001,7 +999,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andreagiavatto.Q3ServerBrowser-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1057,7 +1055,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1108,7 +1106,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1318,6 +1316,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1360,6 +1359,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 21;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				ENABLE_HARDENED_RUNTIME = YES;
