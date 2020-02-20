@@ -9,7 +9,7 @@ import UIKit
 import SQL_iOS
 
 class ServersViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
     private let serversRefreshControl = UIRefreshControl()
     private let activityIndicatorView = UIActivityIndicatorView(style: .gray)
     private var currentGame = Game(type: .quake3)
@@ -34,6 +34,20 @@ class ServersViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchController.isActive = false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            segue.identifier == "showServerInfoSegueIdentifier",
+            let serverInfoViewController = segue.destination as? ServerInfoViewController,
+            let cell = sender as? ServersTableViewCell,
+            let indexPath = tableView.indexPath(for: cell)
+        else {
+            return
+        }
+        let selectedServer = filteredServers[indexPath.row]
+        serverInfoViewController.server = selectedServer
+        serverInfoViewController.currentGame = currentGame
     }
 
     private func setupUI() {

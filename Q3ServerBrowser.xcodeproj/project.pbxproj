@@ -21,6 +21,8 @@
 		2229F6B020C6C94200E87840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A820C6C94200E87840 /* Localizable.strings */; };
 		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
 		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
+		222DD3A023A37AEA0072F618 /* Server+Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222DD39E23A379CF0072F618 /* Server+Teams.swift */; };
+		222DD3A123A37AEF0072F618 /* Server+Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222DD39E23A379CF0072F618 /* Server+Teams.swift */; };
 		2234D38A21C5568600555399 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234D38921C5568600555399 /* MapView.swift */; };
 		224E9CA0219814FA00632F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E9C9F219814FA00632F43 /* AppDelegate.swift */; };
 		224E9CA2219814FA00632F43 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E9CA1219814FA00632F43 /* ServersViewController.swift */; };
@@ -62,6 +64,7 @@
 		2278E83820BC2A54005E72A3 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83720BC2A54005E72A3 /* Parsable.swift */; };
 		2278E83B20BC2AF8005E72A3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83920BC2AF7005E72A3 /* Player.swift */; };
 		2278E83C20BC2AF8005E72A3 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278E83A20BC2AF7005E72A3 /* Server.swift */; };
+		228E3C4D23A14C990019004F /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228E3C4C23A14C990019004F /* PlayerTableViewCell.swift */; };
 		22A1AB0721A17F180007538D /* ServerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1AB0621A17F180007538D /* ServerInfoViewController.swift */; };
 		22A1AB0B21A1811C0007538D /* ServersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1AB0A21A1811C0007538D /* ServersTableViewCell.swift */; };
 		22C9C11120ECFD9200F7CEC1 /* Q3Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */; };
@@ -166,6 +169,7 @@
 		2229F6AD20C6C94200E87840 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
 		2229F6AE20C6C94200E87840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2229F6E320C6D6CA00E87840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		222DD39E23A379CF0072F618 /* Server+Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+Teams.swift"; sourceTree = "<group>"; };
 		2234D38921C5568600555399 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		224E9C9D219814FA00632F43 /* Q3ServerBrowser-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Q3ServerBrowser-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		224E9C9F219814FA00632F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		2278E83720BC2A54005E72A3 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
 		2278E83920BC2AF7005E72A3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2278E83A20BC2AF7005E72A3 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		228E3C4C23A14C990019004F /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		22A1AB0621A17F180007538D /* ServerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerInfoViewController.swift; sourceTree = "<group>"; };
 		22A1AB0A21A1811C0007538D /* ServersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersTableViewCell.swift; sourceTree = "<group>"; };
 		22C9C10620ECFD9100F7CEC1 /* Q3Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q3Coordinator.swift; sourceTree = "<group>"; };
@@ -352,6 +357,7 @@
 				220FEAD820CAB9C300A63F14 /* SupportedGames.swift */,
 				220FEADA20CABA3300A63F14 /* Coordinator.swift */,
 				A2359F8F1F10427A00498384 /* Game.swift */,
+				222DD39E23A379CF0072F618 /* Server+Teams.swift */,
 				A24F12D521D6234300FA2A6A /* SQL_Mac_Tests */,
 			);
 			path = SQL;
@@ -372,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				22A1AB0A21A1811C0007538D /* ServersTableViewCell.swift */,
+				228E3C4C23A14C990019004F /* PlayerTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -668,7 +675,7 @@
 				TargetAttributes = {
 					224E9C9C219814FA00632F43 = {
 						CreatedOnToolsVersion = 10.1;
-						DevelopmentTeam = 9UY8SFDNQ8;
+						DevelopmentTeam = WL8LT3PQLC;
 						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
 					};
@@ -772,6 +779,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228E3C4D23A14C990019004F /* PlayerTableViewCell.swift in Sources */,
 				22A1AB0721A17F180007538D /* ServerInfoViewController.swift in Sources */,
 				224E9CA2219814FA00632F43 /* ServersViewController.swift in Sources */,
 				2234D38A21C5568600555399 /* MapView.swift in Sources */,
@@ -789,6 +797,7 @@
 				224E9D2621981DD300632F43 /* Game.swift in Sources */,
 				A24F12E721D6285F00FA2A6A /* GCDAsyncUDPSocketWrapper.swift in Sources */,
 				224E9CFB21981BE200632F43 /* Q3Operation.swift in Sources */,
+				222DD3A023A37AEA0072F618 /* Server+Teams.swift in Sources */,
 				224E9CF021981BBF00632F43 /* SupportedGames.swift in Sources */,
 				224E9CFC21981BE500632F43 /* Q3MasterServerController.swift in Sources */,
 				224E9CF521981BCE00632F43 /* String+Q3Name.swift in Sources */,
@@ -817,6 +826,7 @@
 				224E9D2521981DD300632F43 /* Game.swift in Sources */,
 				A24F12E621D6285F00FA2A6A /* GCDAsyncUDPSocketWrapper.swift in Sources */,
 				22C9C12020ED017900F7CEC1 /* QueryOperation.swift in Sources */,
+				222DD3A123A37AEF0072F618 /* Server+Teams.swift in Sources */,
 				22C9C11220ECFD9200F7CEC1 /* Q3Server.swift in Sources */,
 				22C9C11620ECFD9200F7CEC1 /* Q3Operation.swift in Sources */,
 				22C9C11820ECFD9200F7CEC1 /* String+Q3Name.swift in Sources */,
@@ -939,7 +949,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 9UY8SFDNQ8;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -985,7 +995,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 9UY8SFDNQ8;
+				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
