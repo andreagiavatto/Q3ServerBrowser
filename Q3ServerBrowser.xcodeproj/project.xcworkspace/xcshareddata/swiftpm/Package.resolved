@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CocoaAsyncSocket",
+        "repositoryURL": "https://github.com/robbiehanson/CocoaAsyncSocket",
+        "state": {
+          "branch": null,
+          "revision": "dbdc00669c1ced63b27c3c5f052ee4d28f10150c",
+          "version": "7.6.5"
+        }
+      },
+      {
+        "package": "GameServerQueryLibrary",
+        "repositoryURL": "https://github.com/andreagiavatto/GameServerQueryLibrary",
+        "state": {
+          "branch": null,
+          "revision": "1d49c300de6a507ff119c0eb2e295167fa455f47",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
