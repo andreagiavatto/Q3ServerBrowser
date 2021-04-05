@@ -53,8 +53,11 @@ class MainWindowController: NSWindowController {
         }
         masterServersPopUpButton.removeAllItems()
         masterServersPopUpButton.addItems(withTitles: masterServers.map { $0.description })
-        masterServersPopUpButton.selectItem(at: 0)
-        selectMasterServer(at: 0)
+        guard let index = masterServers.index(where: { $0.description == game.defaultMasterServer.description }) else {
+            return
+        }
+        masterServersPopUpButton.selectItem(at: index)
+        selectMasterServer(at: index)
     }
     
     // MARK: - IBActions

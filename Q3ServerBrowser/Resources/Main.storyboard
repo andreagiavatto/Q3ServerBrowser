@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -137,12 +137,12 @@ CA
                                 <toolbarItem implicitItemIdentifier="AF5592AE-09DF-4F45-BD79-B2E978F52F32" label="Show Empty" paletteLabel="Show Empty" image="toolbarItem:uKl-JQ-z9b:image" selectable="YES" id="uKl-JQ-z9b">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="61" height="18"/>
-                                    <size key="maxSize" width="101" height="47"/>
+                                    <size key="maxSize" width="105" height="51"/>
                                     <button key="view" verticalHuggingPriority="750" id="A4z-Qj-hFv">
-                                        <rect key="frame" x="0.0" y="14" width="101" height="47"/>
+                                        <rect key="frame" x="0.0" y="14" width="105" height="51"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="bevel" title="Show Empty" bezelStyle="regularSquare" image="toolbarItem:uKl-JQ-z9b:image" imagePosition="left" state="on" inset="2" id="Fg0-Ds-If0">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
@@ -153,12 +153,12 @@ CA
                                 <toolbarItem implicitItemIdentifier="D8AF3F24-EC1E-4E59-A0DC-53209EA928AD" label="Show Empty" paletteLabel="Show Empty" image="toolbarItem:uKl-JQ-z9b:image" selectable="YES" id="1gF-1b-vTZ" userLabel="Show Full">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="33" height="18"/>
-                                    <size key="maxSize" width="92" height="55"/>
+                                    <size key="maxSize" width="93" height="55"/>
                                     <button key="view" verticalHuggingPriority="750" id="f60-Si-GhU" userLabel="Show Full Button">
-                                        <rect key="frame" x="0.0" y="14" width="89" height="47"/>
+                                        <rect key="frame" x="0.0" y="14" width="93" height="51"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="bevel" title="Show Full" bezelStyle="regularSquare" image="toolbarItem:uKl-JQ-z9b:image" imagePosition="left" state="on" inset="2" id="vcs-W4-1vX" userLabel="Full">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
@@ -228,7 +228,6 @@ CA
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="NGt-CY-iMj"/>
-                                <toolbarItem reference="YIb-lC-mzT"/>
                                 <toolbarItem reference="U74-aG-CoA"/>
                                 <toolbarItem reference="lc3-j0-lP2"/>
                                 <toolbarItem reference="U74-aG-CoA"/>
@@ -400,7 +399,6 @@ CA
                                             <tableColumns>
                                                 <tableColumn identifier="name" editable="NO" width="250" minWidth="10" maxWidth="3.4028234663852886e+38" id="rqU-Un-RvE" userLabel="Name">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -433,7 +431,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="ping" editable="NO" width="68" minWidth="10" maxWidth="3.4028234663852886e+38" id="0sa-Py-4jT" userLabel="Ping">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Ping (ms)">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -466,7 +463,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="score" editable="NO" width="95" minWidth="10" maxWidth="3.4028234663852886e+38" id="kYs-5C-Pdt" userLabel="Score">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Score">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -519,7 +515,7 @@ CA
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KdK-gd-cDh">
-                                <rect key="frame" x="18" y="6" width="424" height="17"/>
+                                <rect key="frame" x="18" y="6" width="424" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="420" id="FnS-Rv-MgJ"/>
                                 </constraints>
@@ -571,7 +567,6 @@ CA
                                             <tableColumns>
                                                 <tableColumn identifier="setting" width="116" minWidth="40" maxWidth="1000" id="slD-5F-AZH">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Setting">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -604,7 +599,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="value" width="316" minWidth="40" maxWidth="1000" id="hLL-M7-bLB">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Value">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -701,7 +695,6 @@ CA
                                             <tableColumns>
                                                 <tableColumn identifier="name" editable="NO" width="210" minWidth="10" maxWidth="3.4028234663852886e+38" id="ygg-V3-bQn">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -738,7 +731,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="map" editable="NO" width="100" minWidth="10" maxWidth="3.4028234663852886e+38" id="8IE-Qj-a4w" userLabel="Map">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Map">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -775,7 +767,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="mod" editable="NO" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="Myg-Bz-hto">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Mod">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -812,7 +803,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="gametype" editable="NO" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="XIH-FM-crL">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Gametype">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -849,7 +839,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="players" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="Twu-VC-bWu">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Players">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -886,7 +875,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="ping" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="0NS-tj-BFR">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Ping (ms)">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -895,7 +883,7 @@ CA
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="ping"/>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="pingInt"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Ibb-gi-UZ2">
@@ -910,7 +898,7 @@ CA
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         <connections>
-                                                                            <binding destination="Ibb-gi-UZ2" name="value" keyPath="objectValue.ping" id="WpP-qU-Ynr"/>
+                                                                            <binding destination="Ibb-gi-UZ2" name="value" keyPath="objectValue.pingInt" id="L7h-jh-NZo"/>
                                                                         </connections>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -923,7 +911,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="ip" editable="NO" width="218" minWidth="10" maxWidth="3.4028234663852886e+38" id="RJa-H7-TGh">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Ip Address">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -972,7 +959,7 @@ CA
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ktr-O6-gas">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.48018648018648019" horizontal="YES" id="ktr-O6-gas">
                                     <rect key="frame" x="1" y="274" width="428" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
