@@ -1,25 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "CocoaAsyncSocket",
-        "repositoryURL": "https://github.com/robbiehanson/CocoaAsyncSocket",
-        "state": {
-          "branch": null,
-          "revision": "dbdc00669c1ced63b27c3c5f052ee4d28f10150c",
-          "version": "7.6.5"
-        }
-      },
-      {
-        "package": "GameServerQueryLibrary",
-        "repositoryURL": "https://github.com/andreagiavatto/GameServerQueryLibrary",
-        "state": {
-          "branch": null,
-          "revision": "3c101b4c36d140b5618b9c9cc19f46adbc48d5f4",
-          "version": "1.0.1"
-        }
+  "pins" : [
+    {
+      "identity" : "cocoaasyncsocket",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/robbiehanson/CocoaAsyncSocket",
+      "state" : {
+        "revision" : "dbdc00669c1ced63b27c3c5f052ee4d28f10150c",
+        "version" : "7.6.5"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "gameserverquerylibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/andreagiavatto/GameServerQueryLibrary.git",
+      "state" : {
+        "revision" : "59004f568863c085d5afb80859702e09f519f3e1",
+        "version" : "1.0.8"
+      }
+    }
+  ],
+  "version" : 2
 }

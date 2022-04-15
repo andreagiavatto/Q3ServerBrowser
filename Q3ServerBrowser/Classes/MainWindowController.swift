@@ -126,6 +126,6 @@ extension MainWindowController: TopSplitViewControllerDelegate {
     
     func didFinishFetchingServers(for controller: TopSplitViewController) {
         splitViewController?.spinner?.stopAnimation(self)
-        (NSApplication.shared.delegate as? AppDelegate)?.updateMenuItemsStatuses()
+//        (NSApplication.shared.delegate as? AppDelegate)?.updateMenuItemsStatuses()
     }
 }

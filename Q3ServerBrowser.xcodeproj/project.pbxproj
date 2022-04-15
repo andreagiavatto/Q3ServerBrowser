@@ -7,23 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220FEABA20CA8D0600A63F14 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAB920CA8D0600A63F14 /* MainWindowController.swift */; };
-		220FEABC20CA8FAF00A63F14 /* TopSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEABB20CA8FAF00A63F14 /* TopSplitViewController.swift */; };
-		220FEABE20CA8FD000A63F14 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEABD20CA8FD000A63F14 /* ServersViewController.swift */; };
-		220FEAC020CA8FDF00A63F14 /* ServerStatusSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEABF20CA8FDF00A63F14 /* ServerStatusSplitViewController.swift */; };
-		220FEAC220CA8FEC00A63F14 /* ServerRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAC120CA8FEC00A63F14 /* ServerRulesViewController.swift */; };
-		220FEAC420CA8FFA00A63F14 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FEAC320CA8FFA00A63F14 /* PlayersViewController.swift */; };
+		2207A07B2808A76E0062779E /* Q3ServerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */; };
+		2207A07E2808A8440062779E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07D2808A8440062779E /* ContentView.swift */; };
+		2207A0802808A87F0062779E /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07F2808A87F0062779E /* Sidebar.swift */; };
+		2207A0832808A8D60062779E /* CurrentGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A0822808A8D60062779E /* CurrentGame.swift */; };
 		222693FC213D8939002F1E13 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222693FB213D8939002F1E13 /* Settings.swift */; };
 		2229F6AF20C6C94200E87840 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A720C6C94200E87840 /* Colors.xcassets */; };
 		2229F6B020C6C94200E87840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A820C6C94200E87840 /* Localizable.strings */; };
 		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
 		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
-		226E186920D5158700F8F9CA /* LogsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186820D5158700F8F9CA /* LogsWindowController.swift */; };
-		226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E186A20D5214800F8F9CA /* LogsViewController.swift */; };
-		22C8C6C6259367CF00D53E39 /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 22C8C6C5259367CF00D53E39 /* GameServerQueryLibrary */; };
-		22CCE7E720DA906B0014902A /* NSWindowController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */; };
+		226E1EF1280967B800383C0F /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 226E1EF0280967B800383C0F /* GameServerQueryLibrary */; };
+		22D16C4228095A560029C0E2 /* ServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D16C4128095A560029C0E2 /* ServersView.swift */; };
+		22D16C4428095A630029C0E2 /* ServerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D16C4328095A630029C0E2 /* ServerDetailsView.swift */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2359F7D1F10427A00498384 /* AppDelegate.swift */; };
 		A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD85181F1B5B7700C1AF9B /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q3ServerBrowser.swift; sourceTree = "<group>"; };
+		2207A07D2808A8440062779E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2207A07F2808A87F0062779E /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		2207A0822808A8D60062779E /* CurrentGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGame.swift; sourceTree = "<group>"; };
 		220FEAB920CA8D0600A63F14 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		220FEABB20CA8FAF00A63F14 /* TopSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSplitViewController.swift; sourceTree = "<group>"; };
 		220FEABD20CA8FD000A63F14 /* ServersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		226E186820D5158700F8F9CA /* LogsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsWindowController.swift; sourceTree = "<group>"; };
 		226E186A20D5214800F8F9CA /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindowController+Alert.swift"; sourceTree = "<group>"; };
+		22D16C4128095A560029C0E2 /* ServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersView.swift; sourceTree = "<group>"; };
+		22D16C4328095A630029C0E2 /* ServerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDetailsView.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C8C6C6259367CF00D53E39 /* GameServerQueryLibrary in Frameworks */,
+				226E1EF1280967B800383C0F /* GameServerQueryLibrary in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +87,25 @@
 				8D1107320486CEB800E47090 /* Q3ServerBrowser.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2207A07C2808A83A0062779E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2207A07D2808A8440062779E /* ContentView.swift */,
+				2207A07F2808A87F0062779E /* Sidebar.swift */,
+				22D16C4128095A560029C0E2 /* ServersView.swift */,
+				22D16C4328095A630029C0E2 /* ServerDetailsView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2207A0812808A8C90062779E /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				2207A0822808A8D60062779E /* CurrentGame.swift */,
+			);
+			path = Wrapper;
 			sourceTree = "<group>";
 		};
 		222693FA213D892C002F1E13 /* Store */ = {
@@ -115,6 +136,13 @@
 			path = "Servers List";
 			sourceTree = "<group>";
 		};
+		22D16C5528095EAF0029C0E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* GameServerBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				A2359F7D1F10427A00498384 /* AppDelegate.swift */,
+				2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */,
 				A2359F7E1F10427A00498384 /* Classes */,
 				2229F6A620C6C94200E87840 /* Resources */,
 			);
@@ -151,6 +180,9 @@
 		A2359F7E1F10427A00498384 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				22D16C5528095EAF0029C0E2 /* Models */,
+				2207A0812808A8C90062779E /* Wrapper */,
+				2207A07C2808A83A0062779E /* UI */,
 				222693FA213D892C002F1E13 /* Store */,
 				A2359F9F1F10427A00498384 /* Main */,
 				A2DD85181F1B5B7700C1AF9B /* Utilities.swift */,
@@ -192,7 +224,7 @@
 			);
 			name = Q3ServerBrowser;
 			packageProductDependencies = (
-				22C8C6C5259367CF00D53E39 /* GameServerQueryLibrary */,
+				226E1EF0280967B800383C0F /* GameServerQueryLibrary */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = GameServerBrowser;
@@ -206,7 +238,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = WL8LT3PQLC;
@@ -228,7 +260,7 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* GameServerBrowser */;
 			packageReferences = (
-				22C8C6C4259367CF00D53E39 /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */,
+				226E1EEF280967B800383C0F /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */,
 			);
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
@@ -258,18 +290,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				226E186920D5158700F8F9CA /* LogsWindowController.swift in Sources */,
-				220FEABA20CA8D0600A63F14 /* MainWindowController.swift in Sources */,
+				2207A07E2808A8440062779E /* ContentView.swift in Sources */,
 				222693FC213D8939002F1E13 /* Settings.swift in Sources */,
-				22CCE7E720DA906B0014902A /* NSWindowController+Alert.swift in Sources */,
-				A2359FA71F10427A00498384 /* AppDelegate.swift in Sources */,
-				220FEAC420CA8FFA00A63F14 /* PlayersViewController.swift in Sources */,
-				220FEAC020CA8FDF00A63F14 /* ServerStatusSplitViewController.swift in Sources */,
-				226E186B20D5214800F8F9CA /* LogsViewController.swift in Sources */,
-				220FEAC220CA8FEC00A63F14 /* ServerRulesViewController.swift in Sources */,
+				22D16C4228095A560029C0E2 /* ServersView.swift in Sources */,
+				2207A07B2808A76E0062779E /* Q3ServerBrowser.swift in Sources */,
+				2207A0832808A8D60062779E /* CurrentGame.swift in Sources */,
+				2207A0802808A87F0062779E /* Sidebar.swift in Sources */,
+				22D16C4428095A630029C0E2 /* ServerDetailsView.swift in Sources */,
 				A2DD85191F1B5B7700C1AF9B /* Utilities.swift in Sources */,
-				220FEABC20CA8FAF00A63F14 /* TopSplitViewController.swift in Sources */,
-				220FEABE20CA8FD000A63F14 /* ServersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -316,8 +344,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 0.9.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -341,7 +369,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -358,8 +386,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 0.9.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -389,6 +417,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -405,8 +434,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-licucore";
 				SDKROOT = macosx;
@@ -429,6 +458,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -443,8 +473,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "-licucore";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -476,20 +506,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		22C8C6C4259367CF00D53E39 /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */ = {
+		226E1EEF280967B800383C0F /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/andreagiavatto/GameServerQueryLibrary";
+			repositoryURL = "https://github.com/andreagiavatto/GameServerQueryLibrary.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		22C8C6C5259367CF00D53E39 /* GameServerQueryLibrary */ = {
+		226E1EF0280967B800383C0F /* GameServerQueryLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 22C8C6C4259367CF00D53E39 /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */;
+			package = 226E1EEF280967B800383C0F /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */;
 			productName = GameServerQueryLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
