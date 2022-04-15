@@ -15,6 +15,7 @@ final class CurrentGame: NSObject, ObservableObject {
     
     @Published var currentMasterServer: MasterServer?
     @Published var servers: [Server] = []
+    @Published var isUpdating: Bool = false
     
     var masterServers: [MasterServer] {
         game.masterServers
@@ -25,12 +26,25 @@ final class CurrentGame: NSObject, ObservableObject {
         coordinator = game.coordinator
         super.init()
         coordinator.delegate = self
-        updateMasterServer(game.defaultMasterServer)
     }
     
-    func updateMasterServer(_ masterServer: MasterServer) {
+    func updateMasterServer(_ masterServer: MasterServer?) {
+        guard let masterServer = masterServer else {
+            return
+        }
         currentMasterServer = masterServer
+        servers = []
+        isUpdating = true
         coordinator.getServersList(host: masterServer.hostname, port: masterServer.port)
+    }
+    
+    func refreshCurrentList() {
+        guard let currentMasterServer = currentMasterServer else {
+            return
+        }
+        servers = []
+        isUpdating = true
+        coordinator.getServersList(host: currentMasterServer.hostname, port: currentMasterServer.port)
     }
 }
 
@@ -40,12 +54,11 @@ extension CurrentGame: CoordinatorDelegate {
     }
     
     func didFinishFetchingServersList(for coordinator: Coordinator) {
-        servers = []
         coordinator.fetchServersInfo()
     }
     
     func didFinishFetchingServersInfo(for coordinator: Coordinator) {
-
+        isUpdating = false
     }
     
     func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server) {

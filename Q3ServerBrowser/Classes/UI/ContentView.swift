@@ -21,7 +21,6 @@ struct ContentView: View {
                 ServerDetailsView()
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
-            .navigationTitle("Book List")
         }
     }
 }

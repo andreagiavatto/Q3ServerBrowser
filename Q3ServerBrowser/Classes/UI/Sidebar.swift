@@ -14,17 +14,34 @@ struct Sidebar: View {
     var body: some View {
         SideBarContent()
             .environmentObject(game)
-            .frame(minWidth: 250, idealWidth: 250, maxWidth: 300)
+            .frame(minWidth: 275, idealWidth: 275, maxWidth: 300)
     }
 }
 
 struct SideBarContent: View {
     @EnvironmentObject var game: CurrentGame
     
-    var body: some View {
-        List(game.masterServers, id: \.description) { masterServer in
-            Text(masterServer.description)
+    @State var selectedMasterServer: MasterServer? {
+        didSet {
+            game.updateMasterServer(selectedMasterServer)
         }
-        .listStyle(SidebarListStyle())
+    }
+    
+    var body: some View {
+        Section("Master Servers") {
+            List(game.masterServers, id: \.description) { masterServer in
+                HStack {
+                    Text(masterServer.description)
+                    Spacer()
+                    if masterServer.description == selectedMasterServer?.description {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.accentColor)
+                    }
+                }.onTapGesture {
+                    self.selectedMasterServer = masterServer
+                }
+            }
+            .listStyle(SidebarListStyle())
+        }
     }
 }
