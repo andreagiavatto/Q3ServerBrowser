@@ -83,6 +83,13 @@ final class CurrentGame: NSObject, ObservableObject {
         })
     }
     
+    func updateServerStatus(_ server: Server?) {
+        guard let server = server else {
+            return
+        }
+        game.coordinator.status(forServer: server)
+    }
+    
     private func satisfiesAllCurrentFilterCriteria(server: Server) -> Bool {
         if !showFull, isFull(server: server) {
             return false
@@ -128,16 +135,16 @@ extension CurrentGame: CoordinatorDelegate {
     }
     
     func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server) {
+        coordinator.status(forServer: server)
+    }
+    
+    func coordinator(_ coordinator: Coordinator, didFinishFetchingStatusFor server: Server) {
         DispatchQueue.main.async {
             self.lastFetchedServers.append(server)
             if self.satisfiesAllCurrentFilterCriteria(server: server) {
                 self.servers.append(server)
             }
         }
-    }
-    
-    func coordinator(_ coordinator: Coordinator, didFinishFetchingStatusFor server: Server) {
-        
     }
     
     func coordinator(_ coordinator: Coordinator, didFailWith error: GSQLError) {

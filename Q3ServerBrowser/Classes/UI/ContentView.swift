@@ -19,7 +19,6 @@ struct ContentView: View {
                 ServersView(selectedServer: $selectedServer)
                     .frame(minWidth: 850, idealWidth: 900, maxWidth: 1000)
                 ServerDetailsView(selectedServer: $selectedServer)
-                    .frame(minWidth: 400, idealWidth: 500, maxWidth: 500)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }

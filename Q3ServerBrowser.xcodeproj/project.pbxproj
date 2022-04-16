@@ -55,16 +55,15 @@
 		2229F6AD20C6C94200E87840 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
 		2229F6AE20C6C94200E87840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2229F6E320C6D6CA00E87840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		224E9D27219821D000632F43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		226E186820D5158700F8F9CA /* LogsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsWindowController.swift; sourceTree = "<group>"; };
 		226E186A20D5214800F8F9CA /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		2275426C280B0707006991E5 /* ServerDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDetailsViewModel.swift; sourceTree = "<group>"; };
 		22CCE7E620DA906B0014902A /* NSWindowController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindowController+Alert.swift"; sourceTree = "<group>"; };
 		22D16C4128095A560029C0E2 /* ServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersView.swift; sourceTree = "<group>"; };
 		22D16C4328095A630029C0E2 /* ServerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDetailsView.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2359F7D1F10427A00498384 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2DD85181F1B5B7700C1AF9B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +95,7 @@
 				2207A07F2808A87F0062779E /* Sidebar.swift */,
 				22D16C4128095A560029C0E2 /* ServersView.swift */,
 				22D16C4328095A630029C0E2 /* ServerDetailsView.swift */,
+				2275426C280B0707006991E5 /* ServerDetailsViewModel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -136,13 +136,6 @@
 			path = "Servers List";
 			sourceTree = "<group>";
 		};
-		22D16C5528095EAF0029C0E2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		29B97314FDCFA39411CA2CEA /* GameServerBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,7 +151,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				224E9D27219821D000632F43 /* Foundation.framework */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -169,7 +161,6 @@
 		A2359F7C1F10427A00498384 /* Q3ServerBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				A2359F7D1F10427A00498384 /* AppDelegate.swift */,
 				2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */,
 				A2359F7E1F10427A00498384 /* Classes */,
 				2229F6A620C6C94200E87840 /* Resources */,
@@ -180,7 +171,6 @@
 		A2359F7E1F10427A00498384 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				22D16C5528095EAF0029C0E2 /* Models */,
 				2207A0812808A8C90062779E /* Wrapper */,
 				2207A07C2808A83A0062779E /* UI */,
 				222693FA213D892C002F1E13 /* Store */,
