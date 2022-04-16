@@ -17,7 +17,7 @@ struct ContentView: View {
                 .environmentObject(game)
             NavigationView {
                 ServersView()
-                    .frame(minWidth: 800, idealWidth: 850, maxWidth: 1000)
+                    .frame(minWidth: 850, idealWidth: 900, maxWidth: 1000)
                 ServerDetailsView()
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())

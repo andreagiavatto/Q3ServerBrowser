@@ -13,7 +13,8 @@ struct ServersView: View {
     
     @State private var selection = Set<Server.ID>()
     @State var searchText: String = ""
-    
+    @State var showFull: Bool = true
+    @State var showEmpty: Bool = true
     @State var nameSortOrder: [KeyPathComparator<Server>] = [
         .init(\.name, order: SortOrder.forward)
     ]
@@ -21,19 +22,31 @@ struct ServersView: View {
     var body: some View {
         Group {
             Table(selection: $selection, sortOrder: $nameSortOrder) {
+//                TableColumn("Name", value: \.name, comparator: StringComparator()) { server in
+//                    Text(server.name)
+//                        .multilineTextAlignment(.center)
+//                }.width(250)
+                
                 TableColumn("Name", value: \.name)
+                    .width(250)
                 
                 TableColumn("Map", value: \.map)
+                    .width(90)
                 
                 TableColumn("Mod", value: \.mod)
+                    .width(70)
                 
                 TableColumn("Gametype", value: \.gametype)
+                    .width(70)
                 
-                //            TableColumn("Players", value: \.players)
+                TableColumn("Players", value: \.inGamePlayers)
+                    .width(50)
                 
                 TableColumn("Ping", value: \.ping)
+                    .width(40)
                 
-                TableColumn("Ip Address", value: \.ip)
+                TableColumn("Ip Address", value: \.hostname)
+                    .width(150)
             } rows: {
                 ForEach(game.servers) { server in
                     TableRow(server)
@@ -41,13 +54,29 @@ struct ServersView: View {
             }
         }
         .searchable(text: $searchText)
+        .onChange(of: searchText) { newQuery in
+            game.filter(with: newQuery)
+        }
         .toolbar {
-//            DisplayModePicker(mode: $mode)
             Button(action: refreshList) {
                 Label("Refresh List", systemImage: "arrow.triangle.2.circlepath")
             }
-//            .rotationEffect(.degrees(game.$isUpdating ? 360 : 0), anchor: .center)
-//            .animation(Animation.linear(duration: 1.0).repeatForever(autoreverses: false))
+            
+            Toggle(isOn: $showFull) {
+                Text("Show Full")
+            }
+            .toggleStyle(CheckboxToggleStyle())
+            .onChange(of: showFull) { newValue in
+                game.updateFullServersVisibility(allowFullServers: newValue)
+            }
+            
+            Toggle(isOn: $showEmpty) {
+                Text("Show Empty")
+            }
+            .toggleStyle(CheckboxToggleStyle())
+            .onChange(of: showEmpty) { newValue in
+                game.updateEmptyServersVisibility(allowEmptyServers: newValue)
+            }
         }
         .navigationTitle("Q3ServerBrowser")
         .navigationSubtitle("\(game.servers.count) servers found.")
@@ -56,4 +85,20 @@ struct ServersView: View {
     func refreshList() {
         game.refreshCurrentList()
     }
+}
+
+private struct StringComparator: SortComparator {
+    typealias Compared = String
+
+    func compare(_ lhs: String, _ rhs: String) -> ComparisonResult {
+        if lhs > rhs {
+            return .orderedDescending
+        } else if lhs < rhs {
+            return .orderedAscending
+        } else {
+            return .orderedSame
+        }
+    }
+
+    var order: SortOrder = .forward
 }

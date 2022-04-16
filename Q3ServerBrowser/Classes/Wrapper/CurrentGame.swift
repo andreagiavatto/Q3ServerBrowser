@@ -12,6 +12,10 @@ import GameServerQueryLibrary
 final class CurrentGame: NSObject, ObservableObject {
     private let game: Game
     private var coordinator: Coordinator
+    private var filter: String?
+    private var showFull: Bool = true
+    private var showEmpty: Bool = false
+    private var lastFetchedServers: [Server] = []
     
     @Published var currentMasterServer: MasterServer?
     @Published var servers: [Server] = []
@@ -46,6 +50,59 @@ final class CurrentGame: NSObject, ObservableObject {
         isUpdating = true
         coordinator.getServersList(host: currentMasterServer.hostname, port: currentMasterServer.port)
     }
+    
+    func updateFullServersVisibility(allowFullServers: Bool) {
+        showFull = allowFullServers
+        filter(with: filter)
+    }
+    
+    func updateEmptyServersVisibility(allowEmptyServers: Bool) {
+        showEmpty = allowEmptyServers
+        filter(with: filter)
+    }
+    
+    func filter(with text: String?) {
+        guard let text = text, !text.isEmpty else {
+            filter = nil
+            servers = lastFetchedServers.filter({ [weak self] server in
+                return self?.satisfiesAllCurrentFilterCriteria(server: server) ?? false
+            })
+            return
+        }
+
+        self.filter = text
+        self.servers = self.lastFetchedServers.filter({ [weak self] server in
+            return self?.satisfiesAllCurrentFilterCriteria(server: server) ?? false
+        })
+    }
+    
+    private func satisfiesAllCurrentFilterCriteria(server: Server) -> Bool {
+        if !showFull, isFull(server: server) {
+            return false
+        }
+        if !showEmpty, isEmpty(server: server) {
+            return false
+        }
+        return isIncludedInFilter(server: server)
+    }
+    
+    private func isIncludedInFilter(server: Server) -> Bool {
+        guard let text = filter else {
+            return true
+        }
+        return server.name.localizedCaseInsensitiveContains(text) ||
+        server.mod.localizedCaseInsensitiveContains(text) ||
+        server.gametype.localizedCaseInsensitiveContains(text) ||
+        server.hostname.localizedCaseInsensitiveContains(text)
+    }
+    
+    private func isFull(server: Server) -> Bool {
+        Int(server.currentPlayers) == Int(server.maxPlayers)
+    }
+    
+    private func isEmpty(server: Server) -> Bool {
+        Int(server.currentPlayers) == 0
+    }
 }
 
 extension CurrentGame: CoordinatorDelegate {
@@ -58,12 +115,17 @@ extension CurrentGame: CoordinatorDelegate {
     }
     
     func didFinishFetchingServersInfo(for coordinator: Coordinator) {
-        isUpdating = false
+        DispatchQueue.main.async {
+            self.isUpdating = false
+        }
     }
     
     func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server) {
         DispatchQueue.main.async {
-            self.servers.append(server)
+            self.lastFetchedServers.append(server)
+            if self.satisfiesAllCurrentFilterCriteria(server: server) {
+                self.servers.append(server)
+            }
         }
     }
     

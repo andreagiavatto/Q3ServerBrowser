@@ -14,7 +14,7 @@ struct Sidebar: View {
     var body: some View {
         SideBarContent()
             .environmentObject(game)
-            .frame(minWidth: 275, idealWidth: 275, maxWidth: 300)
+            .frame(minWidth: 250, idealWidth: 260, maxWidth: 300)
     }
 }
 
