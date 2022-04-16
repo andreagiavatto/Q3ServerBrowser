@@ -16,7 +16,7 @@ final class CurrentGame: NSObject, ObservableObject {
     private var showFull: Bool = true
     private var showEmpty: Bool = false
     private var lastFetchedServers: [Server] = []
-    
+        
     @Published var currentMasterServer: MasterServer?
     @Published var servers: [Server] = []
     @Published var isUpdating: Bool = false
@@ -30,6 +30,13 @@ final class CurrentGame: NSObject, ObservableObject {
         coordinator = game.coordinator
         super.init()
         coordinator.delegate = self
+    }
+    
+    func server(by id: Server.ID?) -> Server? {
+        guard let id = id else {
+            return nil
+        }
+        return servers.first { $0.id == id }
     }
     
     func updateMasterServer(_ masterServer: MasterServer?) {

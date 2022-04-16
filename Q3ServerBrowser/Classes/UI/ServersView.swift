@@ -10,8 +10,8 @@ import GameServerQueryLibrary
 
 struct ServersView: View {
     @EnvironmentObject var game: CurrentGame
+    @Binding var selectedServer: Server.ID?
     
-    @State private var selection = Set<Server.ID>()
     @State var searchText: String = ""
     @State var showFull: Bool = true
     @State var showEmpty: Bool = true
@@ -21,12 +21,7 @@ struct ServersView: View {
     
     var body: some View {
         Group {
-            Table(selection: $selection, sortOrder: $nameSortOrder) {
-//                TableColumn("Name", value: \.name, comparator: StringComparator()) { server in
-//                    Text(server.name)
-//                        .multilineTextAlignment(.center)
-//                }.width(250)
-                
+            Table(selection: $selectedServer, sortOrder: $nameSortOrder) {
                 TableColumn("Name", value: \.name)
                     .width(250)
                 
@@ -42,8 +37,8 @@ struct ServersView: View {
                 TableColumn("Players", value: \.inGamePlayers)
                     .width(50)
                 
-                TableColumn("Ping", value: \.ping)
-                    .width(40)
+                TableColumn("Ping (ms)", value: \.ping)
+                    .width(50)
                 
                 TableColumn("Ip Address", value: \.hostname)
                     .width(150)
@@ -52,6 +47,9 @@ struct ServersView: View {
                     TableRow(server)
                 }
             }
+            Text("\(game.servers.count) servers found.")
+                .frame(width: 150, height: 20.0, alignment: .leading)
+                .padding(.bottom, 5)
         }
         .searchable(text: $searchText)
         .onChange(of: searchText) { newQuery in

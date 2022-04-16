@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import GameServerQueryLibrary
 
 struct ServerDetailsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @EnvironmentObject var game: CurrentGame
+    @Binding var selectedServer: Server.ID?
+    
+    var server: Server? {
+        game.server(by: selectedServer)
     }
-}
-
-struct ServerDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ServerDetailsView()
+    
+    var body: some View {
+        Text("\(server?.name ?? "Nothing selected")")
     }
 }

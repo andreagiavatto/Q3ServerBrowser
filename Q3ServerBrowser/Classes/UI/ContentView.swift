@@ -10,15 +10,16 @@ import GameServerQueryLibrary
 
 struct ContentView: View {
     @EnvironmentObject var game: CurrentGame
+    @State private var selectedServer: Server.ID?
     
     var body: some View {
         NavigationView {
             Sidebar()
-                .environmentObject(game)
             NavigationView {
-                ServersView()
+                ServersView(selectedServer: $selectedServer)
                     .frame(minWidth: 850, idealWidth: 900, maxWidth: 1000)
-                ServerDetailsView()
+                ServerDetailsView(selectedServer: $selectedServer)
+                    .frame(minWidth: 400, idealWidth: 500, maxWidth: 500)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }
