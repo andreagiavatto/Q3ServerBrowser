@@ -77,7 +77,6 @@ struct ServersView: View {
             }
         }
         .navigationTitle("Q3ServerBrowser")
-        .navigationSubtitle("\(game.servers.count) servers found.")
     }
     
     func refreshList() {
