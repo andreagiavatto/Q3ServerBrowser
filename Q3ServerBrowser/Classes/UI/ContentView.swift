@@ -18,7 +18,11 @@ struct ContentView: View {
             NavigationView {
                 ServersView(selectedServer: $selectedServer)
                     .frame(minWidth: 850, idealWidth: 900, maxWidth: 1000)
-                ServerDetailsView(selectedServer: $selectedServer)
+                    .onChange(of: selectedServer) { newSelectedServer in
+                        let server = game.server(by: newSelectedServer)
+                        game.updateServerStatus(server)
+                    }
+                ServerDetailsView(selectedServer: $game.currentSelectedServer)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }

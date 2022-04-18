@@ -14,12 +14,13 @@ final class CurrentGame: NSObject, ObservableObject {
     private var coordinator: Coordinator
     private var filter: String?
     private var showFull: Bool = true
-    private var showEmpty: Bool = false
+    private var showEmpty: Bool = true
     private var lastFetchedServers: [Server] = []
         
     @Published var currentMasterServer: MasterServer?
     @Published var servers: [Server] = []
     @Published var isUpdating: Bool = false
+    @Published var currentSelectedServer: Server?
     
     var masterServers: [MasterServer] {
         game.masterServers
@@ -45,6 +46,7 @@ final class CurrentGame: NSObject, ObservableObject {
         }
         currentMasterServer = masterServer
         servers = []
+        currentSelectedServer = nil
         isUpdating = true
         coordinator.getServersList(host: masterServer.hostname, port: masterServer.port)
     }
@@ -54,6 +56,7 @@ final class CurrentGame: NSObject, ObservableObject {
             return
         }
         servers = []
+        currentSelectedServer = nil
         isUpdating = true
         coordinator.getServersList(host: currentMasterServer.hostname, port: currentMasterServer.port)
     }
@@ -87,7 +90,7 @@ final class CurrentGame: NSObject, ObservableObject {
         guard let server = server else {
             return
         }
-        game.coordinator.status(forServer: server)
+        coordinator.status(forServer: server)
     }
     
     private func satisfiesAllCurrentFilterCriteria(server: Server) -> Bool {
@@ -135,15 +138,17 @@ extension CurrentGame: CoordinatorDelegate {
     }
     
     func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server) {
-        coordinator.status(forServer: server)
-    }
-    
-    func coordinator(_ coordinator: Coordinator, didFinishFetchingStatusFor server: Server) {
         DispatchQueue.main.async {
             self.lastFetchedServers.append(server)
             if self.satisfiesAllCurrentFilterCriteria(server: server) {
                 self.servers.append(server)
             }
+        }
+    }
+    
+    func coordinator(_ coordinator: Coordinator, didFinishFetchingStatusFor server: Server) {
+        DispatchQueue.main.async {
+            self.currentSelectedServer = server
         }
     }
     

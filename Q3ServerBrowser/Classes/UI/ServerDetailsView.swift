@@ -10,15 +10,11 @@ import GameServerQueryLibrary
 
 struct ServerDetailsView: View {
     @EnvironmentObject var game: CurrentGame
-    
-    @Binding var selectedServer: Server.ID?
-    
-    var server: Server? {
-        game.server(by: selectedServer)
-    }
+        
+    @Binding var selectedServer: Server?
     
     var body: some View {
-        if let server = server {
+        if let server = selectedServer {
             VStack {
                 VStack {
                     Group {
@@ -74,7 +70,7 @@ struct ServerDetailsView: View {
             TableColumn("Score", value: \.score)
                 .width(70)
         } rows: {
-            let redPlayers = server?.teamRed?.players ?? []
+            let redPlayers = selectedServer?.teamRed?.players ?? []
             ForEach(redPlayers) { player in
                 TableRow(player)
             }
@@ -90,7 +86,7 @@ struct ServerDetailsView: View {
             TableColumn("Score", value: \.score)
                 .width(60)
         } rows: {
-            let bluePlayers = server?.teamBlue?.players ?? []
+            let bluePlayers = selectedServer?.teamBlue?.players ?? []
             ForEach(bluePlayers) { player in
                 TableRow(player)
             }
@@ -106,7 +102,7 @@ struct ServerDetailsView: View {
             TableColumn("Score", value: \.score)
                 .width(60)
         } rows: {
-            let allPlayers = server?.players ?? []
+            let allPlayers = selectedServer?.players ?? []
             ForEach(allPlayers) { player in
                 TableRow(player)
             }
@@ -119,7 +115,7 @@ struct ServerDetailsView: View {
                 .width(125)
             TableColumn("Value", value: \.value)
         } rows: {
-            let allSettings = server?.rules ?? []
+            let allSettings = selectedServer?.rules ?? []
             ForEach(allSettings) { setting in
                 TableRow(setting)
             }
