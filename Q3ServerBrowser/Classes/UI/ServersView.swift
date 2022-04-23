@@ -15,13 +15,11 @@ struct ServersView: View {
     @State var searchText: String = ""
     @State var showFull: Bool = true
     @State var showEmpty: Bool = true
-    @State var nameSortOrder: [KeyPathComparator<Server>] = [
-        .init(\.name, order: SortOrder.forward)
-    ]
+    @State private var sortOrder = [KeyPathComparator(\Server.name)]
     
     var body: some View {
         Group {
-            Table(selection: $selectedServer, sortOrder: $nameSortOrder) {
+            Table(selection: $selectedServer, sortOrder: $sortOrder) {
                 TableColumn("Name", value: \.name)
                     .width(250)
                 
@@ -54,6 +52,9 @@ struct ServersView: View {
         .searchable(text: $searchText)
         .onChange(of: searchText) { newQuery in
             game.filter(with: newQuery)
+        }
+        .onChange(of: sortOrder) {
+            game.servers.sort(using: $0)
         }
         .toolbar {
             Button(action: refreshList) {
