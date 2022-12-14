@@ -17,12 +17,13 @@ struct ContentView: View {
             Sidebar()
             NavigationView {
                 ServersView(selectedServer: $selectedServer)
-                    .frame(minWidth: 850, idealWidth: 900, maxWidth: 1000)
+                    .frame(minWidth: 850, idealWidth: 900, minHeight: 500, idealHeight: 850)
                     .onChange(of: selectedServer) { newSelectedServer in
                         let server = game.server(by: newSelectedServer)
                         game.updateServerStatus(server)
                     }
                 ServerDetailsView(selectedServer: $game.currentSelectedServer)
+                    .frame(minWidth: 300, idealWidth: 300, maxWidth: 300)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }
