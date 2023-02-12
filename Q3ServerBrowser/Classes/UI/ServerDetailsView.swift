@@ -53,6 +53,9 @@ struct ServerDetailsView: View {
                 AsyncImage(url: URL(string: "https://ws.q3df.org/images/levelshots/512x384/\(selectedServer?.map ?? "").jpg")) { image in
                     image
                         .resizable()
+                        .aspectRatio(4/3, contentMode: .fill)
+                        .frame(maxWidth: 400)
+                        .cornerRadius(8.0)
                 } placeholder: {
                     ProgressView()
                 }

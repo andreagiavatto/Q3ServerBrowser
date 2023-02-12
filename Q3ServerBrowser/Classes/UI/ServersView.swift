@@ -21,7 +21,7 @@ struct ServersView: View {
         Group {
             Table(selection: $selectedServer, sortOrder: $sortOrder) {
                 TableColumn("Name", value: \.name)
-                    .width(250)
+                    .width(min: 250)
                 
                 TableColumn("Map", value: \.map)
                     .width(100)
