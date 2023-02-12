@@ -24,7 +24,7 @@ struct ServersView: View {
                     .width(250)
                 
                 TableColumn("Map", value: \.map)
-                    .width(90)
+                    .width(100)
                 
                 TableColumn("Mod", value: \.mod)
                     .width(70)
@@ -35,7 +35,7 @@ struct ServersView: View {
                 TableColumn("Players", value: \.inGamePlayers)
                     .width(50)
                 
-                TableColumn("Ping (ms)", value: \.ping)
+                TableColumn("Ping", value: \.ping)
                     .width(50)
                 
                 TableColumn("Ip Address", value: \.hostname)

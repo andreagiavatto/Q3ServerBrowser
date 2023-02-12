@@ -16,6 +16,7 @@ final class CurrentGame: NSObject, ObservableObject {
     private var showFull: Bool = true
     private var showEmpty: Bool = true
     private var lastFetchedServers: [Server] = []
+    private var cancellables = Set<AnyCancellable>()
         
     @Published var currentMasterServer: MasterServer?
     @Published var servers: [Server] = []
@@ -30,7 +31,7 @@ final class CurrentGame: NSObject, ObservableObject {
         game = Game(type: type)
         coordinator = game.coordinator
         super.init()
-        coordinator.delegate = self
+        setupObservers()
     }
     
     func server(by id: Server.ID?) -> Server? {
@@ -45,10 +46,9 @@ final class CurrentGame: NSObject, ObservableObject {
             return
         }
         currentMasterServer = masterServer
-        servers = []
         currentSelectedServer = nil
         isUpdating = true
-        coordinator.getServersList(host: masterServer.hostname, port: masterServer.port)
+        startUpdatingMasterServerList(for: masterServer)
     }
     
     func refreshCurrentList() {
@@ -58,7 +58,7 @@ final class CurrentGame: NSObject, ObservableObject {
         servers = []
         currentSelectedServer = nil
         isUpdating = true
-        coordinator.getServersList(host: currentMasterServer.hostname, port: currentMasterServer.port)
+        startUpdatingMasterServerList(for: currentMasterServer)
     }
     
     func updateFullServersVisibility(allowFullServers: Bool) {
@@ -90,7 +90,42 @@ final class CurrentGame: NSObject, ObservableObject {
         guard let server = server else {
             return
         }
-        coordinator.status(forServer: server)
+        Task {
+            let updatedServer = await coordinator.updateServerStatus(server)
+            await MainActor.run {
+                self.currentSelectedServer = updatedServer
+            }
+        }
+    }
+    
+    private func startUpdatingMasterServerList(for masterServer: MasterServer) {
+        Task {
+            do {
+                try await coordinator.getServersList(ip: masterServer.hostname, port: masterServer.port)
+                await MainActor.run {
+                    self.isUpdating = false
+                }
+            } catch {
+                print(">>> Error updating master server list \(error.localizedDescription)")
+                await MainActor.run {
+                    self.isUpdating = false
+                }
+            }
+        }
+    }
+    
+    private func setupObservers() {
+        coordinator.servers
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] servers in
+                guard let self else {
+                    return
+                }
+                self.lastFetchedServers = servers
+                print(">>> Showing \(servers.count) servers")
+                self.filter(with: self.filter)
+            }
+            .store(in: &cancellables)
     }
     
     private func satisfiesAllCurrentFilterCriteria(server: Server) -> Bool {
@@ -110,7 +145,10 @@ final class CurrentGame: NSObject, ObservableObject {
         return server.name.localizedCaseInsensitiveContains(text) ||
         server.mod.localizedCaseInsensitiveContains(text) ||
         server.gametype.localizedCaseInsensitiveContains(text) ||
-        server.hostname.localizedCaseInsensitiveContains(text)
+        server.hostname.localizedCaseInsensitiveContains(text) ||
+        server.players.contains(where: { player in
+            player.name.localizedCaseInsensitiveContains(text)
+        })
     }
     
     private func isFull(server: Server) -> Bool {
@@ -119,40 +157,5 @@ final class CurrentGame: NSObject, ObservableObject {
     
     private func isEmpty(server: Server) -> Bool {
         Int(server.currentPlayers) == 0
-    }
-}
-
-extension CurrentGame: CoordinatorDelegate {
-    func didStartFetchingServersList(for coordinator: Coordinator) {
-        
-    }
-    
-    func didFinishFetchingServersList(for coordinator: Coordinator) {
-        coordinator.fetchServersInfo()
-    }
-    
-    func didFinishFetchingServersInfo(for coordinator: Coordinator) {
-        DispatchQueue.main.async {
-            self.isUpdating = false
-        }
-    }
-    
-    func coordinator(_ coordinator: Coordinator, didFinishFetchingInfoFor server: Server) {
-        DispatchQueue.main.async {
-            self.lastFetchedServers.append(server)
-            if self.satisfiesAllCurrentFilterCriteria(server: server) {
-                self.servers.append(server)
-            }
-        }
-    }
-    
-    func coordinator(_ coordinator: Coordinator, didFinishFetchingStatusFor server: Server) {
-        DispatchQueue.main.async {
-            self.currentSelectedServer = server
-        }
-    }
-    
-    func coordinator(_ coordinator: Coordinator, didFailWith error: GSQLError) {
-        print(error.localizedDescription)
     }
 }

@@ -22,12 +22,16 @@ struct ServerDetailsView: View {
                     teamRedView
                     Spacer()
                     teamBlueView
-                    Spacer()
-                    teamSpectatorsView
+                    if let spectators = selectedServer?.teamSpectator?.players, !spectators.isEmpty {
+                        Spacer()
+                        teamSpectatorsView
+                    }
                 } else {
                     playersView
-                    Spacer()
-                    teamSpectatorsView
+                    if let spectators = selectedServer?.teamSpectator?.players, !spectators.isEmpty {
+                        Spacer()
+                        teamSpectatorsView
+                    }
                 }
                 Spacer()
                 serverRulesView
@@ -49,12 +53,10 @@ struct ServerDetailsView: View {
                 AsyncImage(url: URL(string: "https://ws.q3df.org/images/levelshots/512x384/\(selectedServer?.map ?? "").jpg")) { image in
                     image
                         .resizable()
-                        .scaledToFill()
                 } placeholder: {
                     ProgressView()
                 }
-                .frame(width: 280)
-                .cornerRadius(8)
+                .padding(10)
             }
         }
     }
@@ -71,7 +73,7 @@ struct ServerDetailsView: View {
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             Table {
                 TableColumn("Name", value: \.name)
-                    .width(125)
+                    .width(min: 125, ideal: 125)
                 TableColumn("Ping (ms)", value: \.ping)
                     .width(70)
                 TableColumn("Score", value: \.score)
@@ -98,11 +100,11 @@ struct ServerDetailsView: View {
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             Table {
                 TableColumn("Name", value: \.name)
-                    .width(120)
+                    .width(min: 125, ideal: 125)
                 TableColumn("Ping (ms)", value: \.ping)
-                    .width(60)
+                    .width(70)
                 TableColumn("Score", value: \.score)
-                    .width(60)
+                    .width(70)
             } rows: {
                 let bluePlayers = selectedServer?.teamBlue?.players ?? []
                 ForEach(bluePlayers) { player in
@@ -122,9 +124,9 @@ struct ServerDetailsView: View {
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             Table {
                 TableColumn("Name", value: \.name)
-                    .width(180)
+                    .width(min: 180, ideal: 180)
                 TableColumn("Ping (ms)", value: \.ping)
-                    .width(60)
+                    .width(70)
             } rows: {
                 let specPlayers = selectedServer?.teamSpectator?.players ?? []
                 ForEach(specPlayers) { player in
@@ -144,11 +146,11 @@ struct ServerDetailsView: View {
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             Table {
                 TableColumn("Name", value: \.name)
-                    .width(120)
+                    .width(min: 125, ideal: 125)
                 TableColumn("Ping (ms)", value: \.ping)
-                    .width(60)
+                    .width(70)
                 TableColumn("Score", value: \.score)
-                    .width(60)
+                    .width(70)
             } rows: {
                 let allPlayers = selectedServer?.players ?? []
                 ForEach(allPlayers) { player in
@@ -168,8 +170,9 @@ struct ServerDetailsView: View {
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             Table {
                 TableColumn("Setting", value: \.key)
-                    .width(125)
+                    .width(min: 100, ideal: 100)
                 TableColumn("Value", value: \.value)
+                    .width(min: 170, ideal: 170)
             } rows: {
                 let sortedRules = selectedServer?.rules.sorted(by: { $0.key < $1.key })
                 let allSettings = sortedRules ?? []

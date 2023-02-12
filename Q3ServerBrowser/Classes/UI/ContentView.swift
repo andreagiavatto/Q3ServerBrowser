@@ -23,7 +23,7 @@ struct ContentView: View {
                         game.updateServerStatus(server)
                     }
                 ServerDetailsView(selectedServer: $game.currentSelectedServer)
-                    .frame(minWidth: 300, idealWidth: 300, maxWidth: 300)
+                    .frame(minWidth: 300, idealWidth: 300)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }
