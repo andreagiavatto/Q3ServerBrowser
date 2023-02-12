@@ -55,7 +55,6 @@ struct ServerDetailsView: View {
                         .resizable()
                         .aspectRatio(4/3, contentMode: .fill)
                         .frame(maxWidth: 400)
-                        .clipped()
                         .cornerRadius(8.0)
                 } placeholder: {
                     ProgressView()
