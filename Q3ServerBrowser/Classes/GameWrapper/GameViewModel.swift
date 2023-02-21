@@ -1,5 +1,5 @@
 //
-//  CurrentGame.swift
+//  GameViewModel.swift
 //  Q3ServerBrowser
 //
 //  Created by Andrea G on 14/04/2022.
@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import GameServerQueryLibrary
 
-final class CurrentGame: NSObject, ObservableObject {
+final class GameViewModel: NSObject, ObservableObject {
     private let game: Game
     private var coordinator: Coordinator
     private var filter: String?

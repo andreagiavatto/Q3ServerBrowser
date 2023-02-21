@@ -9,27 +9,27 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct Sidebar: View {
-    @EnvironmentObject var game: CurrentGame
+    @EnvironmentObject var gameViewModel: GameViewModel
     
     var body: some View {
         SideBarContent()
-            .environmentObject(game)
+            .environmentObject(gameViewModel)
             .frame(minWidth: 300, idealWidth: 300, maxWidth: 300)
     }
 }
 
 struct SideBarContent: View {
-    @EnvironmentObject var game: CurrentGame
+    @EnvironmentObject var gameViewModel: GameViewModel
     
     @State var selectedMasterServer: MasterServer? {
         didSet {
-            game.updateMasterServer(selectedMasterServer)
+            gameViewModel.updateMasterServer(selectedMasterServer)
         }
     }
     
     var body: some View {
         Section("Master Servers") {
-            List(game.masterServers, id: \.description) { masterServer in
+            List(gameViewModel.masterServers, id: \.description) { masterServer in
                 HStack {
                     Text(masterServer.description)
                     Spacer()

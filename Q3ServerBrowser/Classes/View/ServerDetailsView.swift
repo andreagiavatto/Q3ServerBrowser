@@ -9,12 +9,10 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct ServerDetailsView: View {
-    @EnvironmentObject var game: CurrentGame
-        
-    @Binding var selectedServer: Server?
-    
+    @EnvironmentObject var gameViewModel: GameViewModel
+            
     var body: some View {
-        if let server = selectedServer {
+        if let server = gameViewModel.currentSelectedServer {
             VStack {
                 serverInfo
                 Spacer()
@@ -22,13 +20,13 @@ struct ServerDetailsView: View {
                     teamRedView
                     Spacer()
                     teamBlueView
-                    if let spectators = selectedServer?.teamSpectator?.players, !spectators.isEmpty {
+                    if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
                         Spacer()
                         teamSpectatorsView
                     }
                 } else {
                     playersView
-                    if let spectators = selectedServer?.teamSpectator?.players, !spectators.isEmpty {
+                    if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
                         Spacer()
                         teamSpectatorsView
                     }
@@ -47,10 +45,10 @@ struct ServerDetailsView: View {
         Group {
             VStack {
                 Spacer()
-                Text("\(selectedServer?.name ?? "")")
+                Text("\(gameViewModel.currentSelectedServer?.name ?? "")")
                     .font(.headline)
                 Spacer()
-                AsyncImage(url: URL(string: "https://ws.q3df.org/images/levelshots/512x384/\(selectedServer?.map ?? "").jpg")) { image in
+                AsyncImage(url: URL(string: "https://ws.q3df.org/images/levelshots/512x384/\(gameViewModel.currentSelectedServer?.map ?? "").jpg")) { image in
                     image
                         .resizable()
                         .aspectRatio(4/3, contentMode: .fill)
@@ -69,7 +67,7 @@ struct ServerDetailsView: View {
             HStack {
                 Text("Team Red")
                 Spacer()
-                Text("\(selectedServer?.teamRed?.score ?? "0")")
+                Text("\(gameViewModel.currentSelectedServer?.teamRed?.score ?? "0")")
             }
             .font(.headline)
             .foregroundColor(.red)
@@ -82,7 +80,7 @@ struct ServerDetailsView: View {
                 TableColumn("Score", value: \.score)
                     .width(70)
             } rows: {
-                let redPlayers = selectedServer?.teamRed?.players ?? []
+                let redPlayers = gameViewModel.currentSelectedServer?.teamRed?.players ?? []
                 ForEach(redPlayers) { player in
                     TableRow(player)
                 }
@@ -96,7 +94,7 @@ struct ServerDetailsView: View {
             HStack {
                 Text("Team Blue")
                 Spacer()
-                Text("\(selectedServer?.teamBlue?.score ?? "0")")
+                Text("\(gameViewModel.currentSelectedServer?.teamBlue?.score ?? "0")")
             }
             .font(.headline)
             .foregroundColor(.blue)
@@ -109,7 +107,7 @@ struct ServerDetailsView: View {
                 TableColumn("Score", value: \.score)
                     .width(70)
             } rows: {
-                let bluePlayers = selectedServer?.teamBlue?.players ?? []
+                let bluePlayers = gameViewModel.currentSelectedServer?.teamBlue?.players ?? []
                 ForEach(bluePlayers) { player in
                     TableRow(player)
                 }
@@ -131,7 +129,7 @@ struct ServerDetailsView: View {
                 TableColumn("Ping (ms)", value: \.ping)
                     .width(70)
             } rows: {
-                let specPlayers = selectedServer?.teamSpectator?.players ?? []
+                let specPlayers = gameViewModel.currentSelectedServer?.teamSpectator?.players ?? []
                 ForEach(specPlayers) { player in
                     TableRow(player)
                 }
@@ -155,7 +153,12 @@ struct ServerDetailsView: View {
                 TableColumn("Score", value: \.score)
                     .width(70)
             } rows: {
-                let allPlayers = selectedServer?.players ?? []
+                let allPlayers = gameViewModel.currentSelectedServer?.players.sorted { (first, second) -> Bool in
+                    guard let firstScore = Int(first.score), let secondScore = Int(second.score) else {
+                        return false
+                    }
+                    return firstScore > secondScore
+                } ?? []
                 ForEach(allPlayers) { player in
                     TableRow(player)
                 }
@@ -177,7 +180,7 @@ struct ServerDetailsView: View {
                 TableColumn("Value", value: \.value)
                     .width(min: 170, ideal: 170)
             } rows: {
-                let sortedRules = selectedServer?.rules.sorted(by: { $0.key < $1.key })
+                let sortedRules = gameViewModel.currentSelectedServer?.rules.sorted(by: { $0.key < $1.key })
                 let allSettings = sortedRules ?? []
                 ForEach(allSettings) { setting in
                     TableRow(setting)

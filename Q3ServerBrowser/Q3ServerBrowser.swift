@@ -10,13 +10,12 @@ import GameServerQueryLibrary
 
 @main
 struct Q3ServerBrowser: App {
-    
-    @StateObject private var currentGame = CurrentGame(type: .quake3)
+    @StateObject private var gameViewModel = GameViewModel(type: .quake3)
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(currentGame)
+                .environmentObject(gameViewModel)
         }
         .commands {
             SidebarCommands()

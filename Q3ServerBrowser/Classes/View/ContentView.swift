@@ -9,7 +9,7 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct ContentView: View {
-    @EnvironmentObject var game: CurrentGame
+    @EnvironmentObject var gameViewModel: GameViewModel
     @State private var selectedServer: Server.ID?
     
     var body: some View {
@@ -19,10 +19,10 @@ struct ContentView: View {
                 ServersView(selectedServer: $selectedServer)
                     .frame(minWidth: 850, idealWidth: 900, minHeight: 500, idealHeight: 850)
                     .onChange(of: selectedServer) { newSelectedServer in
-                        let server = game.server(by: newSelectedServer)
-                        game.updateServerStatus(server)
+                        let server = gameViewModel.server(by: newSelectedServer)
+                        gameViewModel.updateServerStatus(server)
                     }
-                ServerDetailsView(selectedServer: $game.currentSelectedServer)
+                ServerDetailsView()
                     .frame(minWidth: 300, idealWidth: 300)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())

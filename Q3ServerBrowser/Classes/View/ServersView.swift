@@ -9,7 +9,7 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct ServersView: View {
-    @EnvironmentObject var game: CurrentGame
+    @EnvironmentObject var gameViewModel: GameViewModel
     @Binding var selectedServer: Server.ID?
     
     @State var searchText: String = ""
@@ -41,20 +41,20 @@ struct ServersView: View {
                 TableColumn("Ip Address", value: \.hostname)
                     .width(150)
             } rows: {
-                ForEach(game.servers) { server in
+                ForEach(gameViewModel.servers) { server in
                     TableRow(server)
                 }
             }
-            Text("\(game.servers.count) servers found.")
+            Text("\(gameViewModel.servers.count) servers found.")
                 .frame(width: 150, height: 20.0, alignment: .leading)
                 .padding(.bottom, 5)
         }
         .searchable(text: $searchText)
         .onChange(of: searchText) { newQuery in
-            game.filter(with: newQuery)
+            gameViewModel.filter(with: newQuery)
         }
         .onChange(of: sortOrder) {
-            game.servers.sort(using: $0)
+            gameViewModel.servers.sort(using: $0)
         }
         .toolbar {
             Button(action: refreshList) {
@@ -66,7 +66,7 @@ struct ServersView: View {
             }
             .toggleStyle(CheckboxToggleStyle())
             .onChange(of: showFull) { newValue in
-                game.updateFullServersVisibility(allowFullServers: newValue)
+                gameViewModel.updateFullServersVisibility(allowFullServers: newValue)
             }
             
             Toggle(isOn: $showEmpty) {
@@ -74,14 +74,14 @@ struct ServersView: View {
             }
             .toggleStyle(CheckboxToggleStyle())
             .onChange(of: showEmpty) { newValue in
-                game.updateEmptyServersVisibility(allowEmptyServers: newValue)
+                gameViewModel.updateEmptyServersVisibility(allowEmptyServers: newValue)
             }
         }
         .navigationTitle("Q3ServerBrowser")
     }
     
     func refreshList() {
-        game.refreshCurrentList()
+        gameViewModel.refreshCurrentList()
     }
 }
 

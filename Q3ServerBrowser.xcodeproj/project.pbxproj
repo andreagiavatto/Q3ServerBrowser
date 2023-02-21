@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2202DF4C299CE65600770E8B /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 2202DF4B299CE65600770E8B /* GameServerQueryLibrary */; };
 		2207A07B2808A76E0062779E /* Q3ServerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */; };
 		2207A07E2808A8440062779E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07D2808A8440062779E /* ContentView.swift */; };
 		2207A0802808A87F0062779E /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07F2808A87F0062779E /* Sidebar.swift */; };
-		2207A0832808A8D60062779E /* CurrentGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A0822808A8D60062779E /* CurrentGame.swift */; };
+		2207A0832808A8D60062779E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A0822808A8D60062779E /* GameViewModel.swift */; };
 		2229F6AF20C6C94200E87840 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A720C6C94200E87840 /* Colors.xcassets */; };
 		2229F6B020C6C94200E87840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A820C6C94200E87840 /* Localizable.strings */; };
 		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
 		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
+		22A296F229A4D600001A3FFE /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 22A296F129A4D600001A3FFE /* GameServerQueryLibrary */; };
 		22D16C4228095A560029C0E2 /* ServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D16C4128095A560029C0E2 /* ServersView.swift */; };
 		22D16C4428095A630029C0E2 /* ServerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D16C4328095A630029C0E2 /* ServerDetailsView.swift */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -39,7 +39,7 @@
 		2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q3ServerBrowser.swift; sourceTree = "<group>"; };
 		2207A07D2808A8440062779E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2207A07F2808A87F0062779E /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
-		2207A0822808A8D60062779E /* CurrentGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGame.swift; sourceTree = "<group>"; };
+		2207A0822808A8D60062779E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		2229F6A720C6C94200E87840 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2229F6A920C6C94200E87840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2229F6AA20C6C94200E87840 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2202DF4C299CE65600770E8B /* GameServerQueryLibrary in Frameworks */,
+				22A296F229A4D600001A3FFE /* GameServerQueryLibrary in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,23 +74,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2207A07C2808A83A0062779E /* UI */ = {
+		2207A07C2808A83A0062779E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2207A07D2808A8440062779E /* ContentView.swift */,
 				2207A07F2808A87F0062779E /* Sidebar.swift */,
+				2207A07D2808A8440062779E /* ContentView.swift */,
 				22D16C4128095A560029C0E2 /* ServersView.swift */,
 				22D16C4328095A630029C0E2 /* ServerDetailsView.swift */,
 			);
-			path = UI;
+			path = View;
 			sourceTree = "<group>";
 		};
-		2207A0812808A8C90062779E /* Wrapper */ = {
+		2207A0812808A8C90062779E /* GameWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				2207A0822808A8D60062779E /* CurrentGame.swift */,
+				2207A0822808A8D60062779E /* GameViewModel.swift */,
 			);
-			path = Wrapper;
+			path = GameWrapper;
 			sourceTree = "<group>";
 		};
 		2229F6A620C6C94200E87840 /* Resources */ = {
@@ -140,8 +140,8 @@
 		A2359F7E1F10427A00498384 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2207A0812808A8C90062779E /* Wrapper */,
-				2207A07C2808A83A0062779E /* UI */,
+				2207A0812808A8C90062779E /* GameWrapper */,
+				2207A07C2808A83A0062779E /* View */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 			);
 			name = Q3ServerBrowser;
 			packageProductDependencies = (
-				2202DF4B299CE65600770E8B /* GameServerQueryLibrary */,
+				22A296F129A4D600001A3FFE /* GameServerQueryLibrary */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = GameServerBrowser;
@@ -200,7 +200,7 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* GameServerBrowser */;
 			packageReferences = (
-				2202DF4A299CE65600770E8B /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */,
+				22A296F029A4D600001A3FFE /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */,
 			);
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
@@ -233,7 +233,7 @@
 				2207A07E2808A8440062779E /* ContentView.swift in Sources */,
 				22D16C4228095A560029C0E2 /* ServersView.swift in Sources */,
 				2207A07B2808A76E0062779E /* Q3ServerBrowser.swift in Sources */,
-				2207A0832808A8D60062779E /* CurrentGame.swift in Sources */,
+				2207A0832808A8D60062779E /* GameViewModel.swift in Sources */,
 				2207A0802808A87F0062779E /* Sidebar.swift in Sources */,
 				22D16C4428095A630029C0E2 /* ServerDetailsView.swift in Sources */,
 			);
@@ -264,7 +264,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -284,7 +284,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -308,7 +308,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
@@ -327,7 +327,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -448,20 +448,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2202DF4A299CE65600770E8B /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */ = {
+		22A296F029A4D600001A3FFE /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/andreagiavatto/GameServerQueryLibrary";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.8;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2202DF4B299CE65600770E8B /* GameServerQueryLibrary */ = {
+		22A296F129A4D600001A3FFE /* GameServerQueryLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2202DF4A299CE65600770E8B /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */;
+			package = 22A296F029A4D600001A3FFE /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */;
 			productName = GameServerQueryLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
