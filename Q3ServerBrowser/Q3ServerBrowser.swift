@@ -14,7 +14,7 @@ struct Q3ServerBrowser: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
                 .environmentObject(gameViewModel)
         }
         .commands {

@@ -14,25 +14,31 @@ struct ServerDetailsView: View {
     var body: some View {
         if let server = gameViewModel.currentSelectedServer {
             VStack {
-                serverInfo
+                HStack {
+                    serverInfo
+//                    Spacer()
+                    serverRulesView
+                }
+                .frame(maxHeight: 400)
                 Spacer()
-                if server.isATeamMode {
-                    teamRedView
-                    Spacer()
-                    teamBlueView
-                    if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
+                HStack {
+                    if server.isATeamMode {
+                        teamRedView
                         Spacer()
-                        teamSpectatorsView
-                    }
-                } else {
-                    playersView
-                    if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
-                        Spacer()
-                        teamSpectatorsView
+                        teamBlueView
+                        if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
+                            Spacer()
+                            teamSpectatorsView
+                        }
+                    } else {
+                        playersView
+                        if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
+                            Spacer()
+                            teamSpectatorsView
+                        }
                     }
                 }
-                Spacer()
-                serverRulesView
+                .frame(maxHeight: 400)
                 Text("")
                     .padding(.bottom, 18)
             }
@@ -178,7 +184,7 @@ struct ServerDetailsView: View {
                 TableColumn("Setting", value: \.key)
                     .width(min: 100, ideal: 100)
                 TableColumn("Value", value: \.value)
-                    .width(min: 170, ideal: 170)
+                    .width(min: 170, ideal: 250)
             } rows: {
                 let sortedRules = gameViewModel.currentSelectedServer?.rules.sorted(by: { $0.key < $1.key })
                 let allSettings = sortedRules ?? []

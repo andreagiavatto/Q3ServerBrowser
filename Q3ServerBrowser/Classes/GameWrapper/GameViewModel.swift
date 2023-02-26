@@ -88,6 +88,7 @@ final class GameViewModel: NSObject, ObservableObject {
     
     func updateServerStatus(_ server: Server?) {
         guard let server = server else {
+            self.currentSelectedServer = nil
             return
         }
         Task {

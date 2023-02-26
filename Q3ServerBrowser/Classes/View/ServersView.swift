@@ -13,8 +13,6 @@ struct ServersView: View {
     @Binding var selectedServer: Server.ID?
     
     @State var searchText: String = ""
-    @State var showFull: Bool = true
-    @State var showEmpty: Bool = true
     @State private var sortOrder = [KeyPathComparator(\Server.name)]
     
     var body: some View {
@@ -45,9 +43,6 @@ struct ServersView: View {
                     TableRow(server)
                 }
             }
-            Text("\(gameViewModel.servers.count) servers found.")
-                .frame(width: 150, height: 20.0, alignment: .leading)
-                .padding(.bottom, 5)
         }
         .searchable(text: $searchText)
         .onChange(of: searchText) { newQuery in
@@ -56,32 +51,6 @@ struct ServersView: View {
         .onChange(of: sortOrder) {
             gameViewModel.servers.sort(using: $0)
         }
-        .toolbar {
-            Button(action: refreshList) {
-                Label("Refresh List", systemImage: "arrow.triangle.2.circlepath")
-            }
-            
-            Toggle(isOn: $showFull) {
-                Text("Show Full")
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            .onChange(of: showFull) { newValue in
-                gameViewModel.updateFullServersVisibility(allowFullServers: newValue)
-            }
-            
-            Toggle(isOn: $showEmpty) {
-                Text("Show Empty")
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            .onChange(of: showEmpty) { newValue in
-                gameViewModel.updateEmptyServersVisibility(allowEmptyServers: newValue)
-            }
-        }
-        .navigationTitle("Q3ServerBrowser")
-    }
-    
-    func refreshList() {
-        gameViewModel.refreshCurrentList()
     }
 }
 

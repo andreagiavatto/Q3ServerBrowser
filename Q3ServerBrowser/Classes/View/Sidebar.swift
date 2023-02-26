@@ -14,7 +14,7 @@ struct Sidebar: View {
     var body: some View {
         SideBarContent()
             .environmentObject(gameViewModel)
-            .frame(minWidth: 300, idealWidth: 300, maxWidth: 300)
+            .frame(minWidth: 300, idealWidth: 350, maxWidth: 350)
     }
 }
 
@@ -33,11 +33,14 @@ struct SideBarContent: View {
                 HStack {
                     Text(masterServer.description)
                     Spacer()
-                    if masterServer.description == selectedMasterServer?.description {
-                        Image(systemName: "checkmark")
-                            .foregroundColor(.accentColor)
-                    }
-                }.onTapGesture {
+                }
+                .padding(EdgeInsets(top: 0, leading: 12.0, bottom: 0, trailing: 12.0))
+                .frame(minHeight: 24)
+                .contentShape(Rectangle())
+                .background(
+                    RoundedRectangle(cornerRadius: 12.0, style: .continuous).fill(masterServer.description == selectedMasterServer?.description ? Color(.gray).opacity(0.25) : Color.clear)
+                )
+                .onTapGesture {
                     self.selectedMasterServer = masterServer
                 }
             }
