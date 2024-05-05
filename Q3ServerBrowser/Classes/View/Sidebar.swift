@@ -28,7 +28,7 @@ struct SideBarContent: View {
     }
     
     var body: some View {
-        Section("Master Servers") {
+        Section {
             List(gameViewModel.masterServers, id: \.description) { masterServer in
                 HStack {
                     Text(masterServer.description)
@@ -45,6 +45,23 @@ struct SideBarContent: View {
                 }
             }
             .listStyle(SidebarListStyle())
+        } header: {
+            HStack {
+                Text("Master Servers")
+                    .font(.title3)
+                Spacer()
+                Button(action: {
+                    
+                }, label: {
+                    Image(systemName: "plus.circle")
+                })
+                .buttonStyle(.plain)
+            }
+            .fontWeight(.bold)
+            .frame(height: 28)
+            .padding(.horizontal, 28)
+            Divider()
+                .padding(.horizontal, 28)
         }
     }
 }

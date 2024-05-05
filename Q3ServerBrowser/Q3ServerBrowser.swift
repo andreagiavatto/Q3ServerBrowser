@@ -10,19 +10,12 @@ import GameServerQueryLibrary
 
 @main
 struct Q3ServerBrowser: App {
-    @StateObject private var gameViewModel = GameViewModel(type: .quake3)
-    
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(gameViewModel)
+            MainView(supportedGames: SupportedGames.allCases)
         }
         .commands {
             SidebarCommands()
         }
     }
-}
-
-struct Q3ServerBrowser_Previews {
-    
 }

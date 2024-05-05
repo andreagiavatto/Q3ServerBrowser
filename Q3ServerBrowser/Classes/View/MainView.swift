@@ -9,17 +9,22 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct MainView: View {
-    @EnvironmentObject var gameViewModel: GameViewModel
+    let supportedGames: [SupportedGames]
+
+    @StateObject private var gameViewModel = GameViewModel(type: .quake3)
     @State private var selectedRow: Server.ID?
     @State var showFull: Bool = true
     @State var showEmpty: Bool = true
     
     var body: some View {
-        NavigationView {
+        NavigationSplitView {
             Sidebar()
-            VStack {
+                .environmentObject(gameViewModel)
+        } detail: {
+            Group {
                 VSplitView {
                     ServersView(selectedServer: $selectedRow)
+                        .environmentObject(gameViewModel)
                         .frame(minHeight: 400, idealHeight: 600)
                         .onChange(of: selectedRow) { newSelectedRow in
                             let server = gameViewModel.server(by: newSelectedRow)
@@ -28,6 +33,7 @@ struct MainView: View {
                     if gameViewModel.currentSelectedServer != nil {
                         Divider()
                         PlayersView()
+                            .environmentObject(gameViewModel)
                     }
                 }
                 Divider()

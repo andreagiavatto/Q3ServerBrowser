@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GameServerQueryLibrary
 
 struct PlayersView: View {
     @EnvironmentObject var gameViewModel: GameViewModel
@@ -54,7 +55,7 @@ struct PlayersView: View {
                 .font(.headline)
                 .foregroundColor(.red)
                 .padding(EdgeInsets(top: 4, leading: 12, bottom: 0, trailing: 12))
-                Table {
+                Table(of: Player.self) {
                     TableColumn("Name", value: \.name)
                         .width(min: 125, ideal: 125)
                     TableColumn("Ping (ms)", value: \.ping)
@@ -85,7 +86,7 @@ struct PlayersView: View {
                 .font(.headline)
                 .foregroundColor(.blue)
                 .padding(EdgeInsets(top: 4, leading: 12, bottom: 0, trailing: 12))
-                Table {
+                Table(of: Player.self) {
                     TableColumn("Name", value: \.name)
                         .width(min: 125, ideal: 125)
                     TableColumn("Ping (ms)", value: \.ping)
@@ -111,7 +112,7 @@ struct PlayersView: View {
                 }
                 .font(.headline)
                 .padding(EdgeInsets(top: 4, leading: 12, bottom: 0, trailing: 12))
-                Table {
+                Table(of: Player.self) {
                     TableColumn("Name", value: \.name)
                         .width(min: 180, ideal: 180)
                     TableColumn("Ping (ms)", value: \.ping)
@@ -135,7 +136,7 @@ struct PlayersView: View {
                 }
                 .font(.headline)
                 .padding(EdgeInsets(top: 4, leading: 12, bottom: 0, trailing: 12))
-                Table {
+                Table(of: Player.self) {
                     TableColumn("Name", value: \.name)
                         .width(min: 125, ideal: 125)
                     TableColumn("Ping (ms)", value: \.ping)

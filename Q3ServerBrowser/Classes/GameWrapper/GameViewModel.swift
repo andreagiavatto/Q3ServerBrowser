@@ -9,14 +9,13 @@ import SwiftUI
 import Combine
 import GameServerQueryLibrary
 
-final class GameViewModel: NSObject, ObservableObject {
+final class GameViewModel: ObservableObject {
     private let game: Game
     private var coordinator: Coordinator
     private var filter: String?
     private var showFull: Bool = true
     private var showEmpty: Bool = true
     private var lastFetchedServers: [Server] = []
-    private var cancellables = Set<AnyCancellable>()
         
     @Published var currentMasterServer: MasterServer?
     @Published var servers: [Server] = []
@@ -30,8 +29,6 @@ final class GameViewModel: NSObject, ObservableObject {
     init(type: SupportedGames) {
         game = Game(type: type)
         coordinator = game.coordinator
-        super.init()
-        setupObservers()
     }
     
     func server(by id: Server.ID?) -> Server? {
@@ -41,6 +38,7 @@ final class GameViewModel: NSObject, ObservableObject {
         return servers.first { $0.id == id }
     }
     
+    @MainActor
     func updateMasterServer(_ masterServer: MasterServer?) {
         guard let masterServer = masterServer else {
             return
@@ -51,6 +49,7 @@ final class GameViewModel: NSObject, ObservableObject {
         startUpdatingMasterServerList(for: masterServer)
     }
     
+    @MainActor
     func refreshCurrentList() {
         guard let currentMasterServer = currentMasterServer else {
             return
@@ -61,16 +60,19 @@ final class GameViewModel: NSObject, ObservableObject {
         startUpdatingMasterServerList(for: currentMasterServer)
     }
     
+    @MainActor
     func updateFullServersVisibility(allowFullServers: Bool) {
         showFull = allowFullServers
         filter(with: filter)
     }
     
+    @MainActor
     func updateEmptyServersVisibility(allowEmptyServers: Bool) {
         showEmpty = allowEmptyServers
         filter(with: filter)
     }
     
+    @MainActor
     func filter(with text: String?) {
         guard let text = text, !text.isEmpty else {
             filter = nil
@@ -92,9 +94,13 @@ final class GameViewModel: NSObject, ObservableObject {
             return
         }
         Task {
-            let updatedServer = await coordinator.updateServerStatus(server)
-            await MainActor.run {
-                self.currentSelectedServer = updatedServer
+            do {
+                let updatedServer = try await coordinator.updateServerStatus(server)
+                await MainActor.run {
+                    self.currentSelectedServer = updatedServer
+                }
+            } catch {
+                NLog.error(error)
             }
         }
     }
@@ -102,31 +108,24 @@ final class GameViewModel: NSObject, ObservableObject {
     private func startUpdatingMasterServerList(for masterServer: MasterServer) {
         Task {
             do {
-                try await coordinator.getServersList(ip: masterServer.hostname, port: masterServer.port)
+                self.lastFetchedServers.removeAll()
+                let servers = try await coordinator.getServersList(ip: masterServer.hostname, port: masterServer.port)
+                NLog.log("Fetched \(servers.count) servers")
+                let serverUpdateStream = coordinator.fetchServersInfo(for: servers, waitTimeInMilliseconds: 100)
+                for await updatedServer in serverUpdateStream {
+                    self.lastFetchedServers.append(updatedServer)
+                    await self.filter(with: self.filter)
+                }
                 await MainActor.run {
                     self.isUpdating = false
                 }
             } catch {
-                print(">>> Error updating master server list \(error.localizedDescription)")
+                NLog.error("Error updating server list \(error.localizedDescription)")
                 await MainActor.run {
                     self.isUpdating = false
                 }
             }
         }
-    }
-    
-    private func setupObservers() {
-        coordinator.servers
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] servers in
-                guard let self else {
-                    return
-                }
-                self.lastFetchedServers = servers
-                print(">>> Showing \(servers.count) servers")
-                self.filter(with: self.filter)
-            }
-            .store(in: &cancellables)
     }
     
     private func satisfiesAllCurrentFilterCriteria(server: Server) -> Bool {
