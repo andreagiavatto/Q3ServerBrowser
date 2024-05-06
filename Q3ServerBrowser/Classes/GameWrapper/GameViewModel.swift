@@ -110,17 +110,18 @@ final class GameViewModel: ObservableObject {
             do {
                 self.lastFetchedServers.removeAll()
                 let servers = try await coordinator.getServersList(ip: masterServer.hostname, port: masterServer.port)
-                NLog.log("Fetched \(servers.count) servers")
+
                 let serverUpdateStream = coordinator.fetchServersInfo(for: servers, waitTimeInMilliseconds: 100)
                 for await updatedServer in serverUpdateStream {
-                    self.lastFetchedServers.append(updatedServer)
+                    let statusServer = try await coordinator.updateServerStatus(updatedServer)
+                    self.lastFetchedServers.append(statusServer)
                     await self.filter(with: self.filter)
                 }
                 await MainActor.run {
                     self.isUpdating = false
                 }
             } catch {
-                NLog.error("Error updating server list \(error.localizedDescription)")
+                NLog.error(error)
                 await MainActor.run {
                     self.isUpdating = false
                 }

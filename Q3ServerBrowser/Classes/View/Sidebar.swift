@@ -50,12 +50,12 @@ struct SideBarContent: View {
                 Text("Master Servers")
                     .font(.title3)
                 Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    Image(systemName: "plus.circle")
-                })
-                .buttonStyle(.plain)
+//                Button(action: {
+//                    
+//                }, label: {
+//                    Image(systemName: "plus.circle")
+//                })
+//                .buttonStyle(.plain)
             }
             .fontWeight(.bold)
             .frame(height: 28)

@@ -41,6 +41,13 @@ struct ServersView: View {
             } rows: {
                 ForEach(gameViewModel.servers) { server in
                     TableRow(server)
+                        .contextMenu {
+                            Button {
+                                copyToClipBoard(textToCopy: server.hostname)
+                            } label: {
+                                Label("Copy hostname to ClipBoard", systemImage: "doc.on.doc")
+                            }
+                        }
                 }
             }
         }
@@ -51,6 +58,12 @@ struct ServersView: View {
         .onChange(of: sortOrder) {
             gameViewModel.servers.sort(using: $0)
         }
+    }
+    
+    private func copyToClipBoard(textToCopy: String) {
+        let pasteBoard = NSPasteboard.general
+        pasteBoard.clearContents()
+        pasteBoard.setString(textToCopy, forType: .string)
     }
 }
 
