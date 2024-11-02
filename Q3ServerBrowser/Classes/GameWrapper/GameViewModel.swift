@@ -112,9 +112,9 @@ final class GameViewModel: ObservableObject {
                 let servers = try await coordinator.getServersList(ip: masterServer.hostname, port: masterServer.port)
 
                 let serverUpdateStream = coordinator.fetchServersInfo(for: servers, waitTimeInMilliseconds: 100)
-                for await updatedServer in serverUpdateStream {
+                for try await updatedServer in serverUpdateStream {
                     let statusServer = try await coordinator.updateServerStatus(updatedServer)
-                    self.lastFetchedServers.append(statusServer)
+                    await self.addServerToList(statusServer)
                     await self.filter(with: self.filter)
                 }
                 await MainActor.run {
@@ -127,6 +127,11 @@ final class GameViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    @MainActor
+    private func addServerToList(_ server: Server) {
+        lastFetchedServers.append(server)
     }
     
     private func satisfiesAllCurrentFilterCriteria(server: Server) -> Bool {
