@@ -9,37 +9,33 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct PlayersView: View {
-    @EnvironmentObject var gameViewModel: GameViewModel
+    let server: Server
     
     var body: some View {
-        if let server = gameViewModel.currentSelectedServer {
-                HSplitView {
-                    if server.isATeamMode {
-                        teamRedView
-                        HStack {
-                            Divider()
-                        }
-                        teamBlueView
-                        if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
-                            HStack {
-                                Divider()
-                            }
-                            teamSpectatorsView
-                        }
-                    } else {
-                        playersView
-                        if let spectators = gameViewModel.currentSelectedServer?.teamSpectator?.players, !spectators.isEmpty {
-                            HStack {
-                                Divider()
-                            }
-                            teamSpectatorsView
-                        }
-                    }
+        HSplitView {
+            if server.isATeamMode {
+                teamRedView
+                HStack {
+                    Divider()
                 }
-                .frame(minHeight: 200, idealHeight: 250, maxHeight: 400)
-        } else {
-            Text("Select a server from the list")
+                teamBlueView
+                if let spectators = server.teamSpectator?.players, !spectators.isEmpty {
+                    HStack {
+                        Divider()
+                    }
+                    teamSpectatorsView
+                }
+            } else {
+                playersView
+                if let spectators = server.teamSpectator?.players, !spectators.isEmpty {
+                    HStack {
+                        Divider()
+                    }
+                    teamSpectatorsView
+                }
+            }
         }
+        .frame(minHeight: 200, idealHeight: 250, maxHeight: 400)
     }
     
     var teamRedView: some View {
@@ -50,7 +46,7 @@ struct PlayersView: View {
                     Spacer()
                     Divider()
                         .frame(height: 16)
-                    Text("\(gameViewModel.currentSelectedServer?.teamRed?.score ?? "0")")
+                    Text("\(server.teamRed?.score ?? "0")")
                 }
                 .font(.headline)
                 .foregroundColor(.red)
@@ -63,7 +59,7 @@ struct PlayersView: View {
                     TableColumn("Score", value: \.score)
                         .width(min: 70)
                 } rows: {
-                    let redPlayers = gameViewModel.currentSelectedServer?.teamRed?.players ?? []
+                    let redPlayers = server.teamRed?.players ?? []
                     ForEach(redPlayers) { player in
                         TableRow(player)
                     }
@@ -81,7 +77,7 @@ struct PlayersView: View {
                     Spacer()
                     Divider()
                         .frame(height: 16)
-                    Text("\(gameViewModel.currentSelectedServer?.teamBlue?.score ?? "0")")
+                    Text("\(server.teamBlue?.score ?? "0")")
                 }
                 .font(.headline)
                 .foregroundColor(.blue)
@@ -94,7 +90,7 @@ struct PlayersView: View {
                     TableColumn("Score", value: \.score)
                         .width(min: 70)
                 } rows: {
-                    let bluePlayers = gameViewModel.currentSelectedServer?.teamBlue?.players ?? []
+                    let bluePlayers = server.teamBlue?.players ?? []
                     ForEach(bluePlayers) { player in
                         TableRow(player)
                     }
@@ -118,7 +114,7 @@ struct PlayersView: View {
                     TableColumn("Ping (ms)", value: \.ping)
                         .width(min: 70)
                 } rows: {
-                    let specPlayers = gameViewModel.currentSelectedServer?.teamSpectator?.players ?? []
+                    let specPlayers = server.teamSpectator?.players ?? []
                     ForEach(specPlayers) { player in
                         TableRow(player)
                     }
@@ -144,7 +140,7 @@ struct PlayersView: View {
                     TableColumn("Score", value: \.score)
                         .width(min: 70)
                 } rows: {
-                    let allPlayers = gameViewModel.currentSelectedServer?.players.sorted { (first, second) -> Bool in
+                    let allPlayers = server.players.sorted { (first, second) -> Bool in
                         guard let firstScore = Int(first.score), let secondScore = Int(second.score) else {
                             return false
                         }

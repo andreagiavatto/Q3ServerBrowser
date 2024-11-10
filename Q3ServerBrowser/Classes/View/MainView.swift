@@ -12,7 +12,6 @@ struct MainView: View {
     let supportedGames: [SupportedGames]
 
     @StateObject private var gameViewModel = GameViewModel(type: .quake3)
-    @State private var selectedRow: Server.ID?
     @State var showFull: Bool = true
     @State var showEmpty: Bool = true
     
@@ -23,17 +22,12 @@ struct MainView: View {
         } detail: {
             Group {
                 VSplitView {
-                    ServersView(selectedServer: $selectedRow)
+                    ServersView()
                         .environmentObject(gameViewModel)
                         .frame(minHeight: 400, idealHeight: 600)
-                        .onChange(of: selectedRow) { newSelectedRow in
-                            let server = gameViewModel.server(by: newSelectedRow)
-                            gameViewModel.updateServerStatus(server)
-                        }
-                    if gameViewModel.currentSelectedServer != nil {
+                    if let selection = gameViewModel.currentSelectedServer, let server = gameViewModel.server(by: selection) {
                         Divider()
-                        PlayersView()
-                            .environmentObject(gameViewModel)
+                        PlayersView(server: server)
                     }
                 }
                 Divider()
@@ -65,6 +59,8 @@ struct MainView: View {
     }
     
     func refreshList() {
-        gameViewModel.refreshCurrentList()
+        Task {
+            await gameViewModel.refreshCurrentList()
+        }
     }
 }

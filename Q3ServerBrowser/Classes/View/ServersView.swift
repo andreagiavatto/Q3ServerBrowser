@@ -10,14 +10,13 @@ import GameServerQueryLibrary
 
 struct ServersView: View {
     @EnvironmentObject var gameViewModel: GameViewModel
-    @Binding var selectedServer: Server.ID?
     
     @State var searchText: String = ""
     @State private var sortOrder = [KeyPathComparator(\Server.name)]
     
     var body: some View {
         Group {
-            Table(selection: $selectedServer, sortOrder: $sortOrder) {
+            Table(selection: $gameViewModel.currentSelectedServer, sortOrder: $sortOrder) {
                 TableColumn("Name", value: \.name)
                     .width(min: 250)
                 
@@ -57,6 +56,13 @@ struct ServersView: View {
         }
         .onChange(of: sortOrder) {
             gameViewModel.servers.sort(using: $0)
+        }
+        .onChange(of: gameViewModel.currentSelectedServer) { newSelectedServer in
+            Task {
+                if let server = await gameViewModel.server(by: newSelectedServer) {
+                    await gameViewModel.updateServerStatus(server)
+                }
+            }
         }
     }
     

@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/andreagiavatto/GameServerQueryLibrary",
       "state" : {
-        "revision" : "0798b136a8e5c3faa4e3822cf03162b26d932dba",
-        "version" : "2.0.0"
+        "revision" : "e9e3bd46ef1fc641cbd5204859e6c9b964d73d90",
+        "version" : "2.0.1"
       }
     },
     {

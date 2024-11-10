@@ -20,12 +20,6 @@ struct Sidebar: View {
 struct SideBarContent: View {
     @EnvironmentObject var gameViewModel: GameViewModel
     
-    @State var selectedMasterServer: MasterServer? {
-        didSet {
-            gameViewModel.updateMasterServer(selectedMasterServer)
-        }
-    }
-    
     var body: some View {
         Section {
             List(gameViewModel.masterServers, id: \.description) { masterServer in
@@ -37,10 +31,12 @@ struct SideBarContent: View {
                 .frame(minHeight: 24)
                 .contentShape(Rectangle())
                 .background(
-                    RoundedRectangle(cornerRadius: 12.0, style: .continuous).fill(masterServer.description == selectedMasterServer?.description ? Color(.gray).opacity(0.25) : Color.clear)
+                    RoundedRectangle(cornerRadius: 12.0, style: .continuous).fill(masterServer.description == gameViewModel.currentMasterServer?.description ? Color(.gray).opacity(0.25) : Color.clear)
                 )
                 .onTapGesture {
-                    self.selectedMasterServer = masterServer
+                    Task {
+                        await gameViewModel.updateMasterServer(masterServer)
+                    }
                 }
             }
             .listStyle(SidebarListStyle())
