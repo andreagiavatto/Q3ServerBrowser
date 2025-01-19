@@ -9,7 +9,7 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct ServersView: View {
-    @EnvironmentObject var gameViewModel: GameViewModel
+    @ObservedObject var gameViewModel: GameViewModel
     
     @State var searchText: String = ""
     @State private var sortOrder = [KeyPathComparator(\Server.name)]
@@ -50,6 +50,7 @@ struct ServersView: View {
                 }
             }
         }
+        .tableStyle(.inset)
         .searchable(text: $searchText)
         .onChange(of: searchText) { newQuery in
             gameViewModel.filter(with: newQuery)

@@ -12,26 +12,19 @@ struct MainView: View {
     let supportedGames: [SupportedGames]
 
     @StateObject private var gameViewModel = GameViewModel(type: .quake3)
-    @State var showFull: Bool = true
-    @State var showEmpty: Bool = true
+    @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
+    @State private var showFull: Bool = true
+    @State private var showEmpty: Bool = true
     
     var body: some View {
-        NavigationSplitView {
-            Sidebar()
-                .environmentObject(gameViewModel)
+        NavigationSplitView(columnVisibility: $columnVisibility) {
+            Sidebar(gameViewModel: gameViewModel)
+                .frame(minWidth: 300, idealWidth: 400)
+        } content: {
+            ServersView(gameViewModel: gameViewModel)
+                .frame(minWidth: 740, idealWidth: 750)
         } detail: {
-            Group {
-                VSplitView {
-                    ServersView()
-                        .environmentObject(gameViewModel)
-                        .frame(minHeight: 400, idealHeight: 600)
-                    if let selection = gameViewModel.currentSelectedServer, let server = gameViewModel.server(by: selection) {
-                        Divider()
-                        PlayersView(server: server)
-                    }
-                }
-                Divider()
-            }
+            ServerDetailsView(gameViewModel: gameViewModel)
         }
         .toolbar {
             Button(action: refreshList) {

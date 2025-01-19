@@ -3,21 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2207A07B2808A76E0062779E /* Q3ServerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */; };
-		2207A07E2808A8440062779E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07D2808A8440062779E /* MainView.swift */; };
-		2207A0802808A87F0062779E /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A07F2808A87F0062779E /* Sidebar.swift */; };
-		2207A0832808A8D60062779E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207A0822808A8D60062779E /* GameViewModel.swift */; };
-		2229F6AF20C6C94200E87840 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A720C6C94200E87840 /* Colors.xcassets */; };
-		2229F6B020C6C94200E87840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6A820C6C94200E87840 /* Localizable.strings */; };
-		2229F6B320C6C94200E87840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6AE20C6C94200E87840 /* Images.xcassets */; };
-		2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2229F6E320C6D6CA00E87840 /* Main.storyboard */; };
 		22A296F229A4D600001A3FFE /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 22A296F129A4D600001A3FFE /* GameServerQueryLibrary */; };
-		22D16C4228095A560029C0E2 /* ServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D16C4128095A560029C0E2 /* ServersView.swift */; };
-		22EBCD1229AA286200B27F4A /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBCD1129AA286100B27F4A /* PlayersView.swift */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,24 +26,24 @@
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q3ServerBrowser.swift; sourceTree = "<group>"; };
-		2207A07D2808A8440062779E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		2207A07F2808A87F0062779E /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
-		2207A0822808A8D60062779E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
-		2229F6A720C6C94200E87840 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		2229F6A920C6C94200E87840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2229F6AA20C6C94200E87840 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2229F6AD20C6C94200E87840 /* Q3ServerBrowser-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Q3ServerBrowser-Info.plist"; sourceTree = "<group>"; };
-		2229F6AE20C6C94200E87840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		2229F6E320C6D6CA00E87840 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		22D16C4128095A560029C0E2 /* ServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersView.swift; sourceTree = "<group>"; };
-		22D16C4328095A630029C0E2 /* ServerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDetailsView.swift; sourceTree = "<group>"; };
-		22E2E8C32A3D08A000D4EE82 /* Q3ServerBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Q3ServerBrowser.entitlements; sourceTree = "<group>"; };
-		22EBCD1129AA286100B27F4A /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		223159332D3C320B008FA844 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Resources/Q3ServerBrowser-Info.plist",
+			);
+			target = 8D1107260486CEB800E47090 /* Q3ServerBrowser */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		223159262D3C320A008FA844 /* Q3ServerBrowser */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (223159332D3C320B008FA844 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Q3ServerBrowser; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
@@ -76,42 +66,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2207A07C2808A83A0062779E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2207A07F2808A87F0062779E /* Sidebar.swift */,
-				2207A07D2808A8440062779E /* MainView.swift */,
-				22D16C4128095A560029C0E2 /* ServersView.swift */,
-				22D16C4328095A630029C0E2 /* ServerDetailsView.swift */,
-				22EBCD1129AA286100B27F4A /* PlayersView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		2207A0812808A8C90062779E /* GameWrapper */ = {
-			isa = PBXGroup;
-			children = (
-				2207A0822808A8D60062779E /* GameViewModel.swift */,
-			);
-			path = GameWrapper;
-			sourceTree = "<group>";
-		};
-		2229F6A620C6C94200E87840 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				2229F6A720C6C94200E87840 /* Colors.xcassets */,
-				2229F6A820C6C94200E87840 /* Localizable.strings */,
-				2229F6AD20C6C94200E87840 /* Q3ServerBrowser-Info.plist */,
-				2229F6AE20C6C94200E87840 /* Images.xcassets */,
-				2229F6E320C6D6CA00E87840 /* Main.storyboard */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		29B97314FDCFA39411CA2CEA /* GameServerBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				A2359F7C1F10427A00498384 /* Q3ServerBrowser */,
+				223159262D3C320A008FA844 /* Q3ServerBrowser */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -130,26 +88,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A2359F7C1F10427A00498384 /* Q3ServerBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				22E2E8C32A3D08A000D4EE82 /* Q3ServerBrowser.entitlements */,
-				2207A07A2808A76E0062779E /* Q3ServerBrowser.swift */,
-				A2359F7E1F10427A00498384 /* Classes */,
-				2229F6A620C6C94200E87840 /* Resources */,
-			);
-			path = Q3ServerBrowser;
-			sourceTree = "<group>";
-		};
-		A2359F7E1F10427A00498384 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				2207A0812808A8C90062779E /* GameWrapper */,
-				2207A07C2808A83A0062779E /* View */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,6 +103,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				223159262D3C320A008FA844 /* Q3ServerBrowser */,
 			);
 			name = Q3ServerBrowser;
 			packageProductDependencies = (
@@ -221,10 +162,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2229F6B320C6C94200E87840 /* Images.xcassets in Resources */,
-				2229F6E420C6D6CA00E87840 /* Main.storyboard in Resources */,
-				2229F6AF20C6C94200E87840 /* Colors.xcassets in Resources */,
-				2229F6B020C6C94200E87840 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,28 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2207A07E2808A8440062779E /* MainView.swift in Sources */,
-				22D16C4228095A560029C0E2 /* ServersView.swift in Sources */,
-				2207A07B2808A76E0062779E /* Q3ServerBrowser.swift in Sources */,
-				2207A0832808A8D60062779E /* GameViewModel.swift in Sources */,
-				2207A0802808A87F0062779E /* Sidebar.swift in Sources */,
-				22EBCD1229AA286200B27F4A /* PlayersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		2229F6A820C6C94200E87840 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2229F6A920C6C94200E87840 /* en */,
-				2229F6AA20C6C94200E87840 /* Base */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
@@ -270,7 +189,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 50;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -290,7 +209,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.6.2;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",
@@ -316,7 +235,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 50;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WL8LT3PQLC;
@@ -335,7 +254,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.6.2;
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"$(inherited)",

@@ -9,16 +9,16 @@ import SwiftUI
 import GameServerQueryLibrary
 
 struct Sidebar: View {
-    @EnvironmentObject var gameViewModel: GameViewModel
+    @ObservedObject var gameViewModel: GameViewModel
     
     var body: some View {
-        SideBarContent()
+        SideBarContent(gameViewModel: gameViewModel)
             .frame(minWidth: 300, idealWidth: 350, maxWidth: 350)
     }
 }
 
 struct SideBarContent: View {
-    @EnvironmentObject var gameViewModel: GameViewModel
+    @ObservedObject var gameViewModel: GameViewModel
     
     var body: some View {
         Section {
@@ -39,7 +39,7 @@ struct SideBarContent: View {
                     }
                 }
             }
-            .listStyle(SidebarListStyle())
+            .listStyle(.sidebar)
         } header: {
             HStack {
                 Text("Master Servers")

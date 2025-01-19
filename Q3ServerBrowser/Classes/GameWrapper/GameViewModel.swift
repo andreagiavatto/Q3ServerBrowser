@@ -89,8 +89,7 @@ final class GameViewModel: ObservableObject {
     @MainActor
     func updateServerStatus(_ server: Server) async {
         do {
-            let updatedServer = try await coordinator.updateServerStatus(server)
-            await replaceServerInList(with: updatedServer)
+            try await coordinator.updateServerStatus(server)
         } catch {
             NLog.error(error)
         }
@@ -117,14 +116,6 @@ final class GameViewModel: ObservableObject {
                 self.isUpdating = false
             }
         }
-    }
-    
-    @MainActor
-    private func replaceServerInList(with server: Server) {
-        guard let index = servers.firstIndex(where: { $0 == server }) else {
-            return
-        }
-        servers[index] = server
     }
     
     @MainActor
