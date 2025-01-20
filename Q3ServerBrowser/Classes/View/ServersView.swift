@@ -30,7 +30,7 @@ struct ServersView: View {
                     .width(70)
                 
                 TableColumn("Players", value: \.inGamePlayers)
-                    .width(50)
+                    .width(55)
                 
                 TableColumn("Ping", value: \.ping)
                     .width(50)

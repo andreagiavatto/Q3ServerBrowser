@@ -15,8 +15,9 @@ struct ServerDetailsView: View {
     var body: some View {
         Group {
             if let selection = gameViewModel.currentSelectedServer, let server = gameViewModel.server(by: selection) {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: .zero) {
                     serverInfo(server: server)
+                        .frame(maxHeight: 160)
                     Divider()
                     PlayersView(server: server)
                     serverRulesView(server: server)
@@ -37,7 +38,6 @@ struct ServerDetailsView: View {
             } placeholder: {
                 ProgressView()
             }
-            .frame(maxHeight: 150)
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
@@ -56,7 +56,7 @@ struct ServerDetailsView: View {
                     Text(server.rules.first(where: { $0.key.lowercased().contains("score_time") })?.value ?? "")
                 }
             }
-            .font(.title2)
+            .font(.title3)
         }
         .padding(.trailing, 16)
     }
