@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/andreagiavatto/GameServerQueryLibrary",
       "state" : {
-        "revision" : "3bd9eb2d1d4064ada475288c7f4e73a4bd07bd04",
-        "version" : "2.0.3"
+        "revision" : "0c8b533ec4bd1e053c6ff7467a8dce2a6525c90b",
+        "version" : "2.0.4"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
-        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
-        "version" : "1.1.4"
+        "revision" : "6675bc0ff86e61436e615df6fc5174e043e57924",
+        "version" : "1.4.1"
       }
     }
   ],

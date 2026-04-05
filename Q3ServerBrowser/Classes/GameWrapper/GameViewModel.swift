@@ -10,12 +10,13 @@ import Combine
 import GameServerQueryLibrary
 
 final class GameViewModel: ObservableObject {
-    private let game: Game
+    private var game: Game
     private var coordinator: Coordinator
     private var filter: String?
     private var showFull: Bool = true
     private var showEmpty: Bool = true
     private var lastFetchedServers: [Server] = []
+    private var currentSortOrder: [KeyPathComparator<Server>] = []
         
     @MainActor @Published private(set) var currentMasterServer: MasterServer?
     @MainActor @Published var servers: [Server] = []
@@ -27,8 +28,26 @@ final class GameViewModel: ObservableObject {
     }
 
     init(type: SupportedGames) {
-        game = Game(type: type)
-        coordinator = game.coordinator
+        // Construct Game once and reuse it for the coordinator so we never
+        // accidentally create two different coordinator instances.
+        let newGame = Game(type: type)
+        game = newGame
+        coordinator = newGame.coordinator
+    }
+
+    @MainActor
+    func switchGame(to type: SupportedGames) {
+        // Both game and coordinator are updated from the same Game instance so
+        // they are always in sync.
+        let newGame = Game(type: type)
+        game = newGame
+        coordinator = newGame.coordinator
+        servers = []
+        lastFetchedServers = []
+        currentSortOrder = []
+        currentMasterServer = nil
+        currentSelectedServer = nil
+        filter = nil
     }
     
     @MainActor
@@ -71,25 +90,38 @@ final class GameViewModel: ObservableObject {
     }
     
     @MainActor
+    func sort(using comparators: [KeyPathComparator<Server>]) {
+        currentSortOrder = comparators
+        servers.sort(using: comparators)
+    }
+
+    @MainActor
     func filter(with text: String?) {
         guard let text = text, !text.isEmpty else {
             filter = nil
-            servers = lastFetchedServers.filter({ [weak self] server in
-                return self?.satisfiesAllCurrentFilterCriteria(server: server) ?? false
-            })
+            servers = lastFetchedServers.filter { satisfiesAllCurrentFilterCriteria(server: $0) }
+            if !currentSortOrder.isEmpty { servers.sort(using: currentSortOrder) }
             return
         }
 
         self.filter = text
-        self.servers = self.lastFetchedServers.filter({ [weak self] server in
-            return self?.satisfiesAllCurrentFilterCriteria(server: server) ?? false
-        })
+        self.servers = self.lastFetchedServers.filter { satisfiesAllCurrentFilterCriteria(server: $0) }
+        if !currentSortOrder.isEmpty { servers.sort(using: currentSortOrder) }
     }
     
     @MainActor
     func updateServerStatus(_ server: Server) async {
         do {
-            try await coordinator.updateServerStatus(server)
+            // Server is a value type — capture the returned updated copy and
+            // write it back into both the visible list and the backing store so
+            // that ping, players, and rules are actually persisted.
+            let updated = try await coordinator.updateServerStatus(server)
+            if let idx = servers.firstIndex(where: { $0.id == updated.id }) {
+                servers[idx] = updated
+            }
+            if let idx = lastFetchedServers.firstIndex(where: { $0.id == updated.id }) {
+                lastFetchedServers[idx] = updated
+            }
         } catch {
             NLog.error(error)
         }

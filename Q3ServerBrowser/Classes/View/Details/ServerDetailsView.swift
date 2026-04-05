@@ -31,12 +31,24 @@ struct ServerDetailsView: View {
     @ViewBuilder
     func serverInfo(server: Server) -> some View {
         HStack {
-            AsyncImage(url: URL(string: "https://ws.q3df.org/images/levelshots/512x384/\(server.map).jpg")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(4/3, contentMode: .fit)
-            } placeholder: {
-                ProgressView()
+            AsyncImage(url: URL(string: "https://ws.q3df.org/images/levelshots/512x384/\(server.map).jpg")) { phase in
+                switch phase {
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(4/3, contentMode: .fit)
+                case .failure:
+                    // The map image is unavailable (unknown map, network error, etc.)
+                    Image(systemName: "photo.slash")
+                        .resizable()
+                        .aspectRatio(4/3, contentMode: .fit)
+                        .foregroundStyle(.secondary)
+                case .empty:
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                @unknown default:
+                    EmptyView()
+                }
             }
             
             VStack(alignment: .leading, spacing: 8) {
@@ -53,7 +65,14 @@ struct ServerDetailsView: View {
                 HStack {
                     Text("Time:")
                     Spacer()
-                    Text(server.rules.first(where: { $0.key.lowercased().contains("score_time") })?.value ?? "")
+                    // Q3 reports elapsed match time as "score_time"; many mods
+                    // use "timelimit" or "g_timelimit" for the configured limit.
+                    // Check all known keys in priority order so real servers
+                    // that don't report score_time still show something useful.
+                    Text(server.rules.first(where: {
+                        let k = $0.key.lowercased()
+                        return k == "score_time" || k == "timelimit" || k == "g_timelimit"
+                    })?.value ?? "")
                 }
             }
             .font(.title3)
@@ -71,16 +90,15 @@ struct ServerDetailsView: View {
             .font(.headline)
             .padding(.horizontal, 16)
             .padding(.top, 8)
-            
+
             Table(sortOrder: $sortOrder) {
                 TableColumn("Setting", value: \.key)
                     .width(min: 100, ideal: 100)
                 TableColumn("Value", value: \.value)
                     .width(min: 170, ideal: 250)
             } rows: {
-                let sortedRules = server.rules.sorted(by: { $0.key < $1.key })
-                let allSettings = sortedRules ?? []
-                ForEach(allSettings) { setting in
+                let sortedRules = server.rules.sorted(using: sortOrder)
+                ForEach(sortedRules) { setting in
                     TableRow(setting)
                 }
             }

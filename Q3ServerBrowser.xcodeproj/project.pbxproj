@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22A296F229A4D600001A3FFE /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 22A296F129A4D600001A3FFE /* GameServerQueryLibrary */; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		22613D162F82AA68004E5216 /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 22613D152F82AA68004E5216 /* GameServerQueryLibrary */; };
+		22613D192F82BB8F004E5216 /* GameServerQueryLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 22613D182F82BB8F004E5216 /* GameServerQueryLibrary */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +25,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Q3ServerBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q3ServerBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,8 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A296F229A4D600001A3FFE /* GameServerQueryLibrary in Frameworks */,
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				22613D192F82BB8F004E5216 /* GameServerQueryLibrary in Frameworks */,
+				22613D162F82AA68004E5216 /* GameServerQueryLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,23 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				223159262D3C320A008FA844 /* Q3ServerBrowser */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			indentWidth = 4;
 			name = GameServerBrowser;
 			sourceTree = "<group>";
 			tabWidth = 4;
-		};
-		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -109,7 +95,8 @@
 			);
 			name = Q3ServerBrowser;
 			packageProductDependencies = (
-				22A296F129A4D600001A3FFE /* GameServerQueryLibrary */,
+				22613D152F82AA68004E5216 /* GameServerQueryLibrary */,
+				22613D182F82BB8F004E5216 /* GameServerQueryLibrary */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = GameServerBrowser;
@@ -146,7 +133,7 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* GameServerBrowser */;
 			packageReferences = (
-				22A296F029A4D600001A3FFE /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */,
+				22613D172F82BB8F004E5216 /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */,
 			);
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
@@ -378,20 +365,24 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		22A296F029A4D600001A3FFE /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */ = {
+		22613D172F82BB8F004E5216 /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/andreagiavatto/GameServerQueryLibrary";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 2.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		22A296F129A4D600001A3FFE /* GameServerQueryLibrary */ = {
+		22613D152F82AA68004E5216 /* GameServerQueryLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 22A296F029A4D600001A3FFE /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */;
+			productName = GameServerQueryLibrary;
+		};
+		22613D182F82BB8F004E5216 /* GameServerQueryLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22613D172F82BB8F004E5216 /* XCRemoteSwiftPackageReference "GameServerQueryLibrary" */;
 			productName = GameServerQueryLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */

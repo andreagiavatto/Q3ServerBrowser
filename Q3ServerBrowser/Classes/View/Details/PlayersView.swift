@@ -143,7 +143,7 @@ struct PlayersView: View {
                         return false
                     }
                     return firstScore > secondScore
-                } ?? []
+                }
                 ForEach(allPlayers) { player in
                     TableRow(player)
                 }

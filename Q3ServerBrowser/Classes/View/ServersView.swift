@@ -15,26 +15,26 @@ struct ServersView: View {
     @State private var sortOrder = [KeyPathComparator(\Server.name)]
     
     var body: some View {
-        Group {
+        ZStack {
             Table(selection: $gameViewModel.currentSelectedServer, sortOrder: $sortOrder) {
                 TableColumn("Name", value: \.name)
                     .width(min: 250)
-                
+
                 TableColumn("Map", value: \.map)
                     .width(100)
-                
+
                 TableColumn("Mod", value: \.mod)
                     .width(70)
-                
+
                 TableColumn("Gametype", value: \.gametype)
                     .width(70)
-                
+
                 TableColumn("Players", value: \.inGamePlayers)
                     .width(55)
-                
+
                 TableColumn("Ping", value: \.ping)
                     .width(50)
-                
+
                 TableColumn("Ip Address", value: \.hostname)
                     .width(150)
             } rows: {
@@ -49,16 +49,22 @@ struct ServersView: View {
                         }
                 }
             }
+            .opacity(gameViewModel.isUpdating ? 0.4 : 1.0)
+
+            if gameViewModel.isUpdating {
+                ProgressView("Fetching servers…")
+                    .progressViewStyle(.circular)
+            }
         }
         .tableStyle(.inset)
         .searchable(text: $searchText)
-        .onChange(of: searchText) { newQuery in
+        .onChange(of: searchText) { _, newQuery in
             gameViewModel.filter(with: newQuery)
         }
-        .onChange(of: sortOrder) {
-            gameViewModel.servers.sort(using: $0)
+        .onChange(of: sortOrder) { _, newOrder in
+            gameViewModel.sort(using: newOrder)
         }
-        .onChange(of: gameViewModel.currentSelectedServer) { newSelectedServer in
+        .onChange(of: gameViewModel.currentSelectedServer) { _, newSelectedServer in
             Task {
                 if let server = await gameViewModel.server(by: newSelectedServer) {
                     await gameViewModel.updateServerStatus(server)
@@ -74,18 +80,3 @@ struct ServersView: View {
     }
 }
 
-private struct StringComparator: SortComparator {
-    typealias Compared = String
-
-    func compare(_ lhs: String, _ rhs: String) -> ComparisonResult {
-        if lhs > rhs {
-            return .orderedDescending
-        } else if lhs < rhs {
-            return .orderedAscending
-        } else {
-            return .orderedSame
-        }
-    }
-
-    var order: SortOrder = .forward
-}
