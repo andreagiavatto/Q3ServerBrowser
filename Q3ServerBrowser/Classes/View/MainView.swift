@@ -13,8 +13,6 @@ struct MainView: View {
 
     @StateObject private var gameViewModel = GameViewModel(type: .quake3)
     @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
-    @State private var showFull: Bool = true
-    @State private var showEmpty: Bool = true
     @State private var selectedGame: SupportedGames = .quake3
 
     var body: some View {
@@ -24,39 +22,27 @@ struct MainView: View {
                 supportedGames: supportedGames,
                 selectedGame: $selectedGame
             )
-            .frame(minWidth: 300, idealWidth: 400)
+            .frame(minWidth: 260, idealWidth: 280, maxWidth: 300)
         } content: {
             ServersView(gameViewModel: gameViewModel)
-                .frame(minWidth: 740, idealWidth: 750)
+                .frame(minWidth: 680, idealWidth: 720)
         } detail: {
             ServerDetailsView(gameViewModel: gameViewModel)
         }
         .toolbar {
-            Button(action: refreshList) {
-                Label("Refresh List", systemImage: "arrow.triangle.2.circlepath")
-            }
-            
-            Toggle(isOn: $showFull) {
-                Text("Show Full")
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            .onChange(of: showFull) { _, newValue in
-                gameViewModel.updateFullServersVisibility(allowFullServers: newValue)
-            }
-
-            Toggle(isOn: $showEmpty) {
-                Text("Show Empty")
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            .onChange(of: showEmpty) { _, newValue in
-                gameViewModel.updateEmptyServersVisibility(allowEmptyServers: newValue)
+            ToolbarItem(placement: .automatic) {
+                Button(action: refreshList) {
+                    Label("Refresh", systemImage: "arrow.triangle.2.circlepath")
+                }
+                .keyboardShortcut("r", modifiers: .command)
+                .help("Refresh server list (⌘R)")
             }
         }
         .navigationTitle("Q3ServerBrowser")
-        .navigationSubtitle(Text("\(gameViewModel.servers.count) servers found"))
+        .navigationSubtitle(Text("\(gameViewModel.servers.count) servers"))
     }
-    
-    func refreshList() {
+
+    private func refreshList() {
         Task {
             await gameViewModel.refreshCurrentList()
         }

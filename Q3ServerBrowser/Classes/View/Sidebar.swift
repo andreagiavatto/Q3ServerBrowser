@@ -19,7 +19,6 @@ struct Sidebar: View {
             supportedGames: supportedGames,
             selectedGame: $selectedGame
         )
-        .frame(minWidth: 300, idealWidth: 350, maxWidth: 350)
     }
 }
 
@@ -30,11 +29,15 @@ struct SideBarContent: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
+
+            // ── Game picker ──────────────────────────────────────────────
+            VStack(alignment: .leading, spacing: 6) {
                 Text("Game")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                Spacer()
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(.secondary)
+                    .textCase(.uppercase)
+                    .tracking(0.6)
+
                 Picker("", selection: $selectedGame) {
                     ForEach(supportedGames, id: \.self) { game in
                         Text(game.name).tag(game)
@@ -42,52 +45,151 @@ struct SideBarContent: View {
                 }
                 .labelsHidden()
                 .pickerStyle(.segmented)
+                .onChange(of: selectedGame) { _, newGame in
+                    gameViewModel.switchGame(to: newGame)
+                }
             }
-            .frame(height: 28)
-            .padding(.horizontal, 28)
-            .onChange(of: selectedGame) { _, newGame in
-                gameViewModel.switchGame(to: newGame)
+            .padding(.horizontal, 14)
+            .padding(.top, 12)
+            .padding(.bottom, 8)
+
+            // ── Filter chips ─────────────────────────────────────────────
+            HStack(spacing: 6) {
+                filterChip(
+                    title: "Show Full",
+                    isOn: gameViewModel.showFull
+                ) {
+                    gameViewModel.updateFullServersVisibility(allowFullServers: !gameViewModel.showFull)
+                }
+                filterChip(
+                    title: "Show Empty",
+                    isOn: gameViewModel.showEmpty
+                ) {
+                    gameViewModel.updateEmptyServersVisibility(allowEmptyServers: !gameViewModel.showEmpty)
+                }
             }
+            .padding(.horizontal, 14)
+            .padding(.bottom, 10)
 
-            Divider()
-                .padding(.horizontal, 28)
-                .padding(.top, 4)
+            Divider().padding(.horizontal, 14)
 
-            Section {
-                List(gameViewModel.masterServers) { masterServer in
-                    HStack {
-                        Text(masterServer.description)
-                        Spacer()
-                    }
-                    .padding(EdgeInsets(top: 0, leading: 12.0, bottom: 0, trailing: 12.0))
-                    .frame(minHeight: 24)
-                    .contentShape(Rectangle())
-                    .background(
-                        RoundedRectangle(cornerRadius: 12.0, style: .continuous)
+            // ── Master server list ───────────────────────────────────────
+            HStack {
+                Text("Master Servers")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(.secondary)
+                    .textCase(.uppercase)
+                    .tracking(0.6)
+                Spacer()
+            }
+            .padding(.horizontal, 14)
+            .padding(.top, 10)
+            .padding(.bottom, 4)
+
+            List(gameViewModel.masterServers) { masterServer in
+                masterServerRow(masterServer)
+                    .listRowInsets(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
+                    .listRowBackground(
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .fill(masterServer.id == gameViewModel.currentMasterServer?.id
-                                  ? Color(.gray).opacity(0.25)
+                                  ? Color.accentColor.opacity(0.15)
                                   : Color.clear)
                     )
-                    .onTapGesture {
-                        Task {
-                            await gameViewModel.updateMasterServer(masterServer)
-                        }
-                    }
-                }
-                .listStyle(.sidebar)
-            } header: {
-                HStack {
-                    Text("Master Servers")
-                        .font(.title3)
-                    Spacer()
-                }
-                .fontWeight(.bold)
-                .frame(height: 28)
-                .padding(.horizontal, 28)
-
-                Divider()
-                    .padding(.horizontal, 28)
             }
+            .listStyle(.sidebar)
+
+            Divider()
+
+            // ── Footer ───────────────────────────────────────────────────
+            HStack {
+                if let refreshed = gameViewModel.lastRefreshed {
+                    Image(systemName: "clock")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.tertiary)
+                    Text(refreshed, style: .time)
+                        .font(.system(size: 12))
+                        .foregroundStyle(.tertiary)
+                } else {
+                    Text("Select a master server to begin")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.tertiary)
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
         }
+    }
+
+    // MARK: - Subviews
+
+    @ViewBuilder
+    private func filterChip(title: String, isOn: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundStyle(isOn ? Color.accentColor : Color.secondary)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .frame(maxWidth: .infinity)
+                .background(
+                    RoundedRectangle(cornerRadius: 7, style: .continuous)
+                        .fill(isOn ? Color.accentColor.opacity(0.12) : Color.primary.opacity(0.05))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 7, style: .continuous)
+                        .strokeBorder(
+                            isOn ? Color.accentColor.opacity(0.4) : Color.primary.opacity(0.1),
+                            lineWidth: 0.5
+                        )
+                )
+        }
+        .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private func masterServerRow(_ masterServer: MasterServer) -> some View {
+        let isActive = masterServer.id == gameViewModel.currentMasterServer?.id
+        let count = gameViewModel.masterServerResults[masterServer.id]
+
+        Button {
+            Task { await gameViewModel.updateMasterServer(masterServer) }
+        } label: {
+            HStack(spacing: 8) {
+                // Status dot: green if we have results, gray if not yet queried
+                Circle()
+                    .fill(count != nil ? Color.green : Color.secondary.opacity(0.4))
+                    .frame(width: 7, height: 7)
+
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(masterServer.hostname)
+                        .font(.system(size: 15, weight: isActive ? .semibold : .regular))
+                        .foregroundStyle(isActive ? Color.accentColor : Color.primary)
+                        .lineLimit(1)
+
+                    Text(":\(masterServer.port)")
+                        .font(.system(size: 13))
+                        .foregroundStyle(.tertiary)
+                }
+
+                Spacer(minLength: 4)
+
+                // Count badge — shown only after the master has responded
+                if let count {
+                    Text("\(count)")
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundStyle(isActive ? Color.accentColor : Color.secondary)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 1)
+                        .background(
+                            Capsule().fill(isActive
+                                           ? Color.accentColor.opacity(0.15)
+                                           : Color.primary.opacity(0.08))
+                        )
+                }
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 }
