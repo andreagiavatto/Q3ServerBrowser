@@ -26,7 +26,7 @@ struct PlayerCapacityView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text("\(current) / \(max)")
-                .font(.system(size: 10.5))
+                .font(.system(size: 13))
                 .monospacedDigit()
                 .foregroundStyle(.secondary)
 

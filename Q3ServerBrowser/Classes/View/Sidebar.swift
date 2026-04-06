@@ -28,12 +28,12 @@ struct SideBarContent: View {
     @Binding var selectedGame: SupportedGames
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 8) {
 
             // ── Game picker ──────────────────────────────────────────────
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text("Game")
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                     .tracking(0.6)
@@ -41,6 +41,7 @@ struct SideBarContent: View {
                 Picker("", selection: $selectedGame) {
                     ForEach(supportedGames, id: \.self) { game in
                         Text(game.name).tag(game)
+                            .frame(maxWidth: .infinity)
                     }
                 }
                 .labelsHidden()
@@ -54,7 +55,7 @@ struct SideBarContent: View {
             .padding(.bottom, 8)
 
             // ── Filter chips ─────────────────────────────────────────────
-            HStack(spacing: 6) {
+            HStack(spacing: 8) {
                 filterChip(
                     title: "Show Full",
                     isOn: gameViewModel.showFull
@@ -76,7 +77,7 @@ struct SideBarContent: View {
             // ── Master server list ───────────────────────────────────────
             HStack {
                 Text("Master Servers")
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                     .tracking(0.6)
@@ -104,14 +105,14 @@ struct SideBarContent: View {
             HStack {
                 if let refreshed = gameViewModel.lastRefreshed {
                     Image(systemName: "clock")
-                        .font(.system(size: 12))
+                        .font(.system(size: 13))
                         .foregroundStyle(.tertiary)
                     Text(refreshed, style: .time)
-                        .font(.system(size: 12))
+                        .font(.system(size: 13))
                         .foregroundStyle(.tertiary)
                 } else {
                     Text("Select a master server to begin")
-                        .font(.system(size: 12))
+                        .font(.system(size: 13))
                         .foregroundStyle(.tertiary)
                 }
                 Spacer()
@@ -127,7 +128,7 @@ struct SideBarContent: View {
     private func filterChip(title: String, isOn: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Text(title)
-                .font(.system(size: 13, weight: .semibold))
+                .font(.system(size: 14, weight: .semibold))
                 .foregroundStyle(isOn ? Color.accentColor : Color.secondary)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 4)
@@ -163,12 +164,12 @@ struct SideBarContent: View {
 
                 VStack(alignment: .leading, spacing: 1) {
                     Text(masterServer.hostname)
-                        .font(.system(size: 15, weight: isActive ? .semibold : .regular))
+                        .font(.system(size: 17, weight: isActive ? .semibold : .regular))
                         .foregroundStyle(isActive ? Color.accentColor : Color.primary)
                         .lineLimit(1)
 
                     Text(":\(masterServer.port)")
-                        .font(.system(size: 13))
+                        .font(.system(size: 14))
                         .foregroundStyle(.tertiary)
                 }
 
@@ -177,7 +178,7 @@ struct SideBarContent: View {
                 // Count badge — shown only after the master has responded
                 if let count {
                     Text("\(count)")
-                        .font(.system(size: 10, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold))
                         .foregroundStyle(isActive ? Color.accentColor : Color.secondary)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 1)

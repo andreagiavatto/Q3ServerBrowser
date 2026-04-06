@@ -67,7 +67,7 @@ struct ServerDetailsView: View {
             )
 
             // Overlaid server identity
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(server.name)
                     .font(.system(size: 16, weight: .bold))
                     .foregroundStyle(.white)
@@ -75,7 +75,7 @@ struct ServerDetailsView: View {
                     .shadow(color: .black.opacity(0.4), radius: 3, x: 0, y: 1)
 
                 Text("\(server.map)\(server.mod.isEmpty || server.mod == "baseq3" ? "" : " · \(server.mod)")")
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(.white.opacity(0.6))
 
                 // Gametype / mod / ping badges
@@ -99,7 +99,7 @@ struct ServerDetailsView: View {
     @ViewBuilder
     private func heroBadge(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: 13, weight: .semibold))
+            .font(.system(size: 14, weight: .medium))
             .foregroundStyle(.white.opacity(0.9))
             .padding(.horizontal, 7)
             .padding(.vertical, 2)
@@ -152,7 +152,7 @@ struct ServerDetailsView: View {
                 Text(server.currentPlayers)
                     .font(.system(size: 17, weight: .bold, design: .rounded))
                 Text("/ \(server.maxPlayers)")
-                    .font(.system(size: 11))
+                    .font(.system(size: 13))
                     .foregroundStyle(.secondary)
             }
             GeometryReader { geo in
@@ -203,7 +203,7 @@ struct ServerDetailsView: View {
     @ViewBuilder
     private func cardLabel(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: 12, weight: .bold))
+            .font(.system(size: 13, weight: .semibold))
             .foregroundStyle(.secondary)
             .textCase(.uppercase)
             .tracking(0.6)
@@ -213,23 +213,23 @@ struct ServerDetailsView: View {
 
     @ViewBuilder
     private func serverConfigSection(server: Server) -> some View {
-        VStack(spacing: 0) {
+        VStack(spacing: .zero) {
             // Disclosure header
             Button {
                 withAnimation(.easeInOut(duration: 0.18)) { configExpanded.toggle() }
             } label: {
                 HStack(spacing: 6) {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 11, weight: .semibold))
+                        .font(.system(size: 12, weight: .semibold))
                         .foregroundStyle(.secondary)
                         .rotationEffect(configExpanded ? .degrees(90) : .degrees(0))
                     Text("Server Configuration")
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold))
                         .foregroundStyle(.primary)
                     Spacer()
                     if !server.rules.isEmpty {
                         Text("\(server.rules.count)")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(.secondary)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 1)
@@ -240,21 +240,21 @@ struct ServerDetailsView: View {
             }
             .buttonStyle(.plain)
             .padding(.horizontal, 14)
-            .padding(.vertical, 9)
+            .padding(.vertical, 12)
 
             if configExpanded {
                 // Inline filter field
                 HStack(spacing: 6) {
                     Image(systemName: "magnifyingglass")
-                        .font(.system(size: 12))
+                        .font(.system(size: 13))
                         .foregroundStyle(.tertiary)
                     TextField("Filter settings…", text: $settingsFilter)
                         .textFieldStyle(.plain)
-                        .font(.system(size: 12))
+                        .font(.system(size: 13))
                     if !settingsFilter.isEmpty {
                         Button { settingsFilter = "" } label: {
                             Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 12))
+                                .font(.system(size: 13))
                                 .foregroundStyle(.tertiary)
                         }
                         .buttonStyle(.plain)
@@ -272,12 +272,12 @@ struct ServerDetailsView: View {
                     Text("Setting").frame(maxWidth: .infinity, alignment: .leading)
                     Text("Value").frame(maxWidth: .infinity, alignment: .trailing)
                 }
-                .font(.system(size: 11, weight: .semibold))
+                .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(.tertiary)
                 .textCase(.uppercase)
                 .tracking(0.5)
                 .padding(.horizontal, 14)
-                .padding(.vertical, 3)
+                .padding(.vertical, 4)
 
                 // Filtered rows
                 let filtered = server.rules
@@ -289,19 +289,19 @@ struct ServerDetailsView: View {
                     .sorted { $0.key < $1.key }
 
                 ForEach(filtered) { setting in
-                    HStack {
-                        Text(setting.key)
-                            .foregroundStyle(.secondary)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text(setting.value)
-                            .monospacedDigit()
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                    }
-                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 5)
-                    .background(.quaternary.opacity(0.25))
-                    .overlay(alignment: .bottom) {
+                    VStack(spacing: .zero) {
+                        HStack {
+                            Text(setting.key)
+                                .foregroundStyle(.secondary)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(setting.value)
+                                .monospacedDigit()
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 4)
+                        .background(.quaternary.opacity(0.25))
                         Divider().padding(.leading, 14)
                     }
                 }

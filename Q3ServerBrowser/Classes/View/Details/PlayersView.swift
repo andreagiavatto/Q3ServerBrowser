@@ -134,7 +134,7 @@ struct PlayersView: View {
         } label: {
             HStack(spacing: 6) {
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 11, weight: .semibold))
+                    .font(.system(size: 12, weight: .semibold))
                     .foregroundStyle(.secondary)
                     .rotationEffect(isExpanded.wrappedValue ? .degrees(90) : .degrees(0))
 

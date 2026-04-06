@@ -28,7 +28,7 @@ struct PingBadge: View {
 
     var body: some View {
         Text(label)
-            .font(.system(size: 10.5, weight: .bold, design: .rounded))
+            .font(.system(size: 13, weight: .semibold, design: .rounded))
             .monospacedDigit()
             .foregroundStyle(colour)
             .padding(.horizontal, 6)
