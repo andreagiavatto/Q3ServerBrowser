@@ -14,7 +14,12 @@ final class GameViewModel: ObservableObject {
     private var coordinator: Coordinator
     private var filterText: String?
     private var lastFetchedServers: [Server] = []
-    private var currentSortOrder: [KeyPathComparator<Server>] = []
+    private var currentSortOrder: [KeyPathComparator<Server>] = GameViewModel.defaultSortOrder
+
+    /// Busiest servers first.
+    static var defaultSortOrder: [KeyPathComparator<Server>] {
+        [KeyPathComparator(\Server.currentPlayerCount, order: .reverse)]
+    }
 
     // MARK: - Published state
 
@@ -23,13 +28,15 @@ final class GameViewModel: ObservableObject {
     @MainActor @Published private(set) var isUpdating: Bool = false
     @MainActor @Published var currentSelectedServer: Server.ID?
 
-    /// Whether to include servers that have reached their maximum player count.
-    /// Promoted to @Published so the Sidebar can observe and toggle it directly.
-    @MainActor @Published private(set) var showFull: Bool = true
+    // Filters, toggled from the toolbar filter menu. Changing any of them re-applies the filter.
+    @MainActor @Published var hideEmpty: Bool = false { didSet { applyFilters() } }
+    @MainActor @Published var hideFull: Bool = false { didSet { applyFilters() } }
+    @MainActor @Published var hideLocked: Bool = false { didSet { applyFilters() } }
+    @MainActor @Published var hideHighPing: Bool = false { didSet { applyFilters() } }
 
-    /// Whether to include servers with zero players.
-    /// Promoted to @Published so the Sidebar can observe and toggle it directly.
-    @MainActor @Published private(set) var showEmpty: Bool = true
+    @MainActor var hasActiveFilters: Bool {
+        hideEmpty || hideFull || hideLocked || hideHighPing
+    }
 
     /// Maps each MasterServer's `id` to the raw server count it returned.
     /// Updated as soon as `getServersList` responds; used by the Sidebar for count badges.
@@ -40,6 +47,15 @@ final class GameViewModel: ObservableObject {
 
     var masterServers: [MasterServer] {
         game.masterServers
+    }
+
+    var currentGameType: SupportedGames {
+        game.type
+    }
+
+    /// Number of servers fetched from the current master, before filtering.
+    var totalServerCount: Int {
+        lastFetchedServers.count
     }
 
     // MARK: - Init
@@ -63,7 +79,7 @@ final class GameViewModel: ObservableObject {
         coordinator = newGame.coordinator
         servers = []
         lastFetchedServers = []
-        currentSortOrder = []
+        currentSortOrder = GameViewModel.defaultSortOrder
         currentMasterServer = nil
         currentSelectedServer = nil
         filterText = nil
@@ -101,14 +117,7 @@ final class GameViewModel: ObservableObject {
     // MARK: - Filtering and sorting
 
     @MainActor
-    func updateFullServersVisibility(allowFullServers: Bool) {
-        showFull = allowFullServers
-        filter(with: filterText)
-    }
-
-    @MainActor
-    func updateEmptyServersVisibility(allowEmptyServers: Bool) {
-        showEmpty = allowEmptyServers
+    private func applyFilters() {
         filter(with: filterText)
     }
 
@@ -185,25 +194,20 @@ final class GameViewModel: ObservableObject {
 
     @MainActor
     private func satisfiesAllCurrentFilterCriteria(server: Server) -> Bool {
-        if !showFull, isFull(server: server) { return false }
-        if !showEmpty, isEmpty(server: server) { return false }
+        if hideFull, server.isFullServer { return false }
+        if hideEmpty, server.isEmptyServer { return false }
+        if hideLocked, server.isPasswordProtected { return false }
+        if hideHighPing, server.pingInt >= PingThreshold.critical { return false }
         return isIncludedInFilter(server: server)
     }
 
     private func isIncludedInFilter(server: Server) -> Bool {
         guard let text = filterText else { return true }
-        return server.name.localizedCaseInsensitiveContains(text)
+        return server.displayName.localizedCaseInsensitiveContains(text)
+            || server.map.localizedCaseInsensitiveContains(text)
             || server.mod.localizedCaseInsensitiveContains(text)
             || server.gametype.localizedCaseInsensitiveContains(text)
             || server.hostname.localizedCaseInsensitiveContains(text)
             || server.players.contains { $0.name.localizedCaseInsensitiveContains(text) }
-    }
-
-    private func isFull(server: Server) -> Bool {
-        Int(server.currentPlayers) == Int(server.maxPlayers)
-    }
-
-    private func isEmpty(server: Server) -> Bool {
-        Int(server.currentPlayers) == 0
     }
 }

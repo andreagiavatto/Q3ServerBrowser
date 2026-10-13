@@ -11,38 +11,37 @@ import GameServerQueryLibrary
 struct ServersView: View {
     @ObservedObject var gameViewModel: GameViewModel
 
-    @State var searchText: String = ""
-    @State private var sortOrder = [KeyPathComparator(\Server.name)]
+    @State private var searchText: String = ""
+    @State private var sortOrder = GameViewModel.defaultSortOrder
 
     var body: some View {
         Group {
             if gameViewModel.currentMasterServer == nil {
-                // Nothing selected yet — prompt the user
                 ContentUnavailableView(
                     "Select a Master Server",
                     systemImage: "server.rack",
-                    description: Text("Choose a master server from the sidebar to browse active game servers.")
+                    description: Text("Choose a master server from the sidebar to browse its game servers.")
                 )
             } else {
-                ZStack {
-                    serverTable
-                        .opacity(gameViewModel.isUpdating ? 0.45 : 1.0)
-
-                    if gameViewModel.isUpdating {
-                        ProgressView("Fetching servers…")
-                            .progressViewStyle(.circular)
-                    } else if gameViewModel.servers.isEmpty {
-                        // Loaded, but nothing matched (or master returned nothing)
-                        ContentUnavailableView(
-                            "No Servers Found",
-                            systemImage: "magnifyingglass",
-                            description: Text("Try a different master server or adjust your filter settings.")
-                        )
+                // Servers stream in while refreshing, so the table stays fully visible;
+                // an overlay is only shown while there is nothing to list yet.
+                serverTable
+                    .overlay {
+                        if gameViewModel.servers.isEmpty {
+                            if gameViewModel.isUpdating {
+                                ProgressView("Fetching servers…")
+                            } else {
+                                ContentUnavailableView(
+                                    "No Servers Found",
+                                    systemImage: "magnifyingglass",
+                                    description: Text("Try another master server or change the filters.")
+                                )
+                            }
+                        }
                     }
-                }
             }
         }
-        .searchable(text: $searchText)
+        .searchable(text: $searchText, prompt: "Name, map, mod or player")
         .onChange(of: searchText) { _, newQuery in
             gameViewModel.filter(with: newQuery)
         }
@@ -62,76 +61,78 @@ struct ServersView: View {
 
     private var serverTable: some View {
         Table(selection: $gameViewModel.currentSelectedServer, sortOrder: $sortOrder) {
-            // Name column — status dot embedded in the leading edge of the cell
-            TableColumn("Name", value: \.name) { server in
-                HStack(spacing: 8) {
-                    statusDot(for: server)
-                    Text(server.name)
-                        .font(.system(size: 13))
+            TableColumn("Name", value: \.displayName) { server in
+                HStack(spacing: 4) {
+                    Text(server.displayName)
                         .lineLimit(1)
+                        .truncationMode(.tail)
+                    if server.isPasswordProtected {
+                        Image(systemName: "lock.fill")
+                            .imageScale(.small)
+                            .foregroundStyle(.secondary)
+                            .help("Password protected")
+                    }
                 }
+                .foregroundStyle(server.rowStyle)
             }
-            .width(min: 210)
+            .width(min: 200, ideal: 320)
 
-            // Players column — fill bar + numeric label
-            TableColumn("Players", value: \.inGamePlayers) { server in
-                PlayerCapacityView(current: server.currentPlayers, max: server.maxPlayers)
+            TableColumn("Players", value: \.currentPlayerCount) { server in
+                PlayerCapacityView(server: server)
             }
-            .width(78)
-
-            // Ping column — colour-coded badge; sorts numerically via pingInt
+            .width(min: 56, ideal: 64, max: 80)
 
             TableColumn("Ping", value: \.pingInt) { server in
-                PingBadge(ping: server.ping)
+                PingBadge(ping: server.pingInt)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            .width(68)
+            .width(min: 40, ideal: 48, max: 64)
 
-            TableColumn("Gametype", value: \.gametype)
-                .width(70)
+            TableColumn("Mode", value: \.modeLabel) { server in
+                Text(server.modeLabel)
+                    .foregroundStyle(server.rowStyle)
+            }
+            .width(min: 40, ideal: 52, max: 72)
 
-            TableColumn("Map", value: \.map)
-                .width(90)
+            TableColumn("Map", value: \.map) { server in
+                Text(server.map)
+                    .lineLimit(1)
+                    .foregroundStyle(server.rowStyle)
+            }
+            .width(min: 80, ideal: 130)
 
-            TableColumn("Mod", value: \.mod)
-                .width(70)
-
-            TableColumn("Address", value: \.hostname)
-                .width(150)
+            TableColumn("Mod", value: \.displayMod) { server in
+                Text(server.displayMod)
+                    .lineLimit(1)
+                    .foregroundStyle(.secondary)
+            }
+            .width(min: 60, ideal: 100)
         } rows: {
             ForEach(gameViewModel.servers) { server in
                 TableRow(server)
-                    .contextMenu {
-                        Button {
-                            copyToClipboard(server.hostname)
-                        } label: {
-                            Label("Copy Address", systemImage: "doc.on.doc")
-                        }
-                    }
+            }
+        }
+        .contextMenu(forSelectionType: Server.ID.self) { ids in
+            if let id = ids.first, let server = gameViewModel.server(by: id) {
+                Button("Connect") { connect(to: server) }
+                Divider()
+                Button("Copy Address") { Pasteboard.copy(server.hostname) }
+                Button("Copy Connect Command") { Pasteboard.copy("/connect \(server.hostname)") }
+                Divider()
+                Button("Choose Game Application…") {
+                    GameLauncher.chooseApplication(for: gameViewModel.currentGameType)
+                }
+            }
+        } primaryAction: { ids in
+            // Double-click (or Return) connects.
+            if let id = ids.first, let server = gameViewModel.server(by: id) {
+                connect(to: server)
             }
         }
         .tableStyle(.inset)
     }
 
-    // MARK: - Helpers
-
-    /// 6 pt circle: green (has players), red (full), secondary (empty / unknown).
-    @ViewBuilder
-    private func statusDot(for server: Server) -> some View {
-        let current = Int(server.currentPlayers) ?? 0
-        let max     = Int(server.maxPlayers)     ?? 0
-        let colour: Color = {
-            if current == 0                          { return .secondary }
-            if max > 0 && current >= max             { return .red }
-            return .green
-        }()
-        Circle()
-            .fill(colour)
-            .frame(width: 6, height: 6)
-    }
-
-    private func copyToClipboard(_ text: String) {
-        let pb = NSPasteboard.general
-        pb.clearContents()
-        pb.setString(text, forType: .string)
+    private func connect(to server: Server) {
+        GameLauncher.connect(to: server, game: gameViewModel.currentGameType)
     }
 }

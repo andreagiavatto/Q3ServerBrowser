@@ -8,189 +8,81 @@
 import SwiftUI
 import GameServerQueryLibrary
 
+/// One section per game, listing its master servers. Selecting a master from
+/// another game switches game automatically.
 struct Sidebar: View {
     @ObservedObject var gameViewModel: GameViewModel
     let supportedGames: [SupportedGames]
-    @Binding var selectedGame: SupportedGames
+
+    @State private var selection: MasterServer.ID?
 
     var body: some View {
-        SideBarContent(
-            gameViewModel: gameViewModel,
-            supportedGames: supportedGames,
-            selectedGame: $selectedGame
-        )
-    }
-}
-
-struct SideBarContent: View {
-    @ObservedObject var gameViewModel: GameViewModel
-    let supportedGames: [SupportedGames]
-    @Binding var selectedGame: SupportedGames
-
-    var body: some View {
-        VStack(spacing: 8) {
-
-            // ── Game picker ──────────────────────────────────────────────
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Game")
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                    .tracking(0.6)
-
-                Picker("", selection: $selectedGame) {
-                    ForEach(supportedGames, id: \.self) { game in
-                        Text(game.name).tag(game)
-                            .frame(maxWidth: .infinity)
+        List(selection: $selection) {
+            ForEach(supportedGames, id: \.self) { gameType in
+                let game = Game(type: gameType)
+                Section(game.name) {
+                    ForEach(game.masterServers) { masterServer in
+                        masterServerRow(masterServer, defaultPort: game.defaultMasterServer.port)
+                            .tag(masterServer.id)
                     }
                 }
-                .labelsHidden()
-                .pickerStyle(.segmented)
-                .onChange(of: selectedGame) { _, newGame in
-                    gameViewModel.switchGame(to: newGame)
-                }
             }
-            .padding(.horizontal, 14)
-            .padding(.top, 12)
-            .padding(.bottom, 8)
+        }
+        .listStyle(.sidebar)
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            footer
+        }
+        .onChange(of: selection) { _, newSelection in
+            select(newSelection)
+        }
+    }
 
-            // ── Filter chips ─────────────────────────────────────────────
-            HStack(spacing: 8) {
-                filterChip(
-                    title: "Show Full",
-                    isOn: gameViewModel.showFull
-                ) {
-                    gameViewModel.updateFullServersVisibility(allowFullServers: !gameViewModel.showFull)
-                }
-                filterChip(
-                    title: "Show Empty",
-                    isOn: gameViewModel.showEmpty
-                ) {
-                    gameViewModel.updateEmptyServersVisibility(allowEmptyServers: !gameViewModel.showEmpty)
-                }
-            }
-            .padding(.horizontal, 14)
-            .padding(.bottom, 10)
+    // MARK: - Rows
 
-            Divider().padding(.horizontal, 14)
+    private func masterServerRow(_ masterServer: MasterServer, defaultPort: String) -> some View {
+        // Count badge appears once the master has responded (a zero badge is hidden).
+        let count = gameViewModel.masterServerResults[masterServer.id] ?? 0
+        let title = masterServer.port == defaultPort ? masterServer.hostname : masterServer.description
+        return Text(title)
+            .lineLimit(1)
+            .truncationMode(.middle)
+            .badge(count)
+            .help(masterServer.description)
+    }
 
-            // ── Master server list ───────────────────────────────────────
-            HStack {
-                Text("Master Servers")
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                    .tracking(0.6)
-                Spacer()
-            }
-            .padding(.horizontal, 14)
-            .padding(.top, 10)
-            .padding(.bottom, 4)
-
-            List(gameViewModel.masterServers) { masterServer in
-                masterServerRow(masterServer)
-                    .listRowInsets(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
-                    .listRowBackground(
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(masterServer.id == gameViewModel.currentMasterServer?.id
-                                  ? Color.accentColor.opacity(0.15)
-                                  : Color.clear)
-                    )
-            }
-            .listStyle(.sidebar)
-
-            Divider()
-
-            // ── Footer ───────────────────────────────────────────────────
-            HStack {
-                if let refreshed = gameViewModel.lastRefreshed {
-                    Image(systemName: "clock")
-                        .font(.system(size: 13))
-                        .foregroundStyle(.tertiary)
-                    Text(refreshed, style: .time)
-                        .font(.system(size: 13))
-                        .foregroundStyle(.tertiary)
-                } else {
-                    Text("Select a master server to begin")
-                        .font(.system(size: 13))
-                        .foregroundStyle(.tertiary)
+    @ViewBuilder
+    private var footer: some View {
+        if gameViewModel.isUpdating || gameViewModel.lastRefreshed != nil {
+            HStack(spacing: 6) {
+                if gameViewModel.isUpdating {
+                    ProgressView()
+                        .controlSize(.small)
+                    Text("Refreshing…")
+                } else if let refreshed = gameViewModel.lastRefreshed {
+                    Text("Updated \(refreshed, style: .time)")
                 }
                 Spacer()
             }
-            .padding(.horizontal, 14)
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 16)
             .padding(.vertical, 8)
         }
     }
 
-    // MARK: - Subviews
+    // MARK: - Selection
 
-    @ViewBuilder
-    private func filterChip(title: String, isOn: Bool, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(title)
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundStyle(isOn ? Color.accentColor : Color.secondary)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 4)
-                .frame(maxWidth: .infinity)
-                .background(
-                    RoundedRectangle(cornerRadius: 7, style: .continuous)
-                        .fill(isOn ? Color.accentColor.opacity(0.12) : Color.primary.opacity(0.05))
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 7, style: .continuous)
-                        .strokeBorder(
-                            isOn ? Color.accentColor.opacity(0.4) : Color.primary.opacity(0.1),
-                            lineWidth: 0.5
-                        )
-                )
-        }
-        .buttonStyle(.plain)
-    }
-
-    @ViewBuilder
-    private func masterServerRow(_ masterServer: MasterServer) -> some View {
-        let isActive = masterServer.id == gameViewModel.currentMasterServer?.id
-        let count = gameViewModel.masterServerResults[masterServer.id]
-
-        Button {
-            Task { await gameViewModel.updateMasterServer(masterServer) }
-        } label: {
-            HStack(spacing: 8) {
-                // Status dot: green if we have results, gray if not yet queried
-                Circle()
-                    .fill(count != nil ? Color.green : Color.secondary.opacity(0.4))
-                    .frame(width: 7, height: 7)
-
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(masterServer.hostname)
-                        .font(.system(size: 17, weight: isActive ? .semibold : .regular))
-                        .foregroundStyle(isActive ? Color.accentColor : Color.primary)
-                        .lineLimit(1)
-
-                    Text(":\(masterServer.port)")
-                        .font(.system(size: 14))
-                        .foregroundStyle(.tertiary)
-                }
-
-                Spacer(minLength: 4)
-
-                // Count badge — shown only after the master has responded
-                if let count {
-                    Text("\(count)")
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(isActive ? Color.accentColor : Color.secondary)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 1)
-                        .background(
-                            Capsule().fill(isActive
-                                           ? Color.accentColor.opacity(0.15)
-                                           : Color.primary.opacity(0.08))
-                        )
-                }
+    private func select(_ id: MasterServer.ID?) {
+        guard let id else { return }
+        for gameType in supportedGames {
+            guard let masterServer = Game(type: gameType).masterServers.first(where: { $0.id == id }) else {
+                continue
             }
-            .contentShape(Rectangle())
+            if gameType != gameViewModel.currentGameType {
+                gameViewModel.switchGame(to: gameType)
+            }
+            Task { await gameViewModel.updateMasterServer(masterServer) }
+            return
         }
-        .buttonStyle(.plain)
     }
 }

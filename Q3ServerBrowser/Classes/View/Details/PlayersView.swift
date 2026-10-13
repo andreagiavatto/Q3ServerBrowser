@@ -8,190 +8,99 @@
 import SwiftUI
 import GameServerQueryLibrary
 
+/// Players grouped by team (or sorted by score in free-for-all), with a single
+/// column header. Spectators start collapsed.
 struct PlayersView: View {
     let server: Server
 
-    @State private var redExpanded: Bool = true
-    @State private var blueExpanded: Bool = true
     @State private var spectatorsExpanded: Bool = false
-    @State private var allPlayersExpanded: Bool = true
+
+    private var redPlayers: [Player] { server.teamRed?.players ?? [] }
+    private var bluePlayers: [Player] { server.teamBlue?.players ?? [] }
+    private var spectators: [Player] { server.teamSpectator?.players ?? [] }
+
+    /// Team modes whose mod doesn't report team membership fall back to a flat list.
+    private var showsTeams: Bool {
+        server.isATeamMode && !(redPlayers.isEmpty && bluePlayers.isEmpty)
+    }
+
+    private var playersByScore: [Player] {
+        server.players.sorted { (Int($0.score) ?? 0) > (Int($1.score) ?? 0) }
+    }
 
     var body: some View {
-        VStack(spacing: 0) {
-            if server.isATeamMode {
-                teamSection(
-                    title: "Team Red",
-                    players: server.teamRed?.players ?? [],
-                    score: server.teamRed?.score,
-                    colour: .red,
-                    isExpanded: $redExpanded
-                )
-
-                Divider().padding(.leading, 14)
-
-                teamSection(
-                    title: "Team Blue",
-                    players: server.teamBlue?.players ?? [],
-                    score: server.teamBlue?.score,
-                    colour: .blue,
-                    isExpanded: $blueExpanded
-                )
-
-                if let specPlayers = server.teamSpectator?.players, !specPlayers.isEmpty {
-                    Divider().padding(.leading, 14)
-                    teamSection(
-                        title: "Spectators",
-                        players: specPlayers,
-                        score: nil,
-                        colour: .secondary,
-                        isExpanded: $spectatorsExpanded
-                    )
-                }
+        VStack(alignment: .leading, spacing: 0) {
+            if server.players.isEmpty {
+                Text("No one is playing right now")
+                    .foregroundStyle(.secondary)
+                    .padding(16)
             } else {
-                let sorted = server.players.sorted {
-                    (Int($0.score) ?? 0) > (Int($1.score) ?? 0)
+                columnHeader
+
+                if showsTeams {
+                    teamGroup("Red", colour: .red, players: redPlayers)
+                    teamGroup("Blue", colour: .blue, players: bluePlayers)
+                } else {
+                    ForEach(playersByScore) { player in
+                        playerRow(player)
+                    }
                 }
-                playerSection(
-                    title: "Players",
-                    players: sorted,
-                    colour: .primary,
-                    isExpanded: $allPlayersExpanded
-                )
 
-                if let specPlayers = server.teamSpectator?.players, !specPlayers.isEmpty {
-                    Divider().padding(.leading, 14)
-                    teamSection(
-                        title: "Spectators",
-                        players: specPlayers,
-                        score: nil,
-                        colour: .secondary,
-                        isExpanded: $spectatorsExpanded
-                    )
+                if showsTeams && !spectators.isEmpty {
+                    CollapsibleHeader(title: "Spectators",
+                                      count: spectators.count,
+                                      isExpanded: $spectatorsExpanded)
+                        .padding(.top, 6)
+                    if spectatorsExpanded {
+                        ForEach(spectators) { player in
+                            playerRow(player)
+                        }
+                    }
                 }
-            }
-        }
-    }
-
-    // MARK: - Section views
-
-    @ViewBuilder
-    private func teamSection(
-        title: String,
-        players: [Player],
-        score: String?,
-        colour: Color,
-        isExpanded: Binding<Bool>
-    ) -> some View {
-        VStack(spacing: 0) {
-            sectionHeader(
-                title: title,
-                detail: score.map { "Score: \($0)" },
-                count: players.count,
-                colour: colour,
-                isExpanded: isExpanded
-            )
-
-            if isExpanded.wrappedValue {
-                playerRows(players: players)
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func playerSection(
-        title: String,
-        players: [Player],
-        colour: Color,
-        isExpanded: Binding<Bool>
-    ) -> some View {
-        VStack(spacing: 0) {
-            sectionHeader(
-                title: title,
-                detail: nil,
-                count: players.count,
-                colour: colour,
-                isExpanded: isExpanded
-            )
-
-            if isExpanded.wrappedValue {
-                playerRows(players: players)
             }
         }
     }
 
     // MARK: - Building blocks
 
-    @ViewBuilder
-    private func sectionHeader(
-        title: String,
-        detail: String?,
-        count: Int,
-        colour: Color,
-        isExpanded: Binding<Bool>
-    ) -> some View {
-        Button {
-            withAnimation(.easeInOut(duration: 0.18)) { isExpanded.wrappedValue.toggle() }
-        } label: {
-            HStack(spacing: 6) {
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(.secondary)
-                    .rotationEffect(isExpanded.wrappedValue ? .degrees(90) : .degrees(0))
-
-                Text(title)
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(colour)
-
-                if let detail {
-                    Text("·")
-                        .foregroundStyle(.tertiary)
-                    Text(detail)
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundStyle(colour.opacity(0.7))
-                }
-
-                Spacer()
-
-                Text("\(count)")
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 1)
-                    .background(.quaternary, in: Capsule())
-            }
-            .contentShape(Rectangle())
+    private var columnHeader: some View {
+        HStack {
+            Text("Player")
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("Score")
+                .frame(width: 44, alignment: .trailing)
+            Text("Ping")
+                .frame(width: 44, alignment: .trailing)
         }
-        .buttonStyle(.plain)
-        .padding(.horizontal, 14)
-        .padding(.vertical, 8)
+        .font(.caption)
+        .foregroundStyle(.secondary)
+        .padding(.horizontal, 16)
+        .padding(.top, 10)
+        .padding(.bottom, 2)
     }
 
-    @ViewBuilder
-    private func playerRows(players: [Player]) -> some View {
-        if players.isEmpty {
-            Text("No players")
-                .font(.system(size: 13))
-                .foregroundStyle(.tertiary)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 6)
-        } else {
-            VStack(spacing: 0) {
-                // Column header row
-                HStack {
-                    Text("Name")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Score")
-                        .frame(width: 48, alignment: .trailing)
-                    Text("Ping")
-                        .frame(width: 48, alignment: .trailing)
-                }
-                .font(.system(size: 11, weight: .semibold))
-                .foregroundStyle(.tertiary)
-                .textCase(.uppercase)
-                .tracking(0.5)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 3)
+    private func teamGroup(_ title: String, colour: Color, players: [Player]) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 6) {
+                Text(title)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(colour)
+                Text("\(players.count)")
+                    .font(.caption)
+                    .monospacedDigit()
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .padding(.bottom, 2)
 
+            if players.isEmpty {
+                Text("No players")
+                    .font(.callout)
+                    .foregroundStyle(.tertiary)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 2)
+            } else {
                 ForEach(players) { player in
                     playerRow(player)
                 }
@@ -199,37 +108,21 @@ struct PlayersView: View {
         }
     }
 
-    @ViewBuilder
     private func playerRow(_ player: Player) -> some View {
-        let pingInt = Int(player.ping) ?? 0
-        let pingColour: Color = pingInt <= 0  ? .secondary
-            : pingInt < 50                   ? .green
-            : pingInt < 150                  ? .orange
-            : .red
-
-        HStack {
-            Text(player.name.isEmpty ? "(unnamed)" : player.name)
-                .font(.system(size: 13))
+        let ping = Int(player.ping) ?? 0
+        let name = player.name.cleanedQ3Name
+        return HStack {
+            Text(name.isEmpty ? "(unnamed)" : name)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
-
             Text(player.score)
-                .font(.system(size: 13))
-                .monospacedDigit()
                 .foregroundStyle(.secondary)
-                .frame(width: 48, alignment: .trailing)
-
-            Text(pingInt > 0 ? player.ping : "—")
-                .font(.system(size: 13, weight: .semibold))
-                .monospacedDigit()
-                .foregroundStyle(pingColour)
-                .frame(width: 48, alignment: .trailing)
+                .frame(width: 44, alignment: .trailing)
+            PingBadge(ping: ping)
+                .frame(width: 44, alignment: .trailing)
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 4)
-        .background(.quaternary.opacity(0.3))
-        .overlay(alignment: .bottom) {
-            Divider().padding(.leading, 14)
-        }
+        .monospacedDigit()
+        .padding(.horizontal, 16)
+        .frame(height: 22)
     }
 }
